@@ -1,0 +1,152 @@
+/*AUTOR: FERNANDO MANUEL AVILA CATAÑO*/
+@import url('../fonts/FjallaOne-Regular.ttf');
+.pulse-header {
+  height: 60px;
+  min-height: 60px;
+  max-height: 60px;
+  background-color: #ffffff;
+  padding: 13px 15px;
+}
+.pulse-header .navbar-nav-left {
+  margin-left: 20px;
+}
+.pulse-header .nav > .nav-item {
+  margin-right: 20px;
+}
+.pulse-header .nav > .nav-item > a {
+  position: relative;
+}
+.navbar img {
+  margin:0px auto;
+  display:block;
+}
+.sombranav {
+  -webkit-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.27);
+  -moz-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.27);
+  box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.27);
+  margin-bottom: 1%;
+}
+.navbar-light .navbar-brand {
+  color: #A4A4A4;
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+}
+.login-card{
+  margin-top: 5%;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+footer.page-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+footer .footer-copyright {
+  overflow: hidden;
+  height: 50px;
+  line-height: 50px;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(51, 51, 51, 0.08);
+}
+.amber-text {color: #ff8f00}
+.titulosistema{
+  margin-top: 5%;
+  color:#FF8000;
+  font-family: 'Fjalla One', sans-serif;
+  text-shadow: 1px 1px 2px #000000;
+}
+/*COLRO BOTON NARANJA*/
+.btn-naranja {
+  color: #FFFFFF;
+  background-color: #F36B39;
+  border-color: #DB6134;
+}
+
+.btn-naranja:hover,
+.btn-naranja:focus,
+.btn-naranja:active,
+.btn-naranja.active,
+.open .dropdown-toggle.btn-naranja {
+  color: #FFFFFF;
+  background-color: #D95A2B;
+  border-color: #DB6134;
+}
+
+.btn-naranja:active,
+.btn-naranja.active,
+.open .dropdown-toggle.btn-naranja {
+  background-image: none;
+}
+
+.btn-naranja.disabled,
+.btn-naranja[disabled],
+fieldset[disabled] .btn-naranja,
+.btn-naranja.disabled:hover,
+.btn-naranja[disabled]:hover,
+fieldset[disabled] .btn-naranja:hover,
+.btn-naranja.disabled:focus,
+.btn-naranja[disabled]:focus,
+fieldset[disabled] .btn-naranja:focus,
+.btn-naranja.disabled:active,
+.btn-naranja[disabled]:active,
+fieldset[disabled] .btn-naranja:active,
+.btn-naranja.disabled.active,
+.btn-naranja[disabled].active,
+fieldset[disabled] .btn-naranja.active {
+  background-color: #F36B39;
+  border-color: #DB6134;
+}
+
+.btn-naranja .badge {
+  color: #F36B39;
+  background-color: #FFFFFF;
+}
+/*FIN COLRO BOTON NARANJA*/
+
+.menus{
+  -webkit-box-shadow: 0px 0px 18px 1px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 0px 18px 1px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 18px 1px rgba(0,0,0,0.1);
+}
+.textotitulo{
+
+  margin-left: 35%;
+  margin-top: -16%;
+  font-size: 120%;
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 5%;
+}
+.coloriconosmenu{
+  color: #f58220;
+  text-shadow: 2px 2px 0px #800000;
+  /*  text-shadow: 4px 4px 8px rgba(150, 150, 150, 0.64);*/
+}
+.coloriconosmenu2{
+  color: #bababa;
+  text-shadow: 2px 2px 0px #800000;
+  /*  text-shadow: 4px 4px 8px rgba(150, 150, 150, 0.64);*/
+}
+.linkmenu{
+  color: black;
+}
+.linkmenu:hover{
+  color: black;
+  text-decoration: none;
+}
+.tamanoiconos{
+  font-size: 400%;
+}
