@@ -61,6 +61,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
+	<!--
+	<form method="post" action="<?php echo base_url(); ?>index.php/c_inicio/test">
+		<input type="text" value="" name="1" id="1" />
+		<input type="text" value="" name="2" id="2" />
+		<input type="text" value="3" name="3" id="3" />
+		<input type="submit" value="PROBAr"   />
+	</form> -->
 	<?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>

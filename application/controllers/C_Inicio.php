@@ -14,4 +14,20 @@ class C_Inicio extends CI_Controller {
 			$this->load->view('inicio');
 		}
 	}
+	public function test()
+	{
+		$todo = $this->input->post();
+		echo json_encode($todo);
+		echo "<br>";
+		foreach ($todo as $value)
+   {
+    echo "$value <br>";
+   }
+	 echo "<br>";
+	 $data = json_decode(html_entity_decode('{"1":"Hola","2":"xD","3":":3 carito ññ mi amor <3"}'), TRUE);
+	 foreach ($data as $value)
+	 {
+		echo "$value <br>";
+	 }
+	}
 }

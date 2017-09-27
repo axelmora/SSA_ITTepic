@@ -53,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</a>
 		</div>
+		<br>
 	</div>
 	<?php $this->load->view('include/footer'); ?>
 </body>
