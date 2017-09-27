@@ -122,17 +122,17 @@ fieldset[disabled] .btn-naranja.active {
   box-shadow: 0px 0px 18px 1px rgba(0,0,0,0.1);
 }
 .textotitulo{
-
   margin-left: 35%;
-  margin-top: -16%;
+  margin-top: -10%;
   font-size: 120%;
   text-align: center;
   font-weight: bold;
-  padding-bottom: 5%;
+  padding-bottom: 2%;
 }
 .coloriconosmenu{
   color: #f58220;
   text-shadow: 2px 2px 0px #800000;
+  margin-bottom: 4%;
   /*  text-shadow: 4px 4px 8px rgba(150, 150, 150, 0.64);*/
 }
 .coloriconosmenu2{

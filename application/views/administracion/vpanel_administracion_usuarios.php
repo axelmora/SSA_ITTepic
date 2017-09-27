@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>SSA</title>
+	<title>SSA - Usuarios</title>
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<meta name="description" content="">
@@ -26,6 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-lg-12">
 			<div class="card menus">
 				<div class="card-body">
+					<h4><i class="fa fa-users" aria-hidden="true"></i> Lista de usuarios</h4>
 					<table id="tablausuarios" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
 						<thead>
 							<tr>

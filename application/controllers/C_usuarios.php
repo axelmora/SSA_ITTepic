@@ -32,7 +32,7 @@ class C_usuarios extends CI_Controller {
 			$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
 			switch ($this->session->userdata('perfil')) {
 				case 'Administrador':
-				redirect(base_url().'index.php/C_panel_administracion/');
+				redirect(base_url().'index.php/c_panel_administracion/');
 				break;
 			}
 			return true;
