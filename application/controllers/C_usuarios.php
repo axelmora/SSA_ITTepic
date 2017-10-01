@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class C_usuarios extends CI_Controller {
 	function __construct() {
 		parent::__construct();
+		/*modelo usuario*/
 		$this->load->model('Usuarios');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
@@ -16,6 +17,7 @@ class C_usuarios extends CI_Controller {
 				$this->load->view('vperfil');
 			}
 	}
+	/* inicio de sesion*/
 	public function iniciosesion() {
 		$usuario = $this->input->post('userid');
 		$password = sha1($this->input->post('passwordid'));
@@ -30,10 +32,11 @@ class C_usuarios extends CI_Controller {
 			);
 			$this->session->set_userdata($datos);
 			$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
-			switch ($this->session->userdata('perfil')) {
-				case 'Administrador':
+			if ($this->session->userdata('perfil')=="Administrador") {
 				redirect(base_url().'index.php/c_panel_administracion/');
-				break;
+			}
+			else {
+				redirect(base_url().'index.php/ssapanel/');
 			}
 			return true;
 		} else {
@@ -42,6 +45,7 @@ class C_usuarios extends CI_Controller {
 			return false;
 		}
 	}
+	/* funcion para destruri sesiones*/
 	public function logout() {
 		$this->session->sess_destroy();
 		redirect('c_inicio');
