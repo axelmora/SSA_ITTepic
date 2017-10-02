@@ -107,7 +107,6 @@ switch (ENVIRONMENT)
 * Set the path if it is not in the same directory as this file.
 */
 $system_path = 'system';
-
 /*
 *---------------------------------------------------------------
 * APPLICATION DIRECTORY NAME
@@ -124,7 +123,6 @@ $system_path = 'system';
 * NO TRAILING SLASH!
 */
 $application_folder = 'application';
-
 /*
 *---------------------------------------------------------------
 * VIEW DIRECTORY NAME
