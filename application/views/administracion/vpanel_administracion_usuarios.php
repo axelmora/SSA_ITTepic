@@ -30,8 +30,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<table id="tablausuarios" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
 						<thead>
 							<tr>
-								<th>Nombre</th>
 								<th>Usuario</th>
+								<th>Nombre usuario</th>
 								<th>Departamento</th>
 								<th>Ultima Conexion</th>
 								<th>Acciones</th>
@@ -43,9 +43,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								foreach ($usuarios as $filas => $valores) {
 									?>
 									<tr>
-										<td colspan=""><?php echo $valores->nombre_usuario; ?> </td>
 										<td colspan=""><?php echo $valores->usuario; ?> </td>
-										<td colspan=""><?php echo $valores->nombre_departamento; ?></td>
+										<td colspan=""><?php echo $valores->nombre_usuario; ?> </td>
+										<?php if($valores->nombre_departamento =="Administrador"){ ?>
+											<td colspan=""><b><i class="fa fa-user-secret" aria-hidden="true"></i> <?php echo $valores->nombre_departamento; ?><b></td>
+										<?php
+										}
+										else { ?>
+											<td colspan=""><i class="fa fa-user" aria-hidden="true"></i> <?php echo $valores->nombre_departamento; ?></td>
+									 <?php
+										} ?>
+
 										<td colspan=""><?php if($valores->ult_conexion!=""){echo $valores->ult_conexion;}else{echo "-";} ?></td>
 										<td colspan=""></td>
 									</tr>
