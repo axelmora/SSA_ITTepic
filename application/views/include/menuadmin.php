@@ -23,13 +23,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo "".base_url().'index.php/C_panel_administracion/';?>"><i class="fa fa-home" aria-hidden="true"></i> INICO <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?php echo "".base_url().'index.php/panel_administracion/';?>"><i class="fa fa-home" aria-hidden="true"></i> INICO <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo "".base_url().'index.php/c_panel_administracion/lista_usuarios';?>"><i class="fa fa-users" aria-hidden="true"></i>USUARIOS </a>
+          <a class="nav-link" href="<?php echo "".base_url().'index.php/panel_administracion/lista_usuarios';?>"><i class="fa fa-users" aria-hidden="true"></i>USUARIOS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo "".base_url().'index.php/c_panel_administracion/sistemainfo';?>"><i class="fa fa-server" aria-hidden="true"></i>INFORMACION SISTEMA </a>
+          <a class="nav-link" href="<?php echo "".base_url().'index.php/panel_administracion/mesadeayuda';?>"><i class="fa fa-question" aria-hidden="true"></i> MESA DE AYUDA</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo "".base_url().'index.php/panel_administracion/sistemainfo';?>"><i class="fa fa-server" aria-hidden="true"></i>INFORMACION SISTEMA</a>
         </li>
       </ul>
       <ul class='navbar-nav'>

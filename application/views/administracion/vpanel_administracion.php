@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<!-- OPCION MENU 3 -->
 			<div class="col-lg-6">
 				<br>
-				<a href="<?php echo base_url(); ?>index.php/panel_administracion/sistemainfo" class="linkmenu">
+				<a href="<?php echo base_url(); ?>index.php/panel_administracion/mesadeayuda" class="linkmenu">
 					<div class="card menus animenu caro">
 						<div class="card-body">
 							<div class="row">

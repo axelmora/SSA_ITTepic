@@ -27,96 +27,96 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="card-body">
 					<div class="row">
 						<div class="col-lg-12">
+							<h3><i class="fa fa-server" aria-hidden="true"></i> Configuracion Sistema</h3>
 							<p>
-								<h4><i class="fa fa-server" aria-hidden="true"></i> Configuracion Sistema</h4>
 								<br>
 								<p><b>VERSION ACTUAL:</b> 1.0.0 <p>
-								<form>
-									<label><b>ESTADO ACTUAL DEL SITEMA </b> <label>
-										<?php
-										$valorproduccion="checked";
-										foreach ($produccion as $key => $value) {
-											if ($value->produccion==1) {
-												$valorproduccion="checked";
-											}else {
-												$valorproduccion="";
+									<form>
+										<label><b>ESTADO ACTUAL DEL SITEMA </b> <label>
+											<?php
+											$valorproduccion="checked";
+											foreach ($produccion as $key => $value) {
+												if ($value->produccion==1) {
+													$valorproduccion="checked";
+												}else {
+													$valorproduccion="";
+												}
 											}
-										}
-										?>
-										<input type="checkbox" id="botonproduccion" data-toggle="toggle" data-on="<i class='fa fa-check-circle' aria-hidden='true'></i> EN PRODUCCION" <?php echo "$valorproduccion";?> data-off="<i class='fa fa-wrench' aria-hidden='true'></i> EN MANTENIMIENTO">
-									</form>
-								</p>
+											?>
+											<input type="checkbox" id="botonproduccion" data-toggle="toggle" data-on="<i class='fa fa-check-circle' aria-hidden='true'></i> EN PRODUCCION" <?php echo "$valorproduccion";?> data-off="<i class='fa fa-wrench' aria-hidden='true'></i> EN MANTENIMIENTO">
+										</form>
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="card menus animenu caro">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<center>
-									<h4>Framework CORE</h4>
-									<p>
-										<object data="<?php echo base_url(); ?>/images/codeigniter.svg"  height="150" width="150" type="image/svg+xml">
-											<img src="<?php echo base_url(); ?>/images/codeigniter.png" height="150" width="150" />
+				<div class="col-lg-6">
+					<div class="card menus animenu caro">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<center>
+										<h4>Framework CORE</h4>
+										<p>
+											<object data="<?php echo base_url(); ?>/images/codeigniter.svg"  height="150" width="150" type="image/svg+xml">
+												<img src="<?php echo base_url(); ?>/images/codeigniter.png" height="150" width="150" />
+											</object>
+										</p>
+										<p>
+											<?php echo CI_VERSION;?>
+										</p>
+										<p>
+											<?php echo  $_SERVER['SERVER_SIGNATURE'];?>
+										</p>
+										<h4>Framework CSS</h4>
+										<object data="<?php echo base_url(); ?>/images/bootstrap-solid.svg"  height="150" width="150" type="image/svg+xml">
+											<img src="<?php echo base_url(); ?>/images/bootstrap-stack.png" height="150" width="150" />
 										</object>
-									</p>
-									<p>
-										<?php echo CI_VERSION;?>
-									</p>
-									<p>
-										<?php echo  $_SERVER['SERVER_SIGNATURE'];?>
-									</p>
-									<h4>Framework CSS</h4>
-									<object data="<?php echo base_url(); ?>/images/bootstrap-solid.svg"  height="150" width="150" type="image/svg+xml">
-										<img src="<?php echo base_url(); ?>/images/bootstrap-stack.png" height="150" width="150" />
-									</object>
-									<p id="bootstrapversion">
+										<p id="bootstrapversion">
 
-									</p>
-								</center>
+										</p>
+									</center>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<?php $this->load->view('include/footer'); ?>
-	</body>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap-toggle.min.js"></script>
-	<script>
-	$(document).ready(function(){
-		$(function() {
-			$('.caro').matchHeight();
-		});
-		$(function () {
-			$.get("<?php echo base_url(); ?>/css/bootstrap.min.css", function (data) {
-				var version = data.match(/v[.\d]+[.\d]/);
-				$('#bootstrapversion').text(version);
+			<?php $this->load->view('include/footer'); ?>
+		</body>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap-toggle.min.js"></script>
+		<script>
+		$(document).ready(function(){
+			$(function() {
+				$('.caro').matchHeight();
+			});
+			$(function () {
+				$.get("<?php echo base_url(); ?>/css/bootstrap.min.css", function (data) {
+					var version = data.match(/v[.\d]+[.\d]/);
+					$('#bootstrapversion').text(version);
+				});
+			});
+			$('#botonproduccion').change(function() {
+				if($(this).is(":checked")) {
+					$.ajax({
+						url: "sistemainfoactualizarpro/1",
+						success: function(data) {
+						}
+					});
+				}else{
+					$.ajax({
+						url: "sistemainfoactualizarpro/0",
+						success: function(data) {
+						}
+					});
+				}
 			});
 		});
-		$('#botonproduccion').change(function() {
-			if($(this).is(":checked")) {
-				$.ajax({
-					url: "sistemainfoactualizarpro/1",
-					success: function(data) {
-					}
-				});
-			}else{
-				$.ajax({
-					url: "sistemainfoactualizarpro/0",
-					success: function(data) {
-					}
-				});
-			}
-		});
-	});
-	</script>
-	</html>
+		</script>
+		</html>

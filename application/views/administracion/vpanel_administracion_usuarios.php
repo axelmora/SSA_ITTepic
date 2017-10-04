@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-lg-12">
 			<div class="card menus">
 				<div class="card-body">
-					<h4><i class="fa fa-users" aria-hidden="true"></i> Lista de usuarios</h4>
+					<h3><i class="fa fa-users" aria-hidden="true"></i> Lista de usuarios</h3>
 					<table id="tablausuarios" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
 						<thead>
 							<tr>
