@@ -38,7 +38,7 @@
       <ul class='navbar-nav'>
         <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user-circle-o" aria-hidden="true"></i> <?php echo "".$this->session->userdata('username');?>
+          <b>  <i class="fa fa-user-circle-o" aria-hidden="true"></i> <?php echo "".$this->session->userdata('username');?> </b>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/C_usuarios/" ><i class="fa fa-user" aria-hidden="true"></i> PERFIL</a>
