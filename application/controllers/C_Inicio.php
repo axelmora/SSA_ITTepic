@@ -9,7 +9,7 @@ class C_Inicio extends CI_Controller {
 	public function index()
 	{
 		if ($this->session->userdata('perfil')=='Administrador') {
-			redirect(base_url().'index.php/c_panel_administracion/');
+			//redirect(base_url().'index.php/panel_administracion/');
 		}else {
 			$this->load->view('inicio');
 		}

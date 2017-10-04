@@ -21,8 +21,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 	<?php $this->load->view('include/menuadmin'); ?>
 	<div class="row" style="margin-right: 0px; margin-left: 0px;">
+				<!-- OPCION MENU 2 -->
 		<div class="col-lg-6">
-			<a href="<?php echo base_url(); ?>index.php/c_panel_administracion/lista_usuarios" class="linkmenu">
+			<a href="<?php echo base_url(); ?>index.php/panel_administracion/lista_usuarios" class="linkmenu">
 				<div class="card menus animenu caro">
 					<div class="card-body">
 						<div class="row">
@@ -37,14 +38,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</a>
 		</div>
+		<!-- OPCION MENU 2 -->
 		<div class="col-lg-6">
-			<a href="<?php echo base_url(); ?>index.php/c_panel_administracion/sistemainfo" class="linkmenu">
+			<a href="<?php echo base_url(); ?>index.php/panel_administracion/sistemainfo" class="linkmenu">
 				<div class="card menus animenu caro">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-lg-12">
 								<div>
-										<i class="fa fa fa-server fa-5x coloriconosmenu" aria-hidden="true"></i>
+										<i class="fa fa-server fa-5x coloriconosmenu" aria-hidden="true"></i>
 										<p class="textotitulo">INFORMACION SISTEMA</p>
 								</div>
 							</div>
@@ -53,6 +55,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</a>
 		</div>
+			<!-- OPCION MENU 3 -->
+			<div class="col-lg-6">
+				<br>
+				<a href="<?php echo base_url(); ?>index.php/panel_administracion/sistemainfo" class="linkmenu">
+					<div class="card menus animenu caro">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div>
+											<i class="fa fa-question fa-5x coloriconosmenu" aria-hidden="true"></i>
+											<p class="textotitulo">MESA DE AYUDA</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
 		<br>
 	</div>
 	<?php $this->load->view('include/footer'); ?>
