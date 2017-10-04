@@ -36,7 +36,7 @@ class C_usuarios extends CI_Controller {
 				redirect(base_url().'index.php/panel_administracion/');
 			}
 			else {
-				redirect(base_url().'index.php/ssapanel/');
+				redirect(base_url().'index.php/panel_seguimiento/');
 			}
 			return true;
 		} else {

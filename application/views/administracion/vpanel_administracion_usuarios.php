@@ -47,30 +47,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<td colspan=""><?php echo $valores->nombre_usuario; ?> </td>
 										<?php if($valores->nombre_departamento =="Administrador"){ ?>
 											<td colspan=""><b><i class="fa fa-user-secret" aria-hidden="true"></i> <?php echo $valores->nombre_departamento; ?><b></td>
+												<?php
+											}
+											else { ?>
+												<td colspan=""><i class="fa fa-user" aria-hidden="true"></i> <?php echo $valores->nombre_departamento; ?></td>
+												<?php
+											} ?>
+
+											<td colspan=""><?php if($valores->ult_conexion!=""){echo $valores->ult_conexion;}else{echo "-";} ?></td>
+											<td colspan="">
+												<div class="btn-group btn-block">
+													<button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
+													</button>
+													<div class="dropdown-menu">
+														<a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDITAR</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-trash" aria-hidden="true"></i> ELIMINAR</a>
+													</div>
+												</div>
+											</td>
+										</tr>
 										<?php
-										}
-										else { ?>
-											<td colspan=""><i class="fa fa-user" aria-hidden="true"></i> <?php echo $valores->nombre_departamento; ?></td>
-									 <?php
-										} ?>
+									}
 
-										<td colspan=""><?php if($valores->ult_conexion!=""){echo $valores->ult_conexion;}else{echo "-";} ?></td>
-										<td colspan=""></td>
-									</tr>
-									<?php
+								}else {
 								}
-
-							}else {
-							}
-							?>
-						</tbody>
-					</table>
+								?>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!--
-	<form method="post" action="<?php echo base_url(); ?>index.php/c_inicio/test">
+		<!--
+		<form method="post" action="<?php echo base_url(); ?>index.php/c_inicio/test">
 		<input type="text" value="" name="1" id="1" />
 		<input type="text" value="" name="2" id="2" />
 		<input type="text" value="3" name="3" id="3" />

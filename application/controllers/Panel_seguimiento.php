@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class ssapanel extends CI_Controller {
+class Panel_seguimiento extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('Usuarios');
