@@ -30,11 +30,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<table id="tablausuarios" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
 						<thead>
 							<tr>
-								<th>Usuario</th>
-								<th>Nombre usuario</th>
-								<th>Departamento</th>
-								<th>Ultima Conexion</th>
-								<th>Acciones</th>
+								<th>USUARIO</th>
+								<th>NOMBRE DE USUARIO</th>
+								<th>DEPARTAMENTO</th>
+								<th>ULTIMA CONEXION</th>
+								<th>OPCIONES</th>
 							</tr>
 						</thead>
 						<tbody>

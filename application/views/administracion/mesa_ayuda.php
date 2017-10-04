@@ -25,6 +25,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="card">
 				<div class="card-body">
 					<h3><i class="fa fa-question-circle" aria-hidden="true"></i> Mesa de ayuda</h3>
+					<table id="tablausuarios" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
+						<thead>
+							<tr>
+								<th>USUARIO</th>
+								<th>ASUNTO</th>
+								<th>FECHA</th>
+								<th>OPCIONES</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+							if ($usuarios) {
+								foreach ($usuarios as $filas => $valores) {
+									?>
+									<tr>
+										<td colspan=""><?php echo $valores->usuario; ?> </td>
+										<td colspan=""><?php echo $valores->nombre_usuario; ?> </td>
+										<?php if($valores->nombre_departamento =="Administrador"){ ?>
+											<td colspan=""><b><i class="fa fa-user-secret" aria-hidden="true"></i> <?php echo $valores->nombre_departamento; ?><b></td>
+										<?php
+										}
+										else { ?>
+											<td colspan=""><i class="fa fa-user" aria-hidden="true"></i> <?php echo $valores->nombre_departamento; ?></td>
+									 <?php
+										} ?>
+										<td colspan=""></td>
+									</tr>
+									<?php
+								}
+
+							}else {
+							}
+							?>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
