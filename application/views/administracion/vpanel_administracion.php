@@ -75,6 +75,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		<br>
 	</div>
+
+	<!-- Modal Manual de usuario -->
+	<div class="modal fade" id="modalmanualdeusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        ...
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+	        <button type="button" class="btn btn-primary"> DESCARGAR MANUAL </button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 	<?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>

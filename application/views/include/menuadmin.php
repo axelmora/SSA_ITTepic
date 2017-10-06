@@ -42,6 +42,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/C_usuarios/" ><i class="fa fa-user" aria-hidden="true"></i> PERFIL</a>
+            <button class="dropdown-item" data-toggle="modal" data-target="#modalmanualdeusuario" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> MANUAL USUARIO</button>
             <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/C_usuarios/logout" ><i class="fa fa-sign-out" aria-hidden="true"></i> SALIR</a>
           </div>
         </li>
