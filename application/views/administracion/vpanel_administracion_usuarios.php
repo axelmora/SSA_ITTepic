@@ -86,6 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<input type="text" value="3" name="3" id="3" />
 		<input type="submit" value="PROBAr"   />
 	</form> -->
+		<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
@@ -106,5 +107,11 @@ $(document).ready(function() {
 		"order": [[ 3, "desc" ]]
 	});
 } );
+$(document).ready(function(){
+	var opciones = {
+		fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
+	};
+	PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
+});
 </script>
 </html>

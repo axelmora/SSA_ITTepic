@@ -44,30 +44,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<td colspan=""><?php echo $valores->nombre_usuario; ?> </td>
 										<?php if($valores->nombre_departamento =="Administrador"){ ?>
 											<td colspan=""><b><i class="fa fa-user-secret" aria-hidden="true"></i> <?php echo $valores->nombre_departamento; ?><b></td>
+												<?php
+											}
+											else { ?>
+												<td colspan=""><i class="fa fa-user" aria-hidden="true"></i> <?php echo $valores->nombre_departamento; ?></td>
+												<?php
+											} ?>
+											<td colspan=""></td>
+										</tr>
 										<?php
-										}
-										else { ?>
-											<td colspan=""><i class="fa fa-user" aria-hidden="true"></i> <?php echo $valores->nombre_departamento; ?></td>
-									 <?php
-										} ?>
-										<td colspan=""></td>
-									</tr>
-									<?php
-								}
+									}
 
-							}else {
-							}
-							?>
-						</tbody>
-					</table>
+								}else {
+								}
+								?>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-<?php $this->load->view('include/footer'); ?>
-</body>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-</html>
+		<?php $this->load->view('include/manual_usuario'); ?>
+		<?php $this->load->view('include/footer'); ?>
+	</body>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		var opciones = {
+			fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
+		};
+		PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
+	});
+	</script>
+	</html>

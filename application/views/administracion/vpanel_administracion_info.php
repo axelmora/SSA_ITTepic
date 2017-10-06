@@ -83,6 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 			</div>
+			<?php $this->load->view('include/manual_usuario'); ?>
 			<?php $this->load->view('include/footer'); ?>
 		</body>
 		<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
@@ -117,6 +118,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					});
 				}
 			});
+		});
+		$(document).ready(function(){
+			var opciones = {
+				fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
+			};
+			PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
 		});
 		</script>
 		</html>

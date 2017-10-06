@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 	<?php $this->load->view('include/menuadmin'); ?>
 	<div class="row" style="margin-right: 0px; margin-left: 0px;">
-				<!-- OPCION MENU 2 -->
+		<!-- OPCION MENU 2 -->
 		<div class="col-lg-6">
 			<a href="<?php echo base_url(); ?>index.php/panel_administracion/lista_usuarios" class="linkmenu">
 				<div class="card menus animenu caro">
@@ -29,8 +29,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-lg-12">
 								<div>
-										<i class="fa fa-users fa-5x coloriconosmenu" aria-hidden="true"></i>
-										<p class="textotitulo">USUARIOS</p>
+									<i class="fa fa-users fa-5x coloriconosmenu" aria-hidden="true"></i>
+									<p class="textotitulo">USUARIOS</p>
 								</div>
 							</div>
 						</div>
@@ -46,8 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-lg-12">
 								<div>
-										<i class="fa fa-server fa-5x coloriconosmenu" aria-hidden="true"></i>
-										<p class="textotitulo">INFORMACION SISTEMA</p>
+									<i class="fa fa-server fa-5x coloriconosmenu" aria-hidden="true"></i>
+									<p class="textotitulo">INFORMACION SISTEMA</p>
 								</div>
 							</div>
 						</div>
@@ -55,50 +55,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</a>
 		</div>
-			<!-- OPCION MENU 3 -->
-			<div class="col-lg-6">
-				<br>
-				<a href="<?php echo base_url(); ?>index.php/panel_administracion/mesadeayuda" class="linkmenu">
-					<div class="card menus animenu caro">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-lg-12">
-									<div>
-											<i class="fa fa-question fa-5x coloriconosmenu" aria-hidden="true"></i>
-											<p class="textotitulo">MESA DE AYUDA</p>
-									</div>
+		<!-- OPCION MENU 3 -->
+		<div class="col-lg-6">
+			<br>
+			<a href="<?php echo base_url(); ?>index.php/panel_administracion/mesadeayuda" class="linkmenu">
+				<div class="card menus animenu caro">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div>
+									<i class="fa fa-question fa-5x coloriconosmenu" aria-hidden="true"></i>
+									<p class="textotitulo">MESA DE AYUDA</p>
 								</div>
 							</div>
 						</div>
 					</div>
-				</a>
-			</div>
+				</div>
+			</a>
+		</div>
 		<br>
 	</div>
-
-	<!-- Modal Manual de usuario -->
-	<div class="modal fade" id="modalmanualdeusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-lg" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        ...
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
-	        <button type="button" class="btn btn-primary"> DESCARGAR MANUAL </button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
+	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
 </body>
+<!--JS ADMIN -->
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
@@ -115,6 +95,11 @@ $(document).ready(function(){
 	$(function() {
 		$('.caro').matchHeight();
 	});
+	var opciones = {
+		fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
+	};
+	PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
 });
 </script>
+<!--JS ADMIN-->
 </html>
