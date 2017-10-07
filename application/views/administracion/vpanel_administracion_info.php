@@ -64,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</object>
 										</p>
 										<p>
-											<?php echo CI_VERSION;?>
+											Version: <b><?php echo CI_VERSION;?></b>
 										</p>
 										<p>
 											<?php echo  $_SERVER['SERVER_SIGNATURE'];?>
@@ -73,9 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<object data="<?php echo base_url(); ?>/images/bootstrap-solid.svg"  height="150" width="150" type="image/svg+xml">
 											<img src="<?php echo base_url(); ?>/images/bootstrap-stack.png" height="150" width="150" />
 										</object>
-										<p id="bootstrapversion">
-
-										</p>
+										<p id="bootstrapversion"></p>
 									</center>
 								</div>
 							</div>
@@ -100,7 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$(function () {
 				$.get("<?php echo base_url(); ?>/css/bootstrap.min.css", function (data) {
 					var version = data.match(/v[.\d]+[.\d]/);
-					$('#bootstrapversion').text(version);
+					$('#bootstrapversion').text("Version: "+version+"");
 				});
 			});
 			$('#botonproduccion').change(function() {
