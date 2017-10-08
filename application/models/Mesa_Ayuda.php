@@ -4,10 +4,10 @@ class Mesa_Ayuda extends CI_Model {
   {
     parent::__construct();
   }
-  public function mostrarusuarios($idusuarios)
+  public function mostrarAsuntos()
   {
     $DB2 = $this->load->database('default', TRUE);
-    $query=$DB2->query("SELECT * FROM usuarios as u, departamento_academico as da where u.idusuarios!=$idusuarios and u.departamento_academico_iddepartamento_academico = da.iddepartamento_academico order by u.ult_conexion desc;");
+    $query=$DB2->query("SELECT *  From mesa_ayuda as ma,usuarios as u where u.idusuarios=ma.usuarios_idusuarios order by ma.fecha_mensaje desc;");
     if ($query->num_rows() > 0) {
         return $query->result();
     } else {

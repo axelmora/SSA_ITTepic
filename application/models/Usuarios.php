@@ -6,11 +6,11 @@ class Usuarios extends CI_Model {
   }
   public function iniciarsesionm($usuario, $password)
   {
-    $DB2 = $this->load->database('default', TRUE);
+    $DBcon = $this->load->database('default', TRUE);
   /*  $DB2->select('*');
     $DB2->where('usuario', $usuario);
     $DB2->where('password', $password);*/
-    $query=$DB2->query("SELECT * FROM usuarios as u, departamento_academico as da where u.usuario='$usuario' and password='$password' and u.departamento_academico_iddepartamento_academico = da.iddepartamento_academico;");
+    $query=$DBcon->query("SELECT * FROM usuarios as u, departamento_academico as da where u.usuario='$usuario' and password='$password' and u.departamento_academico_iddepartamento_academico = da.iddepartamento_academico;");
   /*  $DB2->from('usuarios');
     $query = $DB2->get();*/
     if ($query->num_rows() > 0) {
@@ -21,10 +21,10 @@ class Usuarios extends CI_Model {
   }
   public function actualizarultima_sesion($usuario,$fechayhora)
   {
-    $DB2 = $this->load->database('default', TRUE);
-    $DB2->set('ult_conexion', $fechayhora);
-    $DB2->where('idusuarios', $usuario);
-    $DB2->update('usuarios');
+    $DBcon = $this->load->database('default', TRUE);
+    $DBcon->set('ult_conexion', $fechayhora);
+    $DBcon->where('idusuarios', $usuario);
+    $DBcon->update('usuarios');
     return true;
   }
   public function mostrarusuarios($idusuarios)

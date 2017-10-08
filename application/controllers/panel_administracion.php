@@ -5,6 +5,7 @@ class Panel_administracion extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Sistema');
 		$this->load->model('Usuarios');
+		$this->load->model('Mesa_Ayuda');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 	}
@@ -39,7 +40,7 @@ class Panel_administracion extends CI_Controller {
 	public function mesadeayuda() {
 		if ($this->session->userdata('perfil')=='Administrador') {
 			$iduser=$this->session->userdata('idusuarios');
-			$datos['usuarios'] = $this->Usuarios->mostrarusuarios($iduser);
+			$datos['asuntos'] = $this->Mesa_Ayuda->mostrarAsuntos();
 			$this->load->view('administracion/mesa_ayuda',$datos);
 		}else {
 			redirect(base_url().'index.php');

@@ -150,3 +150,6 @@ fieldset[disabled] .btn-naranja.active {
 .tamanoiconos{
   font-size: 400%;
 }
+.colorError{
+  color : red;
+}
