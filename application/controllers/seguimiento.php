@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class seguimiento extends CI_Controller {
+class Seguimiento extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		/*modelo usuario*/

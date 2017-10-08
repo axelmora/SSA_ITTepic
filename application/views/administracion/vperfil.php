@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-body">
-					Usuario
+					<h3>Perfil del usuario<h3>
 				</div>
 			</div>
 		</div>
