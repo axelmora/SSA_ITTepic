@@ -39,6 +39,10 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i> PERFIL</a>
+            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalsoporte">
+              <i class="fa fa-life-ring" aria-hidden="true"></i> SOLICITAR SOPORTE
+            </button>
+            <button class="dropdown-item" data-toggle="modal" data-target="#modalmanualdeusuario" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> MANUAL USUARIO</button>
             <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/C_usuarios/logout" ><i class="fa fa-sign-out" aria-hidden="true"></i> SALIR</a>
           </div>
         </li>
@@ -46,3 +50,65 @@
     </div>
   </nav>
 </div>
+<!-- MODAL SOPORTE -->
+<div class="modal fade" id="modalsoporte" tabindex="-1" role="dialog" aria-labelledby="modalsoporte" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-question-circle" aria-hidden="true"></i> Solicitar Soporte</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true"><i class="fa fa-envelope" aria-hidden="true"></i> SOLICITAR SOPORTE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"><i class="fa fa-envelope-open" aria-hidden="true"></i> RESPUESTA SOPORTE</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <input value="<?php echo base_url(uri_string()); ?>">
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            bb
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL SOPORTE FIN -->
+<!-- Modal Manual de usuario -->
+<script src="<?php echo base_url(); ?>js/pdfobject.js"></script>
+<div class="modal fade" id="modalmanualdeusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content h-100">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Manual de usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="manualdeusuariover"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-window-close" aria-hidden="true"></i> CERRAR</button>
+        <a href="<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf" class="btn btn-primary" download> <i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a>
+      </div>
+    </div>
+  </div>
+  <style>
+  .pdfobject-container { height: 650px;}
+  .pdfobject { border: 1px solid #666; }
+  </style>
+</div>
+<!-- FIN Modal Manual de usuario -->

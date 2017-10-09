@@ -58,6 +58,12 @@ $(document).ready(function(){
 	$(function() {
 		$('.caro').matchHeight();
 	});
+	$(document).ready(function(){
+		var opciones = {
+			fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
+		};
+		PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
+	});
 });
 </script>
 </html>
