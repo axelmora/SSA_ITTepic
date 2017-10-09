@@ -19,11 +19,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="<?php echo base_url(); ?>css/fontello.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-<?php $this->load->view('include/banner'); ?>
+	<?php $this->load->view('include/banner'); ?>
+
 	<div class="row" style="margin-right: 0px; margin-left: 0px;">
 		<div class="col-lg-4"> </div>
 		<div class="col-lg-4">
 			<h2 class="titulosistema"><center>Sistema para el Seguimiento en el Aula</center></h2>
+			<?php
+			if (isset($mensajesistema)) { ?>
+				<div class="row">
+					<div class="col-lg-12">
+					<?php
+					echo "<br><br><br>  $mensajesistema";
+					?>
+				</div>
+					</div>
+					<?php
+				}
+
+				?>
 			<div class="card login-card">
 				<div class="card-header">
 					<center><b>Autentificación para acceso al sistema </b><br>
@@ -41,17 +55,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<input type="password" class="form-control" name="passwordid" id="passwordid" placeholder="Password" required>
 						</div>
 						<center><button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> ACCESO</button></center>
-					 <div class="red-text"><center><?php echo validation_errors(); ?></center></div></div>
+						<div class="red-text"><center><?php echo validation_errors(); ?></center></div></div>
 					</form>
 				</div>
 			</div>
+			<div class="col-lg-4"> </div>
 		</div>
-		<div class="col-lg-4"> </div>
-	</div>
-<?php $this->load->view('include/footer'); ?>
-</body>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-</html>
+
+			<?php $this->load->view('include/footer'); ?>
+		</body>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+		</html>

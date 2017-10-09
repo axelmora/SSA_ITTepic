@@ -26,8 +26,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-lg-12">
 			<div class="card menus">
 				<div class="card-body">
-					<h3><i class="fa fa-users" aria-hidden="true"></i> Lista de usuarios</h3>
-					<table id="tablausuarios" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
+
+					<div class="row" >
+						<div class="col-lg-2">
+							<h3><i class="fa fa-users" aria-hidden="true"></i> Lista de usuarios</h3>
+						</div>
+						<div class="col-lg-6">
+							<button type="button" class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> AGREGAR USUARIO</button>
+						</div>
+					</div>
+
+					<table id="tablausuarios" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
 						<thead>
 							<tr>
 								<th>USUARIO</th>
@@ -86,7 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<input type="text" value="3" name="3" id="3" />
 		<input type="submit" value="PROBAr"   />
 	</form> -->
-		<?php $this->load->view('include/manual_usuario'); ?>
+	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>

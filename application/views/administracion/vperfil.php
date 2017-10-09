@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php $this->load->view('include/menuadmin'); ?>
 	<div class="row" style="margin-right: 0px; margin-left: 0px;">
 		<div class="col-lg-12">
-			<div class="card">
+			<div class="card sombrapaneles">
 				<div class="card-body">
 					<h3>Perfil del usuario<h3>
 				</div>

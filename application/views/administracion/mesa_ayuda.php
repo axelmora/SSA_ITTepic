@@ -17,6 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="<?php echo base_url(); ?>css/animate.css" type="text/css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>css/ssa.css" type="text/css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>css/fontello.css" type="text/css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>css/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet" />
+	<link href="<?php echo base_url(); ?>css/responsive.bootstrap4.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<?php $this->load->view('include/menuadmin'); ?>
@@ -33,6 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<th>USUARIO</th>
 									<th>ASUNTO</th>
 									<th>FECHA</th>
+									<th>ESTADO</th>
 									<th>OPCIONES</th>
 								</tr>
 							</thead>
@@ -44,7 +47,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<td colspan=""><?php echo $valores->nombre_usuario; ?> </td>
 										<td colspan=""><?php echo $valores->asunto; ?> </td>
 										<td colspan=""><?php echo $valores->fecha_mensaje; ?></td>
-										<td colspan=""></td>
+										<?php
+										if ($valores->estado==1) {
+											$estadovalor="<i class='fa fa-question' aria-hidden='true'></i> RESOLVIENDO";
+										}else {
+											$estadovalor="<i class='fa fa-check-square-o' aria-hidden='true'></i> RESUELTO";
+										}
+										?>
+										<td colspan=""><?php echo $estadovalor; ?></td>
+										<td colspan="">
+											<div class="btn-group btn-block">
+												<button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
+												</button>
+												<div class="dropdown-menu">
+													<a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDITAR</a>
+													<a class="dropdown-item" href="#"><i class="fa fa-trash" aria-hidden="true"></i> ELIMINAR</a>
+												</div>
+											</div>
+										</td>
 									</tr>
 									<?php
 								}
