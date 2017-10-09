@@ -162,3 +162,15 @@ fieldset[disabled] .btn-naranja.active {
    margin-top: -50px;
    margin-bottom: 0;
 }
+.coloriconosmenu3{
+  color: #f58220;
+    font-size: 500%;
+  text-shadow: 2px 2px 0px #800000;
+  /*  text-shadow: 4px 4px 8px rgba(150, 150, 150, 0.64);*/
+}
+.textotitulo2{
+  /*margin-left: 25%;*/
+  font-size: 150%;
+  /*text-align: center;*/
+  font-weight: bold;
+}

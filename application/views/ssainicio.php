@@ -19,17 +19,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="<?php echo base_url(); ?>css/fontello.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	<?php $this->load->view('include/menuadmin'); ?>
+	<?php $this->load->view('include/menu'); ?>
 	<div class="row" style="margin-right: 0px; margin-left: 0px;">
-		<div class="col-lg-6">
+		<div class="col-lg-12">
 			<a href="<?php echo base_url(); ?>index.php/c_panel_administracion/lista_usuarios" class="linkmenu">
 				<div class="card menus animenu caro">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-lg-12">
 								<div>
-										<i class="fa fa-users fa-5x coloriconosmenu" aria-hidden="true"></i>
-										<p class="textotitulo">USUARIOS</p>
+									<center>
+										<i class="icon-clipboard coloriconosmenu3" aria-hidden="true"></i>
+										<p class="textotitulo2"> ENCUESTA SEGUIMIENTO EN EL AULA</p>
+									</center>
 								</div>
 							</div>
 						</div>
@@ -37,23 +39,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</a>
 		</div>
-		<div class="col-lg-6">
-			<a href="<?php echo base_url(); ?>index.php/c_panel_administracion/sistemainfo" class="linkmenu">
-				<div class="card menus animenu caro">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<div>
-										<i class="fa fa fa-server fa-5x coloriconosmenu" aria-hidden="true"></i>
-										<p class="textotitulo">INFORMACION SISTEMA</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<br>
 	</div>
 	<?php $this->load->view('include/footer'); ?>
 </body>
