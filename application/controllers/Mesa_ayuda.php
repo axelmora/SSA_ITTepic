@@ -6,7 +6,7 @@ class Mesa_ayuda extends CI_Controller {
     /*modelo usuario*/
     $this->load->model('Usuarios');
     $this->load->model('Sistema');
-    $this->load->model('Mesa_ayuda');
+    $this->load->model('Mesa_AyudaModel');
     $this->load->helper(array('url', 'form'));
     $this->load->library(array('session', 'form_validation'));
     $this->load->database('default');
@@ -24,11 +24,6 @@ class Mesa_ayuda extends CI_Controller {
     $asunto = $this->input->post('asunto');
     $descipcion = $this->input->post('descipcion');
     $url = $this->input->post('url');
-    $datos = array(
-      'asunto' => '$asunto',
-      'descipcion' => '$descipcion',
-      'url' => '$url'
-    );
-    $this->Mesa_ayuda->solicitarsoporte($iduser,$datos);
+    $this->Mesa_AyudaModel->solicitarsoporte($iduser,$asunto,$descipcion,$url);
   }
 }
