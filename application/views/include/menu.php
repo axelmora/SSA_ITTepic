@@ -71,16 +71,37 @@
         </ul>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <input value="<?php echo base_url(uri_string()); ?>">
+
+            <div class="card">
+              <div class="card-body">
+                <form method="post" action="<?php echo base_url(); ?>index.php/c_usuarios/iniciosesion" >
+                  <div class="form-group">
+                    <label for="asunto"><i class="fa fa-file-text" aria-hidden="true"></i>  ASUNTO:</label>
+                    <input type="text" class="form-control" name="asunto" id="asunto"   placeholder="Ingrese el asunto del problema." required>
+                  </div>
+                  <div class="form-group">
+                    <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> DESCRIPCION DEL PROBLEMA:</label>
+                    <textarea class="form-control" name="descipcion" id="descipcion" ></textarea>
+                  </div>
+                  <input type="text" hidden value="<?php echo base_url(uri_string()); ?>">
+                  <center><button type="submit" class="btn btn-naranja "><i class="fa fa-share-square" aria-hidden="true"></i>  ENVIAR SOLICITUD</button></center>
+                  <div class="red-text"><center><?php echo validation_errors(); ?></center></div>
+                </form>
+              </div>
+            </div>
+
           </div>
           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            bb
+            <div class="card">
+              <div class="card-body">
+             
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-window-close" aria-hidden="true"></i> Cerrar</button>
       </div>
     </div>
   </div>
