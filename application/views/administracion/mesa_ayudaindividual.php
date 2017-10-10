@@ -26,54 +26,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-lg-12">
 			<div class="card menus">
 				<div class="card-body">
-					<h3><i class="fa fa-question-circle" aria-hidden="true"></i> Mesa de ayuda</h3>
+					<h3><i class="fa fa-question-circle" aria-hidden="true"></i> Mesa de ayuda- Soporte</h3>
+					<div class="container">
 					<?php
-					if ($asuntos) { ?>
-						<table id="tablausuarios" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
-							<thead>
-								<tr>
-									<th>USUARIO</th>
-									<th>ASUNTO</th>
-									<th>FECHA</th>
-									<th>ESTADO</th>
-									<th>OPCIONES</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php
-								foreach ($asuntos as $filas => $valores) {
-									?>
-									<tr>
-										<td colspan=""><?php echo $valores->nombre_usuario; ?> </td>
-										<td colspan=""><?php echo $valores->asunto; ?> </td>
-										<td colspan=""><?php echo $valores->fecha_mensaje; ?></td>
-										<?php
-										if ($valores->estado==1) {
-											$estadovalor="<i class='fa fa-question' aria-hidden='true'></i> RESOLVIENDO";
-										}else {
-											$estadovalor="<i class='fa fa-check-square-o' aria-hidden='true'></i> RESUELTO";
-										}
-										?>
-										<td colspan=""><?php echo $estadovalor; ?></td>
-										<td colspan="">
-											<div class="btn-group btn-block">
-												<button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													<i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
-												</button>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/mesa_ayuda/soporte/<?php echo $valores->idmesa_ayuda; ?>"><i class="fa fa-envelope-open-o" aria-hidden="true"></i> ATENDER </a>
-													<a class="dropdown-item" href="#"><i class="fa fa-trash" aria-hidden="true"></i> ELIMINAR</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<?php
-								}
-								?>
-							</tbody>
-						</table>
+					if ($asuntos) {
+						foreach ($asuntos as $filas => $valores) {
+						?>
+
+						<div class="card text-white bg-danger mb-3">
+							<div class="card-header"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> <?php echo $valores->asunto; ?></div>
+							<div class="card-body">
+								<p class="card-text">Usuario: <?php echo $valores->nombre_usuario; ?></p>
+								<p class="card-text"><?php echo $valores->mensaje; ?></p>
+							</div>
+						</div>
 						<?php
-					}else {
+					}
+				}else {
 						?>
 						<br>
 						<div class="card">
@@ -88,6 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<?php
 					}
 					?>
+				</div>
 				</div>
 			</div>
 		</div>

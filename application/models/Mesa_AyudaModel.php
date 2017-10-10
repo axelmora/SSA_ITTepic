@@ -14,6 +14,16 @@ class Mesa_AyudaModel extends CI_Model {
       return false;
     }
   }
+  public function mostrarAsuntosUnico($idasunt)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $query=$DB2->query("SELECT *  From mesa_ayuda as ma,usuarios as u where u.idusuarios=ma.usuarios_idusuarios and ma.idmesa_ayuda=$idasunt order by ma.fecha_mensaje desc;");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
   public function actualizarultima_sesion($usuario,$fechayhora)
   {
     $DB2 = $this->load->database('default', TRUE);

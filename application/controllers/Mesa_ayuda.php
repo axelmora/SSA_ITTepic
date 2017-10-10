@@ -13,10 +13,15 @@ class Mesa_ayuda extends CI_Controller {
   }
   public function index()
   {
+    redirect(base_url().'index.php');
+  }
+  public function soporte($idmensaje)
+  {
     if ($this->session->userdata('perfil')=='Administrador') {
-      $this->load->view('administracion/vperfil');
+      $datos['asuntos'] = $this->Mesa_AyudaModel->mostrarAsuntosUnico($idmensaje);
+      $this->load->view('administracion/mesa_ayudaindividual',$datos);
     }else {
-      $this->load->view('vperfil');
+      redirect(base_url().'index.php');
     }
   }
   public function insertarSolicitud() {
