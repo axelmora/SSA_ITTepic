@@ -61,46 +61,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true"><i class="fa fa-envelope" aria-hidden="true"></i> SOLICITAR SOPORTE</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"><i class="fa fa-envelope-open" aria-hidden="true"></i> RESPUESTA SOPORTE</a>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-            <div class="card">
-              <div class="card-body">
-                <form method="post" action="<?php echo base_url(); ?>index.php/c_usuarios/iniciosesion" >
-                  <div class="form-group">
-                    <label for="asunto"><i class="fa fa-file-text" aria-hidden="true"></i>  ASUNTO:</label>
-                    <input type="text" class="form-control" name="asunto" id="asunto"   placeholder="Ingrese el asunto del problema." required>
-                  </div>
-                  <div class="form-group">
-                    <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> DESCRIPCION DEL PROBLEMA:</label>
-                    <textarea class="form-control" name="descipcion" id="descipcion" ></textarea>
-                  </div>
-                  <input type="text" hidden value="<?php echo base_url(uri_string()); ?>">
-                  <center><button type="submit" class="btn btn-naranja "><i class="fa fa-share-square" aria-hidden="true"></i>  ENVIAR SOLICITUD</button></center>
-                  <div class="red-text"><center><?php echo validation_errors(); ?></center></div>
-                </form>
+        <div class="card">
+          <div class="card-body">
+            <form method="post" action="<?php echo base_url(); ?>index.php/c_usuarios/iniciosesion" >
+              <div class="form-group">
+                <label for="asunto"><i class="fa fa-file-text" aria-hidden="true"></i>  ASUNTO:</label>
+                <input type="text" class="form-control" name="asunto" id="asunto"   placeholder="Ingrese el asunto del problema." required>
               </div>
-            </div>
-
-          </div>
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="card">
-              <div class="card-body">
-             
+              <div class="form-group">
+                <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> DESCRIPCION DEL PROBLEMA:</label>
+                <textarea class="form-control" name="descipcion" id="descipcion" ></textarea>
               </div>
-            </div>
+              <input type="text" hidden value="<?php echo base_url(uri_string()); ?>">
+              <center><button type="submit" class="btn btn-naranja "><i class="fa fa-share-square" aria-hidden="true"></i>  ENVIAR SOLICITUD</button></center>
+              <div class="red-text"><center><?php echo validation_errors(); ?></center></div>
+            </form>
           </div>
         </div>
       </div>
       <div class="modal-footer">
+        <a  type="button" class="btn btn-danger">VER RESPUESTAS</a>
         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-window-close" aria-hidden="true"></i> Cerrar</button>
       </div>
     </div>
