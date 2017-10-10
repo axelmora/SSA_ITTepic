@@ -80,7 +80,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a  type="button" class="btn btn-danger">VER RESPUESTAS</a>
+        <a class="btn btn-primary" href="#" role="button">VER RESPUESTAS</a>
         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-window-close" aria-hidden="true"></i> Cerrar</button>
       </div>
     </div>
