@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class C_usuarios extends CI_Controller {
+class Mesa_ayuda extends CI_Controller {
   function __construct() {
     parent::__construct();
     /*modelo usuario*/
@@ -20,7 +20,15 @@ class C_usuarios extends CI_Controller {
     }
   }
   public function insertarSolicitud() {
-    	$iduser=$this->session->userdata('idusuarios');
-      $this->Mesa_ayuda->solicitarsoporte($iduser);
+    $iduser=$this->session->userdata('idusuarios');
+    $asunto = $this->input->post('asunto');
+    $descipcion = $this->input->post('descipcion');
+    $url = $this->input->post('url');
+    $datos = array(
+      'asunto' => '$asunto',
+      'descipcion' => '$descipcion',
+      'url' => '$url'
+    );
+    $this->Mesa_ayuda->solicitarsoporte($iduser,$datos);
   }
 }

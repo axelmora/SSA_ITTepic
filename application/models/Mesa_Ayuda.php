@@ -24,11 +24,9 @@ class Mesa_Ayuda extends CI_Model {
   }
   public function solicitarsoporte($idusuario,$datos)
   {
-    $datos = array(
-      'title' => 'My title',
-      'name' => 'My Name',
-      'date' => 'My date'
-    );
-    $this->db->insert('mesa_ayuda', $datos);
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->set('ult_conexion', $fechayhora);
+    $DB2->where('idusuarios', $usuario);
+    $DB2->insert('mesa_ayuda');
   }
 }
