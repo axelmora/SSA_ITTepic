@@ -19,6 +19,7 @@ class Mesa_ayuda extends CI_Controller {
   {
     if ($this->session->userdata('perfil')=='Administrador') {
       $datos['asuntos'] = $this->Mesa_AyudaModel->mostrarAsuntosUnico($idmensaje);
+      $datos['respuestas'] = $this->Mesa_AyudaModel->mostrarMensjesAunsto($idmensaje);
       $this->load->view('administracion/mesa_ayudaindividual',$datos);
     }else {
       redirect(base_url().'index.php');
@@ -30,5 +31,21 @@ class Mesa_ayuda extends CI_Controller {
     $descipcion = $this->input->post('descipcion');
     $url = $this->input->post('url');
     $this->Mesa_AyudaModel->solicitarsoporte($iduser,$asunto,$descipcion,$url);
+  }
+  public function respuesta($idmensajeprincipal)
+  {
+    $respus = $this->input->post('respuestamesaje');
+    $iduser=$this->session->userdata('idusuarios');
+    $this->Mesa_AyudaModel->insertarRespuesta($idmensajeprincipal,$respus,$iduser);
+    redirect(base_url().'index.php/mesa_ayuda/soporte/'.$idmensajeprincipal);
+  }
+  public function respuestaEliminar($idrespuesta)
+  {
+    # code...
+  }
+  public function borrarMensajeprincipal($mensaje)
+  {
+    $this->Mesa_AyudaModel->borarMensajeSoporte($mensaje);
+    redirect(base_url().'index.php/panel_administracion/mesadeayuda');
   }
 }

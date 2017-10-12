@@ -62,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												</button>
 												<div class="dropdown-menu">
 													<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/mesa_ayuda/soporte/<?php echo $valores->idmesa_ayuda; ?>"><i class="fa fa-envelope-open-o" aria-hidden="true"></i> ATENDER </a>
-													<a class="dropdown-item" href="#"><i class="fa fa-trash" aria-hidden="true"></i> ELIMINAR</a>
+													<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/mesa_ayuda/borrarMensajeprincipal/<?php echo $valores->idmesa_ayuda; ?>"><i class="fa fa-trash" aria-hidden="true"></i> ELIMINAR</a>
 												</div>
 											</div>
 										</td>

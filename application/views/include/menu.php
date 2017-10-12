@@ -73,7 +73,7 @@
                   <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> DESCRIPCION DEL PROBLEMA:</label>
                   <textarea class="form-control" maxlength="1000" name="descipcion" id="descipcion" maxlength="100" ></textarea>
                 </div>
-                <input type="text" name="url" hidden value="<?php echo base_url(uri_string()); ?>">
+                <input type="text" name="url" hidden value="<?php echo base_url('index.php/'.uri_string()); ?>">
                 <center><button type="submit" class="btn btn-naranja "><i class="fa fa-share-square" aria-hidden="true"></i>  ENVIAR SOLICITUD</button></center>
                 <div class="red-text"><center><?php echo validation_errors(); ?></center></div>
               </form>
