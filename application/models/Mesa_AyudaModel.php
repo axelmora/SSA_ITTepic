@@ -37,6 +37,7 @@ class Mesa_AyudaModel extends CI_Model {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->set('asunto', $asunto );
     $DB2->set('mensaje',$mensaje);
+    $DB2->set('url_mensaje',$url);
     $DB2->set('fecha_mensaje',date('Y-m-d H:i:s'));
     $DB2->set('estado', 1);
     $DB2->set('usuarios_idusuarios', $idusuario);

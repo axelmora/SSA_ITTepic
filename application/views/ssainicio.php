@@ -47,23 +47,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-<script>
-$(document).ready(function(){
-	$(".animenu").mouseenter(function(event) {
-		$(this).addClass("animated pulse");
-	});
-	$(".animenu").on("webkitAnimationEnd mozAnimationEnd oAnimationEnd animationEnd", function(event) {
-		$(this).removeClass("animated pulse");
-	});
-	$(function() {
-		$('.caro').matchHeight();
-	});
-	$(document).ready(function(){
-		var opciones = {
-			fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
-		};
-		PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
-	});
-});
-</script>
+ <script>var urlsistema = '<?php echo base_url() ?>';</script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 </html>

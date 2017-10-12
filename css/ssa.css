@@ -175,3 +175,8 @@ fieldset[disabled] .btn-naranja.active {
   /*text-align: center;*/
   font-weight: bold;
 }
+.pdfobject-container { height: 650px;}
+.pdfobject { border: 1px solid #666; }
+@media only screen and (max-height: 700px) {
+.pdfobject-container { height: 520px;}
+}

@@ -22,6 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 	<?php $this->load->view('include/menuadmin'); ?>
+	<div class="">
 	<div class="row" style="margin-right: 0px; margin-left: 0px;">
 		<div class="col-lg-12">
 			<div class="card menus">
@@ -33,9 +34,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						foreach ($asuntos as $filas => $valores) {
 						?>
 
-						<div class="card text-white bg-danger mb-3">
-							<div class="card-header"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> <?php echo $valores->asunto; ?></div>
+						<div class="card  mb-3">
 							<div class="card-body">
+								<i class="fa fa-exclamation-circle" aria-hidden="true"></i> <?php echo $valores->asunto; ?>
 								<p class="card-text">Usuario: <?php echo $valores->nombre_usuario; ?></p>
 								<p class="card-text"><?php echo $valores->mensaje; ?></p>
 							</div>
@@ -62,6 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
+</div>
 	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
 </body>

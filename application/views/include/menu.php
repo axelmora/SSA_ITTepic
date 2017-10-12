@@ -63,19 +63,27 @@
       <div class="modal-body">
         <div class="card">
           <div class="card-body">
-            <form method="post" action="<?php echo base_url(); ?>index.php/Mesa_ayuda/insertarSolicitud" >
-              <div class="form-group">
-                <label for="asunto"><i class="fa fa-file-text" aria-hidden="true"></i>  ASUNTO:</label>
-                <input type="text" class="form-control" name="asunto" id="asunto"   placeholder="Ingrese el asunto del problema." required>
-              </div>
-              <div class="form-group">
-                <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> DESCRIPCION DEL PROBLEMA:</label>
-                <textarea class="form-control" name="descipcion" id="descipcion" ></textarea>
-              </div>
-              <input type="text" name="url" hidden value="<?php echo base_url(uri_string()); ?>">
-              <center><button type="submit" class="btn btn-naranja "><i class="fa fa-share-square" aria-hidden="true"></i>  ENVIAR SOLICITUD</button></center>
-              <div class="red-text"><center><?php echo validation_errors(); ?></center></div>
-            </form>
+            <div id="panelformulario">
+              <form id="mesayudaform" method="post"  > <!--action="<?php echo base_url(); ?>index.php/Mesa_ayuda/insertarSolicitud" -->
+                <div class="form-group">
+                  <label for="asunto"><i class="fa fa-file-text" aria-hidden="true"></i>  ASUNTO:</label>
+                  <input type="text" class="form-control" name="asunto" id="asunto"  size="100" placeholder="Ingrese el asunto del problema." required>
+                </div>
+                <div class="form-group">
+                  <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> DESCRIPCION DEL PROBLEMA:</label>
+                  <textarea class="form-control" maxlength="1000" name="descipcion" id="descipcion" maxlength="100" ></textarea>
+                </div>
+                <input type="text" name="url" hidden value="<?php echo base_url(uri_string()); ?>">
+                <center><button type="submit" class="btn btn-naranja "><i class="fa fa-share-square" aria-hidden="true"></i>  ENVIAR SOLICITUD</button></center>
+                <div class="red-text"><center><?php echo validation_errors(); ?></center></div>
+              </form>
+            </div>
+            <div id="panelformulariocompletado" style="display:none;" >
+              <center>
+                <p><i class="fa fa-paper-plane-o fa-5x animated bounceInUp" style="color:green;"  aria-hidden="true"></i> </p>
+                <p class="animated bounceInUp">La solicitud de soporte fue enviada correctamente</p>
+              </center>
+            </div>
           </div>
         </div>
       </div>
@@ -107,9 +115,5 @@
       </div>
     </div>
   </div>
-  <style>
-  .pdfobject-container { height: 650px;}
-  .pdfobject { border: 1px solid #666; }
-  </style>
 </div>
 <!-- FIN Modal Manual de usuario -->
