@@ -37,11 +37,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									?>
 									<div class="card  mb-3">
 										<div class="card-body">
-											<h5> Problema</h5>
-											<p class="card-text"> <b>Usuario:</b> <?php echo $valores->nombre_usuario; ?></p>
-											<p class="card-text"><i class="fa fa-exclamation-circle" aria-hidden="true"><b>Asunto:</b> </i> <?php echo $valores->asunto; ?></p>
+											<h4> Problema</h4>
+											<p class="card-text"><b>Usuario:</b> <?php echo $valores->nombre_usuario; ?></p>
+											<p class="card-text"><b>Asunto:</b> </i> <?php echo $valores->asunto; ?></p>
 											<p class="card-text"><b>Descripcion:</b> <p><i> <?php echo $valores->mensaje; ?></i></p></p>
-											<p class="card-text"> <b>Ventana Error:</b> <a href="<?php echo $valores->url_mensaje; ?>"> <?php echo $valores->url_mensaje; ?></a></p>
+											<p class="card-text"><b>Ventana Error:</b> <a href="<?php echo $valores->url_mensaje; ?>"> <?php echo $valores->url_mensaje; ?></a></p>
 										</div>
 									</div>
 									<?php
@@ -71,13 +71,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<div class="card">
 												<div class="card-body">
 													<div class="row">
-														<div class="col-lg-11">
+														<div class="col-lg-8">
 															<p><b>Administrador:</b> <?php echo $valores2->nombre_usuario; ?> </p>
 														</div>
+														<div class="col-lg-3">
+															<center>
+																<p><i class="fa fa-clock-o" aria-hidden="true"></i><?php echo $valores2->fecha_respuesta; ?> </p>
+															</center>
+														</div>
 														<div class="col-lg-1">
-															<button  style="color:white;" class="btn btn-danger" data-toggle="modal" data-target="#modalborrar<?php echo $posmodal;?>" >
-																<i class="fa fa-trash" aria-hidden="true"></i>
-															</button >
+															<center>
+																<button  style="color:white;" class="btn btn-danger" data-toggle="modal" data-target="#modalborrar<?php echo $posmodal;?>" >
+																	<i class="fa fa-trash" aria-hidden="true"></i>
+																</button >
+															</center>
 														</div>
 													</div>
 													<p><b>Respuesta:</b>  <?php echo $valores2->respuesta; ?> </p>
@@ -128,7 +135,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</button>
 						</div>
 						<div class="modal-body">
-							...
+							<p><b>Administrador:</b> <?php echo $valores2->nombre_usuario; ?> </p>
+							<p><b>Respuesta:</b>  <?php echo $valores2->respuesta; ?> </p>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
