@@ -47,6 +47,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
- <script>var urlsistema = '<?php echo base_url() ?>';</script>
+ <script>var urlsistema = '<?php echo base_url()?>';</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 </html>

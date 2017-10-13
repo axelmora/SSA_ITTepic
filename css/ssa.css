@@ -177,6 +177,7 @@ fieldset[disabled] .btn-naranja.active {
 }
 .pdfobject-container { height: 650px;}
 .pdfobject { border: 1px solid #666; }
-@media only screen and (max-height: 500px) {
-.pdfobject-container { height: 520px;}
+@media only screen and (min-height: 500px) {
+.pdfobject-container { height: 450px;}
+.pdfobject { border: 1px solid #666; }
 }
