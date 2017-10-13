@@ -60,13 +60,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 								<?php
 							}
-
 							?>
 							<div class="card">
 								<div class="card-body">
 									<h5><i class="fa fa-comments-o" aria-hidden="true"></i>Respuestas</h5>
 									<?php
-									if (($respuestas)) {
+									if ($respuestas) {
+										$posmodal=0;
 										foreach ($respuestas as $filas => $valores2) {  ?>
 											<div class="card">
 												<div class="card-body">
@@ -75,13 +75,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															<p><b>Administrador:</b> <?php echo $valores2->nombre_usuario; ?> </p>
 														</div>
 														<div class="col-lg-1">
-															 <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+															<button  style="color:white;" class="btn btn-danger" data-toggle="modal" data-target="#modalborrar<?php echo $posmodal;?>" >
+																<i class="fa fa-trash" aria-hidden="true"></i>
+															</button >
 														</div>
 													</div>
 													<p><b>Respuesta:</b>  <?php echo $valores2->respuesta; ?> </p>
 												</div>
 											</div>
 											<?php
+											$posmodal++;
 										}
 									}
 									else {
@@ -110,6 +113,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
+	<?php
+	if ($respuestas) {
+		$pos=0;
+		foreach ($respuestas as $filas => $valores2) {  ?>
+			<!-- Modal borrar -->
+			<div class="modal fade" id="modalborrar<?php echo $pos; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">¿Estas seguro de eliminar esta respuesta?</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							...
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+							<button type="button" class="btn btn-primary">SI</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php
+			$pos++;
+		}
+	}
+	?>
 	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
 </body>
@@ -121,22 +153,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
-<script>
+<script type="text/javascript">
 $(document).ready(function(){
-
-	$(document).ready(function() {
-		$('#tablausuarios').DataTable({
-			"language": {
-				"url": "<?php echo base_url(); ?>js/datatables/usuarios.json"
-			},
-			"order": [[ 3, "desc" ]]
-		});
-	} );
-
 	var opciones = {
 		fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
 	};
 	PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
+
+	function eliminarjs() {
+		//	$('#modalborrar').modal("open");
+		return true;
+	}
 });
 </script>
 </html>

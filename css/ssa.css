@@ -1,5 +1,5 @@
 /*AUTOR: FERNANDO MANUEL AVILA CATAÑO*/
-@import url('../fonts/FjallaOne-Regular.ttf');
+/*@import url('../fonts/FjallaOne-Regular.ttf');*/
 .pulse-header {
   height: 60px;
   min-height: 60px;
@@ -177,6 +177,6 @@ fieldset[disabled] .btn-naranja.active {
 }
 .pdfobject-container { height: 650px;}
 .pdfobject { border: 1px solid #666; }
-@media only screen and (max-height: 700px) {
+@media only screen and (max-height: 500px) {
 .pdfobject-container { height: 520px;}
 }
