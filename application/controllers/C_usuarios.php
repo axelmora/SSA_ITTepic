@@ -64,8 +64,18 @@ class C_usuarios extends CI_Controller {
 			}
 			return true;
 		} else {
-			$this->form_validation->set_message('a', ' Usuario o contraseña inválida.');
-			$this->load->view('inicio');
+			/*$this->form_validation->set_message('a', ' Usuario o contraseña inválida.');*/
+			$datos["mensajesistema"]="
+			<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
+			<center>
+			<i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
+			</center>
+			<center>
+			Datos incorrectos.
+			</center>
+			</div>
+			";
+			$this->load->view('inicio',$datos);
 			return false;
 		}
 	}
