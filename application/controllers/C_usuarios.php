@@ -37,17 +37,18 @@ class C_usuarios extends CI_Controller {
 				$this->session->set_userdata($datos);
 				$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
 				if ($this->session->userdata('perfil')=="Administrador") {
-					redirect(base_url().'index.php/panel_administracion/');
+					echo ":s chale";
+					redirect(base_url().'index.php/Panel_administracion/');
 				}
 				else {
-					redirect(base_url().'index.php/panel_seguimiento/');
+					redirect(base_url().'index.php/Panel_seguimiento/');
 				}
 			}else {
 				if ($verificarusuario[0]->tipo==1) {
 					$this->session->set_userdata($datos);
 					$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
 					if ($this->session->userdata('perfil')=="Administrador") {
-						redirect(base_url().'index.php/panel_administracion/');
+						redirect(base_url().'index.php/Panel_administracion/');
 					}
 				}else {
 					$datos["mensajesistema"]="
@@ -71,6 +72,6 @@ class C_usuarios extends CI_Controller {
 	/* funcion para destruri sesiones*/
 	public function logout() {
 		$this->session->sess_destroy();
-		redirect('c_inicio');
+		redirect(base_url().'index.php/C_Inicio/');
 	}
 }
