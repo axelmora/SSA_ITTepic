@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php $this->load->view('include/menu'); ?>
 	<div class="row" style="margin-right: 0px; margin-left: 0px;">
 		<div class="col-lg-12">
-			<a href="<?php echo base_url(); ?>index.php/c_panel_administracion/lista_usuarios" class="linkmenu">
+			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
 				<div class="card menus animenu caro">
 					<div class="card-body">
 						<div class="row">

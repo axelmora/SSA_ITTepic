@@ -10,11 +10,15 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function index()
 	{
-    $this->load->view('ssainicio');
-			/*if ($this->session->userdata('perfil')=='Administrador') {
-				$this->load->view('administracion/vperfil');
-			}else {
-				$this->load->view('vperfil');
-			}*/
-	}
+		$this->load->view('ssainicio');
+		/*if ($this->session->userdata('perfil')=='Administrador') {
+		$this->load->view('administracion/vperfil');
+	}else {
+	$this->load->view('vperfil');
+}*/
+}
+public function aplicaciones()
+{
+	$this->load->view('aplicaciones');
+}
 }

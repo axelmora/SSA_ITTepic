@@ -13,4 +13,5 @@ class Seguimiento extends CI_Controller {
 	{
 		$this->load->view('encuesta/inicio');
 	}
+
 }

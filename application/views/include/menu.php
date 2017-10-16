@@ -16,17 +16,17 @@
     <img class="img-fluid"  src="<?php echo base_url(); ?>images/logochico.png" alt="Instituto Tecnológico de Tepic" />
   </nav>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" style="font-size:30px; color:#FF8000;" href="#"> SSA</a>
+    <a class="navbar-brand" style="font-size:30px; color:#FF8000;" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/"> SSA</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i> INICO <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/"><i class="fa fa-home" aria-hidden="true"></i> INICO <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="icon-clipboard" aria-hidden="true"></i>ENCUESTAS </a>
+          <a class="nav-link" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones"><i class="icon-clipboard" aria-hidden="true"></i>ENCUESTAS </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS </a>
