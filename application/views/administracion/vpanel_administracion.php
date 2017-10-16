@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>SSA</title>
+	<title>SSA- PANEL ADMINISTRACIÓN SISTEMA</title>
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<meta name="description" content="">
@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="col-lg-12">
 								<div>
 									<i class="fa fa-server fa-5x coloriconosmenu" aria-hidden="true"></i>
-									<p class="textotitulo">INFORMACION SISTEMA</p>
+									<p class="textotitulo">INFORMACIÓN SISTEMA</p>
 								</div>
 							</div>
 						</div>

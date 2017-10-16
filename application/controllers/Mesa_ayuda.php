@@ -3,9 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Mesa_ayuda extends CI_Controller {
   function __construct() {
     parent::__construct();
-    /*modelo usuario*/
+    /*modelo Usuario*/
     $this->load->model('Usuarios');
+    /*modelo Sistema*/
     $this->load->model('Sistema');
+    /*modelo Mesa de Ayuda*/
     $this->load->model('Mesa_AyudaModel');
     $this->load->helper(array('url', 'form'));
     $this->load->library(array('session', 'form_validation'));
@@ -39,13 +41,21 @@ class Mesa_ayuda extends CI_Controller {
     $this->Mesa_AyudaModel->insertarRespuesta($idmensajeprincipal,$respus,$iduser);
     redirect(base_url().'index.php/mesa_ayuda/soporte/'.$idmensajeprincipal);
   }
-  public function respuestaEliminar($idrespuesta)
-  {
-    # code...
-  }
   public function borrarMensajeprincipal($mensaje)
   {
     $this->Mesa_AyudaModel->borarMensajeSoporte($mensaje);
     redirect(base_url().'index.php/panel_administracion/mesadeayuda');
+  }
+  public function borrarRespuesta($mensaje)
+  {
+    $idmensajeprincipal = $this->input->post('idmensajeprincipal_b');
+    $this->Mesa_AyudaModel->borarMensajeRespuesta($mensaje);
+    redirect(base_url().'index.php/mesa_ayuda/soporte/'.$idmensajeprincipal);
+  }
+  public function cambiarEstadoMensaje()
+  {
+    $idmensaje = $this->input->post('idmensaje');
+    $nuevoestado = $this->input->post('estado');
+    $this->Mesa_AyudaModel->cambioEstado($idmensaje,$nuevoestado);
   }
 }

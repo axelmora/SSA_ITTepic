@@ -11,6 +11,6 @@ class Seguimiento extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->load->view('encuesta/seguimiento');
+		$this->load->view('encuesta/inicio');
 	}
 }

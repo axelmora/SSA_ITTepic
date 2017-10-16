@@ -20,7 +20,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 	<?php $this->load->view('include/banner'); ?>
-
 	<div class="row" style="margin-right: 0px; margin-left: 0px;">
 		<div class="col-lg-4"> </div>
 		<div class="col-lg-4">

@@ -41,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</thead>
 							<tbody>
 								<?php
+								$posmodal=0;
 								foreach ($asuntos as $filas => $valores) {
 									?>
 									<tr>
@@ -48,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<td colspan=""><?php echo $valores->asunto; ?> </td>
 										<td colspan=""><?php echo $valores->fecha_mensaje; ?></td>
 										<?php
-										if ($valores->estado==1) {
+										if ($valores->estado==0) {
 											$estadovalor="<i class='fa fa-question' aria-hidden='true'></i> RESOLVIENDO";
 										}else {
 											$estadovalor="<i class='fa fa-check-square-o' aria-hidden='true'></i> RESUELTO";
@@ -62,13 +63,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												</button>
 												<div class="dropdown-menu">
 													<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/mesa_ayuda/soporte/<?php echo $valores->idmesa_ayuda; ?>"><i class="fa fa-envelope-open-o" aria-hidden="true"></i> ATENDER </a>
-													<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/mesa_ayuda/borrarMensajeprincipal/<?php echo $valores->idmesa_ayuda; ?>"><i class="fa fa-trash" aria-hidden="true"></i> ELIMINAR</a>
+													<button class="dropdown-item" data-toggle="modal"  data-target="#modalborrar<?php echo $posmodal;?>"><i class="fa fa-trash" aria-hidden="true"></i> ELIMINAR</button>
 												</div>
 											</div>
 										</td>
 									</tr>
 									<?php
+									$posmodal++;
 								}
+								$posmodal=0;
 								?>
 							</tbody>
 						</table>
@@ -92,6 +95,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
+	<?php
+	/*Ventanas modales respuestas */
+	if ($asuntos) {
+		$pos=0;
+		foreach ($asuntos as $filas => $valores2) {  ?>
+			<form method="post" action="<?php echo base_url(); ?>index.php/Mesa_ayuda/borarMensajeSoporte/<?php echo $valores2->idmesa_ayuda?>">
+				<!-- Modal borrar -->
+				<div class="modal fade" id="modalborrar<?php echo $pos; ?>" tabindex="-1" role="dialog" aria-labelledby="modalborrar" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="">¿Estás seguro de eliminar esta petición de soporte? </h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p><b>Usuario:</b> <?php echo $valores2->nombre_usuario; ?></p>
+								<p><b>Asunto:</b>  <?php echo $valores2->asunto; ?></p>
+								<p><b>Fecha:</b>  <?php echo $valores2->fecha_mensaje; ?></p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" data-dismiss="modal">NO</button>
+								<input type="submit" class="btn btn-danger" value="SI" >
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<?php
+			$pos++;
+		}
+		/*FIN Ventanas modales respuestas */
+	}
+	$pos=0;
+	?>
 	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
 </body>
@@ -105,16 +144,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
 <script>
 $(document).ready(function(){
-
-	$(document).ready(function() {
-		$('#tablausuarios').DataTable({
-			"language": {
-				"url": "<?php echo base_url(); ?>js/datatables/usuarios.json"
-			},
-			"order": [[ 3, "desc" ]]
-		});
-	} );
-
+	$('#tablausuarios').DataTable({
+		"language": {
+			"url": "<?php echo base_url(); ?>js/datatables/usuarios.json"
+		},
+		"order": [[ 3, "desc" ]]
+	});
 	var opciones = {
 		fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
 	};
