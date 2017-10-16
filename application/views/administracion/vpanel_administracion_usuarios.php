@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<h3><i class="fa fa-users" aria-hidden="true"></i> Lista de usuarios</h3>
 						</div>
 						<div class="col-lg-6">
-							<button type="button" class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> AGREGAR USUARIO</button>
+							<a href="<?php echo base_url(); ?>index.php/panel_administracion/adduser" class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> AGREGAR USUARIO</a>
 						</div>
 					</div>
 

@@ -49,4 +49,7 @@ class Panel_administracion extends CI_Controller {
 	public function editor() {
 		$this->load->view('editor_plantillas');
 	}
+	public function adduser() {
+		$this->load->view('administracion/vpanel_nusuario');
+	}
 }
