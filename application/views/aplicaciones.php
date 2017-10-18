@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
   <?php $this->load->view('include/menu'); ?>
+    <div class="container">
   <div class="row" style="margin-right: 0px; margin-left: 0px;">
     <div class="col-lg-12">
       <div class="card caro">
@@ -35,6 +36,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
       </div>
     </div>
+  </div>
+  </div>
   </div>
   <?php $this->load->view('include/footer'); ?>
 </body>
