@@ -10,15 +10,41 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->load->view('ssainicio');
-		/*if ($this->session->userdata('perfil')=='Administrador') {
-		$this->load->view('administracion/vperfil');
-	}else {
-	$this->load->view('vperfil');
-}*/
-}
-public function aplicaciones()
-{
-	$this->load->view('aplicaciones');
-}
+		if ($this->session->userdata('tipo')=='1') {
+			$this->load->view('ssainicio');
+		}else {
+			if ($this->session->userdata('tipo')=='2') {
+				$this->load->view('ssainicio');
+			}
+			else {
+				redirect(base_url().'index.php');
+			}
+		}
+	}
+	public function aplicaciones()
+	{
+		if ($this->session->userdata('tipo')=='1') {
+				$this->load->view('aplicaciones');
+		}else {
+			if ($this->session->userdata('tipo')=='2') {
+					$this->load->view('aplicaciones');
+			}
+			else {
+				redirect(base_url().'index.php');
+			}
+		}
+	}
+	public function agregar()
+	{
+		if ($this->session->userdata('tipo')=='1') {
+				$this->load->view('aplicaciones_agregar');
+		}else {
+			if ($this->session->userdata('tipo')=='2') {
+					$this->load->view('aplicaciones_agregar');
+			}
+			else {
+				redirect(base_url().'index.php');
+			}
+		}
+	}
 }

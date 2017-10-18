@@ -27,9 +27,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="row">
             <div class="col-lg-12">
               <div class="row">
+                <div class="col-lg-9">
+                  <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones</h3>
+                </div>
+                <div class="col-lg-3">
+                  <a class="btn btn-success" href="#" role="button"><i class="fa fa-plus-circle" aria-hidden="true"></i> GENERAR NUEVA APLICACION</a>
+                </div>
+              </div>
+              <br>
+              <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>NOMBRE</th>
+                    <th>PERIODO</th>
+                    <th>NUMERO ENCUESTAS</th>
+                    <th>FECHA CREACION</th>
+                    <th>OPCIONES</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
 
-
-
+                    ?>
+                  </tbody>
+                </table>
             </div>
           </div>
         </div>

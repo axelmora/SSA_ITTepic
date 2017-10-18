@@ -11,10 +11,15 @@ class C_Inicio extends CI_Controller {
 	{
 		$sistemaproduccion = $this->Sistema->obtenerproduccion();
 		if ($sistemaproduccion[0]->produccion==1) {
-			if ($this->session->userdata('perfil')=='Administrador') {
+			if ($this->session->userdata('tipo')=='1') {
 				redirect(base_url().'index.php/panel_administracion/');
 			}else {
-				$this->load->view('inicio');
+				if ($this->session->userdata('tipo')=='2') {
+						redirect(base_url().'index.php/Panel_seguimiento/');
+				}
+				else {
+					$this->load->view('inicio');
+				}
 			}
 		}
 		else {

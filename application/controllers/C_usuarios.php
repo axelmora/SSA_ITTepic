@@ -20,6 +20,7 @@ class C_usuarios extends CI_Controller {
 	}
 	/* inicio de sesion*/
 	public function iniciosesion() {
+		$peridioactual=$this->generarPeriodo();
 		$usuario = $this->input->post('userid');
 		$password = sha1($this->input->post('passwordid'));
 		$verificarusuario = $this->Usuarios->iniciarsesionm($usuario, $password);
@@ -30,14 +31,14 @@ class C_usuarios extends CI_Controller {
 				'perfil' =>$verificarusuario[0]->nombre_departamento,
 				'departamento' => $verificarusuario[0]->idusuarios,
 				'username' => $verificarusuario[0]->nombre_usuario,
-				'tipo' => $verificarusuario[0]->tipo
+				'tipo' => $verificarusuario[0]->tipo,
+				'periodosemestre'=>$peridioactual
 			);
 			$sistemaproduccion = $this->Sistema->obtenerproduccion();
 			if ($sistemaproduccion[0]->produccion==1) {
 				$this->session->set_userdata($datos);
 				$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
 				if ($this->session->userdata('perfil')=="Administrador") {
-					echo ":s chale";
 					redirect(base_url().'index.php/Panel_administracion/');
 				}
 				else {
@@ -83,5 +84,22 @@ class C_usuarios extends CI_Controller {
 	public function logout() {
 		$this->session->sess_destroy();
 		redirect(base_url().'index.php/C_Inicio/');
+	}
+	public function generarPeriodo()
+	{
+		 $anio=date("Y");
+		 $mes=date("m");
+		 $periodo="";
+		 if ($mes>=1 && $mes<=6) {
+			 	$periodo=$anio."1";
+		 }else {
+			 if ($mes>=8 && $mes<=12) {
+					$periodo=$anio."3";
+			 }
+			 else {
+			 		$periodo=$anio."2";
+			 }
+		 }
+		 return $periodo;
 	}
 }
