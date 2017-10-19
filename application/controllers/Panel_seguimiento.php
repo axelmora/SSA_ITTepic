@@ -34,17 +34,8 @@ class Panel_seguimiento extends CI_Controller {
 			}
 		}
 	}
-	public function agregar()
+	public function GenerarPeriodoCompleto()
 	{
-		if ($this->session->userdata('tipo')=='1') {
-				$this->load->view('aplicaciones_agregar');
-		}else {
-			if ($this->session->userdata('tipo')=='2') {
-					$this->load->view('aplicaciones_agregar');
-			}
-			else {
-				redirect(base_url().'index.php');
-			}
-		}
+		echo "Hola papus";
 	}
 }
