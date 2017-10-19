@@ -85,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="card bg-danger text-white animated fadeInUp">
                     <div class="card-body">
                       <center>
-                        	<i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
+                        <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
                         Actualmente no existen aplicaciones de seguimiento en el aula generadas.
                       </center>
                     </div>
@@ -180,9 +180,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <option selected value="1">ITTEPIC-AC-PO-004-07</option>
               </select>
             </div>
-
           </div>
-
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i> CANCELAR</button>
             <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR NUEVA APLICACION</button>
