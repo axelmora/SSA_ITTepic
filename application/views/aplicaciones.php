@@ -47,17 +47,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                     <thead>
                       <tr>
-                        <th>PERIODO</th>
-                        <th>CONTRASEÑA</th>
+                        <th><i class="fa fa-calendar" aria-hidden="true"></i> PERIODO</th>
+                        <th><i class="fa fa-lock" aria-hidden="true"></i> CONTRASEÑA</th>
                         <th>NUMERO DE ENCUESTAS</th>
-                        <th>FECHA CREACION</th>
-                        <th>OPCIONES</th>
+                        <th><i class="fa fa-calendar-check-o" aria-hidden="true"></i> FECHA CREACION</th>
+                        <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
                       foreach ($Aplicaciones as $key => $valor) {
                         ?>
+                        <tr>
                         <td><?php echo "".genePerido($valor->periodo); ?></td>
                         <td><?php echo "".$valor->contrasena; ?></td>
                         <td></td>
@@ -73,6 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                           </div>
                         </td>
+                      </tr>
                         <?php
                       }
                       ?>
