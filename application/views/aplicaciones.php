@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <div class="row">
                   <div class="col-lg-9">
-                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones</h3>
+                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones de seguimiento en el aula</h3>
                   </div>
                   <div class="col-lg-3">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAplicacion"  role="button"><i class="fa fa-plus-circle" aria-hidden="true" ></i> GENERAR NUEVA APLICACION</button>
@@ -81,7 +81,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <?php
                 }
                 else {
-                  echo "error";
+                  ?>
+                  <div class="card bg-danger text-white animated fadeInUp">
+                    <div class="card-body">
+                      <center>
+                        	<i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
+                        Actualmente no existen aplicaciones de seguimiento en el aula generadas.
+                      </center>
+                    </div>
+                  </div>
+                  <?php
                 }
                 ?>
               </div>
@@ -150,10 +159,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           if ($AplicacionesPerido) {
             ?>
             <div class="container">
-              <div class="card">
+              <div class="card bg-danger text-white">
                 <div class="card-body">
-                <center>   <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite ' aria-hidden='true'></i></center> <br>
-                <center>  <?php  echo " Ya existen aplicaciones en este semetre "; ?> </center>
+                  <center>   <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite ' aria-hidden='true'></i></center> <br>
+                  <center>  <?php  echo " Ya existen aplicaciones en el semestre actual"; ?> </center>
                 </div>
               </div>
             </div>
@@ -175,8 +184,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
-            <button type="submit" class="btn btn-primary">CREAR NUEVA APLICACION</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i> CANCELAR</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR NUEVA APLICACION</button>
           </div>
         </div>
       </div>
