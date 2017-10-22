@@ -47,12 +47,6 @@ $(document).ready(function(){
     });
   });
   /**/
-  /*TBLA aplicaciones*/
-  $('#tablaaplicaciones').DataTable({
-    "language": {
-      "url": urlsistema+"js/datatables/usuarios.json"
-    },
-    "order": [[ 3, "desc" ]]
-  });
+
 });
 /*FIN JS*/

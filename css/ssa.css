@@ -65,7 +65,7 @@ footer .footer-copyright {
   height: 50px;
   line-height: 50px;
   color: 	#000000;
-/*  background-color: rgba(51, 51, 51, 0.08);*/
+  /*  background-color: rgba(51, 51, 51, 0.08);*/
   background-color: #f8f9fa!important;
 }
 .amber-text {color: 	#000000;}
@@ -192,13 +192,18 @@ fieldset[disabled] .btn-naranja.active {
   .pdfobject-container { height: 450px;}
   .pdfobject { border: 1px solid #666; }
 }
+.sombrapanel{
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.38);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.38);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.38);
+}
 /*---------SEGUIMIENTO---------*/
 /*-logins-*/
 canvas {
-    z-index: -1;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
 }

@@ -35,7 +35,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones de seguimiento en el aula</h3>
                   </div>
                   <div class="col-lg-3">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAplicacion"  role="button"><i class="fa fa-plus-circle" aria-hidden="true" ></i> GENERAR NUEVA APLICACION</button>
+                    <center>
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAplicacion"  role="button"><i class="fa fa-plus-circle" aria-hidden="true" ></i> GENERAR NUEVA APLICACION</button>
+                    </center>
                   </div>
                 </div>
                 <br>
@@ -59,22 +61,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       foreach ($Aplicaciones as $key => $valor) {
                         ?>
                         <tr>
-                        <td><?php echo "".genePerido($valor->periodo); ?></td>
-                        <td><?php echo "".$valor->contrasena; ?></td>
-                        <td></td>
-                        <td><?php echo "".$valor->fecha_creacion; ?></td>
-                        <td>
-                          <div class="btn-group btn-block">
-                            <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> AGREGAR GRUPOS</a>
-                              <!--  <a class="dropdown-item" href="#"><i class="fa fa-trash" aria-hidden="true"></i> ELIMINAR</a> -->
+                          <td><?php echo "".genePerido($valor->periodo); ?></td>
+                          <td><?php echo "".$valor->contrasena; ?></td>
+                          <td></td>
+                          <td><?php echo "".$valor->fecha_creacion; ?></td>
+                          <td>
+                            <div class="btn-group btn-block">
+                              <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo "".$valor->idaplicaciones; ?>"  class="btn btn-primary btn-block text-white"   >
+                                <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
+                              </a>
                             </div>
-                          </div>
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
                         <?php
                       }
                       ?>
@@ -205,4 +203,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
 <script>var urlsistema = '<?php echo base_url()?>';</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 </html>

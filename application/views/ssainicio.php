@@ -20,7 +20,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 	<?php $this->load->view('include/menu'); ?>
-	<div class="row" style="margin-right: 0px; margin-left: 0px;">
+	<div class="container">
+	<div class="row"  >
+		<div class="col-lg-12">
+			<div class="card sombrapanel">
+				<div class="card-body">
+					<center><h4><i class="fa fa-graduation-cap" aria-hidden="true"></i> <?php  echo "".$this->session->userdata('departamentonombre');?></h4></center>
+				</div>
+			</div>
+		</div>
+	</div>
+		</div>
+	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-12">
 			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
 				<div class="card menus animenu caro">
@@ -47,6 +58,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
- <script>var urlsistema = '<?php echo base_url()?>';</script>
+<script>var urlsistema = '<?php echo base_url()?>';</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 </html>

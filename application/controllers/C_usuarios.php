@@ -30,6 +30,7 @@ class C_usuarios extends CI_Controller {
 				'idusuarios' => $verificarusuario[0]->idusuarios,
 				'perfil' =>$verificarusuario[0]->nombre_departamento,
 				'departamento' => $verificarusuario[0]->iddepartamento_academico,
+				'departamentonombre' => $verificarusuario[0]->nombre_departamento,
 				'username' => $verificarusuario[0]->nombre_usuario,
 				'tipo' => $verificarusuario[0]->tipo,
 				'periodosemestre'=>$peridioactual
