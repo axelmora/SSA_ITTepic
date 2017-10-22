@@ -38,5 +38,32 @@ class SeguimientoModelo extends CI_Model {
       return false;
     }
   }
+  public function obtenerPeriodoAplicacion($idSeguimiento)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->select('periodo');
+    $DB2->where('idaplicaciones',$idSeguimiento);
+    $DB2->from('aplicaciones');
+    $query = $DB2->get();
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
+  public function cargarEncuestasSeguimiento($idSeguimiento)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->select('*');
+    $DB2->order_by('fecha_creacion DESC');
+    $DB2->where('aplicaciones_idaplicaciones',$idSeguimiento);
+    $DB2->from('encuestas_seguimiento');
+    $query = $DB2->get();
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
 
 }

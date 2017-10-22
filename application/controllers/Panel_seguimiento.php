@@ -49,7 +49,7 @@ class Panel_seguimiento extends CI_Controller {
 		);
 		$this->SeguimientoModelo->crearAplicacion($datos);
 		if ($this->session->userdata('tipo')=='1') {
-				redirect(base_url().'index.php/Panel_seguimiento/aplicaciones');
+			redirect(base_url().'index.php/Panel_seguimiento/aplicaciones');
 		}else {
 			if ($this->session->userdata('tipo')=='2') {
 				redirect(base_url().'index.php/Panel_seguimiento/aplicaciones');
@@ -59,7 +59,20 @@ class Panel_seguimiento extends CI_Controller {
 			}
 		}
 	}
+
 	public function listado($idAplicacion)
 	{
+		$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
+		$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
+		if ($this->session->userdata('tipo')=='1') {
+			$this->load->view('aplicaciones_lista',$datos);
+		}else {
+			if ($this->session->userdata('tipo')=='2') {
+				$this->load->view('aplicaciones_lista',$datos);
+			}
+			else {
+				redirect(base_url().'index.php');
+			}
+		}
 	}
 }

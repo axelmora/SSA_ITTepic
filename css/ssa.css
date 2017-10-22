@@ -180,6 +180,12 @@ fieldset[disabled] .btn-naranja.active {
   text-shadow: 2px 2px 0px #800000;
   /*  text-shadow: 4px 4px 8px rgba(150, 150, 150, 0.64);*/
 }
+.coloriconosmenu4{
+  color: #f58220;
+  font-size: 250%;
+  text-shadow: 2px 2px 0px #800000;
+  /*  text-shadow: 4px 4px 8px rgba(150, 150, 150, 0.64);*/
+}
 .textotitulo2{
   /*margin-left: 25%;*/
   font-size: 150%;

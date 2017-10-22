@@ -51,6 +51,85 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</a>
 		</div>
 	</div>
+	<!--Segundo ROW -->
+	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
+		<div class="col-lg-6">
+			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
+				<div class="card menus animenu caro">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div>
+									<center>
+										<i class="icon-clipboard coloriconosmenu4" aria-hidden="true"></i>
+										<p class="textotitulo2"> ENCUESTA SEGUIMIENTO EN EL AULA</p>
+									</center>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-6">
+			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
+				<div class="card menus animenu caro">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div>
+									<center>
+										<i class="icon-clipboard coloriconosmenu4" aria-hidden="true"></i>
+										<p class="textotitulo2"> ENCUESTA SEGUIMIENTO EN EL AULA</p>
+									</center>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+		<!--TERCER ROW -->
+		<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
+			<div class="col-lg-6">
+				<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
+					<div class="card menus animenu caro">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div>
+										<center>
+											<i class="icon-clipboard coloriconosmenu4" aria-hidden="true"></i>
+											<p class="textotitulo2"> ENCUESTA SEGUIMIENTO EN EL AULA</p>
+										</center>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-6">
+				<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
+					<div class="card menus animenu caro">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div>
+										<center>
+											<i class="icon-clipboard coloriconosmenu4" aria-hidden="true"></i>
+											<p class="textotitulo2"> ENCUESTA SEGUIMIENTO EN EL AULA</p>
+										</center>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+		
 	<?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>

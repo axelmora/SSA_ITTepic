@@ -32,11 +32,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <div class="row">
                   <div class="col-lg-9">
-                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones de seguimiento en el aula</h3>
+                    <?php
+                    $peridotlista="";
+                    foreach ($AplicacionesPeriodo as $key => $valorPeriodo) {
+                      $peridotlista= genePerido($valorPeriodo->periodo);
+                    }
+                    ?>
+                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupos de aplicacion del periodo <?php echo "$peridotlista";  ?></h3>
                   </div>
                   <div class="col-lg-3">
                     <center>
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAplicacion"  role="button"><i class="fa fa-plus-circle" aria-hidden="true" ></i> GENERAR NUEVA APLICACION</button>
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAplicacion"  role="button"><i class="fa fa-plus-circle" aria-hidden="true" ></i> AGREGAR GRUPO</button>
                     </center>
                   </div>
                 </div>
@@ -44,7 +50,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <br>
                 <?php
                 if ($Aplicaciones) {
-
                   ?>
                   <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                     <thead>
@@ -86,7 +91,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="card-body">
                       <center>
                         <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-                        Actualmente no existen aplicaciones de seguimiento en el aula generadas.
+                        Actualmente no existen grupos para esta aplicacion de seguimiento en el aula generada.
                       </center>
                     </div>
                   </div>
@@ -124,32 +129,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
     return $peridotTexto;
   }
-
-  /*Funcion semestre actual*/
-  function genePeridoActual($peridot)
-  {
-    $peridotTexto="";
-    $anioac="";
-    $anioac=date("Y"); //Obtener el año actual
-    if($peridot==$anioac."1")
-    {
-      $peridotTexto="Enero-Junio ".$anioac;
-    }
-    else {
-      if($peridot==$anioac."2")
-      {
-        $peridotTexto="Verano ".$anioac;
-      }
-      else {
-        if($peridot==$anioac."3")
-        {
-          $peridotTexto="Agosto-Diciembre ".$anioac;
-        }
-      }
-    }
-  return $peridotTexto;
-  }
-
   ?>
   <!-- Modal Agregar Aplicacion -->
   <form method="post" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/generarAplicacion" >
@@ -157,7 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear nueva aplicacion  <b><?php echo "".genePeridoActual($this->session->userdata('periodosemestre')); ?></b> </h5>
+            <h5 class="modal-title" id="exampleModalLabel">Crear nueva aplicacion  <b><?php echo "$peridotTexto  $anioac"; ?></b> </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
