@@ -18,11 +18,16 @@ class Seguimiento extends CI_Controller {
 		}
 		else {
 			$datos["mensajesistema"]="
+			<br>
 			<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
 			<center>
-			<i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
-			<br><b> El sistema se encuentra actualmente en Mantenimiento</b>
+			<br>
+			<i style='font-size:600%;' class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
+			<br><br><b  style='font-size:150%;' > El sistema se encuentra actualmente en mantenimiento<i class='fa fa-wrench' aria-hidden='true'></i>.</b>
 			</center>
+			<br>
+			<br>
+			<br>
 			</div>
 			";
 			$this->load->view('encuesta/inicio',$datos);
