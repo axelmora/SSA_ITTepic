@@ -60,6 +60,7 @@ $(document).ready(function(){
         $("#idmateria").val(""+datos.idmaterias);
         $("#nombre_materiaenviar").val($("#nombre_materia").val());
         $('#modalAgregarMateria').modal('hide')
+        $("#nombre_materia").val("");
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         alert("Error: " + textStatus); alert("Error: " + errorThrown);
@@ -67,5 +68,6 @@ $(document).ready(function(){
     });
     event.preventDefault();
   });
+
 });
 /*FIN JS*/
