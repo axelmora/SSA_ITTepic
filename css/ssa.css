@@ -206,6 +206,9 @@ fieldset[disabled] .btn-naranja.active {
 .formulariolabel{
   font-weight: bold;
 }
+.tablaletradocentes{
+  font-size: 80%;
+}
 /*---------SEGUIMIENTO---------*/
 /*-logins-*/
 canvas {

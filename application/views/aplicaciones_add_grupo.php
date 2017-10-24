@@ -64,7 +64,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <label class="formulariolabel"><i class="fa fa-user-circle" aria-hidden="true"></i> Docente:</label>
                 </div>
                 <div class="col-lg-4">
-                  <input value="" placeholder="Seleccionar docente" class="form-control"  readonly required/>
+                  <input value="" id="rfcdocente" name="rfcdocente" placeholder="Seleccionar docente" class="form-control" hidden required/>
+                  <input value="" id="nombredocente" name="nombredocente" placeholder="Seleccionar docente" class="form-control"  readonly required/>
                 </div>
                 <div class="col-lg-3">
                   <button type="button"  data-toggle="modal" data-target="#modalDocentes" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECCIONAR DOCENTE</button>
@@ -120,53 +121,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     return $peridotTexto;
   }
   ?>
-  <!-- Modal Agregar Aplicacion -->
-  <form method="post" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/generarAplicacion" >
-    <div class="modal fade" id="modalAplicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear nueva aplicacion  <b><?php echo "$peridotTexto  $anioac"; ?></b> </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <?php
-          if ($AplicacionesPerido) {
-            ?>
-            <div class="container">
-              <div class="card bg-danger text-white">
-                <div class="card-body">
-                  <center>   <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite ' aria-hidden='true'></i></center> <br>
-                  <center>  <?php  echo " Ya existen aplicaciones en el semestre actual"; ?> </center>
-                </div>
-              </div>
-            </div>
-            <?php
-          }
-          ?>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="contrasenaapp">Contraseña aplicacion</label>
-              <input type="text" class="form-control" id="contrasenaapp" name="contrasenaapp" aria-describedby="contrasenaapp" placeholder="Ingresa una contraseña para la aplicacion " required>
-            </div>
-            <div class="form-group">
-              <label for="plantilla">Seleccionar plantilla</label>
-              <select  class="form-control" id="plantilla" name="plantilla" required >
-                <option selected value="1">ITTEPIC-AC-PO-004-07</option>
-              </select>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i> CANCELAR</button>
-            <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR NUEVA APLICACION</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-  <!-- Modal Agregar Aplicacion -->
-
   <!-- MODAL DOCENTES  -->
   <div class="modal fade" id="modalDocentes" tabindex="-1" role="dialog" aria-labelledby="modalDocentes" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -178,11 +132,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </button>
         </div>
         <div class="modal-body">
-
+          <table id="tablaSeleccionDocentes" class="table table-striped table-bordered dt-responsive tablaletradocentes " cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>MATERIA</th>
+                <th>DEPARTAMENTO</th>
+                <th>OPCION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($Docentes as $key => $valores) {
+                ?>
+                <tr>
+                  <td>
+                    <?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos); ?>
+                  </td>
+                  <td>
+                    <?php echo "".utf8_decode($valores->departamento); ?>
+                  </td>
+                  <td>
+                    <center>
+                      <button type="button" onclick="selecionarDoc('<?php echo $valores->rfc; ?>','<?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos)?>')" class="btn btn-info " ><i class="fa  fa-check-square" aria-hidden="true"></i> SELECCIONAR</button>
+                    </center>
+                  </td>
+                </tr>
+                <?php
+              }
+              ?>
+            </tbody>
+          </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-          <button type="button" class="btn btn-success">SELECCIONAR</button>
         </div>
       </div>
     </div>
@@ -289,10 +271,10 @@ function selecionarMat(idmateria,nombre) {
   $("#nombre_materiaenviar").addClass( "animated bounceIn" );
 }
 function selecionarDoc(idmateria,nombre) {
-  $("#idmateria").val(""+idmateria);
-  $("#nombre_materiaenviar").val(""+nombre);
-  $('#modalSeleccionMateria').modal('hide')
-  $("#nombre_materiaenviar").addClass( "animated bounceIn" );
+  $("#rfcdocente").val(""+idmateria);
+  $("#nombredocente").val(""+nombre);
+  $('#modalDocentes').modal('hide')
+  $("#nombredocente").addClass( "animated bounceIn" );
 }
 </script>
 </html>

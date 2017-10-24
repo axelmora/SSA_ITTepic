@@ -6,6 +6,7 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->model('Usuarios');
 		$this->load->model('SeguimientoModelo');
 		$this->load->model('Materia');
+		$this->load->model('Docentes');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 		$this->load->database('default');
@@ -34,7 +35,7 @@ class Panel_seguimiento extends CI_Controller {
 			foreach ($datos["Aplicaciones"] as $key => $value) {
 				$valor=$this->SeguimientoModelo->contarEncuestas($value->idaplicaciones);
 				foreach ($valor as $key => $nuermos) {
-				 $valorescontados[]=$nuermos->numero;
+					$valorescontados[]=$nuermos->numero;
 				}
 			}
 			$datos["Cantidad_Encuestas"]=$valorescontados;
@@ -90,8 +91,10 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function nuevo_grupo()
 	{
+		$depa=$this->obtenerDepartamento($this->session->userdata('departamento'));
 		//	$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
 		$datos["MateriasExistentes"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
+		$datos["Docentes"]=$this->Docentes->cargarDocentesDepartamento($depa);
 		if ($this->session->userdata('tipo')=='1') {
 			$this->load->view('aplicaciones_add_grupo',$datos);
 		}else {
@@ -113,5 +116,21 @@ class Panel_seguimiento extends CI_Controller {
 		$this->Materia->insertarMateria($datos);
 		$datos['idmaterias']=$this->Materia->ultimaMateriaAgregadaDepa($this->session->userdata('departamento'));
 		echo json_encode($datos);
+	}
+	public function obtenerDepartamento($departamentoid)
+	{
+		$departamentoRetorno="";
+		switch ($departamentoid) {
+			case '3':
+			$departamentoRetorno="DEPARTAMENTO DE SISTEMAS Y COMPUTACION";
+			break;
+			case '2':
+			$departamentoRetorno="DEPARTAMENTO DE CIENCIAS DE LA TIERRA";
+			break;
+			default:
+			# code...
+			break;
+		}
+		return $departamentoRetorno;
 	}
 }
