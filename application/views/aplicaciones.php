@@ -29,7 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="card-body">
             <div class="row">
               <div class="col-lg-12">
-
                 <div class="row">
                   <div class="col-lg-9">
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones de seguimiento en el aula</h3>
@@ -42,16 +41,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <br>
                 <br>
+
                 <?php
                 if ($Aplicaciones) {
-
+                  $posicionencuestas=0;
                   ?>
                   <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                     <thead>
                       <tr>
                         <th><i class="fa fa-calendar" aria-hidden="true"></i> PERIODO</th>
                         <th><i class="fa fa-lock" aria-hidden="true"></i> CONTRASEÑA</th>
-                        <th>NUMERO DE ENCUESTAS</th>
+                        <th><i class="fa fa-hashtag" aria-hidden="true"></i> NUMERO DE ENCUESTAS</th>
                         <th><i class="fa fa-calendar-check-o" aria-hidden="true"></i> FECHA CREACION</th>
                         <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
                       </tr>
@@ -59,11 +59,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <tbody>
                       <?php
                       foreach ($Aplicaciones as $key => $valor) {
+                        $NumeroEncuestas="";
+                        if($Cantidad_Encuestas[$posicionencuestas][0]==0){
+                          $NumeroEncuestas="<i class='fa fa-exclamation-circle colorError' aria-hidden='true'></i> No existen encuestas creadas.";
+                        }else {
+                          $NumeroEncuestas=$Cantidad_Encuestas[$posicionencuestas][0];
+                        }
                         ?>
                         <tr>
                           <td><?php echo "".genePerido($valor->periodo); ?></td>
                           <td><?php echo "".$valor->contrasena; ?></td>
-                          <td></td>
+                          <td> <?php echo "".$NumeroEncuestas?></td>
                           <td><?php echo "".$valor->fecha_creacion; ?></td>
                           <td>
                             <div class="btn-group btn-block">
@@ -74,6 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           </td>
                         </tr>
                         <?php
+                        $posicionencuestas++;
                       }
                       ?>
                     </tbody>
@@ -147,7 +154,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
       }
     }
-  return $peridotTexto;
+    return $peridotTexto;
   }
 
   ?>

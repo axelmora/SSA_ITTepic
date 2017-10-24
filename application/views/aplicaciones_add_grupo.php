@@ -47,11 +47,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="col-lg-3">
                   <?php
-                  if(isset($MateriasExistentes))
+                  if($MateriasExistentes)
                   {
                     ?>
                     <div class="animated bounceInRight">
-                      <button type="button" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECCIONAR  MATERIAS EXISTENTES</button>
+                      <button type="button" data-toggle="modal" data-target="#modalSeleccionMateria"  class="btn btn-info btn-block " ><i class="fa  fa-search-plus" aria-hidden="true"></i> SELECCIONAR  MATERIAS EXISTENTES</button>
                     </div>
                     <?php
                   }
@@ -181,7 +181,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
           <button type="button" class="btn btn-success">SELECCIONAR</button>
         </div>
       </div>
@@ -194,7 +194,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalAgregarMateria">Agregar nueva materia</h5>
+            <h5 class="modal-title"  >Agregar nueva materia</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -218,6 +218,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
   </form>
   <!-- MODAL AGREGAR MATERIA  -->
+  <!-- MODAL SELECIONAR MATERIAS  -->
+  <div class="modal fade" id="modalSeleccionMateria" tabindex="-1" role="dialog" aria-labelledby="modalSeleccionMateria" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Seleccionar materia</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <table id="tablaSelecionarMaterias" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>MATERIA</th>
+                    <th>OPCION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  foreach ($MateriasExistentes as $key => $valores) {
+                    ?>
+                    <tr>
+                      <td>
+                        <?php echo "".$valores->nombre_materia; ?>
+                      </td>
+                      <td>
+                        <center>
+                          <button type="button" onclick="selecionarMat(<?php echo $valores->idmaterias; ?>,'<?php echo $valores->nombre_materia; ?>')" class="btn btn-info " ><i class="fa  fa-check-square" aria-hidden="true"></i> SELECCIONAR</button>
+                        </center>
+                      </td>
+                    </tr>
+                    <?php
+                  }
+                  ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL SELECIONAR MATERIAS  -->
   <?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
@@ -232,4 +281,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>var urlsistema = '<?php echo base_url()?>';</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
+<script>
+function selecionarMat(idmateria,nombre) {
+  $("#idmateria").val(""+idmateria);
+  $("#nombre_materiaenviar").val(""+nombre);
+  $('#modalSeleccionMateria').modal('hide');
+  $("#nombre_materiaenviar").addClass( "animated bounceIn" );
+}
+function selecionarDoc(idmateria,nombre) {
+  $("#idmateria").val(""+idmateria);
+  $("#nombre_materiaenviar").val(""+nombre);
+  $('#modalSeleccionMateria').modal('hide')
+  $("#nombre_materiaenviar").addClass( "animated bounceIn" );
+}
+</script>
 </html>

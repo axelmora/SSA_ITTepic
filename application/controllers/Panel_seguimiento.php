@@ -27,6 +27,18 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'));
 		$datos["AplicacionesPerido"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'),$this->session->userdata('periodo'));
+		//$datos["Cantidad_Encuestas"]="";
+		if($datos["Aplicaciones"]!=false)
+		{
+			$valorescontados;
+			foreach ($datos["Aplicaciones"] as $key => $value) {
+				$valor=$this->SeguimientoModelo->contarEncuestas($value->idaplicaciones);
+				foreach ($valor as $key => $nuermos) {
+				 $valorescontados[]=$nuermos->numero;
+				}
+			}
+			$datos["Cantidad_Encuestas"]=$valorescontados;
+		}
 		if ($this->session->userdata('tipo')=='1') {
 			$this->load->view('aplicaciones',$datos);
 		}else {
@@ -78,8 +90,8 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function nuevo_grupo()
 	{
-	//	$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
-	 	$datos["MateriasExistentes"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
+		//	$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
+		$datos["MateriasExistentes"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
 		if ($this->session->userdata('tipo')=='1') {
 			$this->load->view('aplicaciones_add_grupo',$datos);
 		}else {

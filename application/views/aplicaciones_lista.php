@@ -29,7 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="card-body">
             <div class="row">
               <div class="col-lg-12">
-
                 <div class="row">
                   <div class="col-lg-10">
                     <?php

@@ -65,5 +65,18 @@ class SeguimientoModelo extends CI_Model {
       return false;
     }
   }
+  public function contarEncuestas($idSeguimiento)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->select('COUNT(idencuesta_seguimiento) as numero');
+    $DB2->where('aplicaciones_idaplicaciones',$idSeguimiento);
+    $DB2->from('encuestas_seguimiento');
+    $query = $DB2->get();
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
 
 }
