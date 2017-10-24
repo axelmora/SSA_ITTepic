@@ -33,16 +33,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
             </div>
             <br>
-            <form method="post" action="">
+            <form method="post"  action="">
               <div class="row">
                 <div class="col-lg-2">
                   <label class="formulariolabel">Materia:</label>
                 </div>
                 <div class="col-lg-4">
-                  <input value="" placeholder="Seleccionar materia" class="form-control"  readonly required/>
+                  <input value="" name="idmateria" id="idmateria" placeholder="Seleccionar materia" class="form-control"  hidden required/>
+                  <input value="" name="nombre_materiaenviar" id="nombre_materiaenviar" placeholder="Seleccionar materia" class="form-control"  readonly required/>
                 </div>
                 <div class="col-lg-3">
-                  <button type="button" class="btn btn-primary btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIA</button>
+                  <button type="button"  data-toggle="modal" data-target="#modalAgregarMateria" class="btn btn-primary btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIA</button>
                 </div>
                 <div class="col-lg-3">
                   <button type="button" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECCIONAR  MATERIA EXISTENTE</button>
@@ -57,10 +58,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <input value="" placeholder="Seleccionar docente" class="form-control"  readonly required/>
                 </div>
                 <div class="col-lg-3">
-                  <button type="button" class="btn btn-primary btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIA</button>
+                  <button type="button"  data-toggle="modal" data-target="#modalDocentes" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECCIONAR DOCENTE</button>
                 </div>
                 <div class="col-lg-3">
-                  <button type="button" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECCIONAR  MATERIA EXISTENTE</button>
+                  <!--  <button type="button" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECCIONAR  MATERIA EXISTENTE</button> -->
                 </div>
               </div>
               <br>
@@ -74,9 +75,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <br>
               <div class="row">
                 <div class="col-lg-6">
-                  <button type="submit" class="btn btn-success btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR GRUPO</button>
                 </div>
                 <div class="col-lg-6">
+                  <button type="submit" class="btn btn-success btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR GRUPO</button>
                 </div>
               </div>
             </form>
@@ -156,6 +157,58 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
   </form>
   <!-- Modal Agregar Aplicacion -->
+
+  <!-- MODAL DOCENTES  -->
+  <div class="modal fade" id="modalDocentes" tabindex="-1" role="dialog" aria-labelledby="modalDocentes" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Seleccionar docente.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+          <button type="button" class="btn btn-success">SELECCIONAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL DOCENTES FIN  -->
+  <!-- MODAL AGREGAR MATERIA  -->
+  <form method="post" id="formularioAgregarMateria">
+    <div class="modal fade" id="modalAgregarMateria" tabindex="-1" role="dialog" aria-labelledby="modalAgregarMateria" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Agregar nueva materia</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-3">
+                <label class="formulariolabel">Nombre de la materia:</label>
+              </div>
+              <div class="col-lg-9">
+                <input value="" name="nombre_usuario" id="nombre_usuario" placeholder="Nombre de la materia" class="form-control"  required/>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+            <button type="button" class="btn btn-success">AGREGAR MATERIA</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- MODAL AGREGAR MATERIA  -->
   <?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>

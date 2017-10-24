@@ -5,6 +5,7 @@ class Panel_seguimiento extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Usuarios');
 		$this->load->model('SeguimientoModelo');
+		$this->load->model('Materia');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 		$this->load->database('default');
@@ -89,5 +90,16 @@ class Panel_seguimiento extends CI_Controller {
 				redirect(base_url().'index.php');
 			}
 		}
+	}
+	/*  INSERTAR MATERIA */
+	public function insertarMateria()
+	{
+		$datos= array(
+			'nombre_materia' => ''.$this->input->post('nombre_materia'),
+			'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
+		);
+		$this->Materia->insertarMateria($datos);
+		$datos['idmaterias']=$this->Materia->ultimaMateriaAgregadaDepa($this->session->userdata('departamento'));
+		echo json_encode($datos);
 	}
 }

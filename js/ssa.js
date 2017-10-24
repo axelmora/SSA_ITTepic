@@ -47,6 +47,26 @@ $(document).ready(function(){
     });
   });
   /**/
+  /*------------------------ PANEL SEGUIMIENTO --------------- */
+  /*SUBMIT AGREGAR MATERIA*/
+  $( "#modalAgregarMateria" ).submit(function( event ) {
+    $.ajax({
+      type: "POST",
+      url: urlsistema+'index.php/Panel_seguimiento/insertarMateria',
+      data: $("#formularioAgregarMateria").serialize(),
+      success: function(data)
+      {
+        var datos = $.parseJSON(data);
+        $("#idmateria").val(""+datos.idmaterias);
+        $("#nombre_materiaenviar").val($("#nombre_usuario").val();
+        $('#modalAgregarMateria').modal('hide')
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("Error: " + textStatus); alert("Error: " + errorThrown);
+      }
+    });
+    event.preventDefault();
+  });
 
 });
 /*FIN JS*/
