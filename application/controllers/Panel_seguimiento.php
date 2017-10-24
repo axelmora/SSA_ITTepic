@@ -79,12 +79,12 @@ class Panel_seguimiento extends CI_Controller {
 	public function nuevo_grupo()
 	{
 	//	$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
-	//	$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
+	 	$datos["MateriasExistentes"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
 		if ($this->session->userdata('tipo')=='1') {
-			$this->load->view('aplicaciones_add_grupo');
+			$this->load->view('aplicaciones_add_grupo',$datos);
 		}else {
 			if ($this->session->userdata('tipo')=='2') {
-				$this->load->view('aplicaciones_add_grupo');
+				$this->load->view('aplicaciones_add_grupo',$datos);
 			}
 			else {
 				redirect(base_url().'index.php');

@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <form method="post"  action="">
               <div class="row">
                 <div class="col-lg-2">
-                  <label class="formulariolabel">Materia:</label>
+                  <label class="formulariolabel"><i class="fa fa-book" aria-hidden="true"></i> Materia:</label>
                 </div>
                 <div class="col-lg-4">
                   <input value="" name="idmateria" id="idmateria" placeholder="Seleccionar materia" class="form-control"  hidden required/>
@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <br>
               <div class="row">
                 <div class="col-lg-2">
-                  <label class="formulariolabel">Docente:</label>
+                  <label class="formulariolabel"><i class="fa fa-user-circle" aria-hidden="true"></i> Docente:</label>
                 </div>
                 <div class="col-lg-4">
                   <input value="" placeholder="Seleccionar docente" class="form-control"  readonly required/>
@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <br>
               <div class="row">
                 <div class="col-lg-4">
-                  <label class="formulariolabel">Materia:</label>
+                  <label class="formulariolabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Alumnos:</label>
                 </div>
                 <div class="col-lg-8">
                 </div>
