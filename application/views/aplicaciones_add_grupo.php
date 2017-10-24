@@ -46,7 +46,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <button type="button"  data-toggle="modal" data-target="#modalAgregarMateria" class="btn btn-primary btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIA</button>
                 </div>
                 <div class="col-lg-3">
-                  <button type="button" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECCIONAR  MATERIA EXISTENTE</button>
+                  <?php
+                  if(isset($MateriasExistentes))
+                  {
+                    ?>
+                    <div class="animated bounceInRight">
+                      <button type="button" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECCIONAR  MATERIAS EXISTENTES</button>
+                    </div>
+                    <?php
+                  }
+                  ?>
                 </div>
               </div>
               <br>

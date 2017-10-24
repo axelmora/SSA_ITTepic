@@ -61,6 +61,7 @@ $(document).ready(function(){
         $("#nombre_materiaenviar").val($("#nombre_materia").val());
         $('#modalAgregarMateria').modal('hide')
         $("#nombre_materia").val("");
+        $("#nombre_materiaenviar").addClass( "animated bounceIn" );
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         alert("Error: " + textStatus); alert("Error: " + errorThrown);
