@@ -29,9 +29,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="card-body">
             <div class="row">
               <div class="col-lg-12">
-
+                <h3><i class="icon-clipboard" aria-hidden="true"></i>Crear nuevo grupo de aplicacion <?php// echo "$peridotlista";  ?> </h3>
               </div>
             </div>
+            <br>
+            <form method="post" action="">
+              <div class="row">
+                <div class="col-lg-2">
+                  <label class="formulariolabel">Materia:</label>
+                </div>
+                <div class="col-lg-4">
+                  <input value="" placeholder="Seleccionar materia" class="form-control"  readonly required/>
+                </div>
+                <div class="col-lg-3">
+                  <button type="button" class="btn btn-primary btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIA</button>
+                </div>
+                <div class="col-lg-3">
+                  <button type="button" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECCIONAR  MATERIA EXISTENTE</button>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-2">
+                  <label class="formulariolabel">Docente:</label>
+                </div>
+                <div class="col-lg-4">
+                  <input value="" placeholder="Seleccionar docente" class="form-control"  readonly required/>
+                </div>
+                <div class="col-lg-3">
+                  <button type="button" class="btn btn-primary btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIA</button>
+                </div>
+                <div class="col-lg-3">
+                  <button type="button" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECCIONAR  MATERIA EXISTENTE</button>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-4">
+                  <label class="formulariolabel">Materia:</label>
+                </div>
+                <div class="col-lg-8">
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+                  <button type="submit" class="btn btn-success btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR GRUPO</button>
+                </div>
+                <div class="col-lg-6">
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

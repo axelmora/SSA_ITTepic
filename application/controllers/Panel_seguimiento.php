@@ -75,4 +75,19 @@ class Panel_seguimiento extends CI_Controller {
 			}
 		}
 	}
+	public function nuevo_grupo()
+	{
+	//	$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
+	//	$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
+		if ($this->session->userdata('tipo')=='1') {
+			$this->load->view('aplicaciones_add_grupo');
+		}else {
+			if ($this->session->userdata('tipo')=='2') {
+				$this->load->view('aplicaciones_add_grupo');
+			}
+			else {
+				redirect(base_url().'index.php');
+			}
+		}
+	}
 }

@@ -203,6 +203,9 @@ fieldset[disabled] .btn-naranja.active {
   -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.38);
   box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.38);
 }
+.formulariolabel{
+  font-weight: bold;
+}
 /*---------SEGUIMIENTO---------*/
 /*-logins-*/
 canvas {
