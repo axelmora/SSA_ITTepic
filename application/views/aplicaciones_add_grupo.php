@@ -185,7 +185,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Agregar nueva materia</h5>
+            <h5 class="modal-title" id="modalAgregarMateria">Agregar nueva materia</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -196,13 +196,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <label class="formulariolabel">Nombre de la materia:</label>
               </div>
               <div class="col-lg-9">
-                <input value="" name="nombre_usuario" id="nombre_usuario" placeholder="Nombre de la materia" class="form-control"  required/>
+                <input value="" name="nombre_materia" id="nombre_materia" placeholder="Nombre de la materia" class="form-control"  required/>
               </div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-            <button type="button" class="btn btn-success">AGREGAR MATERIA</button>
+            <button  type="submit" class="btn btn-success">AGREGAR MATERIA</button>
           </div>
         </div>
       </div>
