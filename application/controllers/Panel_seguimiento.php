@@ -7,6 +7,7 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->model('SeguimientoModelo');
 		$this->load->model('Materia');
 		$this->load->model('Docentes');
+		$this->load->model('Alumnos');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 		$this->load->database('default');
@@ -92,20 +93,17 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function nuevo_grupo($idAplicacion)
 	{
-		$depa=$this->obtenerDepartamento($this->session->userdata('departamento'));
-		//	$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
-		$datos["MateriasExistentes"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
-		$datos["Docentes"]=$this->Docentes->cargarDocentesDepartamento($depa);
-		$datos["AplicacionDatos"]=$idAplicacion;
-		if ($this->session->userdata('tipo')=='1') {
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$depa=$this->obtenerDepartamento($this->session->userdata('departamento'));
+			//	$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
+			$datos["MateriasExistentes"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
+			$datos["Docentes"]=$this->Docentes->cargarDocentesDepartamento($depa);
+			$datos["AplicacionDatos"]=$idAplicacion;
+			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
 			$this->load->view('aplicaciones_add_grupo',$datos);
 		}else {
-			if ($this->session->userdata('tipo')=='2') {
-				$this->load->view('aplicaciones_add_grupo',$datos);
-			}
-			else {
-				redirect(base_url().'index.php');
-			}
+			redirect(base_url().'index.php');
+
 		}
 	}
 	/*  INSERTAR MATERIA */
@@ -119,7 +117,7 @@ class Panel_seguimiento extends CI_Controller {
 		$datos['idmaterias']=$this->Materia->ultimaMateriaAgregadaDepa($this->session->userdata('departamento'));
 		$idenviar="";
 		foreach ($datos['idmaterias'] as $key => $value) {
-				$idenviar = array("idmateria"=>$value->maximo);
+			$idenviar = array("idmateria"=>$value->maximo);
 		}
 		echo json_encode($idenviar);
 	}
@@ -141,7 +139,7 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function obtenerAlumnosPorDepartamento($departamentoid)
 	{
-		$AlumosEnviar="";
+		$AlumosEnviar;
 		switch ($departamentoid) {
 			case '3':
 			$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras(2,7);
