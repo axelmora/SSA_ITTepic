@@ -136,7 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <tr>
                 <th>MATERIA</th>
                 <th>DEPARTAMENTO</th>
-                <th>OPCION</th>
+                <th>OPCIONes</th>
               </tr>
             </thead>
             <tbody>
@@ -152,7 +152,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </td>
                   <td>
                     <center>
-                      <button type="button" onclick="selecionarDoc('<?php echo $valores->rfc; ?>','<?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos)?>')" class="btn btn-info " ><i class="fa  fa-check-square" aria-hidden="true"></i> SELECCIONAR</button>
+                      <button type="button" onclick="selecionarDoc('<?php echo $valores->rfc; ?>','<?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos)?>')" class="btn btn-info" >
+                        <i class="fa  fa-check-square" aria-hidden="true"></i>
+                        
+                      </button>
                     </center>
                   </td>
                 </tr>

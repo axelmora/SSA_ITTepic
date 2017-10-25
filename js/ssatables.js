@@ -9,6 +9,7 @@ Version 1.0.0
 /* TABLA APLICACIONES*/
 $(document).ready(function(){
   $('#tablaaplicaciones').DataTable({
+    responsive: true,
     "language": {
       "url": urlsistema+"js/datatables/aplicaciones.json"
     },
@@ -19,12 +20,14 @@ $(document).ready(function(){
 /* TABLA SELECCION MATERIAS*/
 $(document).ready(function(){
   $('#tablaSelecionarMaterias').DataTable({
+    responsive: true,
     "language": {
       "url": urlsistema+"js/datatables/materias.json"
     },
     "order": [[0, "desc" ]]
   });
   $('#tablaSeleccionDocentes').DataTable({
+    responsive: true,
     "language": {
       "url": urlsistema+"js/datatables/Docentes.json"
     },
