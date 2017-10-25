@@ -154,7 +154,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <center>
                       <button type="button" onclick="selecionarDoc('<?php echo $valores->rfc; ?>','<?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos)?>')" class="btn btn-info" >
                         <i class="fa  fa-check-square" aria-hidden="true"></i>
-                        
+
                       </button>
                     </center>
                   </td>
