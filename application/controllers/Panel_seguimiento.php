@@ -78,6 +78,7 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
 		$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
+		$datos["AplicacionData"]=$idAplicacion;
 		if ($this->session->userdata('tipo')=='1') {
 			$this->load->view('aplicaciones_lista',$datos);
 		}else {
@@ -89,12 +90,13 @@ class Panel_seguimiento extends CI_Controller {
 			}
 		}
 	}
-	public function nuevo_grupo()
+	public function nuevo_grupo($idAplicacion)
 	{
 		$depa=$this->obtenerDepartamento($this->session->userdata('departamento'));
 		//	$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
 		$datos["MateriasExistentes"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
 		$datos["Docentes"]=$this->Docentes->cargarDocentesDepartamento($depa);
+		$datos["AplicacionDatos"]=$idAplicacion;
 		if ($this->session->userdata('tipo')=='1') {
 			$this->load->view('aplicaciones_add_grupo',$datos);
 		}else {
@@ -115,7 +117,11 @@ class Panel_seguimiento extends CI_Controller {
 		);
 		$this->Materia->insertarMateria($datos);
 		$datos['idmaterias']=$this->Materia->ultimaMateriaAgregadaDepa($this->session->userdata('departamento'));
-		echo json_encode($datos);
+		$idenviar="";
+		foreach ($datos['idmaterias'] as $key => $value) {
+				$idenviar = array("idmateria"=>$value->maximo);
+		}
+		echo json_encode($idenviar);
 	}
 	public function obtenerDepartamento($departamentoid)
 	{
@@ -132,5 +138,25 @@ class Panel_seguimiento extends CI_Controller {
 			break;
 		}
 		return $departamentoRetorno;
+	}
+	public function insertarSeguimientoGrupo($idAplicacion)
+	{
+		//echo "".$this->input->post('idmateria');
+		$Grupo= array(
+			'materias_idmaterias' => ''.$this->input->post('idmateria'),
+			'docentes_rfc' => ''.$this->input->post('rfcdocente')
+		);
+		$this->SeguimientoModelo->crearGrupo($Grupo);
+		$idgrupoCreado=$this->SeguimientoModelo->obtenerIdGrupo();
+		$UltimoID="";
+		foreach ($idgrupoCreado as $key => $id) {
+			$UltimoID=$id->maximo;
+		}
+		$Seguimiento= array(
+			'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+			'aplicaciones_idaplicaciones' => ''.$idAplicacion,
+			'grupos_idgrupos' => ''.$UltimoID
+		);
+		$this->SeguimientoModelo->crearSeguimiento($Seguimiento);
 	}
 }

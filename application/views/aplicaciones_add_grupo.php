@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
             </div>
             <br>
-            <form method="post"  action="">
+            <form method="post"  action="<?php echo base_url(); ?>index.php/Panel_seguimiento/insertarSeguimientoGrupo/<?php echo $AplicacionDatos; ?>">
               <div class="row">
                 <div class="col-lg-2">
                   <label class="formulariolabel"><i class="fa fa-book" aria-hidden="true"></i> Materia:</label>
@@ -96,7 +96,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
     </div>
   </div>
-
   <?php
   function genePerido($periodo)
   {
@@ -265,14 +264,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 <script>
 function selecionarMat(idmateria,nombre) {
+
   $("#idmateria").val(""+idmateria);
   $("#nombre_materiaenviar").val(""+nombre);
+  $("#nombre_materiaenviar" ).removeClass( "animated bounceIn" )
   $('#modalSeleccionMateria').modal('hide');
   $("#nombre_materiaenviar").addClass( "animated bounceIn" );
 }
 function selecionarDoc(idmateria,nombre) {
   $("#rfcdocente").val(""+idmateria);
   $("#nombredocente").val(""+nombre);
+  $("#nombredocente" ).removeClass( "animated bounceIn" )
   $('#modalDocentes').modal('hide')
   $("#nombredocente").addClass( "animated bounceIn" );
 }

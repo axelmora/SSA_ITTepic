@@ -57,7 +57,8 @@ $(document).ready(function(){
       success: function(data)
       {
         var datos = $.parseJSON(data);
-        $("#idmateria").val(""+datos.idmaterias);
+        //console.log(datos);
+        $("#idmateria").val(""+datos.idmateria);
         $("#nombre_materiaenviar").val($("#nombre_materia").val());
         $('#modalAgregarMateria').modal('hide')
         $("#nombre_materia").val("");

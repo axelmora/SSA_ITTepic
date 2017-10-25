@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="col-lg-2">
                       <center>
-                        <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/nuevo_grupo/"  class="btn btn-success" ><i class="fa fa-plus-circle" aria-hidden="true" ></i> AGREGAR GRUPO</a>
+                        <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/nuevo_grupo/<?php echo $AplicacionData;?>"  class="btn btn-success" ><i class="fa fa-plus-circle" aria-hidden="true" ></i> AGREGAR GRUPO</a>
                       </center>
                     </div>
                   </div>
@@ -57,9 +57,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                       <thead>
                         <tr>
-                          <th><i class="fa fa-calendar" aria-hidden="true"></i> PERIODO</th>
-                          <th><i class="fa fa-lock" aria-hidden="true"></i> CONTRASEÑA</th>
-                          <th>NUMERO DE ENCUESTAS</th>
+                          <th><i class="fa fa-calendar" aria-hidden="true"></i> MATERIA</th>
+                          <th><i class="fa fa-lock" aria-hidden="true"></i> DOCENTE</th>
+                          <th>ALUMNOS</th>
                           <th><i class="fa fa-calendar-check-o" aria-hidden="true"></i> FECHA CREACION</th>
                           <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
                         </tr>
@@ -69,13 +69,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         foreach ($Aplicaciones as $key => $valor) {
                           ?>
                           <tr>
-                            <td><?php echo "".genePerido($valor->periodo); ?></td>
-                            <td><?php echo "".$valor->contrasena; ?></td>
-                            <td></td>
+                            <td><?php echo "".$valor->nombre_materia; ?></td>
+                            <td><?php echo "".utf8_decode($valor->nombres)." ".utf8_decode($valor->apellidos); ?></td>
+                            <td><?php echo "".$valor->nombre_materia; ?></td>
                             <td><?php echo "".$valor->fecha_creacion; ?></td>
                             <td>
                               <div class="btn-group btn-block">
-                                <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo "".$valor->idaplicaciones; ?>"  class="btn btn-primary btn-block text-white"   >
+                                <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo "".$valor->idencuesta_seguimiento; ?>"  class="btn btn-primary btn-block text-white"   >
                                   <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
                                 </a>
                               </div>

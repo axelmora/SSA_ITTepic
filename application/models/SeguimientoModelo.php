@@ -53,7 +53,7 @@ class SeguimientoModelo extends CI_Model {
   }
   public function cargarEncuestasSeguimiento($idSeguimiento)
   {
-    $DB2 = $this->load->database('default', TRUE);
+  /*  $DB2 = $this->load->database('default', TRUE);
     $DB2->select('*');
     $DB2->order_by('fecha_creacion DESC');
     $DB2->where('aplicaciones_idaplicaciones',$idSeguimiento);
@@ -63,6 +63,16 @@ class SeguimientoModelo extends CI_Model {
       return $query->result();
     } else {
       return false;
+    } */
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es, materias as ma, docentes as do, grupos as gr
+     where es.aplicaciones_idaplicaciones=$idSeguimiento AND es.grupos_idgrupos=gr.idgrupos  and gr.docentes_rfc = do.rfc and gr.materias_idmaterias= ma.idmaterias
+     order by es.fecha_creacion DESC
+     ");
+    if ($query->num_rows() > 0) {
+        return $query->result();
+    } else {
+        return false;
     }
   }
   public function contarEncuestas($idSeguimiento)
@@ -77,6 +87,28 @@ class SeguimientoModelo extends CI_Model {
     } else {
       return false;
     }
+  }
+  public function crearGrupo($datos)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->insert('grupos',$datos);
+  }
+  public function obtenerIdGrupo()
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->select('MAX(idgrupos) as maximo');
+    $DB2->from('grupos');
+    $query = $DB2->get();
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
+  public function crearSeguimiento($datos)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->insert('encuestas_seguimiento',$datos);
   }
 
 }

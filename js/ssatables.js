@@ -26,9 +26,9 @@ $(document).ready(function(){
   });
   $('#tablaSeleccionDocentes').DataTable({
     "language": {
-      "url": urlsistema+"js/datatables/materias.json"
+      "url": urlsistema+"js/datatables/Docentes.json"
     },
-    "order": [[0, "desc" ]]
+    "order": [[0, "asc" ]]
   });
 });
 /*FIN JS*/
