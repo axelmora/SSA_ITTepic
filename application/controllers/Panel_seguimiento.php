@@ -139,6 +139,22 @@ class Panel_seguimiento extends CI_Controller {
 		}
 		return $departamentoRetorno;
 	}
+	public function obtenerAlumnosPorDepartamento($departamentoid)
+	{
+		$AlumosEnviar="";
+		switch ($departamentoid) {
+			case '3':
+			$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras(2,7);
+			break;
+			case '2':
+			$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras(3,4);
+			break;
+			default:
+			# code...
+			break;
+		}
+		return $AlumosEnviar;
+	}
 	public function insertarSeguimientoGrupo($idAplicacion)
 	{
 		//echo "".$this->input->post('idmateria');
