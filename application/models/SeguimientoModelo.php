@@ -110,5 +110,10 @@ class SeguimientoModelo extends CI_Model {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->insert('encuestas_seguimiento',$datos);
   }
+  public function insertarGrupos($datos)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->insert_batch('grupo_alumnos',$datos);
+  }
 
 }

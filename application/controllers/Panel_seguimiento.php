@@ -172,5 +172,11 @@ class Panel_seguimiento extends CI_Controller {
 			'grupos_idgrupos' => ''.$UltimoID
 		);
 		$this->SeguimientoModelo->crearSeguimiento($Seguimiento);
+		$NumerosDeControl = explode('.', $this->input->post('numero_control_alumnos'));
+		$GrupoAlumnosNumeros;
+		for ($i=0; $i < count($NumerosDeControl) ; $i++) {
+				$GrupoAlumnosNumeros=array(array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoID));
+		}
+		$this->SeguimientoModelo->insertarGrupos($GrupoAlumnosNumeros);
 	}
 }
