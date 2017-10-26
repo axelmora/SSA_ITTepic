@@ -75,7 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <td><?php echo "".$valor->fecha_creacion; ?></td>
                             <td>
                               <div class="btn-group btn-block">
-                                <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo "".$valor->idencuesta_seguimiento; ?>"  class="btn btn-primary btn-block text-white"   >
+                                <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo "".$valor->idgrupos; ?>"  class="btn btn-primary btn-block text-white"   >
                                   <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
                                 </a>
                               </div>
