@@ -126,7 +126,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- MODAL ALUMNOS  -->
   <form method="post" id="formularioAlumnos">
     <!--  <div class="modal fade" id="modalAlumnos" tabindex="-1" role="dialog" aria-labelledby="modalDocentes" aria-hidden="true"> -->
-    <div   id="modalAlumnos" tabindex="-1" role="dialog" aria-labelledby="modalDocentes" aria-hidden="true">
+    <div class="modal fade"   id="modalAlumnos" tabindex="-1" role="dialog" aria-labelledby="modalDocentes" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -144,7 +144,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <th>NOMBRE</th>
                   <th>CODIGO</th>
                   <th>CARRERA</th>
-
                 </tr>
               </thead>
               <tbody>
@@ -152,9 +151,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 foreach ($AlumnosCargados as $key => $valores) {
                   ?>
                   <tr>
-                    <td>
-                          <?php echo "".utf8_decode($valores->numero_control); ?>
-                  </td>
+                    <td><?php echo "".utf8_decode($valores->numero_control);?></td>
                   <td>
                     <?php echo "".utf8_decode($valores->numero_control); ?>
                   </td>

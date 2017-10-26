@@ -45,7 +45,8 @@ $(document).ready(function(){
       'orderable': false,
       'className': 'dt-body-center',
       'render': function (data, type, full, meta){
-        return '<input type="checkbox" class="form-check-input position-static" name="id[]" value="' + $('<div/>').text(data).html() + '">';
+        //return '<input type="checkbox" class="form-check-input position-static" name="id[]" value=" ' + $('<div/>').text(data).html() + '">';
+        return '<input type="checkbox" class=" position-static" name="id[]" value=" ' + $('<div/>').text(data).html() + '">';
       }
     }],
     "order": [[2, "asc" ]]
@@ -87,9 +88,17 @@ $(document).ready(function(){
         }
       }
     });
-    $('#example-console').text($(form).serialize());
+    function fixedEncodeURI (str) {
+      return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');
+    }
+    var values = {};
+    $.each($('#formularioAlumnos').serializeArray(), function(i, field) {
+      values[field.name] = field.value;
+    });
+    $('#example-console').text(values);
+    //$('#example-console').text($(form).serialize());
+    //  $('#example-console').text(fixedEncodeURI($(form).serialize()));
     console.log("Form submission", $(form).serialize());
-
     // Prevent actual form submission
     e.preventDefault();
   });
