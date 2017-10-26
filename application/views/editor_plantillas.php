@@ -73,7 +73,7 @@ jQuery(document).ready(function($) {
   };
   $(fbRender).formRender(
 		{
-	      formData: '[{"type":"text","label":"Text Field","className":"form-control","name":"text-1478701075825"},{"type":"select","label":"Select","className":"form-control","name":"select-1478701076382","values":[{"label":"Option 1","value":"option-1","selected":true},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}]},{"type":"textarea","label":"Text Area","className":"form-control","name":"textarea-1478701077511"}]', // This is data you stored in database when you build the form
+	      formData: '[{"type":"text","label":"Text Field","className":"form-control","name":"text-1478701075825"},{"type":"select","label":"Select","className":"form-control","name":"select-1478701076382","values":[{"label":"Option 1","value":"option-1","selected":true},{"label":"Option 2","value":"option-2"},{"label":"Option 3","value":"option-3"}]},{"type":"textarea","label":"Text Area","className":"form-control","name":"textarea-1478701077511"}]', // This is data you stored in database when
 	      dataType: 'json'
 	    }
 	);
@@ -92,6 +92,140 @@ $('#forms').on('submit', function (e) {
   });
   return false;
 });
+
+
+/*------------------*/
+
+function __addLineBreaks(html)
+{
+  return html.replace(new RegExp('&gt; &lt;', 'g'), "&gt;\n&lt;")
+			.replace(new RegExp('&gt;&lt;', 'g'), "&gt;\n&lt;")
+			.replace(new RegExp('> <', 'g'), ">\n<")
+			.replace(new RegExp('><', 'g'), ">\n<");
+}
+function __buildHTML(formData)
+{
+	//var code = jQuery('<div/>');
+	var code = jQuery('#fb-rendered-form');
+	code.formRender({formData});
+	var html = __addLineBreaks(code.html());
+	jQuery('[name=html]').val( `<form action="" method="post">\n${html}\n</form>` );
+	jQuery('#form_data').val( btoa(formData) );
+
+	return html;
+}
+function __setTemplateFields()
+{
+	var textarea = jQuery('#template').get(0);
+	var fields_container = jQuery('#template-fields');
+	fields_container.html('');
+	var fields = eval(formBuilder.formData);
+	fields.forEach(function(field)
+	{
+		var btn = document.createElement('a');
+		btn.className = 'btn btn-default';
+		btn.style.display = 'block';
+		btn.style.marginBottom = '8px';
+		btn.href= 'javascript:;';
+		btn.dataset.type = field.type;
+		btn.dataset.name = field.name;
+		btn.dataset.label = field.label;
+		btn.onclick = function(e)
+		{
+			var placeholder = '';
+
+			if( this.dataset.type == 'button' )
+			{
+				placeholder = `{button name="${this.dataset.name}"}`;
+			}
+			else //if( this.dataset.type = 'text' )
+			{
+				placeholder = `{field name="${this.dataset.name}" label="${this.dataset.label}"}`;
+			}
+			//console.log(placeholder);
+			var cursorPos = textarea.selectionStart;
+			var textBefore = textarea.value.substring(0,  cursorPos);
+			var textAfter  = textarea.value.substring(cursorPos, textarea.value.length);
+			textarea.value	= textBefore + placeholder + textAfter;
+
+		};
+		btn.innerHTML = `${field.label} (${field.type})`;
+		fields_container.append(btn);
+	});
+}
+jQuery(function($)
+{
+	var $fbEditor		= jQuery('#fb-editor');
+    var $formContainer 	= jQuery('#fb-rendered-form');
+    var fbOptions 		=
+	{
+		//defaultFields: [{type:'hidden',name:"mod",value:'forms'},{type:'hidden',name:"task",value:'send'}],
+		showActionButtons: false,
+		onSave: function()
+		{
+			$fbEditor.toggle();
+			$formContainer.toggle();
+			$('form', $formContainer).formRender({
+				formData: formBuilder.formData
+			});
+		},
+		typeUserEvents: {
+			button:
+			{
+				onadd: function(fld)
+				{
+					//##add field to template fields
+					jQuery('#template-fields').append(`<input type="" />`);
+					var classField = jQuery('.fld-className', fld);
+					//console.log(classField);
+					classField[0].onchange = function(e)
+					{
+						console.log('onchange:'+e.target.value);
+						e.preventDefault();
+						e.stopPropagation();
+						return false;
+					};
+					classField[0].onblur = function(e)
+					{
+						//console.log('onblur:' + e.target.value);
+
+						e.preventDefault();
+						e.stopPropagation();
+						classField[0].value = e.target.value;
+						return false;
+					};
+				}
+			}
+		}
+    };
+	document.addEventListener('fieldAdded', function(e)
+	{
+		__setTemplateFields();
+
+	}, true);
+	var fields = '';
+	fbOptions.formData = JSON.stringify(fields);
+	window.formBuilder = $fbEditor.formBuilder(fbOptions);
+	window.addEventListener('load', function()
+	{
+		__setTemplateFields();
+	}, false);
+
+	jQuery('.nav-tabs li a').click(function()
+	{
+		__buildHTML(formBuilder.formData);
+	});
+	jQuery('#form-new').submit(function()
+	{
+		var html = __buildHTML(formBuilder.formData);
+		var template = btoa(jQuery('#template').val());
+		jQuery(this).append('<input type="hidden" name="html" value="'+btoa(html)+'" />');
+		jQuery(this).append('<input type="hidden" name="template" value="'+template+'" />');
+		return true;
+	});
+});
+//http://beetle-cms.sinticbolivia.net/admin/index.php?mod=forms&view=new
+/*-------------------*/
 
 </script>
 </html>
