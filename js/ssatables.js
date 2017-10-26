@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 });
 /* TABLA SELECCION MATERIAS*/
-//$(document).ready(function(){
+$(document).ready(function(){
   $('#tablaSelecionarMaterias').DataTable({
     responsive: true,
     "language": {
@@ -68,5 +68,5 @@ $(document).ready(function(){
      e.preventDefault();
   });
   /*TABLA ALUMNOS*/
-//});
+});
 /*FIN JS*/

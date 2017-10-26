@@ -9,8 +9,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="description" content="">
   <meta name="author" content="Fernando Manuel Avila Cataño">
-  <meta name="theme-color" content="##FFFFFF">
-  <meta name="msapplication-navbutton-color" content="##FFFFFF">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="msapplication-navbutton-color" content="#FFFFFF">
   <meta name="apple-mobile-web-app-status-bar-style" content="white">
   <link href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css" rel="stylesheet" />
@@ -195,39 +195,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </button>
         </div>
         <div class="modal-body">
-          <table id="tablaSeleccionDocentes" class="table table-striped table-bordered dt-responsive tablaletradocentes " cellspacing="0" width="100%">
-            <thead>
-              <tr>
-                <th>MATERIA</th>
-                <th>DEPARTAMENTO</th>
-                <th>OPCIONes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              foreach ($Docentes as $key => $valores) {
-                ?>
+          <div class="table-responsive">
+            <table id="tablaSeleccionDocentes" class="table table-striped table-bordered dt-responsive tablaletradocentes " cellspacing="0" width="100%">
+              <thead>
                 <tr>
-                  <td>
-                    <?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos); ?>
-                  </td>
-                  <td>
-                    <?php echo "".utf8_decode($valores->departamento); ?>
-                  </td>
-                  <td>
-                    <center>
-                      <button type="button" onclick="selecionarDoc('<?php echo $valores->rfc; ?>','<?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos)?>')" class="btn btn-info" >
-                        <i class="fa  fa-check-square" aria-hidden="true"></i>
-
-                      </button>
-                    </center>
-                  </td>
+                  <th>MATERIA</th>
+                  <th>DEPARTAMENTO</th>
+                  <th>OPCIONes</th>
                 </tr>
+              </thead>
+              <tbody>
                 <?php
-              }
-              ?>
-            </tbody>
-          </table>
+                foreach ($Docentes as $key => $valores) {
+                  ?>
+                  <tr>
+                    <td>
+                      <?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos); ?>
+                    </td>
+                    <td>
+                      <?php echo "".utf8_decode($valores->departamento); ?>
+                    </td>
+                    <td>
+                      <center>
+                        <button type="button" onclick="selecionarDoc('<?php echo $valores->rfc; ?>','<?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos)?>')" class="btn btn-info" >
+                          <i class="fa  fa-check-square" aria-hidden="true"></i>
+
+                        </button>
+                      </center>
+                    </td>
+                  </tr>
+                  <?php
+                }
+                ?>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
@@ -279,32 +281,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="modal-body">
           <div class="row">
             <div class="col-lg-12">
-              <table id="tablaSelecionarMaterias" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
-                <thead>
-                  <tr>
-                    <th>MATERIA</th>
-                    <th>OPCION</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  foreach ($MateriasExistentes as $key => $valores) {
-                    ?>
+              <div class="table-responsive">
+                <table id="tablaSelecionarMaterias" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                  <thead>
                     <tr>
-                      <td>
-                        <?php echo "".$valores->nombre_materia; ?>
-                      </td>
-                      <td>
-                        <center>
-                          <button type="button" onclick="selecionarMat(<?php echo $valores->idmaterias; ?>,'<?php echo $valores->nombre_materia; ?>')" class="btn btn-info " ><i class="fa  fa-check-square" aria-hidden="true"></i> SELECCIONAR</button>
-                        </center>
-                      </td>
+                      <th>MATERIA</th>
+                      <th>OPCION</th>
                     </tr>
+                  </thead>
+                  <tbody>
                     <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
+                    foreach ($MateriasExistentes as $key => $valores) {
+                      ?>
+                      <tr>
+                        <td>
+                          <?php echo "".$valores->nombre_materia; ?>
+                        </td>
+                        <td>
+                          <center>
+                            <button type="button" onclick="selecionarMat(<?php echo $valores->idmaterias; ?>,'<?php echo $valores->nombre_materia; ?>')" class="btn btn-info " ><i class="fa  fa-check-square" aria-hidden="true"></i> SELECCIONAR</button>
+                          </center>
+                        </td>
+                      </tr>
+                      <?php
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -323,16 +327,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.bootstrap4.min.js"></script>
 <script>var urlsistema = '<?php echo base_url()?>';</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.checkboxes.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 <script>
 function selecionarMat(idmateria,nombre) {
-
   $("#idmateria").val(""+idmateria);
   $("#nombre_materiaenviar").val(""+nombre);
   $("#nombre_materiaenviar" ).removeClass( "animated bounceIn" )
