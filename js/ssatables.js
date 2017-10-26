@@ -35,7 +35,7 @@ $(document).ready(function(){
   });
 
   /*TABLA ALUMNOS*/
-  var table = $('#tablaSeleccionAlumnos').DataTable({
+  var tablealumnos = $('#tablaSeleccionAlumnos').DataTable({
     responsive: true,
     "language": {
       "url": urlsistema+"js/datatables/Alumnos.json"
@@ -55,7 +55,7 @@ $(document).ready(function(){
   });
   $('#formularioAlumnos').on('submit', function(e){
     var form = this;
-    var rows_selected = table.column(0).checkboxes.selected();
+    var rows_selected = tablealumnos.column(0).checkboxes.selected();
     $.each(rows_selected, function(index, rowId){
       $(form).append(
         $('<input>')
@@ -64,9 +64,10 @@ $(document).ready(function(){
         .val(rowId)
       );
     });
-    $('#example-console').text(rows_selected.join(","));
-     e.preventDefault();
+    $('#numero_control_alumnos').val(rows_selected.join(","));
+    //$('#example-console').text(rows_selected.join(","));
+    e.preventDefault();
   });
-  /*TABLA ALUMNOS*/
+  /*TABLA ALUMNOS FIN*/
 });
 /*FIN JS*/
