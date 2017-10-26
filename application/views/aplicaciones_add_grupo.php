@@ -137,7 +137,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </button>
           </div>
           <div class="modal-body">
-            <table id="tablaSeleccionAlumnos" class="table table-striped table-bordered dt-responsive tablaletradocentes " cellspacing="0" >
+            <table id="tablaSeleccionAlumnos" class="table table-striped  table-responsive table-bordered dt-responsive tablaletradocentes " cellspacing="0" >
               <thead>
                 <tr>
                   <th><!--<input type="checkbox" name="select_all" value="1" id="example-select-all">--></th>
@@ -196,7 +196,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <div class="modal-body">
           <div class="table-responsive">
-            <table id="tablaSeleccionDocentes" class="table table-striped table-bordered dt-responsive tablaletradocentes " cellspacing="0" width="100%">
+            <table id="tablaSeleccionDocentes" class="table table-striped  table-responsive table-bordered dt-responsive tablaletradocentes " cellspacing="0" width="100%">
               <thead>
                 <tr>
                   <th>MATERIA</th>
