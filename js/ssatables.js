@@ -64,6 +64,8 @@ $(document).ready(function(){
         .val(rowId)
       );
     });
+    $('#modalAlumnos').modal('hide')
+    $("#panelAlumnosSelecionados").show();
     $('#numero_control_alumnos').val(rows_selected.join(","));
     //$('#example-console').text(rows_selected.join(","));
     e.preventDefault();

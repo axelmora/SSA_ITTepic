@@ -77,9 +77,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
               <br>
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                   <label class="formulariolabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Alumnos:</label>
                   <input type="text" hidden value="" id="numero_control_alumnos" name="numero_control_alumnos" />
+                </div>
+                <div class="col-lg-3">
+                  <div class="card  bg-light " id="panelAlumnosSelecionados" style="display:none" >
+                    <div class="card-body">
+                      <center>
+                        <p class="card-text">Alumnos selecionados.</p>
+                      </center>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-lg-3">
                   <button type="button"  data-toggle="modal" data-target="#modalAlumnos" class="btn btn-primary btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECIONAR ALUMNOS</button>
