@@ -57,9 +57,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                       <thead>
                         <tr>
-                          <th><i class="fa fa-calendar" aria-hidden="true"></i> MATERIA</th>
-                          <th><i class="fa fa-lock" aria-hidden="true"></i> DOCENTE</th>
-                          <th>ALUMNOS</th>
+                          <th><i class="fa fa-book " aria-hidden="true"></i> MATERIA</th>
+                          <th><i class="fa fa-user-circle-o" aria-hidden="true"></i> DOCENTE</th>
+                          <th><i class="fa fa-graduation-cap" aria-hidden="true"></i> ALUMNOS</th>
                           <th><i class="fa fa-calendar-check-o" aria-hidden="true"></i> FECHA CREACION</th>
                           <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
                         </tr>

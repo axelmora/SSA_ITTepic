@@ -33,7 +33,13 @@ $(document).ready(function(){
     },
     "order": [[0, "asc" ]]
   });
-
+  $('#tablaGrupoAlumnos').DataTable({
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/Alumnos.json"
+    },
+    "order": [[0, "asc" ]]
+  });
   /*TABLA ALUMNOS*/
   var tablealumnos = $('#tablaSeleccionAlumnos').DataTable({
     responsive: true,

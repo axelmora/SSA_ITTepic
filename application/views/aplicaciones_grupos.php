@@ -32,10 +32,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                   <div class="col-lg-10">
                     <?php
-                    $peridotlista="";
-                    foreach ($AplicacionesPeriodo as $key => $valorPeriodo) {
-                      $peridotlista= genePerido($valorPeriodo->periodo);
-                    }
+                    //  $peridotlista="";
+                    //  foreach ($AplicacionesPeriodo as $key => $valorPeriodo) {
+                    //  $peridotlista= genePerido($valorPeriodo->periodo);
+                    //}
                     ?>
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupo
                       <button type="button" id="botonCopiar" class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>index.php/Seguimiento/"  role="button">
@@ -45,34 +45,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="col-lg-2">
                       <center>
-                        <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/nuevo_grupo/<?php echo $AplicacionData;?>"  class="btn btn-success" ><i class="fa fa-plus-circle" aria-hidden="true" ></i> AGREGAR GRUPO</a>
                       </center>
                     </div>
                   </div>
                   <br>
                   <br>
                   <?php
-                  if ($Aplicaciones) {
+                  if ($ALUMNOSGRUPO) {
                     ?>
-                    <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                    <table id="tablaGrupoAlumnos" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                       <thead>
                         <tr>
-                          <th><i class="fa fa-calendar" aria-hidden="true"></i> MATERIA</th>
-                          <th><i class="fa fa-lock" aria-hidden="true"></i> DOCENTE</th>
-                          <th>ALUMNOS</th>
-                          <th><i class="fa fa-calendar-check-o" aria-hidden="true"></i> FECHA CREACION</th>
+                          <th><i class="fa fa-hashtag" aria-hidden="true"></i> NUMERO DE CONTROL</th>
+                          <th><i class="fa fa-graduation-cap" aria-hidden="true"></i> NOMBRE</th>
+                          <th><i class="fa fa-users" aria-hidden="true"></i> CARRERA</th>
+                          <th><i class="fa fa-check-circle-o" aria-hidden="true"></i> CONTESTADO</th>
                           <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php
-                        foreach ($Aplicaciones as $key => $valor) {
+                        foreach ($ALUMNOSGRUPO as $key => $valor) {
                           ?>
                           <tr>
-                            <td><?php echo "".$valor->nombre_materia; ?></td>
-                            <td><?php echo "".utf8_decode($valor->nombres)." ".utf8_decode($valor->apellidos); ?></td>
-                            <td><?php echo "".$valor->nombre_materia; ?></td>
-                            <td><?php echo "".$valor->fecha_creacion; ?></td>
+                            <td><?php echo "".$valor->numero_control; ?></td>
+                            <td><?php echo "".$valor->nombre ?></td>
+                            <td><?php echo "".$valor->carrera; ?></td>
+                            <td> </td>
                             <td>
                               <div class="btn-group btn-block">
                                 <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo "".$valor->idgrupos; ?>"  class="btn btn-primary btn-block text-white"   >
@@ -94,7 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <div class="card-body">
                         <center>
                           <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-                          Actualmente no existen grupos para esta aplicacion de seguimiento en el aula generada.
+                          Actualmente no se cuentan con alumnos en este grupo.
                         </center>
                       </div>
                     </div>
