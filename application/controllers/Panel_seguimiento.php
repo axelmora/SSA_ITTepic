@@ -185,6 +185,7 @@ class Panel_seguimiento extends CI_Controller {
 		}
 		$this->SeguimientoModelo->insertarGrupos($GrupoAlumnosNumeros);
 		/*CREACION GRUPO-ALUMNOS FIN*/
+		redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$UltimoID.'');
 	}
 	public function gestionarGrupo($idGrupo)
 	{
