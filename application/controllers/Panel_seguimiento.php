@@ -155,29 +155,36 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function insertarSeguimientoGrupo($idAplicacion)
 	{
-		//echo "".$this->input->post('idmateria');
-		$Grupo= array(
-			'materias_idmaterias' => ''.$this->input->post('idmateria'),
-			'docentes_rfc' => ''.$this->input->post('rfcdocente')
-		);
-		$this->SeguimientoModelo->crearGrupo($Grupo);
-		$idgrupoCreado=$this->SeguimientoModelo->obtenerIdGrupo();
-		$UltimoID="";
-		foreach ($idgrupoCreado as $key => $id) {
-			$UltimoID=$id->maximo;
-		}
+		/*CREACION SEGUIMIENTO*/
 		$Seguimiento= array(
 			'fecha_creacion' => ''.date('Y-m-d H:i:s'),
 			'aplicaciones_idaplicaciones' => ''.$idAplicacion,
-			'grupos_idgrupos' => ''.$UltimoID
+			'materias_idmaterias' => ''.$this->input->post('idmateria'),
+			'docentes_rfc' => ''.$this->input->post('rfcdocente')
 		);
 		$this->SeguimientoModelo->crearSeguimiento($Seguimiento);
+		$idSeguimientoCreado=$this->SeguimientoModelo->obtenerIdSeguimiento();
+		$UltimoID="";
+		foreach ($idSeguimientoCreado as $key => $id) {
+			$UltimoID=$id->maximo;
+		}
+		/*CREACION GRUPO*/
+		$GrupoData= array("encuestas_seguimiento_idencuesta_seguimiento"=>$UltimoID);
+		$this->SeguimientoModelo->crearGrupo($GrupoData);
+		$idGrupóCreado=$this->SeguimientoModelo->obtenerIdGrupo();
+		$UltimoIDg="";
+		foreach ($idSeguimientoCreado as $key => $id) {
+			$UltimoIDg=$id->maximo;
+		}
+		/*CREACION GRUPO*/
+		/*CREACION GRUPO-ALUMNOS*/
 		$NumerosDeControl = explode(',', $this->input->post('numero_control_alumnos'));
 		$GrupoAlumnosNumeros =array();
 		for ($i=0; $i < count($NumerosDeControl) ; $i++) {
-			$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoID);
+			$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoIDg);
 		}
 		$this->SeguimientoModelo->insertarGrupos($GrupoAlumnosNumeros);
+		/*CREACION GRUPO-ALUMNOS FIN*/
 	}
 	public function gestionarGrupo($idGrupo)
 	{
