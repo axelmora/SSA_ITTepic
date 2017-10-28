@@ -115,5 +115,15 @@ class SeguimientoModelo extends CI_Model {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->insert_batch('grupo_alumnos',$datos);
   }
-
+  public function cargarGrupoId($idrupo)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM  grupos as gr, grupo_alumnos as ga, alumnos as al where 
+     ");
+    if ($query->num_rows() > 0) {
+        return $query->result();
+    } else {
+        return false;
+    }
+  }
 }

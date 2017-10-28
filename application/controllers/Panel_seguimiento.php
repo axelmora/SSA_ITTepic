@@ -175,12 +175,17 @@ class Panel_seguimiento extends CI_Controller {
 		$NumerosDeControl = explode(',', $this->input->post('numero_control_alumnos'));
 		$GrupoAlumnosNumeros =array();
 		for ($i=0; $i < count($NumerosDeControl) ; $i++) {
-				$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoID);
+			$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoID);
 		}
 		$this->SeguimientoModelo->insertarGrupos($GrupoAlumnosNumeros);
 	}
 	public function gestionarGrupo($idGrupo)
 	{
-
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idGrupo);
+			$this->load->view('aplicaciones_grupos',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 }
