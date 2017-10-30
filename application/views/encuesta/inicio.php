@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <?php
       if (isset($mensajesistema)) { ?>
         <br>
-      
+
         <div class="row">
           <div class="col-lg-12 col-xl-12">
             <?php
@@ -47,14 +47,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </center>
           </div>
           <div class="card-body">
-            <form method="post" action="<?php echo base_url(); ?>index.php/c_usuarios/iniciosesion" >
+            <form method="post" action="<?php echo base_url(); ?>index.php/Seguimiento/verificarAlumnoEncuesta" >
               <div class="form-group">
                 <label for="userid"><i class="fa fa-user" aria-hidden="true"></i> NUMERO DE CONTROL:</label>
-                <input type="text" class="form-control" name="userid" id="userid"   placeholder="Ingresar usuario" required>
+                <input type="text" class="form-control" name="numero_control" id="numero_control"   placeholder="Ingresar usuario" required>
               </div>
               <div class="form-group">
                 <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> CONTRASEÑA PARA LA APLICACION</label>
-                <input type="password" class="form-control" name="passwordid" id="passwordid" placeholder="Contraseña proporcionada por su departamento academico." required>
+                <input type="password" class="form-control" name="contra_aplicacion" id="contra_aplicacion" placeholder="Contraseña proporcionada por su departamento academico." required>
               </div>
               <center><button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> ACCESO</button></center>
               <div class="red-text"><center><?php echo validation_errors(); ?></center></div>
