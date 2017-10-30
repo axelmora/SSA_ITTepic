@@ -48,6 +48,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
           <div class="card-body">
             <form method="post" action="<?php echo base_url(); ?>index.php/Seguimiento/verificarAlumnoEncuesta" >
+              <?php
+              if(isset($ErrorInicio)){
+                echo "$ErrorInicio";
+              }
+              ?>
               <div class="form-group">
                 <label for="userid"><i class="fa fa-user" aria-hidden="true"></i> NUMERO DE CONTROL:</label>
                 <input type="text" class="form-control" name="numero_control" id="numero_control"   placeholder="Ingresar usuario" required>

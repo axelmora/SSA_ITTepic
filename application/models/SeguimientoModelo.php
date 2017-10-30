@@ -54,13 +54,17 @@ class SeguimientoModelo extends CI_Model {
   public function cargarEncuestasSeguimiento($idSeguimiento)
   {
     $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es, materias as ma, docentes as do, grupos as gr
-      where es.aplicaciones_idaplicaciones=$idSeguimiento AND es.idencuesta_seguimiento=gr.encuestas_seguimiento_idencuesta_seguimiento  and es.docentes_rfc = do.rfc and es.materias_idmaterias= ma.idmaterias
+    $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es, materias as ma, docentes as do,
+      grupos as gr
+      where es.aplicaciones_idaplicaciones=$idSeguimiento AND
+      es.idencuesta_seguimiento=gr.encuestas_seguimiento_idencuesta_seguimiento
+      and es.docentes_rfc = do.rfc and es.materias_idmaterias= ma.idmaterias
       order by es.fecha_creacion DESC
       ");
       if ($query->num_rows() > 0) {
         return $query->result();
-      } else {
+      }
+      else {
         return false;
       }
     }
@@ -73,7 +77,8 @@ class SeguimientoModelo extends CI_Model {
       $query = $DB2->get();
       if ($query->num_rows() > 0) {
         return $query->result();
-      } else {
+      }
+      else {
         return false;
       }
     }
@@ -90,7 +95,8 @@ class SeguimientoModelo extends CI_Model {
       $query = $DB2->get();
       if ($query->num_rows() > 0) {
         return $query->result();
-      } else {
+      }
+      else {
         return false;
       }
     }
@@ -120,7 +126,9 @@ class SeguimientoModelo extends CI_Model {
     {
       $DBcon = $this->load->database('default', TRUE);
       $query=$DBcon->query("SELECT * FROM  grupos as gr, grupo_alumnos as ga, alumnos as al, carreras as ca where
-        gr.idgrupos=$idrupo and gr.idgrupos=ga.grupos_idgrupos and ga.alumnos_numero_control=al.numero_control and al.carreras_id_carrera=ca.id_carrera;
+        gr.idgrupos=$idrupo and gr.idgrupos=ga.grupos_idgrupos and
+        ga.alumnos_numero_control=al.numero_control and
+        al.carreras_id_carrera=ca.id_carrera;
         ");
         if ($query->num_rows() > 0) {
           return $query->result();
@@ -132,12 +140,41 @@ class SeguimientoModelo extends CI_Model {
       {
         $DBcon = $this->load->database('default', TRUE);
         $query=$DBcon->query("SELECT * FROM  grupos as gr, grupo_alumnos as ga, alumnos as al, carreras as ca where
-          gr.idgrupos=$idrupo and gr.idgrupos=ga.grupos_idgrupos and ga.alumnos_numero_control=al.numero_control and al.carreras_id_carrera=ca.id_carrera;
+          gr.idgrupos=$idrupo and gr.idgrupos=ga.grupos_idgrupos and
+          ga.alumnos_numero_control=al.numero_control and
+          al.carreras_id_carrera=ca.id_carrera;
           ");
-          if ($query->num_rows() > 0) {
+          if ($query->num_rows() > 0)
+          {
             return $query->result();
           } else {
             return false;
           }
         }
-      }
+        public function verificarAplicacion($Contra,$Periodo,$Departamento)
+        {
+          $DBcon = $this->load->database('default', TRUE);
+          $query=$DBcon->query("SELECT * FROM  aplicaciones  where periodo=$Periodo and contrasena='$Contra' and departamento_academico_iddepartamento_academico=$Departamento;");
+          if ($query->num_rows() > 0)
+          {
+            return $query->result();
+          } else {
+            return false;
+          }
+        }
+        public function obtenerEncuestas($idaplicaciones,$numero_control)
+        {
+          $DBcon = $this->load->database('default', TRUE);
+          $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es, grupos as gr,grupo_alumnos as ga where es.aplicaciones_idaplicaciones=$idaplicaciones "
+          ."and es.idencuesta_seguimiento=gr.encuestas_seguimiento_idencuesta_seguimiento and ".
+          "gr.idgrupos=ga.grupos_idgrupos and ga.alumnos_numero_control=$numero_control"
+          );
+          if ($query->num_rows() > 0)
+          {
+            return $query->result();
+          } else {
+            return false;
+          }
+        }
+
+}

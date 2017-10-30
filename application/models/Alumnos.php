@@ -4,10 +4,11 @@ class Alumnos extends CI_Model {
   {
     parent::__construct();
   }
-  public function iniciarsesionm($usuario, $password)
+  public function verificarAlumno($NUMERO_CONTROL)
   {
     $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT * FROM usuarios as u, departamento_academico as da where u.usuario='$usuario' and password='$password' and u.departamento_academico_iddepartamento_academico = da.iddepartamento_academico;");
+    $query=$DBcon->query("SELECT * FROM alumnos as al, carreras as ca where
+      al.numero_control='$NUMERO_CONTROL' and al.carreras_id_carrera=ca.id_carrera;");
     if ($query->num_rows() > 0) {
       return $query->result();
     } else {
