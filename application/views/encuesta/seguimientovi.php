@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="col-md-1">
       </div>
       <div class="col-md-10">
-        <div class="card menus ">
+        <div class="card menus">
           <div class="card-header">
             <div class="row">
               <div class="col-md-2">
@@ -205,19 +205,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <br>
                 <!-- PREGUNTA 2 FIN -->
                 <!-- PREGUNTA 3 -->
-                <p class="textopreguntas">3.- ¿Cuál fue la última unidad evaluada?
-                  <select class="selectpicker" name="unidadevaluada" id="unidadevaluada" title="Elige una unidad."  required>
-                    <option value="1">Unidad 1</option>
-                    <option value="2">Unidad 2</option>
-                    <option value="3">Unidad 3</option>
-                    <option value="4">Unidad 4</option>
-                    <option value="5">Unidad 5</option>
-                    <option value="6">Unidad 6</option>
-                    <option value="7">Unidad 7</option>
-                    <option value="8">Unidad 8</option>
-                    <option value="0">No recuerdo...</option>
-                  </select>
-                </p>
+                <div class="form-row">
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-5">
+                  <p class="textopreguntas">3.- ¿Cuál fue la última unidad evaluada? </p>
+                  </div>
+                  <div class="col-md-4">
+                    <select class="form-control" name="unidadevaluada" id="unidadevaluada" title="Elige una unidad."  required>
+                      <option value="1">Unidad 1</option>
+                      <option value="2">Unidad 2</option>
+                      <option value="3">Unidad 3</option>
+                      <option value="4">Unidad 4</option>
+                      <option value="5">Unidad 5</option>
+                      <option value="6">Unidad 6</option>
+                      <option value="7">Unidad 7</option>
+                      <option value="8">Unidad 8</option>
+                      <option value="0">No recuerdo...</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                  </div>
+                </div>
                 <!-- PREGUNTA 3 FIN -->
                 <!-- SUBMIT-->
                 <div class="botonEnviar">
@@ -234,336 +243,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
 
-          <!--  BORRAR :v -->
-          <div class="panel panel-default Sombra">
-            <div class="panel-heading">
-
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <!-- Cuestionario -->
-                  <form role="form"  method="post" id="formularioencuestaprincipal" action="" >
-                    <!-- DATOS  -->
-                    <div>
-
-                    </div>
-                    <!--Fin DATOS 1 -->
-                    <!-- Pregunta 1 -->
-                    <div>
-
-                      <!--Fin Pregunta 1 -->
-                      <!--Pregunta 2 -->
-                      <div>
-
-                      </div>
-                      <!--Fin Pregunta 2 -->
-                      <!--Pregunta 3 -->
-                      <div>
-                        <br>
-
-                      </div>
-                      <!--Fin Pregunta 3 -->
-                      <!--Pregunta 4 -->
-                      <div>
-                        <br>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <p class="textopreguntas">4.-¿Entregó los resultados de las evaluaciones? </p>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">Si</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta4_1">
-                              <input type="radio" id="pregunta4_1" class="mdl-radio__button" name="pregunta4" value="Si" required>
-                            </label>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">No</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta4_2">
-                              <input type="radio" id="pregunta4_2" class="mdl-radio__button" name="pregunta4" value="No" required>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <!--Fin Pregunta  4 -->
-                      <!--Pregunta 5 -->
-                      <div>
-                        <br>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <p class="textopreguntas">5.-¿Te entrega los resultados de la unidad evaluada, dentro de los primeros 5 días hábiles después de aplicada la evaluación? </p>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">Si</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta5_1">
-                              <input type="radio" id="pregunta5_1" class="mdl-radio__button" name="pregunta5" value="Si" required>
-                            </label>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">No</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta5_2">
-                              <input type="radio" id="pregunta5_2" class="mdl-radio__button" name="pregunta5" value="No" required>
-                            </label>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">No recuerdo</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta5_3">
-                              <input type="radio" id="pregunta5_3" class="mdl-radio__button" name="pregunta5" value="No recuerdo" required >
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <!--Fin Pregunta  5-->
-                      <!--Pregunta 6 -->
-                      <div>
-                        <br>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <p class="textopreguntas">6.-Si no apruebas alguna unidad, ¿Te explica porqué?</p>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">Si</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta6_1">
-                              <input type="radio" id="pregunta6_1" class="mdl-radio__button" name="pregunta6" value="Si" required>
-                            </label>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">No</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta6_2">
-                              <input type="radio" id="pregunta6_2" class="mdl-radio__button" name="pregunta6" value="No"  required>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <!--Fin Pregunta  6 -->
-                      <!--Pregunta 7 -->
-                      <div>
-                        <br>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <p class="textopreguntas">7.-¿El profesor asiste regularmente?</p>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">Si</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta7_1">
-                              <input type="radio" id="pregunta7_1" class="mdl-radio__button" name="pregunta7" value="Si" required>
-                            </label>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">No</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta7_2">
-                              <input type="radio" id="pregunta7_2" class="mdl-radio__button" name="pregunta7" value="No" required>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <!--Fin Pregunta  7 -->
-                      <!--Pregunta 8 -->
-                      <div>
-                        <br>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <p class="textopreguntas">8.- ¿Utiliza medios electrónicos (Software, Siveduc, biblioteca digital, etc.) para impartir sus clases?</p>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">Si</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta8_1">
-                              <input type="radio" id="pregunta8_1" class="mdl-radio__button" name="pregunta8" value="Si" required>
-                            </label>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">No</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta8_2">
-                              <input type="radio" id="pregunta8_2" class="mdl-radio__button" name="pregunta8" value="No" required>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <!--Fin Pregunta  8 -->
-                      <!--Pregunta 9 -->
-                      <div>
-                        <br>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <p class="textopreguntas">9.-Utiliza medios audiovisuales (video proyector, pintarrón, pantalla de TV, etc.) para impartir sus clases?</p>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">Si</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta9_1">
-                              <input type="radio" id="pregunta9_1" class="mdl-radio__button" name="pregunta9" value="Si" required>
-                            </label>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">No</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta9_2">
-                              <input type="radio" id="pregunta9_2" class="mdl-radio__button" name="pregunta9" value="No" required>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <!--Fin Pregunta  9 -->
-                      <!-- Pregunta 10 -->
-                      <div>
-                        <p class="textopreguntas">10.- De la siguiente lista seleccione y cuantifique las prácticas que ha realizado</p>
-                        <div class="row">
-                          <div class="col-md-10 col-md-offset-1">
-
-                            <table class="table table-striped table-hover Sombra">
-                              <tbody>
-                                <tr>
-                                  <td>Lista:</td>
-                                  <td class="Si_No" colspan="2">Cantidad #</td>
-                                </tr>
-                                <tr>
-                                  <td>a) Visitas a empresas, de obra o de campo
-                                  </td>
-                                  <td colspan="2">
-                                    <div class="row">
-                                      <div class="col-md-2">
-                                        <label  class="control-label col-sm-2">(No)</label>
-                                      </div>
-                                      <div class="col-md-10">
-                                        <span class="input-group col-md-12 ">
-                                          <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_1" />
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>b) Laboratorio </td>
-                                  <td colspan="2">
-                                    <div class="row">
-                                      <div class="col-md-2">
-                                        <label  class="control-label col-sm-2">(No)</label>
-                                      </div>
-                                      <div class="col-md-10">
-                                        <span class="input-group col-md-12">
-                                          <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0" required name="pregunta10_2" />
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>c) Resolución de problemas o ejercicios en el aula
-                                  </td>
-                                  <td colspan="2">
-                                    <div class="row">
-                                      <div class="col-md-2">
-                                        <label  class="control-label col-sm-2">(No)</label>
-                                      </div>
-                                      <div class="col-md-10">
-                                        <span class="input-group  col-md-12">
-                                          <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0" required name="pregunta10_3"/>
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>d) Formulación de proyectos
-                                  </td>
-                                  <td colspan="2">
-                                    <div class="row">
-                                      <div class="col-md-2">
-                                        <label  class="control-label col-sm-2">(No)</label>
-                                      </div>
-                                      <div class="col-md-10">
-                                        <span class="input-group col-md-12">
-                                          <input type="number" class="form-control" placeholder="Cantidad" min="0" value="0"  required name="pregunta10_4"/>
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>e) Elaboración de un producto
-                                  </td>
-                                  <td colspan="2">
-                                    <div class="row">
-                                      <div class="col-md-2">
-                                        <label  class="control-label col-sm-2">(No)</label>
-                                      </div>
-                                      <div class="col-md-10">
-                                        <span class="input-group col-md-12">
-                                          <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000" value="0" required name="pregunta10_5"/>
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>f)otro: Especifique
-                                  </td>
-                                  <td>
-                                    <input type="text" class="form-control" placeholder="Especifique..." value=" " name="pregunta10_6" />
-                                  </td>
-                                  <td>
-                                    <label  class="control-label col-sm-3">(No)</label>
-                                    <span class="input-group ">
-                                      <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_7"/>
-                                    </span>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-
-                          </div>
-                        </div>
-                      </div>
-                      <!--Fin Pregunta 10 -->
-                      <!--Pregunta 11 -->
-                      <div>
-                        <br>
-                        <div class="row">
-                          <div class="col-md-8">
-                            <p class="textopreguntas">11.-¿El docente se comporta de manera ética en el aula?</p>
-                          </div>
-                          <div class="col-md-2">
-                            <label class="Si_No">Si</label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta11_1">
-                              <input type="radio" id="pregunta11_1" class="mdl-radio__button" name="pregunta11" value="Si" required>
-                            </label>
-                          </div>
-                          <div class="col-md-2">
-                            <div class="form-group">
-                              <label class="Si_No">No</label>
-                              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta11_2">
-                                <input type="radio" id="pregunta11_2" class="mdl-radio__button" name="pregunta11" value="No" required>
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!--Fin Pregunta  11 -->
-                      <!--Pregunta 12 -->
-                      <div>
-                        <br>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <p class="textopreguntas">12.-Si lo deseas puedes expresar algún comentario relativo al tema</p>
-                            <textarea class="form-control" name="pregunta12" rows="3" placeholder="Si lo deseas puedes expresar algún comentario relativo al tema" ></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--Fin Pregunta  12 -->
-                    <div>
-                      <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
-                          <br>
-                          <input type="submit" name=""  class="btn btn-block btn-lg btn-success" value="ENVIAR">
-                        </div>
-                        <!-- <i class="glyphicon glyphicon-eject"></i>      -->
-                      </div>
-                    </div>
-                  </form>
-                  <!--Fin  Cuestionario -->
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
