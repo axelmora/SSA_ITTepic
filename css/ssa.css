@@ -210,7 +210,7 @@ fieldset[disabled] .btn-naranja.active {
   font-size: 80%;
 }
 .tablaCargarAlumnos{
-  
+
 }
 /*---------SEGUIMIENTO---------*/
 /*-logins-*/
@@ -221,4 +221,21 @@ canvas {
   width: 100%;
   left: 0;
   top: 0;
+}
+.textoNegritas{
+    font-weight: bold;
+}
+.CirculoPregunta{
+  margin-top: -1%;
+  font-size: 50%;
+}
+.textopreguntas{
+  margin-left: 2%;
+  margin-right: 2%;
+  font-weight: bold;
+}
+.botonEnviar{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 3%;
 }
