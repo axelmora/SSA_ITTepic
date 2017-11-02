@@ -239,3 +239,28 @@ canvas {
   margin-right: 10%;
   margin-bottom: 3%;
 }
+.progreso {
+  height: 25px;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.progreso span {
+  display: block;
+  height: 12px;
+  width: 12px;
+  margin: 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+}
+.progreso span.is-active {
+  background: rgba(0, 0, 0, 0.4);
+  background: #FF8F00;
+}

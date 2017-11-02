@@ -29,6 +29,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="col-md-1">
       </div>
       <div class="col-md-10">
+        <div class="card">
+          <div class="card-body">
+            <div class="progreso animated pulse">
+              <!-- ICONOS PROGRESO EN LA ENCUESTA -->
+              <span class="is-active"></span>
+                <span class="is-active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
         <div class="card menus">
           <div class="card-header">
             <div class="row">
