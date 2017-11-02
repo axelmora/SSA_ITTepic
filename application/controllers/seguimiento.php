@@ -59,6 +59,7 @@ class Seguimiento extends CI_Controller {
 					}
 					$ENCUESTAS= $this->SeguimientoModelo->obtenerEncuestas($idaplicaciones,$NUMERO_CONTROL);
 					if($ENCUESTAS){
+						$PROGRESOENCUESTAS=0;
 						//	echo "$IDDEPARTAMENTO $PERIODOACTUAL $idaplicaciones  $idplantilla ";
 						//echo "EXISTE <br>";
 						$ID_ENCUESTAS="";
@@ -73,6 +74,7 @@ class Seguimiento extends CI_Controller {
 							}else {
 								$ID_ENCUESTAS.=$value->idencuesta_seguimiento;
 							}
+							$PROGRESOENCUESTAS++;
 							$POSENCUESTAS++;
 						}
 						$POSENCUESTAS=0;
@@ -82,6 +84,8 @@ class Seguimiento extends CI_Controller {
 							'numero_control' => $NUMERO_CONTROL,
 							'alumno'=>true,
 							'idencuestas'=>$ID_ENCUESTAS,
+							'progresolimite'=>$PROGRESOENCUESTAS,
+							'progresoactual'=>0,
 							'idplantilla'=>$idplantilla
 						);
 						$this->session->set_userdata($DATOS_ALUMNOS);

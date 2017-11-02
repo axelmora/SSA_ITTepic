@@ -33,6 +33,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="card-body">
             <div class="progreso animated pulse">
               <!-- ICONOS PROGRESO EN LA ENCUESTA -->
+              <?php
+              $limite= $this->session->userdata('perfil');
+              ?>
               <span class="is-active"></span>
                 <span class="is-active"></span>
               <span></span>
