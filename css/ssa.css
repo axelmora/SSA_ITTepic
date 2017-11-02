@@ -264,3 +264,6 @@ canvas {
   background: rgba(0, 0, 0, 0.4);
   background: #FF8F00;
 }
+.abc-radio label::after {
+    background-color: #f58220;
+}

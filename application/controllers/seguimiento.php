@@ -38,11 +38,13 @@ class Seguimiento extends CI_Controller {
 			/* VERIFICAR ALUMNOS */
 			$NUMERO_CONTROL=$this->input->post('numero_control');
 			$ALUMNOVERIFICADO = $this->Alumnos->verificarAlumno($NUMERO_CONTROL);
+			$NOMBREALUM="";
 			if($ALUMNOVERIFICADO)
 			{
 				$idcarreras="";
 				foreach ($ALUMNOVERIFICADO as $key => $value) {
 					$idcarreras=$value->id_carrera;
+					$NOMBREALUM=$value->nombre;
 				}
 				/* OBTENER DEPARTAMENTO ALUMNO*/
 				$IDDEPARTAMENTO=$this->obtenerDepartamentoPorCarrera($idcarreras);
@@ -82,6 +84,7 @@ class Seguimiento extends CI_Controller {
 						$DATOS_ALUMNOS = array(
 							'is_logued_in' => true,
 							'numero_control' => $NUMERO_CONTROL,
+							'nombre_alumno' => $NOMBREALUM,
 							'alumno'=>true,
 							'idencuestas'=>$ID_ENCUESTAS,
 							'progresolimite'=>$PROGRESOENCUESTAS,
