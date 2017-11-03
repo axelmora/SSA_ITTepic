@@ -326,51 +326,81 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
               <!-- PREGUNTA 5 FIN -->
               <!--PREGUNTA 6 -->
-                <br>
-                <div class="row">
-                  <div class="col-md-6">
-                    <p class="textopreguntas">6.-Si no apruebas alguna unidad, ¿Te explica porqué?</p>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-check abc-radio">
-                      <input class="form-check-input" type="radio" name="pregunta6_1" id="pregunta6_1" value="SI" required>
-                      <label class="form-check-label" for="pregunta6_1">Si
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-check abc-radio">
-                      <input class="form-check-input" type="radio" name="pregunta6_1" id="pregunta6_2" value="NO" required>
-                      <label class="form-check-label" for="pregunta6_2">No
-                      </label>
-                    </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="textopreguntas">6.-Si no apruebas alguna unidad, ¿Te explica porqué?</p>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta6_1" id="pregunta6_1" value="SI" required>
+                    <label class="form-check-label" for="pregunta6_1">Si
+                    </label>
                   </div>
                 </div>
+                <div class="col-md-4">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta6_1" id="pregunta6_2" value="NO" required>
+                    <label class="form-check-label" for="pregunta6_2">No
+                    </label>
+                  </div>
+                </div>
+              </div>
               <!-- PREGUNTA  6  FIN -->
               <!--PREGUNTA 7 -->
 
-                <br>
-                <div class="row">
-                  <div class="col-md-6">
-                    <p class="textopreguntas">7.-¿El profesor asiste regularmente?</p>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-check abc-radio">
-                      <input class="form-check-input" type="radio" name="pregunta7_1" id="pregunta7_1" value="SI" required>
-                      <label class="form-check-label" for="pregunta7_1">Si
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-check abc-radio">
-                      <input class="form-check-input" type="radio" name="pregunta7_1" id="pregunta7_2" value="NO" required>
-                      <label class="form-check-label" for="pregunta7_2">No
-                      </label>
-                    </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="textopreguntas">7.-¿El profesor asiste regularmente?</p>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta7_1" id="pregunta7_1" value="SI" required>
+                    <label class="form-check-label" for="pregunta7_1">Si
+                    </label>
                   </div>
                 </div>
-
+                <div class="col-md-4">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta7_1" id="pregunta7_2" value="NO" required>
+                    <label class="form-check-label" for="pregunta7_2">No
+                    </label>
+                  </div>
+                </div>
+              </div>
               <!-- PREGUNTA  7 Fin -->
+              <!--PREGUNTA 11 -->
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="textopreguntas">11.-¿El docente se comporta de manera ética en el aula?</p>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta11_1" id="pregunta11_1" value="SI" required>
+                    <label class="form-check-label" for="pregunta11_1">Si
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta11_1" id="pregunta11_2" value="NO" required>
+                    <label class="form-check-label" for="pregunta11_2">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!--PREGUNTA  11 FIN -->
+              <!--PREGUNTA 12 -->
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="textopreguntas"  style="margin-left:10px;">12.-Si lo deseas puedes expresar algún comentario relativo al tema</p>
+                  <textarea class="form-control" name="pregunta12" rows="3" placeholder="Si lo deseas puedes expresar algún comentario relativo al tema" ></textarea>
+                </div>
+              </div>
+              <!--PREGUNTA 12 FIN-->
               <!-- SUBMIT-->
               <div class="botonEnviar">
                 <br>
