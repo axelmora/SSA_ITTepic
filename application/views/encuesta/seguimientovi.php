@@ -339,14 +339,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <label class="Si_No">No</label>
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta6_2">
-                      <input type="radio" id="pregunta6_2" class="mdl-radio__button" name="pregunta6" value="No"  required>
-                    </label>
+                    <div class="form-check abc-radio">
+                      <input class="form-check-input" type="radio" name="pregunta6_1" id="pregunta6_2" value="NO" required>
+                      <label class="form-check-label" for="pregunta6_2">No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              <!-- PREGUNTA  6  FIN -->
+              <!--PREGUNTA 7 -->
+
+                <br>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="textopreguntas">7.-¿El profesor asiste regularmente?</p>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-check abc-radio">
+                      <input class="form-check-input" type="radio" name="pregunta7_1" id="pregunta7_1" value="SI" required>
+                      <label class="form-check-label" for="pregunta7_1">Si
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-check abc-radio">
+                      <input class="form-check-input" type="radio" name="pregunta7_1" id="pregunta7_2" value="NO" required>
+                      <label class="form-check-label" for="pregunta7_2">No
+                      </label>
+                    </div>
                   </div>
                 </div>
 
-              <!--Fin PREGUNTA  6 -->
+              <!-- PREGUNTA  7 Fin -->
               <!-- SUBMIT-->
               <div class="botonEnviar">
                 <br>

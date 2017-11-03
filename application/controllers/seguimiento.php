@@ -23,7 +23,7 @@ class Seguimiento extends CI_Controller {
 			$this->load->view('encuesta/inicio',$datos);
 		}
 	}
-	public function contestar()
+	public function Contestar()
 	{
 		if ($this->session->userdata('is_logued_in')==true && $this->session->userdata('alumno')==true) {
 			$this->load->view('encuesta/seguimientovi');
