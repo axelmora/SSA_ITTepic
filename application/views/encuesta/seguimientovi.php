@@ -376,7 +376,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-1">
                         </div>
                   <div class="col-md-10 ">
-                    <table class="table table-striped table-hover menus">
+                    <table class="table table-striped table-hover   table-sm menus">
                       <tbody>
                         <tr>
                           <td>Lista:</td>
