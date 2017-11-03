@@ -242,7 +242,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <option value="6">Unidad 6</option>
                     <option value="7">Unidad 7</option>
                     <option value="8">Unidad 8</option>
-                    <option value="0">No recuerdo...</option>
+                    <option value="0">No recuerdo</option>
+                    <option value="0">Sin respuesta</option>
                   </select>
                 </div>
                 <div class="col-md-3">
@@ -265,17 +266,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <option value="6">Unidad 6</option>
                     <option value="7">Unidad 7</option>
                     <option value="8">Unidad 8</option>
-                    <option value="0">No recuerdo...</option>
+                    <option value="0">No recuerdo</option>
+                    <option value="0">Sin respuesta</option>
                   </select>
                 </div>
                 <div class="col-md-3">
                 </div>
               </div>
-              <!--Pregunta 4 -->
+              <!-- PREGUNTA 3 FIN -->
+              <!--PREGUNTA 4 -->
               <br>
               <div class="row">
-                <div class="col-md-8">
-                  <p class="textopreguntas">4.-¿Entregó los resultados de las evaluaciones? </p>
+                <div class="col-md-6">
+                  <p class="textopreguntas">4.-¿Entregó los resultados de las evaluaciones?</p>
                 </div>
                 <div class="col-md-2">
                   <div class="form-check abc-radio">
@@ -284,7 +287,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </label>
                   </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                   <div class="form-check abc-radio">
                     <input class="form-check-input" type="radio" name="pregunta4_1" id="pregunta4_2" value="NO" required>
                     <label class="form-check-label" for="pregunta4_2">No
@@ -292,9 +295,58 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                 </div>
               </div>
+              <!-- PREGUNTA 4 FIN -->
+              <!--PREGUNTA 5 -->
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="textopreguntas">5.-¿Te entrega los resultados de la unidad evaluada, dentro de los primeros 5 días hábiles después de aplicada la evaluación? </p>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta5_1" id="pregunta5_1" value="SI" required>
+                    <label class="form-check-label" for="pregunta5_1">Si
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta5_1" id="pregunta5_2" value="NO" required>
+                    <label class="form-check-label" for="pregunta5_2">No
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta5_1" id="pregunta5_3" value="No recuerdo" required>
+                    <label class="form-check-label" for="pregunta5_3">No recuerdo
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- PREGUNTA 5 FIN -->
+              <!--PREGUNTA 6 -->
+                <br>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="textopreguntas">6.-Si no apruebas alguna unidad, ¿Te explica porqué?</p>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-check abc-radio">
+                      <input class="form-check-input" type="radio" name="pregunta6_1" id="pregunta6_1" value="SI" required>
+                      <label class="form-check-label" for="pregunta6_1">Si
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="Si_No">No</label>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="pregunta6_2">
+                      <input type="radio" id="pregunta6_2" class="mdl-radio__button" name="pregunta6" value="No"  required>
+                    </label>
+                  </div>
+                </div>
 
-              <!--Fin Pregunta  4 -->
-              <!-- PREGUNTA 3 FIN -->
+              <!--Fin PREGUNTA  6 -->
               <!-- SUBMIT-->
               <div class="botonEnviar">
                 <br>
