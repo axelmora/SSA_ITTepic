@@ -26,9 +26,35 @@ class Seguimiento extends CI_Controller {
 	public function Contestar()
 	{
 		if ($this->session->userdata('is_logued_in')==true && $this->session->userdata('alumno')==true) {
-			$this->load->view('encuesta/seguimientovi');
+			$IDencuestas=$this->session->userdata('idencuestas');
+			$IDencuEnviar = explode(",",$IDencuestas);
+			if($IDencuEnviar[0]!="")
+			{
+				//echo "SI hay $IDencuEnviar[0]";
+				$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($IDencuEnviar[0]);
+				$this->load->view('encuesta/seguimientovi',$datos);
+			}else {
+				echo "Ya no hay";
+			}
+			//
 		}else {
 			redirect(base_url().'index.php/Seguimiento/');
+		}
+	}
+	public function enviarEncuesta($idencuesta_seguimiento)
+	{
+		$RESULTADO = $this->input->post();
+		echo json_encode($RESULTADO);
+		echo "<br>";
+		foreach ($RESULTADO as $value)
+		{
+			echo "$value <br>";
+		}
+		echo "<br>";
+		$data = json_decode(html_entity_decode('{"1":"Hola","2":"xD","3":":3 carito ññ mi amor <3"}'), TRUE);
+		foreach ($data as $value)
+		{
+			echo "$value <br>";
 		}
 	}
 	public function verificarAlumnoEncuesta()

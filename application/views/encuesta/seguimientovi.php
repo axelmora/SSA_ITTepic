@@ -48,6 +48,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <?php
                 }
               }
+              $DOCENTE="";
+              if($DATOSMATERIA){
+                foreach ($DATOSMATERIA as $key => $value) {
+
+                }
+              }else {
+
+              }
               ?>
             </div>
           </div>
@@ -72,7 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
             </div>
           </div>
-          <form role="form"  method="post" id="formularioencuestaprincipal" action="" >
+          <form role="form"  method="post" id="formularioencuestaprincipal" action="<?php echo base_url(); ?>index.php/Seguimiento/enviarEncuesta/1" >
             <div class="card-body menus ">
               <!-- DATOS DEL ALUMNO -->
               <div class="table-responsive">

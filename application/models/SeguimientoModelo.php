@@ -176,5 +176,19 @@ class SeguimientoModelo extends CI_Model {
             return false;
           }
         }
+        public function obtenerDocenteMateria($idaplicaciones)
+        {
+          $DBcon = $this->load->database('default', TRUE);
+          $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
+           " where es.idencuesta_seguimiento=$idaplicaciones and es.materias_idmaterias=ma.idmaterias".
+           " and es.docentes_rfc=d.rfc;"
+          );
+          if ($query->num_rows() > 0)
+          {
+            return $query->result();
+          } else {
+            return false;
+          }
+        }
 
 }
