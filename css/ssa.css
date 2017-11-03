@@ -223,7 +223,11 @@ canvas {
   top: 0;
 }
 .textoNegritas{
-    font-weight: bold;
+  font-weight: bold;
+}
+.textoNegritas2{
+  font-weight: bold;
+  margin-left: -20%;
 }
 .CirculoPregunta{
   margin-top: -1%;
@@ -246,11 +250,11 @@ canvas {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .progreso span {
   display: block;
@@ -265,5 +269,16 @@ canvas {
   background: #FF8F00;
 }
 .abc-radio label::after {
-    background-color: #f58220;
+  background-color: #f58220;
+  /*margin-left: 0px;*/
+  text-shadow: 3px 3px 0px rgba(150, 150, 150, 1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.abc-radio label::before {
+    /*margin-left: 0px;*/
+  text-shadow: 3px 3px 0px rgba(150, 150, 150, 1);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.radiosTablas label::before{
+  margin-left: 0px;
 }

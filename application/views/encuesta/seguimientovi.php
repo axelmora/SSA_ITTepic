@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link href="<?php echo base_url(); ?>css/animate.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/fontello.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/awesome-bootstrap-checkbox.css" type="text/css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>css/ssa.css" type="text/css" rel="stylesheet" />
+  <link href="<?php echo base_url(); ?>css/ssa.css" type="text/css" rel="stylesheet" />
   <!--
   Autor: Fernando Manuel Avila Cataño
   Correo:feranimaciones@gmail.com
@@ -110,8 +110,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <tbody>
                       <tr>
                         <td>&nbsp;</td>
-                        <td class="textoNegritas" >Si</td>
-                        <td class="textoNegritas">No</td>
+                        <td class="textoNegritas2">Si</td>
+                        <td class="textoNegritas2">No</td>
+
                       </tr>
                       <!-- 1 -->
                       <tr>
@@ -121,32 +122,112 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </td>
                         <td>
                           <div class="form-check abc-radio">
-                            <input class="form-check-input" type="radio" name="radio1" id="radio1" value="SI" checked>
-                            <label class="form-check-label" for="radio1">
+                            <input class="form-check-input" type="radio" name="r1_1" id="r1_1" value="SI"  required>
+                            <label class="form-check-label radioTabla" for="r1_1">
                             </label>
                           </div>
                         </td>
                         <td>
                           <div class="form-check abc-radio">
-                              <input class="form-check-input" type="radio" name="radio1" id="radio2" value="NO">
-                              <label class="form-check-label" for="radio2">
-
-                              </label>
-                            </div>
+                            <input class="form-check-input" type="radio" name="r1_1" id="r1_2" value="NO" required>
+                            <label class="form-check-label radioTabla" for="r1_2">
+                            </label>
+                          </div>
                         </td>
+
                       </tr>
                       <!-- 2 -->
+                      <tr>
+                        <td>
+                          <i class="fa fa-circle CirculoPregunta" aria-hidden="true"></i>
+                          las Competencias a alcanzar
+                        </td>
+                        <td>
+                          <div class="form-check abc-radio">
+                            <input class="form-check-input" type="radio" name="r2_1" id="r2_1" value="SI" required />
+                            <label class="form-check-label" for="r2_1">
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-check abc-radio">
+                            <input class="form-check-input" type="radio" name="r2_1" id="r2_2" value="NO" required  />
+                            <label class="form-check-label" for="r2_2">
+                            </label>
+                          </div>
+                        </td>
+
+                      </tr>
+                      <!-- 3 -->
+                      <tr>
+                        <td>
+                          <i class="fa fa-circle CirculoPregunta" aria-hidden="true"></i>los Criterios de Acreditación en % (exámenes, investigaciones, exposiciones, asistencia, proyectos, portafolio, etc.)
+                        </td>
+                        <td>
+                          <div class="form-check abc-radio">
+                            <input class="form-check-input" type="radio" name="r3_1" id="r3_1" value="SI" required>
+                            <label class="form-check-label" for="r3_1">
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-check abc-radio">
+                            <input class="form-check-input" type="radio" name="r3_1" id="r3_2" value="NO" required>
+                            <label class="form-check-label" for="r3_2">
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- 4 -->
+                      <tr>
+                        <td>
+                          <i class="fa fa-circle CirculoPregunta" aria-hidden="true"></i>
+                          Las oportunidades para acreditar las unidades
+                        </td>
+                        <td>
+                          <div class="form-check abc-radio">
+                            <input class="form-check-input" type="radio" name="r4_1" id="r4_1" value="SI" required>
+                            <label class="form-check-label" for="r4_1">
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-check abc-radio">
+                            <input class="form-check-input" type="radio" name="r4_1" id="r4_2" value="NO" required>
+                            <label class="form-check-label" for="r4_2">
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- 5 -->
+                      <tr>
+                        <td>
+                          <i class="fa fa-circle CirculoPregunta" aria-hidden="true"></i>
+                          Fechas de evaluación
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                          <div class="form-check abc-radio form-check-inline">
+                            <input class="form-check-input" type="radio" name="r5_1" id="r5_1" value="SI" required>
+                            <label class="form-check-label radiosTablas " for="r5_1">
+                            </label>
+                          </div>
+                          <div class="form-check abc-radio form-check-inline">
+                            <input class="form-check-input" type="radio" name="r5_1" id="r5_2" value="NO" required>
+                            <label class="form-check-label radiosTablas " for="r5_2">
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <!-- PREGUNTA 1 FIN -->
-
               <!-- PREGUNTA 2 -->
               <br>
               <div class="form-row">
-                <div class="col-md-1">
-                </div>
                 <div class="col-md-5">
                   <p class="textopreguntas">2.- ¿Qué unidad estas cursando actualmente? </p>
                 </div>
@@ -163,15 +244,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <option value="0">No recuerdo...</option>
                   </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                 </div>
               </div>
               <br>
               <!-- PREGUNTA 2 FIN -->
               <!-- PREGUNTA 3 -->
               <div class="form-row">
-                <div class="col-md-1">
-                </div>
                 <div class="col-md-5">
                   <p class="textopreguntas">3.- ¿Cuál fue la última unidad evaluada? </p>
                 </div>
@@ -188,15 +267,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <option value="0">No recuerdo...</option>
                   </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                 </div>
               </div>
+              <!--Pregunta 4 -->
+              <br>
+              <div class="row">
+                <div class="col-md-8">
+                  <p class="textopreguntas">4.-¿Entregó los resultados de las evaluaciones? </p>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta4_1" id="pregunta4_1" value="SI" required>
+                    <label class="form-check-label" for="pregunta4_1">Si
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta4_1" id="pregunta4_2" value="NO" required>
+                    <label class="form-check-label" for="pregunta4_2">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!--Fin Pregunta  4 -->
               <!-- PREGUNTA 3 FIN -->
               <!-- SUBMIT-->
               <div class="botonEnviar">
                 <br>
                 <center>
-                  <button type="submit" class="btn btn-success btn-lg btn-block " > ENVIAR </button>
+                  <button type="submit" class="btn btn-success btn-lg btn-block " ><i class="fa fa-floppy-o" aria-hidden="true"></i> CONTESTAR </button>
                 </center>
               </div>
               <!-- SUBMIT-->
