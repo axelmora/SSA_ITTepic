@@ -279,6 +279,3 @@ canvas {
   text-shadow: 3px 3px 0px rgba(150, 150, 150, 1);
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
-.radiosTablas label::before{
-  margin-left: 0px;
-}

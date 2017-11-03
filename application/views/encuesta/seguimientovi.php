@@ -161,7 +161,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <!-- 3 -->
                       <tr>
                         <td>
-                          <i class="fa fa-circle CirculoPregunta" aria-hidden="true"></i>los Criterios de Acreditación en % (exámenes, investigaciones, exposiciones, asistencia, proyectos, portafolio, etc.)
+                          <i class="fa fa-circle CirculoPregunta" aria-hidden="true"></i>los Criterios de Acreditación en % <br><small class="text-muted">(exámenes, investigaciones, exposiciones, asistencia, proyectos, portafolio, etc.)</small>
                         </td>
                         <td>
                           <div class="form-check abc-radio">
@@ -206,14 +206,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           Fechas de evaluación
                         </td>
                         <td>
-                        </td>
-                        <td>
-                          <div class="form-check abc-radio form-check-inline">
+                          <div class="form-check abc-radio  ">
                             <input class="form-check-input" type="radio" name="r5_1" id="r5_1" value="SI" required>
                             <label class="form-check-label radiosTablas " for="r5_1">
                             </label>
                           </div>
-                          <div class="form-check abc-radio form-check-inline">
+                        </td>
+                        <td>
+
+                          <div class="form-check abc-radio  ">
                             <input class="form-check-input" type="radio" name="r5_1" id="r5_2" value="NO" required>
                             <label class="form-check-label radiosTablas " for="r5_2">
                             </label>
