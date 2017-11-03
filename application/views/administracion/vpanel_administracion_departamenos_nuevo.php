@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>SSA - Usuarios</title>
+	<title>SSA - Departamentos</title>
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<meta name="description" content="">
@@ -33,8 +33,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="col-lg-6">
 						</div>
 					</div>
-					<form>
-					</form>
+					<div class="container">
+						<form method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/add_departamento">
+							<div class="form-group">
+								<label for="nombre_departamento">Nombre del departamento academico:</label>
+								<input required type="text" class="form-control" id="nombre_departamento" name="nombre_departamento" aria-describedby="emailHelp" placeholder="Ingresar el nombre del departamento academico.">
+							</div>
+							<center>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR</button>
+							</center>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

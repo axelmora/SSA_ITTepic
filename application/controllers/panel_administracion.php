@@ -68,5 +68,11 @@ class Panel_administracion extends CI_Controller {
 		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentosID($iddepartamento_academico);
 		$this->load->view('administracion/vpanel_administracion_departamenos',$datos);
 	}
+	public function add_departamento()
+	{
+		$nombre_departamento = $this->input->post('nombre_departamento');
+		$this->Departamentos->insertarDepartamento($nombre_departamento);
+		redirect(base_url().'index.php/panel_administracion/departamentos');
+	}
 	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
 }

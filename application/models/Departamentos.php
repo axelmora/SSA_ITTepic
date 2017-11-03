@@ -24,4 +24,10 @@ class Departamentos extends CI_Model {
       return false;
     }
   }
+  public function insertarDepartamento($nombre_departamento)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->set('nombre_departamento', $nombre_departamento );
+    $DB2->insert('departamento_academico');
+  }
 }
