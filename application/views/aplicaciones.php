@@ -72,139 +72,176 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td> <?php echo "".$NumeroEncuestas?></td>
                           <td><?php echo "".$valor->fecha_creacion; ?></td>
                           <td>
-                            <div class="btn-group btn-block">
-                              <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo "".$valor->idaplicaciones; ?>"  class="btn btn-primary btn-block text-white"   >
-                                <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
-                              </a>
-                            </div>
-                          </td>
-                        </tr>
-                        <?php
-                        $posicionencuestas++;
-                      }
-                      ?>
-                    </tbody>
-                  </table>
-                  <?php
-                }
-                else {
+                            <center>
+                              <div class="btn-group">
+                                <button type="button" class="btn  btn-primary text-white  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <i class="fa fa-bars" aria-hidden="true"></i>  OPCIONES
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-left">
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-users colorGrupos" aria-hidden="true"></i> GESTIONAR GRUPOS</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionlista/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-commenting-o colorRetroAlimentacion" aria-hidden="true"></i> RETROALIMENTACIÓN INDIVIDUAL</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacioncontinua/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-comments-o colorRetroAlimentacion" aria-hidden="true"></i> RETROALIMENTACIÓN CONTINUA</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="#" onclick="eliminarAplicacion(<?php echo "".$valor->idaplicaciones; ?>)" ><i class="fa fa-trash-o colorBorrar" aria-hidden="true"></i> ELIMINAR APLICACION</a>
+                                </div>
+                              </div>
+                            </center>
+                            <!--<div class="btn-group btn-block">
+                            <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo "".$valor->idaplicaciones; ?>"  class="btn btn-primary btn-block text-white"   >
+                            <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
+                          </a>
+                        </div> -->
+                      </td>
+                    </tr>
+                    <?php
+                    $posicionencuestas++;
+                  }
                   ?>
-                  <div class="card bg-danger text-white animated fadeInUp">
-                    <div class="card-body">
-                      <center>
-                        <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-                        Actualmente no existen aplicaciones de seguimiento en el aula generadas.
-                      </center>
-                    </div>
-                  </div>
-                  <?php
-                }
-                ?>
+                </tbody>
+              </table>
+              <?php
+            }
+            else {
+              ?>
+              <div class="card bg-danger text-white animated fadeInUp">
+                <div class="card-body">
+                  <center>
+                    <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
+                    Actualmente no existen aplicaciones de seguimiento en el aula generadas.
+                  </center>
+                </div>
               </div>
-            </div>
+              <?php
+            }
+            ?>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
 
-  <?php
-  function genePerido($periodo)
+<?php
+function genePerido($periodo)
+{
+  $anioac = substr($periodo, 0,strlen($periodo)-1);
+  $peridotTexto="";
+  if($periodo==$anioac."1")
   {
-    $anioac = substr($periodo, 0,strlen($periodo)-1);
-    $peridotTexto="";
-    if($periodo==$anioac."1")
+    $peridotTexto="Enero-Junio ".$anioac;
+  }
+  else {
+    if($periodo==$anioac."2")
     {
-      $peridotTexto="Enero-Junio ".$anioac;
+      $peridotTexto="Verano ".$anioac;
     }
     else {
-      if($periodo==$anioac."2")
+      if($periodo==$anioac."3")
       {
-        $peridotTexto="Verano ".$anioac;
-      }
-      else {
-        if($periodo==$anioac."3")
-        {
-          $peridotTexto="Agosto-Diciembre ".$anioac;
-        }
+        $peridotTexto="Agosto-Diciembre ".$anioac;
       }
     }
-    return $peridotTexto;
   }
+  return $peridotTexto;
+}
 
-  /*Funcion semestre actual*/
-  function genePeridoActual($peridot)
+/*Funcion semestre actual*/
+function genePeridoActual($peridot)
+{
+  $peridotTexto="";
+  $anioac="";
+  $anioac=date("Y"); //Obtener el año actual
+  if($peridot==$anioac."1")
   {
-    $peridotTexto="";
-    $anioac="";
-    $anioac=date("Y"); //Obtener el año actual
-    if($peridot==$anioac."1")
+    $peridotTexto="Enero-Junio ".$anioac;
+  }
+  else {
+    if($peridot==$anioac."2")
     {
-      $peridotTexto="Enero-Junio ".$anioac;
+      $peridotTexto="Verano ".$anioac;
     }
     else {
-      if($peridot==$anioac."2")
+      if($peridot==$anioac."3")
       {
-        $peridotTexto="Verano ".$anioac;
-      }
-      else {
-        if($peridot==$anioac."3")
-        {
-          $peridotTexto="Agosto-Diciembre ".$anioac;
-        }
+        $peridotTexto="Agosto-Diciembre ".$anioac;
       }
     }
-    return $peridotTexto;
   }
+  return $peridotTexto;
+}
 
-  ?>
-  <!-- Modal Agregar Aplicacion -->
-  <form method="post" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/generarAplicacion" >
-    <div class="modal fade" id="modalAplicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear nueva aplicacion  <b><?php echo "".genePeridoActual($this->session->userdata('periodosemestre')); ?></b> </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <?php
-          if ($AplicacionesPerido) {
-            ?>
-            <div class="container">
-              <div class="card bg-danger text-white">
-                <div class="card-body">
-                  <center>   <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite ' aria-hidden='true'></i></center> <br>
-                  <center>  <?php  echo " Ya existen aplicaciones en el semestre actual"; ?> </center>
-                </div>
+?>
+<!-- Modal Agregar Aplicacion -->
+<form method="post" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/generarAplicacion" >
+  <div class="modal fade" id="modalAplicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Crear nueva aplicacion  <b><?php echo "".genePeridoActual($this->session->userdata('periodosemestre')); ?></b> </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <?php
+        if ($AplicacionesPerido) {
+          ?>
+          <div class="container">
+            <div class="card bg-danger text-white">
+              <div class="card-body">
+                <center>   <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite ' aria-hidden='true'></i></center> <br>
+                <center>  <?php  echo " Ya existen aplicaciones en el semestre actual"; ?> </center>
               </div>
             </div>
-            <?php
-          }
-          ?>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="contrasenaapp">Contraseña aplicacion</label>
-              <input type="text" class="form-control" id="contrasenaapp" name="contrasenaapp" aria-describedby="contrasenaapp" placeholder="Ingresa una contraseña para la aplicacion " required>
-            </div>
-            <div class="form-group">
-              <label for="plantilla">Seleccionar plantilla</label>
-              <select  class="form-control" id="plantilla" name="plantilla" required >
-                <option selected value="1">ITTEPIC-AC-PO-004-07</option>
-              </select>
-            </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i> CANCELAR</button>
-            <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR NUEVA APLICACION</button>
+          <?php
+        }
+        ?>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="contrasenaapp">Contraseña aplicacion</label>
+            <input type="text" class="form-control" id="contrasenaapp" name="contrasenaapp" aria-describedby="contrasenaapp" placeholder="Ingresa una contraseña para la aplicacion " required>
           </div>
+          <div class="form-group">
+            <label for="plantilla">Seleccionar plantilla</label>
+            <select  class="form-control" id="plantilla" name="plantilla" required >
+              <option selected value="1">ITTEPIC-AC-PO-004-07</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i> CANCELAR</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR NUEVA APLICACION</button>
         </div>
       </div>
     </div>
-  </form>
-  <!-- Modal Agregar Aplicacion -->
-  <?php $this->load->view('include/footer'); ?>
+  </div>
+</form>
+<!-- Modal Agregar Aplicacion -->
+<!-- Modal Borrar Aplicaciones -->
+<form class="" action="" method="post">
+  <div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="">¿Desea eliminar esta aplicacion?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <input type="number" id="idAplicacionesBorrar" name="idAplicacionesBorrar" value="" hidden required />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> NO</button>
+          <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> SI </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
@@ -218,4 +255,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>var urlsistema = '<?php echo base_url()?>';</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
+<script type="text/javascript">
+    function eliminarAplicacion(idaplicaciones) {
+        $('#idAplicacionesBorrar').val(idaplicaciones);
+        $('#modalBorrar').modal('show');
+    }
+</script>
 </html>

@@ -6,6 +6,7 @@ class Panel_administracion extends CI_Controller {
 		$this->load->model('Sistema');
 		$this->load->model('Usuarios');
 		$this->load->model('Mesa_AyudaModel');
+		$this->load->model('Departamentos');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 	}
@@ -52,4 +53,20 @@ class Panel_administracion extends CI_Controller {
 	public function adduser() {
 		$this->load->view('administracion/vpanel_nusuario');
 	}
+	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
+	public function departamentos()
+	{
+		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
+		$this->load->view('administracion/vpanel_administracion_departamenos',$datos);
+	}
+	public function nuevo_departamento()
+	{
+		$this->load->view('administracion/vpanel_administracion_departamenos_nuevo');
+	}
+	public function editar_departamento($iddepartamento_academico)
+	{
+		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentosID($iddepartamento_academico);
+		$this->load->view('administracion/vpanel_administracion_departamenos',$datos);
+	}
+	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
 }

@@ -196,4 +196,28 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
+	public function retroalimentacionlista($idAplicacion)
+	{
+		$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
+		$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
+		$datos["AplicacionData"]=$idAplicacion;
+		if ($this->session->userdata('tipo')=='1') {
+				$this->load->view('aplicaciones_lista_retro',$datos);
+		}else {
+			if ($this->session->userdata('tipo')=='2') {
+					$this->load->view('aplicaciones_lista_retro',$datos);
+			}
+			else {
+				redirect(base_url().'index.php');
+			}
+		}
+	}
+	public function retroalimentacionseguimiento($idaplicacion)
+	{
+			$this->load->view('aplicaciones_retro');
+	}
+	public function retroalimentacioncontinua($idaplicacion)
+	{
+		$this->load->view('aplicaciones_retro_multi');
+	}
 }

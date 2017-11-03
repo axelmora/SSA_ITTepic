@@ -33,10 +33,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="col-lg-6">
 							<a href="<?php echo base_url(); ?>index.php/panel_administracion/adduser" class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> AGREGAR USUARIO</a>
+							<a href="<?php echo base_url(); ?>index.php/panel_administracion/departamentos" class="btn btn-success"><i class="fa fa-users" aria-hidden="true"></i> GESTIONAR DEPARTAMENTOS</a>
+
 						</div>
 					</div>
 
-					<table id="tablausuarios" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+					<table id="tablausuarios" class="table table-striped table-bordered  table-sm dt-responsive " cellspacing="0" width="100%">
 						<thead>
 							<tr>
 								<th>USUARIO</th>
@@ -70,8 +72,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														<i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
 													</button>
 													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDITAR</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-trash" aria-hidden="true"></i> ELIMINAR</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o colorEditar" aria-hidden="true"></i> EDITAR</a>
+														<a class="dropdown-item" href="#"><i class="fa fa-trash colorBorrar" aria-hidden="true"></i> ELIMINAR</a>
 													</div>
 												</div>
 											</td>

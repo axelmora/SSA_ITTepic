@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<h3><i class="fa fa-question-circle" aria-hidden="true"></i> Mesa de ayuda</h3>
 					<?php
 					if ($asuntos) { ?>
-						<table id="tablausuarios" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
+						<table id="tablausuarios" class="table table-striped table-bordered table-sm dt-responsive" cellspacing="0" width="100%">
 							<thead>
 								<tr>
 									<th>USUARIO</th>
