@@ -190,5 +190,8 @@ class SeguimientoModelo extends CI_Model {
             return false;
           }
         }
-
+        public function insertarRespuestas($idencuesta_seguimiento)
+        {
+           
+        }
 }
