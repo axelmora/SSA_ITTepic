@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   DEDICADO A MI NOVIA
   ANA CAROLINA MONDRAGON RANGEL :) POR TODO SU APOYO EN LA REALIZACION DE ESTE PROYECTO-->
 </head>
-<body>
+<body style="padding-bottom: 4%;">
   <div class="container">
     <div class="row">
       <div class="col-md-1">
@@ -49,12 +49,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
               }
               $DOCENTE="";
+              $MATERIA="";
+              $idencuesta_seguimiento="";
               if($DATOSMATERIA){
                 foreach ($DATOSMATERIA as $key => $value) {
-
+                  $DOCENTE="".$value->nombres." ".$value->apellidos;
+                  $MATERIA="".$value->nombre_materia ;
+                  $idencuesta_seguimiento="".$value->idencuesta_seguimiento;
                 }
               }else {
-
+                $DOCENTE="ERROR";
+                $MATERIA="ERROR";
+                $idencuesta_seguimiento="ERROR";
               }
               ?>
             </div>
@@ -80,7 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
             </div>
           </div>
-          <form role="form"  method="post" id="formularioencuestaprincipal" action="<?php echo base_url(); ?>index.php/Seguimiento/enviarEncuesta/1" >
+          <form role="form"  method="post" id="formularioencuestaprincipal" action="<?php echo base_url(); ?>index.php/Seguimiento/enviarEncuesta/<?php echo "".$idencuesta_seguimiento; ?>" >
             <div class="card-body menus ">
               <!-- DATOS DEL ALUMNO -->
               <div class="table-responsive">
@@ -97,11 +103,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </tr>
                     <tr>
                       <td  class="textoNegritas"  colspan="1">Profesor:</td>
-                      <td  colspan="3"> </td>
+                      <td  colspan="3"><?php echo "".$DOCENTE; ?> </td>
                     </tr>
                     <tr>
                       <td class="textoNegritas" colspan="1" >Materia:</td>
-                      <td  colspan="3"> </td>
+                      <td  colspan="3"><?php echo "".$MATERIA; ?> </td>
                     </tr>
                   </tbody>
                 </table>
@@ -537,15 +543,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </form>
         </div>
-        <div class="card-footer text-muted">
-
-        </div>
+      <!--  <div class="card-footer text-muted">
+      </div> -->
       </div>
-
     </div>
   </div>
 </div>
 </div>
+
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 </body>
 </html>
