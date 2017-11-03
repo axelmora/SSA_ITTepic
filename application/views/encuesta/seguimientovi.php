@@ -370,6 +370,123 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
               </div>
               <!-- PREGUNTA  7 Fin -->
+              <!-- PREGUNTA 10 -->
+                <p class="textopreguntas" style="margin-left:10px;">10.- De la siguiente lista seleccione y cuantifique las prácticas que ha realizado</p>
+                <div class="row">
+                    <div class="col-md-1">
+                        </div>
+                  <div class="col-md-10 ">
+                    <table class="table table-striped table-hover menus">
+                      <tbody>
+                        <tr>
+                          <td>Lista:</td>
+                          <td class="Si_No" colspan="2">Cantidad #</td>
+                        </tr>
+                        <tr>
+                          <td>a) Visitas a empresas, de obra o de campo
+                          </td>
+                          <td colspan="2">
+                            <div class="row">
+                              <div class="col-md-2">
+                                <label class="col-form-label">(No)</label>
+                              </div>
+                              <div class="col-md-10">
+                                <span class="input-group col-md-12 ">
+                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_1" />
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>b) Laboratorio </td>
+                          <td colspan="2">
+                            <div class="row">
+                              <div class="col-md-2">
+                                <label  class="col-form-label">(No)</label>
+                              </div>
+                              <div class="col-md-10">
+                                <span class="input-group col-md-12">
+                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0" required name="pregunta10_2" />
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>c) Resolución de problemas o ejercicios en el aula
+                          </td>
+                          <td colspan="2">
+                            <div class="row">
+                              <div class="col-md-2">
+                                <label  class="col-form-label">(No)</label>
+                              </div>
+                              <div class="col-md-10">
+                                <span class="input-group  col-md-12">
+                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0" required name="pregunta10_3"/>
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>d) Formulación de proyectos
+                          </td>
+                          <td colspan="2">
+                            <div class="row">
+                              <div class="col-md-2">
+                                <label  class="col-form-label ">(No)</label>
+                              </div>
+                              <div class="col-md-10">
+                                <span class="input-group col-md-12">
+                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" value="0"  required name="pregunta10_4"/>
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>e) Elaboración de un producto
+                          </td>
+                          <td colspan="2">
+                            <div class="row">
+                              <div class="col-md-2">
+                                <label  class="col-form-label ">(No)</label>
+                              </div>
+                              <div class="col-md-10">
+                                <span class="input-group col-md-12">
+                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000" value="0" required name="pregunta10_5"/>
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>f)otro: Especifique
+                          </td>
+                          <td>
+                            <input type="text" class="form-control" placeholder="Especifique..." value=" " name="pregunta10_6" />
+                          </td>
+                          <td>
+                            <div class="row">
+                              <div class="col-md-2">
+                                  <label  class="col-form-label">(No) </label>
+                              </div>
+                              <div class="col-md-10">
+                                <span class="input-group ">
+                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_7"/>
+                                </span>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+
+              <!--PREGUNTA 10 FIN-->
               <!--PREGUNTA 11 -->
               <br>
               <div class="row">
