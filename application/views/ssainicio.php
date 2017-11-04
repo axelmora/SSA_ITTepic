@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 	<!--Segundo ROW -->
 	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
-		<div class="col-lg-6">
+		<div class="col-lg-4">
 			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
 				<div class="card menus animenu caro">
 					<div class="card-body">
@@ -61,8 +61,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="col-lg-12">
 								<div>
 									<center>
-										<i class="icon-clipboard coloriconosmenu4" aria-hidden="true"></i>
-										<p class="textotitulo2"> ENCUESTA SEGUIMIENTO EN EL AULA</p>
+										<i class="fa fa-graduation-cap coloriconosmenu4" aria-hidden="true"></i>
+										<p class="textotitulo2"> ALUMNOS</p>
 									</center>
 								</div>
 							</div>
@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</a>
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-4">
 			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
 				<div class="card menus animenu caro">
 					<div class="card-body">
@@ -79,8 +79,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="col-lg-12">
 								<div>
 									<center>
-										<i class="icon-clipboard coloriconosmenu4" aria-hidden="true"></i>
-										<p class="textotitulo2"> ENCUESTA SEGUIMIENTO EN EL AULA</p>
+										<i class="fa fa-university coloriconosmenu4" aria-hidden="true"></i>
+										<p class="textotitulo2"> MATERIAS</p>
+									</center>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-4">
+			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
+				<div class="card menus animenu caro">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div>
+									<center>
+										<i class="fa fa-users coloriconosmenu4" aria-hidden="true"></i>
+										<p class="textotitulo2"> DOCENTES</p>
 									</center>
 								</div>
 							</div>
@@ -93,15 +111,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!--TERCER ROW -->
 		<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 			<div class="col-lg-6">
-				<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
+				<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/manual_usuario" class="linkmenu">
 					<div class="card menus animenu caro">
 						<div class="card-body">
 							<div class="row">
 								<div class="col-lg-12">
 									<div>
 										<center>
-											<i class="icon-clipboard coloriconosmenu4" aria-hidden="true"></i>
-											<p class="textotitulo2"> ENCUESTA SEGUIMIENTO EN EL AULA</p>
+											<i class="fa fa-book coloriconosmenu4" aria-hidden="true"></i>
+											<p class="textotitulo2"> MANUAL DE USUARIO</p>
 										</center>
 									</div>
 								</div>
@@ -111,15 +129,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</a>
 			</div>
 			<div class="col-lg-6">
-				<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
+				<a href="<?php echo base_url(); ?>index.php/C_usuarios/logout" class="linkmenu">
 					<div class="card menus animenu caro">
 						<div class="card-body">
 							<div class="row">
 								<div class="col-lg-12">
 									<div>
 										<center>
-											<i class="icon-clipboard coloriconosmenu4" aria-hidden="true"></i>
-											<p class="textotitulo2"> ENCUESTA SEGUIMIENTO EN EL AULA</p>
+											<i class="fa fa-sign-in coloriconosmenu4" aria-hidden="true"></i>
+											<p class="textotitulo2">SALIR</p>
 										</center>
 									</div>
 								</div>

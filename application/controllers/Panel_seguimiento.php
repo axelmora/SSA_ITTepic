@@ -220,4 +220,13 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		$this->load->view('aplicaciones_retro_multi');
 	}
+	public function manual_usuario($value='')
+	{
+		if ($this->session->userdata('tipo')=='2') {
+				$this->load->view('manual_usuariovista');
+		}
+		else {
+			redirect(base_url().'index.php');
+		}
+	}
 }
