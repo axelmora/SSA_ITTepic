@@ -36,7 +36,6 @@ class Seguimiento extends CI_Controller {
 			}else {
 				echo "Ya no hay";
 			}
-			//
 		}else {
 			redirect(base_url().'index.php/Seguimiento/');
 		}
@@ -44,18 +43,47 @@ class Seguimiento extends CI_Controller {
 	public function enviarEncuesta($idencuesta_seguimiento)
 	{
 		$RESULTADO = $this->input->post();
-		echo json_encode($RESULTADO);
+		/*echo json_encode($RESULTADO);
 		echo "<br>";
 		foreach ($RESULTADO as $value)
 		{
 			echo "$value <br>";
 		}
 		echo "<br>";
-		$data = json_decode(html_entity_decode('{"1":"Hola","2":"xD","3":":3 carito ññ mi amor <3"}'), TRUE);
+		print_r(array_keys($RESULTADO));
+		echo "<br>";*/
+		/*$data = json_decode(html_entity_decode('{"1":"Hola","2":"xD","3":":3 carito ññ mi amor <3"}'), TRUE);
 		foreach ($data as $value)
 		{
 			echo "$value <br>";
+		}*/
+		$IDencuestas=$this->session->userdata('idencuestas');
+		$IDencuEnviar = explode(",",$IDencuestas);
+		$NUEVOS_ID="";
+		if(count($IDencuEnviar)>1){
+			for ($i=1; $i < count($IDencuEnviar); $i++) {
+				if($i<count($IDencuEnviar)-1)
+				{
+					$NUEVOS_ID.=$IDencuEnviar[$i].",";
+				}else {
+					$NUEVOS_ID.=$IDencuEnviar[$i];
+				}
+			}
 		}
+		$DATOS_RESULTADOS= array(
+			'fecha_contestado' =>''.date('Y-m-d H:i:s'),
+			'respuestas' => json_encode($RESULTADO),
+			'estado'=>1,
+			'no_de_control'=>$this->session->userdata('numero_control'),
+			'encuestas_seguimiento_idencuesta_seguimiento'=>$idencuesta_seguimiento
+		);
+	//	echo "".$NUEVOS_ID;
+		$this->SeguimientoModelo->insertarRespuestas($DATOS_RESULTADOS);
+		$progresoactual=$this->session->userdata('progresoactual');
+		$progresoactual++;
+		$this->session->set_userdata('idencuestas',$NUEVOS_ID);
+		$this->session->set_userdata('progresoactual',$progresoactual);
+		redirect(base_url().'index.php/Seguimiento/contestar/');
 	}
 	public function verificarAlumnoEncuesta()
 	{

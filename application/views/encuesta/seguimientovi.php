@@ -136,14 +136,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </td>
                         <td>
                           <div class="form-check abc-radio">
-                            <input class="form-check-input" type="radio" name="r1_1" id="r1_1" value="SI"  required>
+                            <input class="form-check-input" type="radio" name="pregunta1_1" id="r1_1" value="SI"  required>
                             <label class="form-check-label radioTabla" for="r1_1">
                             </label>
                           </div>
                         </td>
                         <td>
                           <div class="form-check abc-radio">
-                            <input class="form-check-input" type="radio" name="r1_1" id="r1_2" value="NO" required>
+                            <input class="form-check-input" type="radio" name="pregunta1_1" id="r1_2" value="NO" required>
                             <label class="form-check-label radioTabla" for="r1_2">
                             </label>
                           </div>
@@ -158,14 +158,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </td>
                         <td>
                           <div class="form-check abc-radio">
-                            <input class="form-check-input" type="radio" name="r2_1" id="r2_1" value="SI" required />
+                            <input class="form-check-input" type="radio" name="pregunta1_2" id="r2_1" value="SI" required />
                             <label class="form-check-label" for="r2_1">
                             </label>
                           </div>
                         </td>
                         <td>
                           <div class="form-check abc-radio">
-                            <input class="form-check-input" type="radio" name="r2_1" id="r2_2" value="NO" required  />
+                            <input class="form-check-input" type="radio" name="pregunta1_2" id="r2_2" value="NO" required  />
                             <label class="form-check-label" for="r2_2">
                             </label>
                           </div>
@@ -179,14 +179,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </td>
                         <td>
                           <div class="form-check abc-radio">
-                            <input class="form-check-input" type="radio" name="r3_1" id="r3_1" value="SI" required>
+                            <input class="form-check-input" type="radio" name="pregunta1_3" id="r3_1" value="SI" required>
                             <label class="form-check-label" for="r3_1">
                             </label>
                           </div>
                         </td>
                         <td>
                           <div class="form-check abc-radio">
-                            <input class="form-check-input" type="radio" name="r3_1" id="r3_2" value="NO" required>
+                            <input class="form-check-input" type="radio" name="pregunta1_3" id="r3_2" value="NO" required>
                             <label class="form-check-label" for="r3_2">
                             </label>
                           </div>
@@ -200,14 +200,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </td>
                         <td>
                           <div class="form-check abc-radio">
-                            <input class="form-check-input" type="radio" name="r4_1" id="r4_1" value="SI" required>
+                            <input class="form-check-input" type="radio" name="pregunta1_4" id="r4_1" value="SI" required>
                             <label class="form-check-label" for="r4_1">
                             </label>
                           </div>
                         </td>
                         <td>
                           <div class="form-check abc-radio">
-                            <input class="form-check-input" type="radio" name="r4_1" id="r4_2" value="NO" required>
+                            <input class="form-check-input" type="radio" name="pregunta1_4" id="r4_2" value="NO" required>
                             <label class="form-check-label" for="r4_2">
                             </label>
                           </div>
@@ -221,7 +221,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </td>
                         <td>
                           <div class="form-check abc-radio  ">
-                            <input class="form-check-input" type="radio" name="r5_1" id="r5_1" value="SI" required>
+                            <input class="form-check-input" type="radio" name="pregunta1_5" id="r5_1" value="SI" required>
                             <label class="form-check-label radiosTablas " for="r5_1">
                             </label>
                           </div>
@@ -229,7 +229,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td>
 
                           <div class="form-check abc-radio  ">
-                            <input class="form-check-input" type="radio" name="r5_1" id="r5_2" value="NO" required>
+                            <input class="form-check-input" type="radio" name="pregunta1_5" id="r5_2" value="NO" required>
                             <label class="form-check-label radiosTablas " for="r5_2">
                             </label>
                           </div>
@@ -247,7 +247,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <p class="textopreguntas">2.- ¿Qué unidad estas cursando actualmente? </p>
                 </div>
                 <div class="col-md-4">
-                  <select class="form-control"  name="unidadcursando" id="unidadcursando" title="Elige una unidad." required>
+                  <select class="form-control"  name="pregunta2" id="pregunta2" title="Elige una unidad." required>
                     <option value="1">Unidad 1</option>
                     <option value="2">Unidad 2</option>
                     <option value="3">Unidad 3</option>
@@ -271,7 +271,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <p class="textopreguntas">3.- ¿Cuál fue la última unidad evaluada? </p>
                 </div>
                 <div class="col-md-4">
-                  <select class="form-control" name="unidadevaluada" id="unidadevaluada" title="Elige una unidad."  required>
+                  <select class="form-control" name="pregunta3" id="pregunta3" title="Elige una unidad."  required>
                     <option value="1">Unidad 1</option>
                     <option value="2">Unidad 2</option>
                     <option value="3">Unidad 3</option>
@@ -296,14 +296,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="col-md-2">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta4_1" id="pregunta4_1" value="SI" required>
+                    <input class="form-check-input" type="radio" name="pregunta4" id="pregunta4_1" value="SI" required>
                     <label class="form-check-label" for="pregunta4_1">Si
                     </label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta4_1" id="pregunta4_2" value="NO" required>
+                    <input class="form-check-input" type="radio" name="pregunta4" id="pregunta4_2" value="NO" required>
                     <label class="form-check-label" for="pregunta4_2">No
                     </label>
                   </div>
@@ -318,21 +318,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="col-md-2">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta5_1" id="pregunta5_1" value="SI" required>
+                    <input class="form-check-input" type="radio" name="pregunta5" id="pregunta5_1" value="SI" required>
                     <label class="form-check-label" for="pregunta5_1">Si
                     </label>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta5_1" id="pregunta5_2" value="NO" required>
+                    <input class="form-check-input" type="radio" name="pregunta5" id="pregunta5_2" value="NO" required>
                     <label class="form-check-label" for="pregunta5_2">No
                     </label>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta5_1" id="pregunta5_3" value="No recuerdo" required>
+                    <input class="form-check-input" type="radio" name="pregunta5" id="pregunta5_3" value="No recuerdo" required>
                     <label class="form-check-label" for="pregunta5_3">No recuerdo
                     </label>
                   </div>
@@ -347,14 +347,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="col-md-2">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta6_1" id="pregunta6_1" value="SI" required>
+                    <input class="form-check-input" type="radio" name="pregunta6" id="pregunta6_1" value="SI" required>
                     <label class="form-check-label" for="pregunta6_1">Si
                     </label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta6_1" id="pregunta6_2" value="NO" required>
+                    <input class="form-check-input" type="radio" name="pregunta6" id="pregunta6_2" value="NO" required>
                     <label class="form-check-label" for="pregunta6_2">No
                     </label>
                   </div>
@@ -362,7 +362,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
               <!-- PREGUNTA  6  FIN -->
               <!--PREGUNTA 7 -->
-
               <br>
               <div class="row">
                 <div class="col-md-6">
@@ -370,135 +369,179 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="col-md-2">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta7_1" id="pregunta7_1" value="SI" required>
+                    <input class="form-check-input" type="radio" name="pregunta7" id="pregunta7_1" value="SI" required>
                     <label class="form-check-label" for="pregunta7_1">Si
                     </label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta7_1" id="pregunta7_2" value="NO" required>
+                    <input class="form-check-input" type="radio" name="pregunta7" id="pregunta7_2" value="NO" required>
                     <label class="form-check-label" for="pregunta7_2">No
                     </label>
                   </div>
                 </div>
               </div>
               <!-- PREGUNTA  7 Fin -->
-              <!-- PREGUNTA 10 -->
-                <p class="textopreguntas" style="margin-left:10px;">10.- De la siguiente lista seleccione y cuantifique las prácticas que ha realizado</p>
-                <div class="row">
-                    <div class="col-md-1">
-                        </div>
-                  <div class="col-md-10 ">
-                    <table class="table table-striped table-hover   table-sm menus">
-                      <tbody>
-                        <tr>
-                          <td>Lista:</td>
-                          <td class="Si_No" colspan="2">Cantidad #</td>
-                        </tr>
-                        <tr>
-                          <td>a) Visitas a empresas, de obra o de campo
-                          </td>
-                          <td colspan="2">
-                            <div class="row">
-                              <div class="col-md-2">
-                                <label class="col-form-label">(No)</label>
-                              </div>
-                              <div class="col-md-10">
-                                <span class="input-group col-md-12 ">
-                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_1" />
-                                </span>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>b) Laboratorio </td>
-                          <td colspan="2">
-                            <div class="row">
-                              <div class="col-md-2">
-                                <label  class="col-form-label">(No)</label>
-                              </div>
-                              <div class="col-md-10">
-                                <span class="input-group col-md-12">
-                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0" required name="pregunta10_2" />
-                                </span>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>c) Resolución de problemas o ejercicios en el aula
-                          </td>
-                          <td colspan="2">
-                            <div class="row">
-                              <div class="col-md-2">
-                                <label  class="col-form-label">(No)</label>
-                              </div>
-                              <div class="col-md-10">
-                                <span class="input-group  col-md-12">
-                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0" required name="pregunta10_3"/>
-                                </span>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>d) Formulación de proyectos
-                          </td>
-                          <td colspan="2">
-                            <div class="row">
-                              <div class="col-md-2">
-                                <label  class="col-form-label ">(No)</label>
-                              </div>
-                              <div class="col-md-10">
-                                <span class="input-group col-md-12">
-                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" value="0"  required name="pregunta10_4"/>
-                                </span>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>e) Elaboración de un producto
-                          </td>
-                          <td colspan="2">
-                            <div class="row">
-                              <div class="col-md-2">
-                                <label  class="col-form-label ">(No)</label>
-                              </div>
-                              <div class="col-md-10">
-                                <span class="input-group col-md-12">
-                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000" value="0" required name="pregunta10_5"/>
-                                </span>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>f)otro: Especifique
-                          </td>
-                          <td>
-                            <input type="text" class="form-control" placeholder="Especifique..." value=" " name="pregunta10_6" />
-                          </td>
-                          <td>
-                            <div class="row">
-                              <div class="col-md-2">
-                                  <label  class="col-form-label">(No) </label>
-                              </div>
-                              <div class="col-md-10">
-                                <span class="input-group ">
-                                  <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_7"/>
-                                </span>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-
+              <!--PREGUNTA 8 -->
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="textopreguntas">8.- ¿Utiliza medios electrónicos (Software, Siveduc, biblioteca digital, etc.) para impartir sus clases?</p>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta8" id="pregunta8_1" value="SI" required>
+                    <label class="form-check-label" for="pregunta8_1">Si
+                    </label>
                   </div>
                 </div>
+                <div class="col-md-4">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta8" id="pregunta8_2" value="NO" required>
+                    <label class="form-check-label" for="pregunta8_2">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!--PREGUNTA  8  FIN-->
+              <!--PREGUNTA 9 -->
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="textopreguntas">9.-Utiliza medios audiovisuales (video proyector, pintarrón, pantalla de TV, etc.) para impartir sus clases?</p>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta9" id="pregunta9_1" value="SI" required>
+                    <label class="form-check-label" for="pregunta9_1">Si
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-check abc-radio">
+                    <input class="form-check-input" type="radio" name="pregunta9" id="pregunta9_2" value="NO" required>
+                    <label class="form-check-label" for="pregunta9_2">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- PREGUNTA  9 FIN -->
+              <!-- PREGUNTA 10 -->
+              <p class="textopreguntas" style="margin-left:10px;">10.- De la siguiente lista seleccione y cuantifique las prácticas que ha realizado</p>
+              <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-10 ">
+                  <table class="table table-striped table-hover   table-sm menus">
+                    <tbody>
+                      <tr>
+                        <td>Lista:</td>
+                        <td class="Si_No" colspan="2">Cantidad #</td>
+                      </tr>
+                      <tr>
+                        <td>a) Visitas a empresas, de obra o de campo
+                        </td>
+                        <td colspan="2">
+                          <div class="row">
+                            <div class="col-md-2">
+                              <label class="col-form-label">(No)</label>
+                            </div>
+                            <div class="col-md-10">
+                              <span class="input-group col-md-12 ">
+                                <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_1" />
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>b) Laboratorio </td>
+                        <td colspan="2">
+                          <div class="row">
+                            <div class="col-md-2">
+                              <label  class="col-form-label">(No)</label>
+                            </div>
+                            <div class="col-md-10">
+                              <span class="input-group col-md-12">
+                                <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0" required name="pregunta10_2" />
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>c) Resolución de problemas o ejercicios en el aula
+                        </td>
+                        <td colspan="2">
+                          <div class="row">
+                            <div class="col-md-2">
+                              <label  class="col-form-label">(No)</label>
+                            </div>
+                            <div class="col-md-10">
+                              <span class="input-group  col-md-12">
+                                <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0" required name="pregunta10_3"/>
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>d) Formulación de proyectos
+                        </td>
+                        <td colspan="2">
+                          <div class="row">
+                            <div class="col-md-2">
+                              <label  class="col-form-label ">(No)</label>
+                            </div>
+                            <div class="col-md-10">
+                              <span class="input-group col-md-12">
+                                <input type="number" class="form-control" placeholder="Cantidad" min="0" value="0"  required name="pregunta10_4"/>
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>e) Elaboración de un producto
+                        </td>
+                        <td colspan="2">
+                          <div class="row">
+                            <div class="col-md-2">
+                              <label  class="col-form-label ">(No)</label>
+                            </div>
+                            <div class="col-md-10">
+                              <span class="input-group col-md-12">
+                                <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000" value="0" required name="pregunta10_5"/>
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>f)otro: Especifique
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" placeholder="Especifique..." value=" " name="pregunta10_6" />
+                        </td>
+                        <td>
+                          <div class="row">
+                            <div class="col-md-2">
+                              <label  class="col-form-label">(No) </label>
+                            </div>
+                            <div class="col-md-10">
+                              <span class="input-group ">
+                                <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_7"/>
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
 
               <!--PREGUNTA 10 FIN-->
               <!--PREGUNTA 11 -->
@@ -509,14 +552,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="col-md-2">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta11_1" id="pregunta11_1" value="SI" required>
+                    <input class="form-check-input" type="radio" name="pregunta11" id="pregunta11_1" value="SI" required>
                     <label class="form-check-label" for="pregunta11_1">Si
                     </label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-check abc-radio">
-                    <input class="form-check-input" type="radio" name="pregunta11_1" id="pregunta11_2" value="NO" required>
+                    <input class="form-check-input" type="radio" name="pregunta11" id="pregunta11_2" value="NO" required>
                     <label class="form-check-label" for="pregunta11_2">No
                     </label>
                   </div>
@@ -543,14 +586,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </form>
         </div>
-      <!--  <div class="card-footer text-muted">
+        <!--  <div class="card-footer text-muted">
       </div> -->
-      </div>
     </div>
   </div>
 </div>
 </div>
-
+</div>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 </body>
 </html>

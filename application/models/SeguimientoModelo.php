@@ -190,8 +190,9 @@ class SeguimientoModelo extends CI_Model {
             return false;
           }
         }
-        public function insertarRespuestas($idencuesta_seguimiento)
+        public function insertarRespuestas($datos)
         {
-           
+          $DB2 = $this->load->database('default', TRUE);
+          $DB2->insert('resultados_seguimiento',$datos);
         }
 }
