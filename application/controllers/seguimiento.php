@@ -35,10 +35,15 @@ class Seguimiento extends CI_Controller {
 				$this->load->view('encuesta/seguimientovi',$datos);
 			}else {
 				echo "Ya no hay";
+				redirect(base_url().'index.php/Seguimiento/completado');
 			}
 		}else {
 			redirect(base_url().'index.php/Seguimiento/');
 		}
+	}
+	public function completado()
+	{
+		$this->load->view('encuesta/completado');
 	}
 	public function enviarEncuesta($idencuesta_seguimiento)
 	{
@@ -47,16 +52,16 @@ class Seguimiento extends CI_Controller {
 		echo "<br>";
 		foreach ($RESULTADO as $value)
 		{
-			echo "$value <br>";
-		}
-		echo "<br>";
-		print_r(array_keys($RESULTADO));
-		echo "<br>";*/
-		/*$data = json_decode(html_entity_decode('{"1":"Hola","2":"xD","3":":3 carito ññ mi amor <3"}'), TRUE);
-		foreach ($data as $value)
-		{
-			echo "$value <br>";
-		}*/
+		echo "$value <br>";
+	}
+	echo "<br>";
+	print_r(array_keys($RESULTADO));
+	echo "<br>";*/
+	/*$data = json_decode(html_entity_decode('{"1":"Hola","2":"xD","3":":3 carito ññ mi amor <3"}'), TRUE);
+	foreach ($data as $value)
+	{
+	echo "$value <br>";
+}*/
 		$IDencuestas=$this->session->userdata('idencuestas');
 		$IDencuEnviar = explode(",",$IDencuestas);
 		$NUEVOS_ID="";
@@ -77,7 +82,7 @@ class Seguimiento extends CI_Controller {
 			'no_de_control'=>$this->session->userdata('numero_control'),
 			'encuestas_seguimiento_idencuesta_seguimiento'=>$idencuesta_seguimiento
 		);
-	//	echo "".$NUEVOS_ID;
+		//	echo "".$NUEVOS_ID;
 		$this->SeguimientoModelo->insertarRespuestas($DATOS_RESULTADOS);
 		$progresoactual=$this->session->userdata('progresoactual');
 		$progresoactual++;
