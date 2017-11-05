@@ -129,14 +129,18 @@ class Seguimiento extends CI_Controller {
 						/* CONCATENAR ID ENCUESTAS*/
 						foreach ($ENCUESTAS as $key => $value) {
 							//$this->consolaLOG("".$value->idencuesta_seguimiento."");
-							if($POSENCUESTAS<$TAMANO-1)
-							{
-								$ID_ENCUESTAS.=$value->idencuesta_seguimiento.",";
+							/* VERIFICAR SI YA FUE CONTESTADA */
+							if(!$this->SeguimientoModelo->verificarEncuestaContestada($value->idencuesta_seguimiento,$NUMERO_CONTROL)){
+								if($POSENCUESTAS<$TAMANO-1)
+								{
+									$ID_ENCUESTAS.=$value->idencuesta_seguimiento.",";
+								}else {
+									$ID_ENCUESTAS.=$value->idencuesta_seguimiento;
+								}
+								$PROGRESOENCUESTAS++;
+								$POSENCUESTAS++;
 							}else {
-								$ID_ENCUESTAS.=$value->idencuesta_seguimiento;
 							}
-							$PROGRESOENCUESTAS++;
-							$POSENCUESTAS++;
 						}
 						$POSENCUESTAS=0;
 						//$this->consolaLOG("ID ENCUESTAS: ".$ID_ENCUESTAS);

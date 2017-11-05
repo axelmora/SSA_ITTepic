@@ -168,31 +168,42 @@ class SeguimientoModelo extends CI_Model {
           $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es, grupos as gr,grupo_alumnos as ga where es.aplicaciones_idaplicaciones=$idaplicaciones "
           ."and es.idencuesta_seguimiento=gr.encuestas_seguimiento_idencuesta_seguimiento and ".
           "gr.idgrupos=ga.grupos_idgrupos and ga.alumnos_numero_control=$numero_control"
-          );
-          if ($query->num_rows() > 0)
-          {
-            return $query->result();
-          } else {
-            return false;
-          }
-        }
-        public function obtenerDocenteMateria($idaplicaciones)
+        );
+        if ($query->num_rows() > 0)
         {
-          $DBcon = $this->load->database('default', TRUE);
-          $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
-           " where es.idencuesta_seguimiento=$idaplicaciones and es.materias_idmaterias=ma.idmaterias".
-           " and es.docentes_rfc=d.rfc;"
-          );
-          if ($query->num_rows() > 0)
-          {
-            return $query->result();
-          } else {
-            return false;
-          }
+          return $query->result();
+        } else {
+          return false;
         }
-        public function insertarRespuestas($datos)
+      }
+      public function verificarEncuestaContestada($idaplicaciones,$numero_control)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT * FROM resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idaplicaciones and no_de_control=$numero_control" );
+        if ($query->num_rows() > 0)
         {
-          $DB2 = $this->load->database('default', TRUE);
-          $DB2->insert('resultados_seguimiento',$datos);
+          return true;
+        } else {
+          return false;
         }
-}
+      }
+      public function obtenerDocenteMateria($idaplicaciones)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
+        " where es.idencuesta_seguimiento=$idaplicaciones and es.materias_idmaterias=ma.idmaterias".
+        " and es.docentes_rfc=d.rfc;"
+      );
+      if ($query->num_rows() > 0)
+      {
+        return $query->result();
+      } else {
+        return false;
+      }
+    }
+    public function insertarRespuestas($datos)
+    {
+      $DB2 = $this->load->database('default', TRUE);
+      $DB2->insert('resultados_seguimiento',$datos);
+    }
+  }
