@@ -14,6 +14,8 @@ $(document).ready(function(){
   $(".animenu").on("webkitAnimationEnd mozAnimationEnd oAnimationEnd animationEnd", function(event) {
     $(this).removeClass("animated pulse");
   });
+
+
   /* TAMNAÑO ICONOS */
   $(function() {
     $('.caro').matchHeight();
