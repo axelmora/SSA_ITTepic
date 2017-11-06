@@ -226,7 +226,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <th>MATERIA</th>
                 <th>DOCENTES</th>
                 <th>ALUMNOS</th>
-                <th>OPCIONES</th>
               </tr>
             </thead>
             <tbody>
@@ -242,9 +241,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </td>
                   <td>
                     <a role="button" class="btn btn-info text-white" onclick="verAlumnos(<?php echo $valores->idencuesta_seguimiento; ?>)" >VER ALUMNOS</a>
-                  </td>
-                  <td>
-
                   </td>
                 </tr>
                 <?php
@@ -262,7 +258,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </div>
 <!-- MODAL VER ALUMNOS -->
-<div class="modal fade" id="modalverAlumnosCopiar" tabindex="2" role="dialog" aria-labelledby="modalAlumnosCopiar" aria-hidden="true">
+<div class="modal fade menus" id="modalverAlumnosCopiar" tabindex="2" role="dialog" aria-labelledby="modalAlumnosCopiar" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -271,12 +267,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modal-body" >
+        <div style="   height: 300px;   overflow-y: scroll;">
+          <?php
+          for ($i=0; $i < 500; $i++) {
+            echo "".$i."<br>";
+          }
+          ?>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+        <button type="button" class="btn btn-success">SELECIONAR ESTE GRUPO</button>
       </div>
     </div>
   </div>
@@ -447,7 +449,11 @@ function selecionarDoc(idmateria,nombre) {
   $("#nombredocente").addClass( "animated bounceIn" );
 }
 function verAlumnos(idEncuestSeguimiento) {
+  $('#modalAlumnosCopiar').modal('hide')
   $('#modalverAlumnosCopiar').modal('show');
 }
+$('#modalverAlumnosCopiar').on('hidden.bs.modal', function () {
+  $('#modalAlumnosCopiar').modal('show');
+})
 </script>
 </html>
