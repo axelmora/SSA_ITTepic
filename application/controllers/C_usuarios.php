@@ -84,23 +84,23 @@ class C_usuarios extends CI_Controller {
 	/* funcion para destruri sesiones*/
 	public function logout() {
 		$this->session->sess_destroy();
-		redirect(base_url().'index.php/C_Inicio/');
+		redirect(base_url().'index.php/');
 	}
 	public function generarPeriodo()
 	{
-		 $anio=date("Y");
-		 $mes=date("m");
-		 $periodo="";
-		 if ($mes>=1 && $mes<=6) {
-			 	$periodo=$anio."1";
-		 }else {
-			 if ($mes>=8 && $mes<=12) {
-					$periodo=$anio."3";
-			 }
-			 else {
-			 		$periodo=$anio."2";
-			 }
-		 }
-		 return $periodo;
+		$anio=date("Y");
+		$mes=date("m");
+		$periodo="";
+		if ($mes>=1 && $mes<=6) {
+			$periodo=$anio."1";
+		}else {
+			if ($mes>=8 && $mes<=12) {
+				$periodo=$anio."3";
+			}
+			else {
+				$periodo=$anio."2";
+			}
+		}
+		return $periodo;
 	}
 }

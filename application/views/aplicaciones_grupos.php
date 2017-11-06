@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <?php
                   if ($ALUMNOSGRUPO) {
                     ?>
-                    <table id="tablaGrupoAlumnos" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                    <table id="tablaGrupoAlumnos" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th><i class="fa fa-hashtag" aria-hidden="true"></i> NUMERO DE CONTROL</th>
