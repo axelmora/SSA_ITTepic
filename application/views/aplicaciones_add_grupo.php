@@ -207,6 +207,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <pre id="example-console">
 </pre>
 <!-- MODAL ALUMNOS COPIAR -->
+
+
 <div class="modal fade"   id="modalAlumnosCopiar" tabindex="-1" role="dialog" aria-labelledby="modalDocentes" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -239,7 +241,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos);?>
                   </td>
                   <td>
-                      <a role="button" class="btn btn-info text-white" onclick="" >VER ALUMNOS</a>
+                    <a role="button" class="btn btn-info text-white" onclick="verAlumnos(<?php echo $valores->idencuesta_seguimiento; ?>)" >VER ALUMNOS</a>
                   </td>
                   <td>
 
@@ -255,6 +257,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
         <button  type="submit" class="btn btn-success">ACPETAR SELECCIONAR GRUPO </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL VER ALUMNOS -->
+<div class="modal fade" id="modalverAlumnosCopiar" tabindex="2" role="dialog" aria-labelledby="modalAlumnosCopiar" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Lista de alumnos incluidos en el grupo:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -425,7 +447,7 @@ function selecionarDoc(idmateria,nombre) {
   $("#nombredocente").addClass( "animated bounceIn" );
 }
 function verAlumnos(idEncuestSeguimiento) {
-
+  $('#modalverAlumnosCopiar').modal('show');
 }
 </script>
 </html>
