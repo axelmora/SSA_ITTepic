@@ -162,6 +162,17 @@ class SeguimientoModelo extends CI_Model {
             return false;
           }
         }
+        public function verificarAplicacionContasena($Periodo,$Departamento)
+        {
+          $DBcon = $this->load->database('default', TRUE);
+          $query=$DBcon->query("SELECT * FROM  aplicaciones  where periodo=$Periodo and departamento_academico_iddepartamento_academico=$Departamento order by fecha_creacion desc; ");
+          if ($query->num_rows() > 0)
+          {
+            return $query->result();
+          } else {
+            return false;
+          }
+        }
         public function obtenerEncuestas($idaplicaciones,$numero_control)
         {
           $DBcon = $this->load->database('default', TRUE);
