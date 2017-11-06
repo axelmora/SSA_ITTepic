@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="row">
             <div class="col-lg-4 col-xl-6">
               <center>
-                <img class="img-fluid"  src="http://www.ittepic.edu.mx/images/escudo_itt_grande.png" alt="Instituto Tecnológico de Tepic" />
+                <img class="img-fluid"  src="http://www.ittepic.edu.mx/images/escudo_itt_200x200.png" alt="Instituto Tecnológico de Tepic" />
               </center>
             </div>
             <div class="col-lg-4 col-xl-6">
