@@ -246,7 +246,7 @@ function genePeridoActual($peridot)
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Error</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -255,8 +255,7 @@ function genePeridoActual($peridot)
         <p><?php echo "$ErrorContra"; ?></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
       </div>
     </div>
   </div>
@@ -284,11 +283,9 @@ function eliminarAplicacion(idaplicaciones) {
 <?php
 if (isset($ErrorContra)) {
   ?>
-
   <script type="text/javascript">
   $('#modalError').modal('show');
   </script>
-
   <?php
 }
 ?>
