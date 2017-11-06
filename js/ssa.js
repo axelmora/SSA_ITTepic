@@ -65,7 +65,7 @@ $(document).ready(function(){
         var datos = $.parseJSON(data);
         //console.log(datos);
         $("#idmateria").val(""+datos.idmateria);
-        $("#nombre_materiaenviar").val($("#nombre_materia").val());
+        $("#nombre_materiaenviar").val($("#nombre_materia").val().toUpperCase());
         $('#modalAgregarMateria').modal('hide')
         $("#nombre_materia").val("");
         $("#nombre_materiaenviar").addClass( "animated bounceIn" );

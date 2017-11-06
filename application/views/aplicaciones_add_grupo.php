@@ -94,7 +94,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <button type="button"  data-toggle="modal" data-target="#modalAlumnos" class="btn btn-primary btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECIONAR ALUMNOS</button>
                 </div>
                 <div class="col-lg-3">
-                  <button type="button"  data-toggle="modal" data-target="#modalAlumnos" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> COPIAR ALUMNOS ENCUESTA</button>
+                  <?php
+                  if($AlumnosCopiar)
+                  {
+                    ?>
+                    <button type="button"  data-toggle="modal" data-target="#modalAlumnosCopiar" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> COPIAR ALUMNOS ENCUESTA</button>
+
+                    <?php
+                  }
+                  ?>
                 </div>
               </div>
               <br>
@@ -198,6 +206,60 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!-- MODAL ALUMNOS FIN  -->
 <pre id="example-console">
 </pre>
+<!-- MODAL ALUMNOS COPIAR -->
+<div class="modal fade"   id="modalAlumnosCopiar" tabindex="-1" role="dialog" aria-labelledby="modalDocentes" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Seleccionar alumnos de grupos existentes.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="overflow-x:auto;">
+          <table  width="100%" id="tablaCopiarAlumnos" class="table table-striped  table-bordered dt-responsive tablaletradocentes " cellspacing="0" >
+            <thead>
+              <tr>
+                <th>MATERIA</th>
+                <th>DOCENTES</th>
+                <th>ALUMNOS</th>
+                <th>OPCIONES</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($AlumnosCopiar as $key => $valores) {
+                ?>
+                <tr>
+                  <td>
+                    <?php echo "". $valores->nombre_materia;?>
+                  </td>
+                  <td>
+                    <?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos);?>
+                  </td>
+                  <td>
+                      <a role="button" class="btn btn-info text-white" onclick="" >VER ALUMNOS</a>
+                  </td>
+                  <td>
+
+                  </td>
+                </tr>
+                <?php
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+        <button  type="submit" class="btn btn-success">ACPETAR SELECCIONAR GRUPO </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL ALUMNOS COPIAR FIN  -->
 <!-- MODAL DOCENTES  -->
 <div class="modal fade" id="modalDocentes" tabindex="-1" role="dialog" aria-labelledby="modalDocentes" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -215,7 +277,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <tr>
                 <th>MATERIA</th>
                 <th>DEPARTAMENTO</th>
-                <th>OPCIONes</th>
+                <th>OPCIONES</th>
               </tr>
             </thead>
             <tbody>
@@ -269,7 +331,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <label class="formulariolabel">Nombre de la materia:</label>
             </div>
             <div class="col-lg-9">
-              <input value="" name="nombre_materia" id="nombre_materia" placeholder="Nombre de la materia" class="form-control"  required/>
+              <input value="" style="text-transform:uppercase" name="nombre_materia" id="nombre_materia" placeholder="Nombre de la materia" class="form-control"  required/>
             </div>
           </div>
         </div>
@@ -350,17 +412,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>
 function selecionarMat(idmateria,nombre) {
   $("#idmateria").val(""+idmateria);
-  $("#nombre_materiaenviar").val(""+nombre);
+  $("#nombre_materiaenviar").val(""+nombre).toUpperCase();
   $("#nombre_materiaenviar" ).removeClass( "animated bounceIn" )
   $('#modalSeleccionMateria').modal('hide');
   $("#nombre_materiaenviar").addClass( "animated bounceIn" );
 }
 function selecionarDoc(idmateria,nombre) {
   $("#rfcdocente").val(""+idmateria);
-  $("#nombredocente").val(""+nombre);
+  $("#nombredocente").val(""+nombre).toUpperCase();
   $("#nombredocente" ).removeClass( "animated bounceIn" )
   $('#modalDocentes').modal('hide')
   $("#nombredocente").addClass( "animated bounceIn" );
+}
+function verAlumnos(idEncuestSeguimiento) {
+
 }
 </script>
 </html>

@@ -58,11 +58,11 @@ class Panel_seguimiento extends CI_Controller {
 		$Error=false;
 		$Contra="";
 		foreach ($Contras as $key => $value) {
-			  if($this->input->post('contrasenaapp')==$value->contrasena){
-						$Error=true;
-				}
+			if($this->input->post('contrasenaapp')==$value->contrasena){
+				$Error=true;
+			}
 		}
-	 if($Error)
+		if($Error)
 		{
 			$datos["ErrorContra"]="Ya existe una aplicacion con la misma contraseña.";
 			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'));
@@ -136,12 +136,12 @@ class Panel_seguimiento extends CI_Controller {
 			//	$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
 			$datos["MateriasExistentes"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
 			$datos["Docentes"]=$this->Docentes->cargarDocentesDepartamento($depa);
+			$datos["AlumnosCopiar"]=$this->SeguimientoModelo->cargarEncuestasGrupos($idAplicacion);
 			$datos["AplicacionDatos"]=$idAplicacion;
 			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
 			$this->load->view('aplicaciones_add_grupo',$datos);
 		}else {
 			redirect(base_url().'index.php');
-
 		}
 	}
 	/*  INSERTAR MATERIA */
@@ -240,10 +240,10 @@ class Panel_seguimiento extends CI_Controller {
 		$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
 		$datos["AplicacionData"]=$idAplicacion;
 		if ($this->session->userdata('tipo')=='1') {
-				$this->load->view('aplicaciones_lista_retro',$datos);
+			$this->load->view('aplicaciones_lista_retro',$datos);
 		}else {
 			if ($this->session->userdata('tipo')=='2') {
-					$this->load->view('aplicaciones_lista_retro',$datos);
+				$this->load->view('aplicaciones_lista_retro',$datos);
 			}
 			else {
 				redirect(base_url().'index.php');
@@ -252,7 +252,7 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function retroalimentacionseguimiento($idaplicacion)
 	{
-			$this->load->view('aplicaciones_retro');
+		$this->load->view('aplicaciones_retro');
 	}
 	public function retroalimentacioncontinua($idaplicacion)
 	{
@@ -261,7 +261,7 @@ class Panel_seguimiento extends CI_Controller {
 	public function manual_usuario($value='')
 	{
 		if ($this->session->userdata('tipo')=='2') {
-				$this->load->view('manual_usuariovista');
+			$this->load->view('manual_usuariovista');
 		}
 		else {
 			redirect(base_url().'index.php');

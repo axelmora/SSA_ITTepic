@@ -40,7 +40,16 @@ $(document).ready(function(){
     },
     "order": [[0, "asc" ]]
   });
-  /*TABLA ALUMNOS*/
+    /*TABLA ALUMNOS*/
+    /* TABLA ALUMNOS COPIAR */
+  $('#tablaCopiarAlumnos').DataTable({
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/Alumnos.json"
+    },
+    "order": [[0, "asc" ]]
+  });
+
   var tablealumnos = $('#tablaSeleccionAlumnos').DataTable({
     responsive: true,
     "language": {

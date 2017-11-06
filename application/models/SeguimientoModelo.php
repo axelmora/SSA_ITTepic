@@ -217,4 +217,18 @@ class SeguimientoModelo extends CI_Model {
       $DB2 = $this->load->database('default', TRUE);
       $DB2->insert('resultados_seguimiento',$datos);
     }
+    public function cargarEncuestasGrupos($idAplicacion)
+    {
+      $DBcon = $this->load->database('default', TRUE);
+      $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
+      " where es.idencuesta_seguimiento=$idAplicacion and es.materias_idmaterias=ma.idmaterias".
+      " and es.docentes_rfc=d.rfc;"
+    );
+    if ($query->num_rows() > 0)
+    {
+      return $query->result();
+    } else {
+      return false;
+    }
   }
+}
