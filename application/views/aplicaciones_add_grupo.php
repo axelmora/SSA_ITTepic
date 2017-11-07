@@ -436,14 +436,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>
 function selecionarMat(idmateria,nombre) {
   $("#idmateria").val(""+idmateria);
-  $("#nombre_materiaenviar").val(""+nombre).toUpperCase();
+  $("#nombre_materiaenviar").val(""+nombre.toUpperCase());
   $("#nombre_materiaenviar" ).removeClass( "animated bounceIn" )
   $('#modalSeleccionMateria').modal('hide');
   $("#nombre_materiaenviar").addClass( "animated bounceIn" );
 }
 function selecionarDoc(idmateria,nombre) {
   $("#rfcdocente").val(""+idmateria);
-  $("#nombredocente").val(""+nombre).toUpperCase();
+  $("#nombredocente").val(""+nombre.toUpperCase());
   $("#nombredocente" ).removeClass( "animated bounceIn" )
   $('#modalDocentes').modal('hide')
   $("#nombredocente").addClass( "animated bounceIn" );
