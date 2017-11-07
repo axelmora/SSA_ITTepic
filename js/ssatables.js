@@ -4,8 +4,7 @@ ssatables.js
 Autor: Fernand Manuel Avila Cataño
 Version 1.0.0
 12/10/2017
---------------------------------------------------------------------------------------------------------------------
-*/
+-------------------------------------------------------------------------------------------------------------------- */
 /* TABLA APLICACIONES*/
 $(document).ready(function(){
   $('#tablaaplicaciones').DataTable({
@@ -33,6 +32,30 @@ $(document).ready(function(){
     },
     "order": [[0, "asc" ]]
   });
+  $('#tablaDocentes').DataTable({
+    responsive: true,
+    "iDisplayLength": 50,
+    "language": {
+      "url": urlsistema+"js/datatables/Docentes.json"
+    },
+    "order": [[0, "asc" ]]
+  });
+  $('#tablaAlumnosVer').DataTable({
+    responsive: true,
+    "iDisplayLength": 100,
+    "language": {
+      "url": urlsistema+"js/datatables/Alumnos.json"
+    },
+    "order": [[0, "asc" ]]
+  });
+  $('#tablaMaterias').DataTable({
+    responsive: true,
+    "iDisplayLength": 50,
+    "language": {
+      "url": urlsistema+"js/datatables/materias.json"
+    },
+    "order": [[0, "asc" ]]
+  });
   $('#tablaGrupoAlumnos').DataTable({
     responsive: true,
     "language": {
@@ -40,8 +63,8 @@ $(document).ready(function(){
     },
     "order": [[0, "asc" ]]
   });
-    /*TABLA ALUMNOS*/
-    /* TABLA ALUMNOS COPIAR */
+  /*TABLA ALUMNOS*/
+  /* TABLA ALUMNOS COPIAR */
   $('#tablaCopiarAlumnos').DataTable({
     responsive: true,
     "language": {

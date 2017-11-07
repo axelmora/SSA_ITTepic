@@ -15,6 +15,9 @@ $(document).ready(function(){
     $(this).removeClass("animated pulse");
   });
 
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 
   /* TAMNAÑO ICONOS */
   $(function() {

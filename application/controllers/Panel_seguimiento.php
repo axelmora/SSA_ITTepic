@@ -269,14 +269,18 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function docentes()
 	{
-
+		$depa=$this->obtenerDepartamento($this->session->userdata('departamento'));
+		$datos["DOCENTES"]=$this->Docentes->cargarDocentesDepartamento($depa);
+		$this->load->view('seg_docentes',$datos);
 	}
 	public function alumnos()
 	{
-
+			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
+		$this->load->view('seg_alumnos',$datos);
 	}
 	public function materias()
 	{
-	 
+		$datos["MATERIAS"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
+	 	$this->load->view('seg_materias',$datos);
 	}
 }

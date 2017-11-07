@@ -38,7 +38,7 @@
             <b><i class="fa fa-user-circle-o" aria-hidden="true"></i> <?php echo "".$this->session->userdata('username');?> </b>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i> PERFIL</a>
+            <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/C_usuarios/"><i class="fa fa-user" aria-hidden="true"></i> PERFIL</a>
             <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalsoporte">
               <i class="fa fa-life-ring" aria-hidden="true"></i> SOLICITAR SOPORTE
             </button>
