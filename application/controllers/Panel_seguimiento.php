@@ -269,6 +269,14 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function docentes()
 	{
-		 
+
+	}
+	public function alumnos()
+	{
+
+	}
+	public function materias()
+	{
+	 
 	}
 }

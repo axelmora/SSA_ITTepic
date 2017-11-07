@@ -9,8 +9,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<meta name="description" content="">
 	<meta name="author" content="Fernando Manuel Avila Cataño">
-	<meta name="theme-color" content="##FFFFFF">
-	<meta name="msapplication-navbutton-color" content="##FFFFFF">
+	<meta name="theme-color" content="#FFFFFF">
+	<meta name="msapplication-navbutton-color" content="#FFFFFF">
 	<meta name="apple-mobile-web-app-status-bar-style" content="white">
 	<link href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css" rel="stylesheet" />
@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!--Segundo ROW -->
 	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-4">
-			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
+			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/alumnos" class="linkmenu">
 				<div class="card menus animenu caro">
 					<div class="card-body">
 						<div class="row">
@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</a>
 		</div>
 		<div class="col-lg-4">
-			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
+			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias" class="linkmenu">
 				<div class="card menus animenu caro">
 					<div class="card-body">
 						<div class="row">
