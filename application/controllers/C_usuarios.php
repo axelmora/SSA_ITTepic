@@ -104,7 +104,9 @@ class C_usuarios extends CI_Controller {
 			if($contrabase[0]->password==sha1($contraactual))
 			{
 				$this->Usuarios->actualizar_contrasena($this->session->userdata('idusuarios'),sha1($contranueva));
-				redirect(base_url().'index.php/C_usuarios/');
+				//redirect(base_url().'index.php/C_usuarios/');
+				$datos["MensajeExito"]=$this->mensajeExisto("La contraseña se actualizo  correctamente.");
+				$this->load->view('vperfil',$datos);
 			}else {
 				$datos["errorSubmit"]=$this->mensajeError("La contraseña actual es incorrecta.");
 				$this->load->view('vperfil',$datos);
@@ -138,6 +140,17 @@ class C_usuarios extends CI_Controller {
 		<div class='alert alert-danger sombrapaneles  animated bounceInLeft' role='alert'>
 		<center>
 		<i class='fa fa-exclamation-circle  animated tada infinite' aria-hidden='true'></i>
+		<br>".$Mensaje."</b>
+		</center>
+		</div>
+		";
+		return $enviar;
+	}
+	public function mensajeExisto($Mensaje)
+	{
+		$enviar="
+		<div class='alert alert-success sombrapaneles  animated bounceInLeft' role='alert'>
+		<center>
 		<br>".$Mensaje."</b>
 		</center>
 		</div>

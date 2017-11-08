@@ -61,6 +61,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</center>
 							</div>
 						</form>
+						<?php
+							if (isset($MensajeExito)) {
+							  echo "$MensajeExito";
+							}
+						 ?>
 					</div>
 				</div>
 			</div>
