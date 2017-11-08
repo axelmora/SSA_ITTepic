@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</button>
 						<br>
 						<br>
-						<form>
+						<form id="formularioDatosUsuario"  method="post" action="">
 							<div class="form-group row">
 								<label for="nombre_usuario" class="col-sm-3 col-form-label">Nombre del usuario:</label>
 								<div class="col-sm-9">
@@ -47,12 +47,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="form-group row">
 								<label for="departamento" class="col-sm-3 col-form-label">Departamento academico:</label>
 								<div class="col-sm-9">
-									<input type="text" readonly class="form-control-plaintext" id="departamento" value="email@example.com">
+									<input type="text" readonly class="form-control-plaintext" name="departamento" id="departamento" value="email@example.com">
 								</div>
 							</div>
 							<div id="botonSubmit" style="display:none;">
 								<center>
-									<button type="submit" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+									<button type="submit" class="btn btn-secondary" >
 										<i class="fa fa-pencil" aria-hidden="true"></i>  ACTUALIZAR INFORMACION
 									</button>
 								</center>
@@ -64,43 +64,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		<!-- Modal contraseña -->
 		<form action="" method="post" id="formularioContrasena">
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Editar contraseña.</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="form-group row">
-							<label for="nombre_usuario" class="col-sm-4 col-form-label">Contraseña actual:</label>
-							<div class="col-sm-8">
-								<input type="password" class="form-control" value="" name="contraactual" id="contraactual" placeholder="Ingrese la contraseña actual." required />
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Editar contraseña.</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-group row">
+								<label for="nombre_usuario" class="col-sm-4 col-form-label">Contraseña actual:</label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" value="" name="contraactual" id="contraactual" placeholder="Ingrese la contraseña actual." required />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="nombre_usuario" class="col-sm-4 col-form-label">Nueva contraseña:</label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" value="" name="contra_nueva1" id="contra_nueva1" placeholder="Ingrese la nueva contraseña" required />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="nombre_usuario" class="col-sm-4 col-form-label">Confirmar nueva contraseña:</label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" value="" name="contra_nueva2" id="contra_nueva12" placeholder="Ingrese la nueva contraseña" required />
+								</div>
 							</div>
 						</div>
-						<div class="form-group row">
-							<label for="nombre_usuario" class="col-sm-4 col-form-label">Nueva contraseña:</label>
-							<div class="col-sm-8">
-								<input type="password" class="form-control" value="" name="contra_nueva1" id="contra_nueva1" placeholder="Ingrese la nueva contraseña" required />
-							</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+							<button type="submit" class="btn btn-success">ACTUALIZAR CONTRASEÑA</button>
 						</div>
-						<div class="form-group row">
-							<label for="nombre_usuario" class="col-sm-4 col-form-label">Confirmar nueva contraseña:</label>
-							<div class="col-sm-8">
-								<input type="password" class="form-control" value="" name="contra_nueva2" id="contra_nueva12" placeholder="Ingrese la nueva contraseña" required />
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-						<button type="submit" class="btn btn-success">ACTUALIZAR CONTRASEÑA</button>
 					</div>
 				</div>
 			</div>
-		</div>
-	</form>
+		</form>
 	</div>
 	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
@@ -137,12 +137,12 @@ $(document).ready(function(){
 			contraactual: {
 				required: true,
 				minlength: 6,
-			  maxlength: 15
+				maxlength: 15
 			},
 			contra_nueva1: {
 				required: true,
 				minlength: 6,
-			  maxlength: 15
+				maxlength: 15
 			},
 			contra_nueva2: {
 				required: true,
@@ -167,6 +167,22 @@ $(document).ready(function(){
 				minlength: "<div class='alert alert-danger' role='alert'> Se requiere al menos 6 caracteres. </div>",
 				maxlength: "<div class='alert alert-danger' role='alert'> Se requiere un maximo de 15 caracteres. </div>",
 				equalTo: "<div class='alert alert-danger' role='alert'> Las contraseñas no son iguales.</div>"
+			}
+		}
+	});
+	$( "#formularioDatosUsuario").validate({
+		rules: {
+			nombre_usuario: {
+				required: true,
+				minlength: 2,
+				maxlength: 120
+			}
+		},
+		messages :{
+			nombre_usuario: {
+				required: "<div class='alert alert-danger' role='alert'> Se requiere el nombre de usuario </div>",
+				minlength: "<div class='alert alert-danger' role='alert'> Se requiere al menos 2 caracteres. </div>",
+				maxlength: "<div class='alert alert-danger' role='alert'> Se requiere un maximo de 120 caracteres. </div>"
 			}
 		}
 	});
