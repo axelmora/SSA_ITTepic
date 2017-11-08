@@ -63,6 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 		<!-- Modal contraseña -->
+		<form action="" method="post" id="formularioContrasena">
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -73,15 +74,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</button>
 					</div>
 					<div class="modal-body">
-						...
+						<div class="form-group row">
+							<label for="nombre_usuario" class="col-sm-4 col-form-label">Contraseña actual:</label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control" value="" name="contraactual" id="contraactual" placeholder="Ingrese la contraseña actual." required />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="nombre_usuario" class="col-sm-4 col-form-label">Nueva contraseña:</label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control" value="" name="contra_nueva1" id="contra_nueva1" placeholder="Ingrese la nueva contraseña" required />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="nombre_usuario" class="col-sm-4 col-form-label">Confirmar nueva contraseña:</label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control" value="" name="contra_nueva2" id="contra_nueva12" placeholder="Ingrese la nueva contraseña" required />
+							</div>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-						<button type="button" class="btn btn-success">ACTUALIZAR CONTRASEÑA</button>
+						<button type="submit" class="btn btn-success">ACTUALIZAR CONTRASEÑA</button>
 					</div>
 				</div>
 			</div>
 		</div>
+	</form>
 	</div>
 	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
@@ -90,6 +109,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.validate.js"></script>
 <script>
 $(document).ready(function(){
 	var opciones = {
@@ -102,17 +122,53 @@ $(document).ready(function(){
 		{
 			$("#nombre_usuario").prop('disabled', false);
 			$( "#botonSubmit" ).slideDown( "fast", function() {
-				 			estado=false;
+				estado=false;
 			});
 		}else {
 			$("#nombre_usuario").prop('disabled', true);
 			$( "#botonSubmit" ).slideUp( "fast", function() {
-							estado=true;
+				estado=true;
 			});
-
 		}
 		//$("input").prop('disabled', true);
-
+	});
+	$( "#formularioContrasena" ).validate({
+		rules: {
+			contraactual: {
+				required: true,
+				minlength: 6,
+			  maxlength: 15
+			},
+			contra_nueva1: {
+				required: true,
+				minlength: 6,
+			  maxlength: 15
+			},
+			contra_nueva2: {
+				required: true,
+				minlength: 6,
+				maxlength: 15,
+				equalTo: "#contra_nueva1"
+			}
+		},
+		messages :{
+			contraactual: {
+				required: "<div class='alert alert-danger' role='alert'> Se requiere la contraseña actual </div>",
+				minlength: "<div class='alert alert-danger' role='alert'> Se requiere al menos 6 caracteres. </div>",
+				maxlength: "<div class='alert alert-danger' role='alert'> Se requiere un maximo de 15 caracteres. </div>"
+			},
+			contra_nueva1: {
+				required: "<div class='alert alert-danger' role='alert'> Se requiere la nueva contraseña. </div>",
+				minlength: "<div class='alert alert-danger' role='alert'> Se requiere al menos 6 caracteres. </div>",
+				maxlength: "<div class='alert alert-danger' role='alert'> Se requiere un maximo de 15 caracteres. </div>"
+			},
+			contra_nueva2: {
+				required: "<div class='alert alert-danger' role='alert'> Se requiere la confirmacion de la nueva contraseña. </div>",
+				minlength: "<div class='alert alert-danger' role='alert'> Se requiere al menos 6 caracteres. </div>",
+				maxlength: "<div class='alert alert-danger' role='alert'> Se requiere un maximo de 15 caracteres. </div>",
+				equalTo: "<div class='alert alert-danger' role='alert'> Las contraseñas no son iguales.</div>"
+			}
+		}
 	});
 });
 </script>
