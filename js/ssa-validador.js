@@ -63,6 +63,64 @@ $(document).ready(function(){
     }
   });
   /* FORMULARIO SEGUIMIENTO LOGIN FIN*/
+  /* FORMULARIO SEGUIMIENTO CONTRASEÑA CAMBIAR */
+  $( "#formularioContrasena" ).validate({
+    rules: {
+      contraactual: {
+        required: true,
+        minlength: 6,
+        maxlength: 15
+      },
+      contra_nueva1: {
+        required: true,
+        minlength: 6,
+        maxlength: 15
+      },
+      contra_nueva2: {
+        required: true,
+        minlength: 6,
+        maxlength: 15,
+        equalTo: "#contra_nueva1"
+      }
+    },
+    messages :{
+      contraactual: {
+        required: ""+generarErrores("Se requiere la contraseña actual","texto-plano"),
+        minlength: ""+generarErrores("Se requiere al menos 6 caracteres.","texto-plano"),
+        maxlength: ""+generarErrores("Se requiere un maximo de 15 caracteres.","texto-plano"),
+      },
+      contra_nueva1: {
+        required: ""+generarErrores("Se requiere la nueva contraseña.","texto-plano"),
+        minlength: ""+generarErrores("Se requiere al menos 6 caracteres.","texto-plano"),
+        maxlength: ""+generarErrores("Se requiere un maximo de 15 caracteres.","texto-plano")
+      },
+      contra_nueva2: {
+        required: ""+generarErrores("Se requiere la confirmacion de la nueva contraseña.","texto-plano"),
+        minlength: ""+generarErrores(" Se requiere al menos 6 caracteres.","texto-plano"),
+        maxlength: ""+generarErrores("Se requiere un maximo de 15 caracteres.","texto-plano"),
+        equalTo: ""+generarErrores("Las contraseñas no son iguales.","texto-plano")
+      }
+    }
+  });
+  /* FORMULARIO SEGUIMIENTO CONTRASEÑA CAMBIAR */
+  /* FORMULARIO SEGUIMIENTO DATOS */
+	$("#formularioDatosUsuarioModificar").validate({
+		rules: {
+			nombre_usuario: {
+				required: true,
+				minlength: 2,
+				maxlength: 120
+			}
+		},
+		messages :{
+			nombre_usuario: {
+				required: ""+generarErrores("Se requiere el nombre de usuario.","texto-plano"),
+				minlength: ""+generarErrores("Se requiere al menos 2 caracteres. ","texto-plano"),
+				maxlength: ""+generarErrores("Se requiere un maximo de 120 caracteres.","texto-plano")
+			}
+		}
+	});
+	/* FORMULARIO SEGUIMIENTO DATOS FIN*/
 });
 /*FUNCION QUE GENERA MENSAJES ERRORES PARA EL VALIDADOR*/
 function generarErrores(Mensaje,Tipo) {

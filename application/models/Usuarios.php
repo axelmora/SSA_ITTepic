@@ -19,10 +19,37 @@ class Usuarios extends CI_Model {
         return false;
     }
   }
+
   public function actualizarultima_sesion($usuario,$fechayhora)
   {
     $DBcon = $this->load->database('default', TRUE);
     $DBcon->set('ult_conexion', $fechayhora);
+    $DBcon->where('idusuarios', $usuario);
+    $DBcon->update('usuarios');
+    return true;
+  }
+  public function actualizar_nombre($usuario,$idusuario)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $DBcon->set('nombre_usuario', $usuario);
+    $DBcon->where('idusuarios', $idusuario);
+    $DBcon->update('usuarios');
+    return true;
+  }
+  public function verificarContrasena($usuario)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT password FROM usuarios where idusuarios='$usuario'");
+    if ($query->num_rows() > 0) {
+        return $query->result();
+    } else {
+        return false;
+    }
+  }
+  public function actualizar_contrasena($usuario,$contra)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $DBcon->set('password', $contra);
     $DBcon->where('idusuarios', $usuario);
     $DBcon->update('usuarios');
     return true;

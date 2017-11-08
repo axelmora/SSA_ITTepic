@@ -318,6 +318,9 @@ canvas {
 {
   margin-top:20%;
 }
+.cuerpo{
+  height: 700px;
+}
 @media only screen and (max-width: 800px) {
   .panelCompletado{
     margin-top: 2%;
@@ -332,5 +335,8 @@ canvas {
   .escudo
   {
     margin-top:2%;
+  }
+  .cuerpo{
+     height: 100%;
   }
 }

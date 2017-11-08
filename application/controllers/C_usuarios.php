@@ -86,6 +86,34 @@ class C_usuarios extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect(base_url().'index.php/');
 	}
+	public function actualizarInformacion()
+	{
+		$usuario = $this->input->post('nombre_usuario');
+		$this->Usuarios->actualizar_nombre($usuario,$this->session->userdata('idusuarios'));
+		$this->session->set_userdata('username', $usuario);
+		redirect(base_url().'index.php/C_usuarios/');
+	}
+	public function actualizarContrasena()
+	{
+		$contraactual = $this->input->post('contraactual');
+		$contranueva = $this->input->post('contra_nueva1');
+		$contrabase=$this->Usuarios->verificarContrasena($this->session->userdata('idusuarios'));
+		if($contraactual!=$contranueva)
+		{
+			//echo "".$contrabase[0]->password."---".sha1($contraactual);
+			if($contrabase[0]->password==sha1($contraactual))
+			{
+				$this->Usuarios->actualizar_contrasena($this->session->userdata('idusuarios'),sha1($contranueva));
+				redirect(base_url().'index.php/C_usuarios/');
+			}else {
+				$datos["errorSubmit"]=$this->mensajeError("La contraseña actual es incorrecta.");
+				$this->load->view('vperfil',$datos);
+			}
+		}else {
+			$datos["errorSubmit"]=$this->mensajeError("La contraseña nueva es la misma contraseña que la actual.");
+			$this->load->view('vperfil',$datos);
+		}
+	}
 	public function generarPeriodo()
 	{
 		$anio=date("Y");
@@ -103,4 +131,18 @@ class C_usuarios extends CI_Controller {
 		}
 		return $periodo;
 	}
+	/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
+	public function mensajeError($Mensaje)
+	{
+		$enviar="
+		<div class='alert alert-danger sombrapaneles  animated bounceInLeft' role='alert'>
+		<center>
+		<i class='fa fa-exclamation-circle  animated tada infinite' aria-hidden='true'></i>
+		<br>".$Mensaje."</b>
+		</center>
+		</div>
+		";
+		return $enviar;
+	}
+	/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
 }
