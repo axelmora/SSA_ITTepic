@@ -35,6 +35,34 @@ $(document).ready(function(){
     }
   });
   /* FORMULARIO LOGIN FIN */
+  /* FORMULARIO SEGUIMIENTO LOGIN*/
+  $( "#formularioAlumnoSeguimiento").validate({
+    rules: {
+      numero_control: {
+        required: true,
+        minlength: 8,
+        maxlength: 10
+      },
+      contra_aplicacion: {
+        required: true,
+        minlength: 2,
+        maxlength: 10
+      }
+    },
+    messages :{
+      numero_control: {
+        required: ""+generarErrores("Se requiere el numero de control.","texto-plano"),
+        minlength: ""+generarErrores("Se requiere al menos 8 caracteres.","texto-plano"),
+        maxlength: ""+generarErrores("Se requiere un maximo de 10 caracteres.","texto-plano")
+      },
+      contra_aplicacion: {
+        required: ""+generarErrores("Se requiere la contraseña proporcionada por su departamento academico.","texto-plano"),
+        minlength: ""+generarErrores("Se requiere al menos 5 caracteres.","texto-plano"),
+        maxlength: ""+generarErrores("Se requiere un maximo de 10 caracteres.","texto-plano")
+      }
+    }
+  });
+  /* FORMULARIO SEGUIMIENTO LOGIN FIN*/
 });
 /*FUNCION QUE GENERA MENSAJES ERRORES PARA EL VALIDADOR*/
 function generarErrores(Mensaje,Tipo) {

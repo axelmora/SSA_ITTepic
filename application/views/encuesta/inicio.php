@@ -38,7 +38,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php
       }
       else {
-
         ?>
         <div class="card login-card">
           <div class="card-header">
@@ -47,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </center>
           </div>
           <div class="card-body">
-            <form method="post" action="<?php echo base_url(); ?>index.php/Seguimiento/verificarAlumnoEncuesta" >
+            <form id="formularioAlumnoSeguimiento" method="post" action="<?php echo base_url(); ?>index.php/Seguimiento/verificarAlumnoEncuesta" >
               <?php
               if(isset($ErrorInicio)){
                 echo "$ErrorInicio";
@@ -66,7 +65,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </form>
           <?php
-
         }
         ?>
       </div>
@@ -81,4 +79,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/canvasfondo.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.validate.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa-validador.js"></script>
 </html>
