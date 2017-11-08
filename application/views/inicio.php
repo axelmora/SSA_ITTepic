@@ -28,15 +28,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			if (isset($mensajesistema)) { ?>
 				<div class="row">
 					<div class="col-lg-12">
-					<?php
-					echo "<br><br><br>  $mensajesistema";
-					?>
-				</div>
+						<?php
+						echo "<br><br><br>  $mensajesistema";
+						?>
 					</div>
-					<?php
-				}
+				</div>
+				<?php
+			}
 
-				?>
+			?>
 			<div class="card login-card">
 				<div class="card-header">
 					<center><b>Autentificación para acceso al sistema </b><br>
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</center>
 				</div>
 				<div class="card-body">
-					<form method="post" action="<?php echo base_url(); ?>index.php/c_usuarios/iniciosesion" >
+					<form id="formularioDatosUsuario" method="post" action="<?php echo base_url(); ?>index.php/c_usuarios/iniciosesion" >
 						<div class="form-group">
 							<label for="userid"><i class="fa fa-user" aria-hidden="true"></i> USUARIO:</label>
 							<input type="text" class="form-control" name="userid" id="userid"   placeholder="Ingresar usuario" required>
@@ -54,16 +54,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<input type="password" class="form-control" name="passwordid" id="passwordid" placeholder="Password" required>
 						</div>
 						<center><button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> ACCESO</button></center>
-						<div class="red-text"><center><?php echo validation_errors(); ?></center></div></div>
-					</form>
-				</div>
+						<div class="red-text"><center><?php echo validation_errors(); ?></center></div>
+					</div>
+				</form>
 			</div>
-			<div class="col-lg-4"> </div>
 		</div>
-			<?php $this->load->view('include/footer'); ?>
-		</body>
-		<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
-		<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-		</html>
+		<div class="col-lg-4"> </div>
+	</div>
+	<?php $this->load->view('include/footer'); ?>
+</body>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.validate.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa-validador.js"></script>
+</html>
