@@ -35,7 +35,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 				<?php
 			}
-
 			?>
 			<div class="card login-card">
 				<div class="card-header">
