@@ -229,6 +229,17 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idGrupo);
+			$idEncuesta=$datos["ALUMNOSGRUPO"][0]->encuestas_seguimiento_idencuesta_seguimiento;
+			$ALUMNOSCONTESTADOS;
+			foreach ($datos["ALUMNOSGRUPO"] as $key => $alumnos) {
+				if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->alumnos_numero_control,$idEncuesta))
+				{
+					$ALUMNOSCONTESTADOS[]=true;
+				}else {
+					$ALUMNOSCONTESTADOS[]=false;
+				}
+			}
+			$datos["APLICADOS"]=$ALUMNOSCONTESTADOS;
 			$this->load->view('aplicaciones_grupos',$datos);
 		}else {
 			redirect(base_url().'index.php');
@@ -275,12 +286,12 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function alumnos()
 	{
-			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
+		$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
 		$this->load->view('seg_alumnos',$datos);
 	}
 	public function materias()
 	{
 		$datos["MATERIAS"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
-	 	$this->load->view('seg_materias',$datos);
+		$this->load->view('seg_materias',$datos);
 	}
 }

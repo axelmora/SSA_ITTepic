@@ -136,6 +136,16 @@ class SeguimientoModelo extends CI_Model {
           return false;
         }
       }
+      public function verificarContestadoAlumno($numeroControl,$idEncuesta)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT * FROM  resultados_seguimiento where no_de_control='$numeroControl' and encuestas_seguimiento_idencuesta_seguimiento=$idEncuesta   ");
+          if ($query->num_rows() > 0) {
+            return true;
+          } else {
+            return false;
+          }
+      }
       public function cargarDoceneteGrupo($idrupo)
       {
         $DBcon = $this->load->database('default', TRUE);

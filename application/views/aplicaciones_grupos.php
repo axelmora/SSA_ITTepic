@@ -8,10 +8,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="description" content="">
-	<meta name="author" content="Fernando Manuel Avila Cataño">
-	<meta name="theme-color" content="#FFFFFF">
-	<meta name="msapplication-navbutton-color" content="#FFFFFF">
-	<meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <meta name="author" content="Fernando Manuel Avila Cataño">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="msapplication-navbutton-color" content="#FFFFFF">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
   <link href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/animate.css" type="text/css" rel="stylesheet" />
@@ -65,13 +65,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </thead>
                       <tbody>
                         <?php
+                        $pos=0;
                         foreach ($ALUMNOSGRUPO as $key => $valor) {
+                          if($APLICADOS[$pos])
+                          {
+                            $contestado='<i class="fa fa-check-circle cContestado" aria-hidden="true"></i> CONTESTADO';
+                          }else {
+                            $contestado='<i class="fa fa-times-circle csinContestado" aria-hidden="true"></i> SIN CONTESTAR';
+                          }
+
                           ?>
                           <tr>
                             <td><?php echo "".$valor->numero_control; ?></td>
                             <td><?php echo "".$valor->nombre ?></td>
                             <td><?php echo "".$valor->carrera; ?></td>
-                            <td> </td>
+                            <td><?php echo "".$contestado; ?> </td>
                             <td>
                               <div class="btn-group btn-block">
                                 <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo "".$valor->idgrupos; ?>"  class="btn btn-primary btn-block text-white"   >
@@ -81,6 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </td>
                           </tr>
                           <?php
+                          $pos++;
                         }
                         ?>
                       </tbody>
