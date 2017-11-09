@@ -32,6 +32,10 @@ $(document).ready(function(){
     fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
   };
   PDFObject.embed(urlsistema+"file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover2", opciones2);
+  var opciones3 = {
+    fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
+  };
+  PDFObject.embed(urlsistema+"file/manual/Manual_Tecnico_SSA.pdf","#manualdeusuariover3", opciones3);
   /*SUBMIT mesa de ayuda*/
   $( "#mesayudaform" ).submit(function( event ) {
     $.ajax({

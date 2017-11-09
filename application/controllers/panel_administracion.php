@@ -53,7 +53,13 @@ class Panel_administracion extends CI_Controller {
 	public function adduser() {
 		$this->load->view('administracion/vpanel_nusuario');
 	}
-	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
+	public function manual_tecnico(){
+	$this->load->view('administracion/manual_tecnicovista_admin');
+	}
+	public function manual_usuario(){
+	$this->load->view('administracion/manual_usuariovista_admin');
+	}
+		/* SECCION DE DEPARTAMENTOS ACADEMICOS */
 	public function departamentos()
 	{
 		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();

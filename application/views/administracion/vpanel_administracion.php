@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 	<?php $this->load->view('include/menuadmin'); ?>
-	<div class="row" style="margin-right: 0px; margin-left: 0px;">
+	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<!-- OPCION MENU 2 -->
 		<div class="col-lg-6">
 			<a href="<?php echo base_url(); ?>index.php/panel_administracion/lista_usuarios" class="linkmenu">
@@ -56,8 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</a>
 		</div>
 	</div>
-	<br>
-	<div class="row" style="margin-right: 0px; margin-left: 0px;">
+	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-6">
 			<a href="<?php echo base_url(); ?>index.php/panel_administracion/mesadeayuda" class="linkmenu">
 				<div class="card menus animenu caro">
@@ -74,7 +73,74 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</a>
 		</div>
-		<br>
+		<div class="col-lg-6">
+			<a href="<?php echo base_url(); ?>index.php/panel_administracion/" class="linkmenu">
+				<div class="card menus animenu caro">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div>
+									<i class="fa fa-database fa-5x coloriconosmenu" aria-hidden="true"></i>
+									<p class="textotitulo">DATOS</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
+		<div class="col-lg-6">
+			<a href="<?php echo base_url(); ?>index.php/panel_administracion/manual_tecnico" class="linkmenu">
+				<div class="card menus animenu caro">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div>
+									<i class="fa fa-laptop fa-5x coloriconosmenu" aria-hidden="true"></i>
+									<p class="textotitulo">MANUAL TECNICO</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-6">
+			<a href="<?php echo base_url(); ?>index.php/panel_administracion/manual_usuario" class="linkmenu">
+				<div class="card menus animenu caro">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div>
+									<i class="fa fa-book fa-5x coloriconosmenu" aria-hidden="true"></i>
+									<p class="textotitulo">MANUAL DE USUARIOS</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
+		<div class="col-lg-6">
+			<a href="<?php echo base_url(); ?>index.php/panel_administracion/mesadeayuda" class="linkmenu">
+				<div class="card menus animenu caro">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div>
+									<i class="fa fa-sign-in fa-5x coloriconosmenu" aria-hidden="true"></i>
+									<p class="textotitulo">SALIR</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
 	</div>
 	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
