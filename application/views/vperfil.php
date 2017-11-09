@@ -19,7 +19,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="<?php echo base_url(); ?>css/fontello.css" type="text/css" rel="stylesheet" />
 </head>
 <body  >
-	<?php $this->load->view('include/menu'); ?>
+	<?php
+	if($this->session->userdata('tipo')=='2')
+	{
+		$this->load->view('include/menu');
+	}else {
+ $this->load->view('include/menuadmin');
+	}
+	?>
 	<div class="container"  >
 		<div class="row" style="margin-right: 0px; margin-left: 0px;"   >
 			<div class="col-lg-12">
@@ -62,10 +69,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						</form>
 						<?php
-							if (isset($MensajeExito)) {
-							  echo "$MensajeExito";
-							}
-						 ?>
+						if (isset($MensajeExito)) {
+							echo "$MensajeExito";
+						}
+						?>
 					</div>
 				</div>
 			</div>
@@ -83,11 +90,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="modal-body">
 							<?php
-								if(isset($errorSubmit))
-								{
-									echo "$errorSubmit";
-								}
-							 ?>
+							if(isset($errorSubmit))
+							{
+								echo "$errorSubmit";
+							}
+							?>
 							<div class="form-group row">
 								<label for="nombre_usuario" class="col-sm-4 col-form-label"><b>Contraseña actual:</b></label>
 								<div class="col-sm-8">
@@ -153,13 +160,13 @@ $(document).ready(function(){
 });
 </script>
 <?php
-	if(isset($errorSubmit))
-	{
-		 ?>
-		 <script>
-		 	$('#modalContraseña').modal('show');
-			</script>
-		 <?php
-	}
- ?>
+if(isset($errorSubmit))
+{
+	?>
+	<script>
+	$('#modalContraseña').modal('show');
+	</script>
+	<?php
+}
+?>
 </html>

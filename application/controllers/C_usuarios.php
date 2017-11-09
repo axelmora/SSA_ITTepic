@@ -12,10 +12,10 @@ class C_usuarios extends CI_Controller {
 	}
 	public function index()
 	{
-		if ($this->session->userdata('perfil')=='Administrador') {
-			$this->load->view('administracion/vperfil');
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' ) {
+				$this->load->view('vperfil');
 		}else {
-			$this->load->view('vperfil');
+				redirect(base_url().'index.php');
 		}
 	}
 	/* inicio de sesion*/
