@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$this->load->view('include/menu');
 	}else {
- $this->load->view('include/menuadmin');
+		$this->load->view('include/menuadmin');
 	}
 	?>
 	<div class="container"  >
@@ -55,10 +55,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="departamento" class="col-sm-3 col-form-label"><b>Departamento academico:</b></label>
-								<div class="col-sm-9">
-									<input type="text" readonly class="form-control-plaintext" name="departamento" id="departamento" value="<?php echo $this->session->userdata('departamentonombre'); ?>">
-								</div>
+								<?php
+								if($this->session->userdata('tipo')=='2')
+								{
+									?>
+									<label for="departamento" class="col-sm-3 col-form-label"><b>Departamento academico:</b></label>
+									<div class="col-sm-9">
+										<input type="text" readonly class="form-control-plaintext" name="departamento" id="departamento" value="<?php echo $this->session->userdata('departamentonombre'); ?>">
+									</div>
+									<?php
+								}else {
+									?>
+									<label for="departamento" class="col-sm-3 col-form-label"><b>Tipo:</b></label>
+									<div class="col-sm-9">
+										<input type="text" readonly class="form-control-plaintext" name="departamento" id="departamento" value="<?php echo $this->session->userdata('departamentonombre'); ?>">
+									</div>
+									<?php
+								}
+								?>
 							</div>
 							<div id="botonSubmit" style="display:none;">
 								<center>
@@ -115,8 +129,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-							<button type="submit" class="btn btn-success">ACTUALIZAR CONTRASEÑA</button>
+							<div class=" row">
+								<div class="col-sm-12">
+									<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-window-close" aria-hidden="true"></i> CERRAR</button>
+									<button type="submit" class="btn btn-success"><i class="fa fa-pencil-square" aria-hidden="true"></i> ACTUALIZAR CONTRASEÑA</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
