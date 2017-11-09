@@ -136,15 +136,35 @@ class SeguimientoModelo extends CI_Model {
           return false;
         }
       }
+      public function contadorAlumnosGrupo($idencuesta_seguimiento)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT count(idgrupo_alumnos) as total FROM  grupos as gr, grupo_alumnos as ga where ga.grupos_idgrupos=gr.idgrupos and gr.encuestas_seguimiento_idencuesta_seguimiento=$idencuesta_seguimiento ");
+        if ($query->num_rows() > 0) {
+          return $query->result();
+        } else {
+          return  0;
+        }
+      }
       public function verificarContestadoAlumno($numeroControl,$idEncuesta)
       {
         $DBcon = $this->load->database('default', TRUE);
         $query=$DBcon->query("SELECT * FROM  resultados_seguimiento where no_de_control='$numeroControl' and encuestas_seguimiento_idencuesta_seguimiento=$idEncuesta   ");
-          if ($query->num_rows() > 0) {
-            return true;
-          } else {
-            return false;
-          }
+        if ($query->num_rows() > 0) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      public function encuestaTotalContestados($idencuesta)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT count(idresultado_seguimiento) as total FROM  resultados_seguimiento  where encuestas_seguimiento_idencuesta_seguimiento=$idencuesta ");
+        if ($query->num_rows() > 0) {
+          return $query->result();
+        } else {
+          return  0;
+        }
       }
       public function cargarDoceneteGrupo($idrupo)
       {

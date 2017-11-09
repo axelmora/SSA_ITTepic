@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="col-lg-12">
                 <div class="row">
                   <div class="col-lg-9">
-                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones de seguimiento en el aula</h3>
+                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones de seguimiento en el aula de <?php  echo "".$this->session->userdata('departamentonombre');?></h3>
                   </div>
                   <div class="col-lg-3">
                     <center>
@@ -61,9 +61,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       foreach ($Aplicaciones as $key => $valor) {
                         $NumeroEncuestas="";
                         if($Cantidad_Encuestas[$posicionencuestas][0]==0){
-                          $NumeroEncuestas="<i class='fa fa-exclamation-circle colorError' aria-hidden='true'></i> No existen encuestas creadas.";
+                          $NumeroEncuestas='<center><span class="badge badge-pill badge-danger medalla"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> No existen encuestas creadas.</span></center>';
                         }else {
                           $NumeroEncuestas=$Cantidad_Encuestas[$posicionencuestas][0];
+                            $NumeroEncuestas='<center><span class="badge badge-pill badge-success medalla"><i class="fa fa-hashtag" aria-hidden="true"></i> '.$Cantidad_Encuestas[$posicionencuestas][0].' </span></center>';
                         }
                         ?>
                         <tr>

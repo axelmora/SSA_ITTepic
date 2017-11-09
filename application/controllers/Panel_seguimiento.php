@@ -100,33 +100,33 @@ class Panel_seguimiento extends CI_Controller {
 				'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
 			);
 			$this->SeguimientoModelo->crearAplicacion($datos);
-			if ($this->session->userdata('tipo')=='1') {
+			if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 				redirect(base_url().'index.php/Panel_seguimiento/aplicaciones');
 			}else {
-				if ($this->session->userdata('tipo')=='2') {
-					redirect(base_url().'index.php/Panel_seguimiento/aplicaciones');
-				}
-				else {
-					redirect(base_url().'index.php');
-				}
+				redirect(base_url().'index.php');
 			}
 		}
 	}
-
 	public function listado($idAplicacion)
 	{
-		$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
-		$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
-		$datos["AplicacionData"]=$idAplicacion;
-		if ($this->session->userdata('tipo')=='1') {
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
+			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
+			$datos["AplicacionData"]=$idAplicacion;
+			$NumeroTotal;
+			$ActualContestados;
+			foreach ($datos["Aplicaciones"] as $key => $value) {
+					$tempTotal=$this->SeguimientoModelo->contadorAlumnosGrupo($value->idencuesta_seguimiento);
+					$NumeroTotal[]=$tempTotal[0]->total;
+					$tempContestados=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
+					$ActualContestados[]=$tempContestados[0]->total;
+
+			}
+			$datos["totalAlumnos"]=$NumeroTotal;
+			$datos["totalContestados"]=$ActualContestados;
 			$this->load->view('aplicaciones_lista',$datos);
 		}else {
-			if ($this->session->userdata('tipo')=='2') {
-				$this->load->view('aplicaciones_lista',$datos);
-			}
-			else {
-				redirect(base_url().'index.php');
-			}
+			redirect(base_url().'index.php');
 		}
 	}
 	public function nuevo_grupo($idAplicacion)

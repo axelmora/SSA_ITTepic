@@ -66,12 +66,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </thead>
                       <tbody>
                         <?php
+                        $pos=0;
                         foreach ($Aplicaciones as $key => $valor) {
                           ?>
                           <tr>
                             <td><?php echo "".$valor->nombre_materia; ?></td>
                             <td><?php echo "".utf8_decode($valor->nombres)." ".utf8_decode($valor->apellidos); ?></td>
-                            <td><?php echo "".$valor->nombre_materia; ?></td>
+                            <td><?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></td>
                             <td><?php echo "".$valor->fecha_creacion; ?></td>
                             <td>
                               <div class="btn-group btn-block">
@@ -82,6 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </td>
                           </tr>
                           <?php
+                          $pos++;
                         }
                         ?>
                       </tbody>

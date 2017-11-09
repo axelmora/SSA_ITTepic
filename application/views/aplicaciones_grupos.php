@@ -69,11 +69,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         foreach ($ALUMNOSGRUPO as $key => $valor) {
                           if($APLICADOS[$pos])
                           {
-                            $contestado='<i class="fa fa-check-circle cContestado" aria-hidden="true"></i> CONTESTADO';
-                          }else {
-                            $contestado='<i class="fa fa-times-circle csinContestado" aria-hidden="true"></i> SIN CONTESTAR';
-                          }
+                            $contestado='<center><span class="badge badge-success medalla"> <i class="fa fa-check-circle" aria-hidden="true"></i> CONTESTADO</span></center>';
 
+                          }else {
+                            $contestado='<center><span class="badge badge-danger medalla"><i class="fa fa-times-circle " aria-hidden="true"></i> SIN CONTESTAR</span></center>';
+                          }
                           ?>
                           <tr>
                             <td><?php echo "".$valor->numero_control; ?></td>
