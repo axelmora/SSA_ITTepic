@@ -3,8 +3,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
+  <?php
+  $TOTALAlumnosEncuestados=0;
+  $EvaluacionesContestadas=0;
+  $PorcentajeActual=0;
+  if(isset($APLICADOS))
+  {
+    for ($i=0; $i < count($APLICADOS) ; $i++) {
+      if( $APLICADOS[$i]){
+        $EvaluacionesContestadas++;
+      }
+      $TOTALAlumnosEncuestados++;
+    }
+    $PorcentajeActual=($EvaluacionesContestadas*100)/$TOTALAlumnosEncuestados;
+  }else {
+    $TOTALAlumnosEncuestados=0;
+    $EvaluacionesContestadas=0;
+  }
+  $DOCENTE="";
+  $MATERIA="";
+  if(isset($DATOSMATERIA)){
+    foreach ($DATOSMATERIA as $key => $value) {
+      $DOCENTE="".$value->nombres." ".$value->apellidos;
+      $MATERIA="".$value->nombre_materia ;
+    }
+  }else {
+    $DOCENTE="ERROR";
+    $MATERIA="ERROR";
+  }
+  ?>
   <meta charset="utf-8">
-  <title>SSA-GRUPOS</title>
+  <title>SSA-GRUPO <?php echo "$MATERIA $DOCENTE"; ?></title>
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="description" content="">
@@ -39,35 +68,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="col-lg-10">
                       <center>
-                        <?php
-                        $TOTALAlumnosEncuestados=0;
-                        $EvaluacionesContestadas=0;
-                        $PorcentajeActual=0;
-                        if(isset($APLICADOS))
-                        {
-                          for ($i=0; $i < count($APLICADOS) ; $i++) {
-                            if( $APLICADOS[$i]){
-                                $EvaluacionesContestadas++;
-                            }
-                            $TOTALAlumnosEncuestados++;
-                          }
-                          $PorcentajeActual=($EvaluacionesContestadas*100)/$TOTALAlumnosEncuestados;
-                        }else {
-                          $TOTALAlumnosEncuestados=0;
-                          $EvaluacionesContestadas=0;
-                        }
-                        $DOCENTE="";
-                        $MATERIA="";
-                        if(isset($DATOSMATERIA)){
-                          foreach ($DATOSMATERIA as $key => $value) {
-                            $DOCENTE="".$value->nombres." ".$value->apellidos;
-                            $MATERIA="".$value->nombre_materia ;
-                          }
-                        }else {
-                          $DOCENTE="ERROR";
-                          $MATERIA="ERROR";
-                        }
-                        ?>
                         <table id="" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                           <thead>
                             <tr>
@@ -86,7 +86,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: <?php echo $PorcentajeActual; ?>%;" aria-valuenow="<?php echo $PorcentajeActual; ?>" aria-valuemin="0" aria-valuemax="100">25%</div>
                                 </div>
                               </td>
-                              <td><?php echo "" ; ?></td>
+                              <td>
+                                <center>
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      OPCIONES
+                                    </button>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item" href="#"> AGREGAR ALUMNO</a>
+                                      <a class="dropdown-item" href="#"> RESULTADOS</a>
+                                      <a class="dropdown-item" href="#"> RESULTADOS GRAFICOS</a>
+                                      <a class="dropdown-item" href="#"> RETROALIMENTACION</a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item" href="#"> BORRAR ENCUESTA</a>
+                                    </div>
+                                  </div>
+                                </center>
+                              </td>
                             </tr>
                           </tbody>
                         </table>

@@ -115,15 +115,20 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["AplicacionData"]=$idAplicacion;
 			$NumeroTotal;
 			$ActualContestados;
-			foreach ($datos["Aplicaciones"] as $key => $value) {
-					$tempTotal=$this->SeguimientoModelo->contadorAlumnosGrupo($value->idencuesta_seguimiento);
-					$NumeroTotal[]=$tempTotal[0]->total;
-					$tempContestados=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
-					$ActualContestados[]=$tempContestados[0]->total;
+			if($datos["Aplicaciones"])
+			{
+				foreach ($datos["Aplicaciones"] as $key => $value) {
+						$tempTotal=$this->SeguimientoModelo->contadorAlumnosGrupo($value->idencuesta_seguimiento);
+						$NumeroTotal[]=$tempTotal[0]->total;
+						$tempContestados=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
+						$ActualContestados[]=$tempContestados[0]->total;
+
+				}
+				$datos["totalAlumnos"]=$NumeroTotal;
+				$datos["totalContestados"]=$ActualContestados;
+			}else {
 
 			}
-			$datos["totalAlumnos"]=$NumeroTotal;
-			$datos["totalContestados"]=$ActualContestados;
 			$this->load->view('aplicaciones_lista',$datos);
 		}else {
 			redirect(base_url().'index.php');
