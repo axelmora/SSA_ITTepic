@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>SSA</title>
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-	<meta name="description" content="">
+	<meta name="description" content="Sistema para el seguimiento en el aula del instituto tecnologico de tepic.">
 	<meta name="author" content="Fernando Manuel Avila Cataño">
 	<meta name="theme-color" content="#FFFFFF">
 	<meta name="msapplication-navbutton-color" content="#FFFFFF">
