@@ -82,7 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <td><?php echo "$DOCENTE" ; ?></td>
                               <td>
                                 <div class="progress">
-                                  <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: <?php echo $PorcentajeActual; ?>%;" aria-valuenow="<?php echo $PorcentajeActual; ?>" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                  <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: <?php echo $PorcentajeActual; ?>%;" aria-valuenow="<?php echo $PorcentajeActual; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $PorcentajeActual; ?>%</div>
                                 </div>
                               </td>
                               <td>
