@@ -30,21 +30,66 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="row">
               <div class="col-lg-12">
                 <div class="row">
-                  <div class="col-lg-10">
-                    <?php
-                    //  $peridotlista="";
-                    //  foreach ($AplicacionesPeriodo as $key => $valorPeriodo) {
-                    //  $peridotlista= genePerido($valorPeriodo->periodo);
-                    //}
-                    ?>
-                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupo
+                  <div class="col-lg-2">
+                    <h3><i class="icon-clipboard" aria-hidden="true"></i>DATOS GRUPO
                       <button type="button" id="botonCopiar" class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>index.php/Seguimiento/"  role="button">
                         <i class="fa  fa-share-square-o" aria-hidden="true" ></i>
                         OBTENER ENLACE ENCUESTA</button>
                       </h3>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-10">
                       <center>
+                        <?php
+                        $TOTALAlumnosEncuestados=0;
+                        $EvaluacionesContestadas=0;
+                        $PorcentajeActual=0;
+                        if(isset($APLICADOS))
+                        {
+                          for ($i=0; $i < count($APLICADOS) ; $i++) {
+                            if( $APLICADOS[$i]){
+                                $EvaluacionesContestadas++;
+                            }
+                            $TOTALAlumnosEncuestados++;
+                          }
+                          $PorcentajeActual=($EvaluacionesContestadas*100)/$TOTALAlumnosEncuestados;
+                        }else {
+                          $TOTALAlumnosEncuestados=0;
+                          $EvaluacionesContestadas=0;
+                        }
+                        $DOCENTE="";
+                        $MATERIA="";
+                        if(isset($DATOSMATERIA)){
+                          foreach ($DATOSMATERIA as $key => $value) {
+                            $DOCENTE="".$value->nombres." ".$value->apellidos;
+                            $MATERIA="".$value->nombre_materia ;
+                          }
+                        }else {
+                          $DOCENTE="ERROR";
+                          $MATERIA="ERROR";
+                        }
+                        ?>
+                        <table id="" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                              <th><i class="fa fa-book" aria-hidden="true"></i> MATERIA</th>
+                              <th><i class="fa fa-user" aria-hidden="true"></i> DOCENTE</th>
+                              <th><i class="fa fa-bar-chart" aria-hidden="true"></i> PROGRESO EVALUACION</th>
+                              <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><?php echo "$MATERIA" ; ?></td>
+                              <td><?php echo "$DOCENTE" ; ?></td>
+                              <td>
+                                <div class="progress">
+                                  <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: <?php echo $PorcentajeActual; ?>%;" aria-valuenow="<?php echo $PorcentajeActual; ?>" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                </div>
+                              </td>
+                              <td><?php echo "" ; ?></td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </center>
                     </div>
                   </div>
@@ -53,6 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <?php
                   if ($ALUMNOSGRUPO) {
                     ?>
+                    <h6>ALUMNOS EN EVALUACION</h6>
                     <table id="tablaGrupoAlumnos" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                       <thead>
                         <tr>
