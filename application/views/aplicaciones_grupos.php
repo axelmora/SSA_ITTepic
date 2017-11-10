@@ -61,14 +61,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                   <div class="col-lg-2">
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>DATOS GRUPO
-                      <button type="button" id="botonCopiar" class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>index.php/Seguimiento/"  role="button">
-                        <i class="fa  fa-share-square-o" aria-hidden="true" ></i>
-                        OBTENER ENLACE ENCUESTA</button>
+                      <button type="button" id="botonCopiar"  class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>index.php/Seguimiento/"  role="button">
+                        <div style="font-size:75%;"><i class="fa  fa-share-square-o" aria-hidden="true" ></i> OBTENER ENCUESTA</div></button>
                       </h3>
                     </div>
                     <div class="col-lg-10">
                       <center>
-                        <table id="" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                        <table  class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" >
                           <thead>
                             <tr>
                               <th><i class="fa fa-book" aria-hidden="true"></i> MATERIA</th>
