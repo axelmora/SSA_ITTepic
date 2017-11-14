@@ -1,6 +1,7 @@
 {
-  "Seguimiento": {
-    "1": {
+  "preguntas" :
+  [
+    {
       "tipo": "tabla",
       "pregunta": "1.- El profesor dio a conocer la Planeación del curso, indicando:",
       "subpreguntas": {
@@ -13,7 +14,7 @@
             "2": "No"
           }
         },
-        "2": {
+        "2":  {
           "tipo": "radio",
           "name": "pregunta1_2",
           "pregunta": "las Competencias a alcanzar",
@@ -22,7 +23,7 @@
             "2": "No"
           }
         },
-        "3": {
+        "3":  {
           "tipo": "radio",
           "name": "pregunta1_3",
           "pregunta": "los Criterios de Acreditación en % (exámenes, investigaciones, exposiciones, asistencia, proyectos, portafolio, etc.)",
@@ -31,7 +32,7 @@
             "2": "No"
           }
         },
-        "4": {
+        "4":  {
           "tipo": "radio",
           "name": "pregunta1_4",
           "pregunta": "Las oportunidades para acreditar las unidades",
@@ -40,7 +41,7 @@
             "2": "No"
           }
         },
-        "5": {
+          "5":{
           "tipo": "radio",
           "name": "pregunta1_5",
           "pregunta": "Fechas de evaluación",
@@ -51,7 +52,7 @@
         }
       }
     },
-    "2": {
+    {
       "name": "pregunta2",
       "pregunta": "2.- ¿Qué unidad estas cursando actualmente?",
       "tipo": "seleccion",
@@ -68,7 +69,7 @@
         "10": "No específico"
       }
     },
-    "3": {
+    {
       "name": "pregunta3",
       "pregunta": "3.- ¿Cuál fue la última unidad evaluada?",
       "tipo": "seleccion",
@@ -85,7 +86,7 @@
         "10": "No específico"
       }
     },
-    "4": {
+    {
       "name": "pregunta4",
       "pregunta": "4.-¿Entregó los resultados de las evaluaciones?",
       "tipo": "radio",
@@ -94,7 +95,7 @@
         "2": "No"
       }
     },
-    "5": {
+    {
       "name": "pregunta5",
       "pregunta": "5.-¿Te entrega los resultados de la unidad evaluada, dentro de los primeros 5 días hábiles después de aplicada la evaluación?",
       "tipo": "radio",
@@ -103,7 +104,7 @@
         "2": "No"
       }
     },
-    "6": {
+    {
       "name": "pregunta6",
       "pregunta": "6.-Si no apruebas alguna unidad, ¿Te explica porqué?",
       "tipo": "radio",
@@ -112,7 +113,7 @@
         "2": "No"
       }
     },
-    "7": {
+    {
       "name": "pregunta6",
       "pregunta": "7.-¿El profesor asiste regularmente?",
       "tipo": "radio",
@@ -121,7 +122,7 @@
         "2": "No"
       }
     },
-    "8": {
+    {
       "name": "pregunta6",
       "pregunta": "8.- ¿Utiliza medios electrónicos (Software, Siveduc, biblioteca digital, etc.) para impartir sus clases?",
       "tipo": "radio",
@@ -130,7 +131,7 @@
         "2": "No"
       }
     },
-    "9": {
+    {
       "name": "pregunta6",
       "pregunta": "9.-Utiliza medios audiovisuales (video proyector, pintarrón, pantalla de TV, etc.) para impartir sus clases?",
       "tipo": "radio",
@@ -139,7 +140,7 @@
         "2": "No"
       }
     },
-    "10": {
+    {
       "name": "pregunta10",
       "pregunta": "10.- De la siguiente lista seleccione y cuantifique las prácticas que ha realizado",
       "tipo": "tabla",
@@ -176,7 +177,7 @@
         }
       }
     },
-    "11": {
+    {
       "name": "pregunta11",
       "pregunta": "11.-¿El docente se comporta de manera ética en el aula?",
       "tipo": "radio",
@@ -185,10 +186,10 @@
         "2": "No"
       }
     },
-    "12": {
+    {
       "name": "pregunta12",
       "pregunta": "12.-Si lo deseas puedes expresar algún comentario relativo al tema",
       "tipo": "texto"
     }
-  }
+  ]
 }

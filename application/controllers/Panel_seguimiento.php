@@ -259,12 +259,25 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function retroalimentacionseguimiento($idaplicacion)
 	{
+		$json=json_decode(file_get_contents('file/json/seguimiento1.json'));
+	 // echo "".	$datos["EstructuaEncuesta"]->Seguimiento->"1"->tipo;
+	  //echo "".$json["Seguimiento"]["1"][0] ;
+		//print_r($json);
+		foreach ($json as $key => $value) {
+			foreach ($value as $key => $value2) {
+				 echo "".$value2->tipo."  ".$value2->pregunta." <br>";
+			}
 
-		$this->load->view('aplicaciones_retro');
+		}
+		//echo "".$json->preguntas[0]->tipo." <br> ".$json->preguntas[0]->pregunta;
+
+	//	var_dump($datos["EstructuaEncuesta"]);
+		//$this->load->view('aplicaciones_retro');
 	}
 	public function retroalimentacioncontinua($idaplicacion)
 	{
-		$this->load->view('aplicaciones_retro_multi');
+
+		$this->load->view('aplicaciones_retro_multi',$datos);
 	}
 	public function manual_usuario($value='')
 	{
