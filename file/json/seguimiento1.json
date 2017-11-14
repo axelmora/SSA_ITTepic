@@ -120,55 +120,96 @@
       "name": "pregunta4",
       "pregunta": "4.-¿Entregó los resultados de las evaluaciones?",
       "tipo": "radio",
-      "respuesta": {
-        "1": "Si",
-        "2": "No"
-      }
+      "respuesta": [
+        {
+          "texto": "Si",
+          "valor": "SI"
+        },
+        {
+          "texto": "No",
+          "valor": "NO"
+        }
+      ]
     },
     {
       "name": "pregunta5",
       "pregunta": "5.-¿Te entrega los resultados de la unidad evaluada, dentro de los primeros 5 días hábiles después de aplicada la evaluación?",
       "tipo": "radio",
-      "respuesta": {
-        "1": "Si",
-        "2": "No"
-      }
+      "respuesta": [
+        {
+          "texto": "Si",
+          "valor": "SI"
+        },
+        {
+          "texto": "No",
+          "valor": "NO"
+        }
+        ,
+        {
+          "texto": "No recuerdo",
+          "valor": "NO RECUERDO"
+        }
+      ]
     },
     {
       "name": "pregunta6",
       "pregunta": "6.-Si no apruebas alguna unidad, ¿Te explica porqué?",
       "tipo": "radio",
-      "respuesta": {
-        "1": "Si",
-        "2": "No"
-      }
+      "respuesta": [
+        {
+          "texto": "Si",
+          "valor": "SI"
+        },
+        {
+          "texto": "No",
+          "valor": "NO"
+        }
+      ]
     },
     {
-      "name": "pregunta6",
+      "name": "pregunta7",
       "pregunta": "7.-¿El profesor asiste regularmente?",
       "tipo": "radio",
-      "respuesta": {
-        "1": "Si",
-        "2": "No"
-      }
+      "respuesta": [
+        {
+          "texto": "Si",
+          "valor": "SI"
+        },
+        {
+          "texto": "No",
+          "valor": "NO"
+        }
+      ]
     },
     {
-      "name": "pregunta6",
+      "name": "pregunta8",
       "pregunta": "8.- ¿Utiliza medios electrónicos (Software, Siveduc, biblioteca digital, etc.) para impartir sus clases?",
       "tipo": "radio",
-      "respuesta": {
-        "1": "Si",
-        "2": "No"
-      }
+      "respuesta": [
+        {
+          "texto": "Si",
+          "valor": "SI"
+        },
+        {
+          "texto": "No",
+          "valor": "NO"
+        }
+      ]
     },
     {
-      "name": "pregunta6",
+      "name": "pregunta9",
       "pregunta": "9.-Utiliza medios audiovisuales (video proyector, pintarrón, pantalla de TV, etc.) para impartir sus clases?",
       "tipo": "radio",
-      "respuesta": {
-        "1": "Si",
-        "2": "No"
-      }
+      "respuesta": [
+        {
+          "texto": "Si",
+          "valor": "SI"
+        },
+        {
+          "texto": "No",
+          "valor": "NO"
+        }
+      ]
     },
     {
       "name": "pregunta10",
@@ -211,10 +252,16 @@
       "name": "pregunta11",
       "pregunta": "11.-¿El docente se comporta de manera ética en el aula?",
       "tipo": "radio",
-      "respuesta": {
-        "1": "Si",
-        "2": "No"
-      }
+      "respuesta": [
+        {
+          "texto": "Si",
+          "valor": "SI"
+        },
+        {
+          "texto": "No",
+          "valor": "NO"
+        }
+      ]
     },
     {
       "name": "pregunta12",

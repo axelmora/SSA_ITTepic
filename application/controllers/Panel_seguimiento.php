@@ -265,7 +265,7 @@ class Panel_seguimiento extends CI_Controller {
 		//print_r($json);
 		foreach ($json as $key => $value) {
 			foreach ($value as $key => $value2) {
-				echo "TIPO:   ".$value2->tipo."  ".$value2->pregunta." <br>";
+				echo "TIPO:   ".$value2->tipo." <br> ".$value2->pregunta." <br>";
 				if($value2->tipo=="tabla")
 				{
 					foreach ($value2->subpreguntas as $key => $value3) {
@@ -278,10 +278,14 @@ class Panel_seguimiento extends CI_Controller {
 						}
 						echo "<br>";
 					}
-
+				}else {
+					if($value2->tipo=="radio"){
+						foreach ($value2->respuesta as $key => $value3) {
+							echo "R____:".$value3->texto."                  _";
+						}
+					}
 				}
 			}
-
 		}
 		//echo "".$json->preguntas[0]->tipo." <br> ".$json->preguntas[0]->pregunta;
 
