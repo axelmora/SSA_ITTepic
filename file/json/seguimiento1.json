@@ -9,46 +9,76 @@
           "name": "pregunta1_1",
           "tipo": "radio",
           "pregunta": "El Programa de la Materia y el No. de Unidades a evaluar",
-          "respuesta": {
-            "1": "Si",
-            "2": "No"
-          }
+          "respuesta": [
+            {
+              "texto": "Si",
+              "valor": "SI"
+            },
+            {
+              "texto": "No",
+              "valor": "NO"
+            }
+          ]
         },
         "2":  {
           "tipo": "radio",
           "name": "pregunta1_2",
           "pregunta": "las Competencias a alcanzar",
-          "respuesta": {
-            "1": "Si",
-            "2": "No"
-          }
+          "respuesta": [
+            {
+              "texto": "Si",
+              "valor": "SI"
+            },
+            {
+              "texto": "No",
+              "valor": "NO"
+            }
+          ]
         },
         "3":  {
           "tipo": "radio",
           "name": "pregunta1_3",
           "pregunta": "los Criterios de Acreditación en % (exámenes, investigaciones, exposiciones, asistencia, proyectos, portafolio, etc.)",
-          "respuesta": {
-            "1": "Si",
-            "2": "No"
-          }
+          "respuesta": [
+            {
+              "texto": "Si",
+              "valor": "SI"
+            },
+            {
+              "texto": "No",
+              "valor": "NO"
+            }
+          ]
         },
         "4":  {
           "tipo": "radio",
           "name": "pregunta1_4",
           "pregunta": "Las oportunidades para acreditar las unidades",
-          "respuesta": {
-            "1": "Si",
-            "2": "No"
-          }
+          "respuesta": [
+            {
+              "texto": "Si",
+              "valor": "SI"
+            },
+            {
+              "texto": "No",
+              "valor": "NO"
+            }
+          ]
         },
-          "5":{
+        "5":{
           "tipo": "radio",
           "name": "pregunta1_5",
           "pregunta": "Fechas de evaluación",
-          "respuesta": {
-            "1": "Si",
-            "2": "No"
-          }
+          "respuesta": [
+            {
+              "texto": "Si",
+              "valor": "SI"
+            },
+            {
+              "texto": "No",
+              "valor": "NO"
+            }
+          ]
         }
       }
     },

@@ -260,18 +260,32 @@ class Panel_seguimiento extends CI_Controller {
 	public function retroalimentacionseguimiento($idaplicacion)
 	{
 		$json=json_decode(file_get_contents('file/json/seguimiento1.json'));
-	 // echo "".	$datos["EstructuaEncuesta"]->Seguimiento->"1"->tipo;
-	  //echo "".$json["Seguimiento"]["1"][0] ;
+		// echo "".	$datos["EstructuaEncuesta"]->Seguimiento->"1"->tipo;
+		//echo "".$json["Seguimiento"]["1"][0] ;
 		//print_r($json);
 		foreach ($json as $key => $value) {
 			foreach ($value as $key => $value2) {
-				 echo "".$value2->tipo."  ".$value2->pregunta." <br>";
+				echo "TIPO:   ".$value2->tipo."  ".$value2->pregunta." <br>";
+				if($value2->tipo=="tabla")
+				{
+					foreach ($value2->subpreguntas as $key => $value3) {
+						echo "__".$value3->pregunta."   ".$value3->name."  <br>  ";
+						if($value3->tipo=="radio")
+						{
+							foreach ($value3->respuesta as $key => $value4) {
+								echo "R:".$value4->texto." ";
+							}
+						}
+						echo "<br>";
+					}
+
+				}
 			}
 
 		}
 		//echo "".$json->preguntas[0]->tipo." <br> ".$json->preguntas[0]->pregunta;
 
-	//	var_dump($datos["EstructuaEncuesta"]);
+		//	var_dump($datos["EstructuaEncuesta"]);
 		//$this->load->view('aplicaciones_retro');
 	}
 	public function retroalimentacioncontinua($idaplicacion)
