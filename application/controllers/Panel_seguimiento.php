@@ -259,6 +259,7 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function retroalimentacionseguimiento($idaplicacion)
 	{
+
 		$this->load->view('aplicaciones_retro');
 	}
 	public function retroalimentacioncontinua($idaplicacion)
@@ -289,5 +290,63 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		$datos["MATERIAS"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
 		$this->load->view('seg_materias',$datos);
+	}
+	public function reportePrueba( )
+	{
+		$this->load->library('Pdf');
+		$resolution = array(216, 279);
+		$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
+		$pdf->SetAuthor('Fernando Manuel Avila Cataño');
+		$pdf->SetTitle('Instituto Tecnologico de Tepic');
+		$pdf->SetSubject('Seguimiento en el aula repote');
+		$pdf->SetKeywords('Reporte');
+
+		// datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+
+		// se pueden modificar en el archivo tcpdf_config.php de libraries/config
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+		// se pueden modificar en el archivo tcpdf_config.php de libraries/config
+		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+
+		// se pueden modificar en el archivo tcpdf_config.php de libraries/config
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+		//relación utilizada para ajustar la conversión de los píxeles
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		// establecer el modo de fuente por defecto
+		$pdf->setFontSubsetting(true);
+
+		// Establecer el tipo de letra
+		//Si tienes que imprimir carácteres ASCII estándar, puede utilizar las fuentes básicas como
+		// Helvetica para reducir el tamaño del archivo.
+		$pdf->SetFont('helvetica', '', 10);
+
+		// Añadir una página
+		$pdf->SetPrintHeader(false);
+		$pdf->SetPrintFooter(false);
+
+		// Este método tiene varias opciones, consulta la documentación para más información.
+		$resolution = array(279, 216);
+		$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
+
+		//fijar efecto de sombra en el texto
+		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
+
+
+
+		$html = '';
+		$html .= "<style type=text/css>";
+		$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
+		$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
+		$html .= "</style>";
+		$html .= "<h2>Sistema para el seguimiento en el Aula</h4>";
+
+		$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+		$nombre_archivo = utf8_decode("Reportes_Seguimiento.pdf");
+		$pdf->Output($nombre_archivo, 'I');
+
 	}
 }
