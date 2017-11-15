@@ -29,8 +29,8 @@
   text-shadow: 2px 2px 11px rgba(150, 150, 150, 1);
 }
 .textoopciones {
-    margin-left: 2%;
-    margin-right: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 .medalla{
   font-size: 100%;
@@ -249,6 +249,11 @@ fieldset[disabled] .btn-naranja.active {
 }
 .tablaCargarAlumnos{
 
+}
+.cardMensajes{
+  -webkit-box-shadow: 6px 6px 5px -2px rgba(0,0,0,0.32);
+  -moz-box-shadow: 6px 6px 5px -2px rgba(0,0,0,0.32);
+  box-shadow: 6px 6px 5px -2px rgba(0,0,0,0.32);
 }
 /*---------SEGUIMIENTO---------*/
 /*-logins-*/

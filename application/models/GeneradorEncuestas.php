@@ -69,22 +69,22 @@ class GeneradorEncuestas extends CI_Model {
                 }
                 $temp.=$this->GeneradorEncuestas->preguntaradioR($value3->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
                 unset($tabla_opciones) ;
-                echo "POS  $pos TABLA $value2->pregunta<BR>";
+                // echo "POS  $pos TABLA $value2->pregunta<BR>";
                 $pos++;
               }
               else {
                 if ($value3->tipo=="numero") {
-                    echo "POS  $pos TABLA NUMERO $value2->pregunta<BR>";
-                    $pos++;
+                  // echo "POS  $pos TABLA NUMERO $value2->pregunta<BR>";
+                  $pos++;
                   // $pos++;
                 }else {
                   if($value3->tipo=="numeroespsificar")
                   {
                     foreach ($value3->campos as $key => $value4) {
-                            //  echo "".$value4->tipo;
-                              $pos++;
+                      //  echo "".$value4->tipo;
+                      $pos++;
                     }
-                    echo "POS  $pos TABLA ESESIFICAR $value2->pregunta<BR>";
+                    // echo "POS  $pos TABLA ESESIFICAR $value2->pregunta<BR>";
                   }
                 }
               }
@@ -95,20 +95,23 @@ class GeneradorEncuestas extends CI_Model {
             if($value2->tipo=="radio"){
               $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
               foreach ($value2->respuesta as $key => $value3) {
-                echo "POS $pos  RADIOS SEPARADOS $value2->pregunta <BR> ";
-                              //  $pos++;
+                // echo "POS $pos  RADIOS SEPARADOS $value2->pregunta <BR> ";
+                //  $pos++;
               }
               $pos++;
             }else {
               if($value2->tipo=="seleccion"){
                 $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
-                echo "POS $pos SELECION $value2->pregunta<BR>";
-                   $pos++;
+                // echo "POS $pos SELECION $value2->pregunta<BR>";
+                $pos++;
               }else {
                 if($value2->tipo=="texto"){
+
                   $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
+                  $encuestaRetro.="<div class='row'>";
                   $encuestaRetro.=$this->GeneradorEncuestas->obtenerTexto($responses,$pos);
-                  echo "POS $pos TEXTO $value2->pregunta<BR>";
+                  $encuestaRetro.="</div'>";
+                  // echo "POS $pos TEXTO $value2->pregunta<BR>";
                   $pos++;
                   //  echo "POS $pos <BR>";
                 }
@@ -116,7 +119,7 @@ class GeneradorEncuestas extends CI_Model {
               //  $pos++;
             }
           }
-        //  $pos++;
+          //  $pos++;
         }
       }
     }else {
@@ -131,7 +134,6 @@ class GeneradorEncuestas extends CI_Model {
       </center>
       ';
     }
-    echo "POS FINAAAAAAAAAAAAAL $pos <BR>";
     return $encuestaRetro;
   }
   public function preguntatitulo($nombre)
@@ -211,8 +213,15 @@ class GeneradorEncuestas extends CI_Model {
         //  echo "$pospregunta  $value | - $pos1      <br>";
         if($pos1==$pospregunta)
         {
-          //  echo "$value   $pospregunta  <br>";
-          $textos.=$value;
+          $textos.='
+          <div class="col-md-4">
+          <div class="card border-dark cardMensajes">
+          <div class="card-body">
+          '.$value.'
+          </div>
+          </div>
+          </div>
+          ';
         }
         $pospregunta++;
       }
