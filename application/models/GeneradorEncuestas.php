@@ -91,5 +91,8 @@ class GeneradorEncuestas extends CI_Model {
     }
     return $datos;
   }
-
+  public function card($pregunta)
+  {
+    # code...
+  }
 }
