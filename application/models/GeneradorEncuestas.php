@@ -45,6 +45,7 @@ class GeneradorEncuestas extends CI_Model {
         //    echo "TIPO:   ".$value2->tipo." <br> ".$value2->pregunta." <br>";
         if($value2->tipo=="tabla")
         {
+          $temp="";
           $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
           $tabla_pregunta;
           foreach ($value2->subpreguntas as $key => $value3) {
@@ -56,10 +57,11 @@ class GeneradorEncuestas extends CI_Model {
               foreach ($value3->respuesta as $key => $value4) {
                 $tabla_opciones[]=$value4->texto;
               }
-              $encuestaRetro.=$this->GeneradorEncuestas->preguntaradio($value3->pregunta,$tabla_opciones);
+              $temp.=$this->GeneradorEncuestas->preguntaradio($value3->pregunta,$tabla_opciones);
               unset($tabla_opciones) ;
             }
           }
+          $encuestaRetro.=$this->GeneradorEncuestas->card($temp);
         }else {
           if($value2->tipo=="radio"){
             $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
@@ -83,16 +85,24 @@ class GeneradorEncuestas extends CI_Model {
   public function preguntaradio($preguntas,$respuestas)
   {
     $datos='
-    <p class="textopreguntas">'.$preguntas.'</p>
+    <div class="textopreguntas">'.$preguntas.'</div>
     ';
     for($i=0;$i<count($respuestas);$i++)
     {
-      $datos.='<p class="textoopciones"   >'.$respuestas[$i].'</p>';
+      $datos.='<div class="textoopciones" >'.$respuestas[$i].'</div>';
     }
+    $datos.="<br>";
     return $datos;
   }
   public function card($pregunta)
   {
-    # code...
+    $datos='
+    <div class="card">
+    <div class="card-body">
+       '.$pregunta.'
+    </div>
+  </div>
+    ';
+      return $datos;
   }
 }
