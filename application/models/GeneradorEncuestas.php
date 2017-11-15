@@ -40,10 +40,9 @@ class GeneradorEncuestas extends CI_Model {
   {
     if ($resultados) {
       foreach ($resultados as $key => $value) {
-      echo "$value->respuestas";
+        echo "$value->respuestas";
+      }
     }
-    }
-
     $encuestaRetro="";
     $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
     foreach ($json as $key => $value) {
@@ -101,10 +100,10 @@ class GeneradorEncuestas extends CI_Model {
     $datos='
     <div class="card">
     <div class="card-body">
-       '.$pregunta.'
+    '.$pregunta.'
     </div>
-  </div>
+    </div>
     ';
-      return $datos;
+    return $datos;
   }
 }
