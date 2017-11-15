@@ -28,6 +28,10 @@
   color: #04B404;
   text-shadow: 2px 2px 11px rgba(150, 150, 150, 1);
 }
+.textoopciones {
+    margin-left: 2%;
+    margin-right: 2%;
+}
 .medalla{
   font-size: 100%;
 }

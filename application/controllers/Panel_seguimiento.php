@@ -289,13 +289,13 @@ class Panel_seguimiento extends CI_Controller {
 		// 	}
 		// }
 		$this->load->model('GeneradorEncuestas');
-		echo "".$this->GeneradorEncuestas->generarEncuRetro("");
+		$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro("");
 	//	$this->GeneradorEncuestas->generarEncu("");
 
 		//echo "".$json->preguntas[0]->tipo." <br> ".$json->preguntas[0]->pregunta;
 
 		//	var_dump($datos["EstructuaEncuesta"]);
-		//$this->load->view('aplicaciones_retro');
+		$this->load->view('aplicaciones_retro',$datos);
 	}
 	public function retroalimentacioncontinua($idaplicacion)
 	{
