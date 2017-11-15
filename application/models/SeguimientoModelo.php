@@ -272,5 +272,5 @@ class SeguimientoModelo extends CI_Model {
   } else {
     return false;
   }
-  }
+}
 }
