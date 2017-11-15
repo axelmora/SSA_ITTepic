@@ -42,15 +42,12 @@ class GeneradorEncuestas extends CI_Model {
     $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
     foreach ($json as $key => $value) {
       foreach ($value as $key => $value2) {
-        //    echo "TIPO:   ".$value2->tipo." <br> ".$value2->pregunta." <br>";
         if($value2->tipo=="tabla")
         {
           $temp="";
           $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
           $tabla_pregunta;
           foreach ($value2->subpreguntas as $key => $value3) {
-            //  echo "__".$value3->pregunta."   ".$value3->name."  <br>  ";
-            //$tabla_pregunta[]=$value3->pregunta;
             if($value3->tipo=="radio")
             {
               $tabla_opciones;
@@ -66,7 +63,6 @@ class GeneradorEncuestas extends CI_Model {
           if($value2->tipo=="radio"){
             $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
             foreach ($value2->respuesta as $key => $value3) {
-              //  echo "R____:".$value3->texto."                  _";
             }
           }
         }
