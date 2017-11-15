@@ -40,9 +40,10 @@ class GeneradorEncuestas extends CI_Model {
         //echo "$value->respuestas";
         $responses[] = json_decode(html_entity_decode($value->respuestas), TRUE);
       }
-      foreach ($responses[0] as $key => $value) {
-       echo $value->pregunta1_1;
-     }
+      foreach ($responses[0] as $value)
+  		{
+  			echo "$value <br>";
+  		}
      $encuestaRetro="";
       $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
       foreach ($json as $key => $value) {
