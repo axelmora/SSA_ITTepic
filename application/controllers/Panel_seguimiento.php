@@ -289,7 +289,7 @@ class Panel_seguimiento extends CI_Controller {
 		// 	}
 		// }
 		$this->load->model('GeneradorEncuestas');
-		echo "".$this->GeneradorEncuestas->generarEncu("");
+		echo "".$this->GeneradorEncuestas->generarEncuRetro("");
 	//	$this->GeneradorEncuestas->generarEncu("");
 
 		//echo "".$json->preguntas[0]->tipo." <br> ".$json->preguntas[0]->pregunta;
