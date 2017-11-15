@@ -39,8 +39,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <textarea name="retroalimentacion" required> </textarea>
                     <br>
                     <center>
-                      <button type="submit"  class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> PUBLICAR</button>
-                      <a class="btn btn-danger"  href=''><i class="fa fa-times" aria-hidden="true"></i> CANCELAR</a>
+                      <?php
+                      if (isset($ExistenResultados)) {
+                        ?>
+                        <div class="card text-white bg-danger" >
+                          <div class="card-body">
+                            <p class="card-text">No es posible generar una retroalimentación sin resultados.</p>
+                          </div>
+                        </div>
+                        <?php
+                      }else {
+                        ?>
+                        <button type="submit"  class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> PUBLICAR</button>
+                        <a class="btn btn-danger"  href='<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionlista/<?php echo $idSeguimiento; ?>'><i class="fa fa-times" aria-hidden="true"></i> CANCELAR</a>
+                        <?php
+                      }
+                      ?>
+
                     </center>
                   </form>
                 </div>

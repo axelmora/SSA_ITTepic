@@ -4,10 +4,6 @@ class GeneradorEncuestas extends CI_Model {
   function __construct() {
     parent::__construct();
   }
-  public function index()
-  {
-    echo "string";
-  }
   public function generarEncu($json)
   {
     $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
@@ -39,42 +35,58 @@ class GeneradorEncuestas extends CI_Model {
   public function generarEncuRetro($json,$resultados)
   {
     if ($resultados) {
+      $responses;
       foreach ($resultados as $key => $value) {
-        echo "$value->respuestas";
+        //echo "$value->respuestas";
+        $responses[] = json_decode(html_entity_decode($value->respuestas), TRUE);
       }
-    }
-    $encuestaRetro="";
-    $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
-    foreach ($json as $key => $value) {
-      foreach ($value as $key => $value2) {
-        if($value2->tipo=="tabla")
-        {
-          $temp="";
-          $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
-          $tabla_pregunta;
-          foreach ($value2->subpreguntas as $key => $value3) {
-            if($value3->tipo=="radio")
-            {
-              $tabla_opciones;
-              foreach ($value3->respuesta as $key => $value4) {
-                $tabla_opciones[]=$value4->texto;
-              }
-              $temp.=$this->GeneradorEncuestas->preguntaradio($value3->pregunta,$tabla_opciones);
-              unset($tabla_opciones) ;
-            }
-          }
-          $encuestaRetro.=$this->GeneradorEncuestas->card($temp);
-        }else {
-          if($value2->tipo=="radio"){
+    //  print_r($responses[0]);
+      echo "$responses[0]['pregunta1_1']";
+      $encuestaRetro="";
+      $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
+      foreach ($json as $key => $value) {
+        foreach ($value as $key => $value2) {
+          if($value2->tipo=="tabla")
+          {
+            $temp="";
             $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
-            foreach ($value2->respuesta as $key => $value3) {
+            $tabla_pregunta;
+            foreach ($value2->subpreguntas as $key => $value3) {
+              if($value3->tipo=="radio")
+              {
+                $tabla_opciones;
+                foreach ($value3->respuesta as $key => $value4) {
+                  $tabla_opciones[]=$value4->texto;
+                }
+
+                $temp.=$this->GeneradorEncuestas->preguntaradioR($value3->pregunta,$tabla_opciones);
+                unset($tabla_opciones) ;
+              }
+            }
+            $encuestaRetro.=$this->GeneradorEncuestas->card($temp);
+          }else {
+            if($value2->tipo=="radio"){
+              $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
+              foreach ($value2->respuesta as $key => $value3) {
+              }
             }
           }
+          /**************************/
         }
-        /**************************/
       }
+    }else {
+      $encuestaRetro='
+      <center>
+      <div class="card text-white bg-danger ">
+        <div class="card-body">
+          <h4 class="card-title"><i class="fa fa-exclamation-triangle fa-5x" aria-hidden="true"></i></h4>
+          <p class="card-text">Aun no se cuentan con resultados en esta encuesta. </p>
+        </div>
+      </div>
+        </center>
+      ';
     }
-    return $encuestaRetro;
+      return $encuestaRetro;
   }
   public function preguntatitulo($nombre)
   {
@@ -83,7 +95,7 @@ class GeneradorEncuestas extends CI_Model {
     ';
     return $datos;
   }
-  public function preguntaradio($preguntas,$respuestas)
+  public function preguntaradioR($preguntas,$respuestas)
   {
     $datos='
     <div class="textopreguntas">'.$preguntas.'</div>
