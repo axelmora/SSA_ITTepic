@@ -8,6 +8,7 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->model('Materia');
 		$this->load->model('Docentes');
 		$this->load->model('Alumnos');
+
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 		$this->load->database('default');
@@ -259,34 +260,38 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function retroalimentacionseguimiento($idaplicacion)
 	{
-		$json=json_decode(file_get_contents('file/json/seguimiento1.json'));
-		// echo "".	$datos["EstructuaEncuesta"]->Seguimiento->"1"->tipo;
-		//echo "".$json["Seguimiento"]["1"][0] ;
-		//print_r($json);
-		foreach ($json as $key => $value) {
-			foreach ($value as $key => $value2) {
-				echo "TIPO:   ".$value2->tipo." <br> ".$value2->pregunta." <br>";
-				if($value2->tipo=="tabla")
-				{
-					foreach ($value2->subpreguntas as $key => $value3) {
-						echo "__".$value3->pregunta."   ".$value3->name."  <br>  ";
-						if($value3->tipo=="radio")
-						{
-							foreach ($value3->respuesta as $key => $value4) {
-								echo "R:".$value4->texto." ";
-							}
-						}
-						echo "<br>";
-					}
-				}else {
-					if($value2->tipo=="radio"){
-						foreach ($value2->respuesta as $key => $value3) {
-							echo "R____:".$value3->texto."                  _";
-						}
-					}
-				}
-			}
-		}
+		// $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
+		// // echo "".	$datos["EstructuaEncuesta"]->Seguimiento->"1"->tipo;
+		// //echo "".$json["Seguimiento"]["1"][0] ;
+		// //print_r($json);
+		// foreach ($json as $key => $value) {
+		// 	foreach ($value as $key => $value2) {
+		// 		echo "TIPO:   ".$value2->tipo." <br> ".$value2->pregunta." <br>";
+		// 		if($value2->tipo=="tabla")
+		// 		{
+		// 			foreach ($value2->subpreguntas as $key => $value3) {
+		// 				echo "__".$value3->pregunta."   ".$value3->name."  <br>  ";
+		// 				if($value3->tipo=="radio")
+		// 				{
+		// 					foreach ($value3->respuesta as $key => $value4) {
+		// 						echo "R:".$value4->texto." ";
+		// 					}
+		// 				}
+		// 				echo "<br>";
+		// 			}
+		// 		}else {
+		// 			if($value2->tipo=="radio"){
+		// 				foreach ($value2->respuesta as $key => $value3) {
+		// 					echo "R____:".$value3->texto."                  _";
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
+		$this->load->model('GeneradorEncuestas');
+		echo "".$this->GeneradorEncuestas->generarEncu("");
+	//	$this->GeneradorEncuestas->generarEncu("");
+
 		//echo "".$json->preguntas[0]->tipo." <br> ".$json->preguntas[0]->pregunta;
 
 		//	var_dump($datos["EstructuaEncuesta"]);
