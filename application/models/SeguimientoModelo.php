@@ -261,4 +261,16 @@ class SeguimientoModelo extends CI_Model {
       return false;
     }
   }
+  public function resultadosEncuesta($idseguimiento)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT respuestas from resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idseguimiento"
+  );
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
+  }
 }

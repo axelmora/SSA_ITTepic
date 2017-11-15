@@ -36,7 +36,7 @@ class GeneradorEncuestas extends CI_Model {
       }
     }
   }
-  public function generarEncuRetro($json)
+  public function generarEncuRetro($json,$resultados)
   {
     $encuestaRetro="";
     $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
