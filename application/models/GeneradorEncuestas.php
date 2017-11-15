@@ -203,7 +203,6 @@ class GeneradorEncuestas extends CI_Model {
   }
   public function obtenerTexto($responses,$pos1)
   {
-    echo " que pedooo $pos1 <br>";
     $textos="";
     for ($i=0; $i < count($responses); $i++) {
       $pospregunta=0;
