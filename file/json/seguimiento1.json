@@ -244,7 +244,15 @@
         "6": {
           "name": "pregunta10_6",
           "pregunta": "f)otro: Especifique",
-          "tipo": "numeroespsificar"
+          "tipo": "numeroespsificar",
+          "campos": [
+            {
+              "tipo": "texto"
+            },
+            {
+              "tipo": "numero"
+            }
+          ]
         }
       }
     },
