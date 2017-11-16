@@ -236,9 +236,26 @@ class GeneradorEncuestas extends CI_Model {
     }
     return $textos;
   }
-  public function generarFilas($responses,$pos1,$datos_tabla)
+  public function generarFilas($responses,$pos,$datos_tabla)
   {
-
+    $textos="";
+    $enviar=0;
+    for ($i=0; $i < count($responses); $i++) {
+      $pospregunta=0;
+      foreach ($responses[$i] as $value)
+      {
+        if($pos==$pospregunta)
+        {
+          if($datos_tabla==$value)
+          {
+           echo "$value";
+          }
+        }
+        $pospregunta++;
+      }
+      $pospregunta=0;
+    }
+    return $textos;
   }
   public function card($pregunta)
   {
