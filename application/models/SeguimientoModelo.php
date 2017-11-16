@@ -285,13 +285,23 @@ public function actualizarRetro($id,$retro,$fecha)
 public function obtenerIdSeguimientoporGrupo($seguimiento)
 {
   $DBcon = $this->load->database('default', TRUE);
-  $query=$DBcon->query("SELECT aplicaciones_idaplicaciones from encuestas_seguimiento where idencuesta_seguimiento=$seguimiento"
-);
-if ($query->num_rows() > 0)
-{
-  return $query->result();
-} else {
-  return false;
+  $query=$DBcon->query("SELECT aplicaciones_idaplicaciones from encuestas_seguimiento where idencuesta_seguimiento=$seguimiento");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
 }
+public function cargarRetroAlimentacionID($seguimiento)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT retroalimentacion,aplicaciones_idaplicaciones from encuestas_seguimiento where idencuesta_seguimiento=$seguimiento");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
 }
 }

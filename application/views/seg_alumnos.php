@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <tr>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i> NOMBRE</th>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i> CARRERA</th>
-                        <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
+                      <!--  <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>-->
                       </tr>
                     </thead>
                     <tbody>
@@ -62,13 +62,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <tr>
                           <td><?php echo "".($valor->nombre); ?></td>
                           <td><?php echo "".($valor->carrera); ?> </td>
-                          <td>
+                        <!--  <td>
                             <center>
                               <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo "".$valor->numero_control; ?>"  class="btn btn-primary  text-white"   >
                                 <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
                               </a>
                             </center>
-                          </td>
+                          </td> -->
                         </tr>
                         <?php
                       }

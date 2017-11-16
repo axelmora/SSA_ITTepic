@@ -240,6 +240,7 @@ class Panel_seguimiento extends CI_Controller {
 					$ALUMNOSCONTESTADOS[]=false;
 				}
 			}
+			$datos["IDGRUPO"]=$idGrupo;
 			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idEncuesta);
 			$datos["APLICADOS"]=$ALUMNOSCONTESTADOS;
 			$this->load->view('aplicaciones_grupos',$datos);
@@ -288,7 +289,8 @@ class Panel_seguimiento extends CI_Controller {
 		// 		}
 		// 	}
 		// }
-
+		$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idaplicacion);
+		$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
 		$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
 		$this->load->model('GeneradorEncuestas');
 		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idaplicacion);
@@ -309,10 +311,47 @@ class Panel_seguimiento extends CI_Controller {
 		$this->SeguimientoModelo->actualizarRetro($idretro,$retro,$fecha);
 		redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idVolver);
 	}
+	public function retroalimentacionseguimientocon($idaplicacion)
+	{
+		$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idaplicacion);
+		$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
+		$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
+
+		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idaplicacion);
+		$datos["idRetroAlimntacion"]=$idaplicacion;
+		if(!$resultados)
+		{
+			$datos["ExistenResultados"]=true;
+		}
+		$this->load->model('GeneradorEncuestas');
+		$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
+		$this->load->view('aplicaciones_retro_m',$datos);
+	}
+	public function guardaretroAlimentacionContinua($idretro)
+	{
+		$idVolver=$this->input->post('id');
+		$retro=$this->input->post('retroalimentacion');
+		$fecha=date('Y-m-d H:i:s');
+		$this->SeguimientoModelo->actualizarRetro($idretro,$retro,$fecha);
+		redirect(base_url().'index.php/Panel_seguimiento/retroalimentacioncontinua/'.$idVolver);
+	}
 	public function retroalimentacioncontinua($idaplicacion)
 	{
+		$idenviar=1;
+		$idarreglo;
+		$datos=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idaplicacion);
+		if($datos)
+		{
+			foreach ($datos as $key => $value) {
+				if($value->retroalimentacion=="")
+				{
+					$idarreglo[]=$value->idencuesta_seguimiento;
+				}
+			}
+			$this->retroalimentacionseguimientocon($idarreglo[0]);
+		}else {
 
-		$this->load->view('aplicaciones_retro_multi',$datos);
+		}
 	}
 	public function manual_usuario($value='')
 	{

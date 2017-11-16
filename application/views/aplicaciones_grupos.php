@@ -107,12 +107,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         OPCIONES
                                       </button>
                                       <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#"> AGREGAR ALUMNO</a>
-                                        <a class="dropdown-item" href="#"> RESULTADOS</a>
-                                        <a class="dropdown-item" href="#"> RESULTADOS GRAFICOS</a>
-                                        <a class="dropdown-item" href="#"> RETROALIMENTACION</a>
+                                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/<?php echo $IDGRUPO; ?>"> AGREGAR ALUMNO</a>
+                                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"> RESULTADOS</a>
+                                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"> RESULTADOS GRAFICOS</a>
+                                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"> RETROALIMENTACION</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"> BORRAR ENCUESTA</a>
+                                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"> BORRAR ENCUESTA</a>
                                       </div>
                                     </div>
                                   </center>
