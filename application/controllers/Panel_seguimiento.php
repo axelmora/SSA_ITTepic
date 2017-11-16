@@ -149,7 +149,7 @@ class Panel_seguimiento extends CI_Controller {
 	public function insertarMateria()
 	{
 		$datos= array(
-			'nombre_materia' => ''.$this->input->post('nombre_materia'),
+			'nombre_materia' => ''.strtoupper($this->input->post('nombre_materia')),
 			'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
 		);
 		$this->Materia->insertarMateria($datos);
@@ -305,7 +305,7 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function retroalimentacioncontinua($idaplicacion)
 	{
-		
+
 		$this->load->view('aplicaciones_retro_multi',$datos);
 	}
 	public function manual_usuario($value='')

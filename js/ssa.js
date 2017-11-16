@@ -71,8 +71,9 @@ $(document).ready(function(){
       {
         var datos = $.parseJSON(data);
         //console.log(datos);
+        var materiaNombre=$("#nombre_materia").val();
         $("#idmateria").val(""+datos.idmateria);
-        $("#nombre_materiaenviar").val($("#nombre_materia").val().toUpperCase());
+        $("#nombre_materiaenviar").val(materiaNombre.toUpperCase());
         $('#modalAgregarMateria').modal('hide')
         $("#nombre_materia").val("");
         $("#nombre_materiaenviar").addClass( "animated bounceIn" );

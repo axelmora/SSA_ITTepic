@@ -93,7 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
     </div>
   </div>
-  <?php $this->load->view('include/footer'); ?>
+  <?php $this->load->view('include/footer'); ?><a href="javascript:" id="top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>

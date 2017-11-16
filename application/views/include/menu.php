@@ -26,7 +26,7 @@
           <a class="nav-link" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/"><i class="fa fa-home" aria-hidden="true"></i> INICO <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones"><i class="icon-clipboard" aria-hidden="true"></i>ENCUESTAS </a>
+          <a class="nav-link" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones"><i class="icon-clipboard" aria-hidden="true"></i>ENCUESTAS SEGUIMIENTO EN EL AULA</a>
         </li>
       </ul>
       <ul class='navbar-nav'>
