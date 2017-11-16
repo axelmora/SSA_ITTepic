@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     }
                     ?>
                     <h3>
-                      <i class="fa fa-commenting-o" aria-hidden="true"></i> Reotroalimentación de la aplicacion del periodo <?php echo "$peridotlista";  ?>
+                      <i class="fa fa-commenting-o" aria-hidden="true"></i> Retroalimentación de la aplicacion del periodo <?php echo "$peridotlista";  ?>
                     </h3>
                     <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
 
@@ -79,7 +79,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td>
                             <div class="btn-group btn-block">
                               <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo "".$valor->idgrupos; ?>"  class="btn btn-primary btn-block text-white"   >
-                                <i class="fa fa-commenting-o" aria-hidden="true"></i> REOTROALIMENTACIÓN INDIVIDUAL
+                                <i class="fa fa-commenting-o" aria-hidden="true"></i> RETROALIMENTACIÓN INDIVIDUAL
                               </a>
                             </div>
                           </td>
