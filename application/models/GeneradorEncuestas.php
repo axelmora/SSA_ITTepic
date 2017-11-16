@@ -222,7 +222,7 @@ class GeneradorEncuestas extends CI_Model {
         if($pos1==$pospregunta)
         {
           $textos.='
-          <div class="col-md-4">
+          <div class="col-md-4" style="margin-top:0.5%;">
           <div class="card border-dark cardMensajes">
           <div class="card-body">
           '.$value.'
