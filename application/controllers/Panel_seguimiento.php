@@ -299,9 +299,13 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->view('aplicaciones_retro',$datos);
 		//echo "".$json->preguntas[0]->tipo." <br> ".$json->preguntas[0]->pregunta;
 	}
-	public function retroalimentacioncontinua($idaplicacion)
+	public function guardaretroAlimentacion($idSeguimiento)
 	{
 
+	}
+	public function retroalimentacioncontinua($idaplicacion)
+	{
+		
 		$this->load->view('aplicaciones_retro_multi',$datos);
 	}
 	public function manual_usuario($value='')

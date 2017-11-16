@@ -35,10 +35,7 @@
 .medalla{
   font-size: 100%;
 }
-.scrolleador{
-  height: 450px;
-  overflow-y: scroll;
-}
+
 .pulse-header {
   height: 80px;
   min-height: 60px;
@@ -85,7 +82,6 @@ footer {
   right: 0;
   bottom: 0;
   left: 0;
-
 }
 footer.page-footer {
   margin-top: 20px;
@@ -255,6 +251,20 @@ fieldset[disabled] .btn-naranja.active {
   -moz-box-shadow: 6px 6px 5px -2px rgba(0,0,0,0.32);
   box-shadow: 6px 6px 5px -2px rgba(0,0,0,0.32);
 }
+.scrolleador{
+  height: 600px;
+  overflow-y: scroll;
+}
+@media only screen and (max-width: 800px) {
+  .scrolleador{
+    height: 400px;
+    overflow-y: scroll;
+  }
+}
+.tablaRetro {
+    margin-left:auto;
+    margin-right:auto;
+  }
 /*---------SEGUIMIENTO---------*/
 /*-logins-*/
 canvas {

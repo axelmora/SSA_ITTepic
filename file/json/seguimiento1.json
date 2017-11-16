@@ -86,35 +86,103 @@
       "name": "pregunta2",
       "pregunta": "2.- ¿Qué unidad estas cursando actualmente?",
       "tipo": "seleccion",
-      "datos": {
-        "1": "Unidad 1",
-        "2": "Unidad 2",
-        "3": "Unidad 3",
-        "4": "Unidad 4",
-        "5": "Unidad 5",
-        "6": "Unidad 6",
-        "7": "Unidad 7",
-        "8": "Unidad 8",
-        "9": "No recuerdo",
-        "10": "No específico"
-      }
+      "datos":[
+          {
+            "nombre":"Unidad 1",
+            "valor":1
+          },
+          {
+            "nombre":"Unidad 2",
+            "valor":2
+          },
+          {
+            "nombre":"Unidad 3",
+            "valor":3
+          },
+          {
+            "nombre":"Unidad 4",
+            "valor":4
+          },
+          {
+            "nombre":"Unidad 5",
+            "valor":5
+          },
+          {
+            "nombre":"Unidad 6",
+            "valor":6
+          },
+          {
+            "nombre":"Unidad 7",
+            "valor":7
+          },
+          {
+            "nombre":"Unidad 8",
+            "valor":8
+          },
+          {
+            "nombre":"Unidad 9",
+            "valor":9
+          },
+          {
+            "nombre":"No recuerdo",
+            "valor":0
+          },
+          {
+            "nombre":"No se específico",
+            "valor":0
+          }
+        ]
     },
     {
       "name": "pregunta3",
       "pregunta": "3.- ¿Cuál fue la última unidad evaluada?",
       "tipo": "seleccion",
-      "datos": {
-        "1": "Unidad 1",
-        "2": "Unidad 2",
-        "3": "Unidad 3",
-        "4": "Unidad 4",
-        "5": "Unidad 5",
-        "6": "Unidad 6",
-        "7": "Unidad 7",
-        "8": "Unidad 8",
-        "9": "No recuerdo",
-        "10": "No específico"
-      }
+      "datos":[
+          {
+            "nombre":"Unidad 1",
+            "valor":1
+          },
+          {
+            "nombre":"Unidad 2",
+            "valor":2
+          },
+          {
+            "nombre":"Unidad 3",
+            "valor":3
+          },
+          {
+            "nombre":"Unidad 4",
+            "valor":4
+          },
+          {
+            "nombre":"Unidad 5",
+            "valor":5
+          },
+          {
+            "nombre":"Unidad 6",
+            "valor":6
+          },
+          {
+            "nombre":"Unidad 7",
+            "valor":7
+          },
+          {
+            "nombre":"Unidad 8",
+            "valor":8
+          },
+          {
+            "nombre":"Unidad 9",
+            "valor":9
+          },
+          {
+            "nombre":"No recuerdo",
+            "valor":0
+          },
+          {
+            "nombre":"No se específico",
+            "valor":0
+          }
+        ]
     },
     {
       "name": "pregunta4",
