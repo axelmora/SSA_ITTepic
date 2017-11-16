@@ -8,10 +8,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="description" content="">
-	<meta name="author" content="Fernando Manuel Avila Cataño">
-	<meta name="theme-color" content="#FFFFFF">
-	<meta name="msapplication-navbutton-color" content="#FFFFFF">
-	<meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <meta name="author" content="Fernando Manuel Avila Cataño">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="msapplication-navbutton-color" content="#FFFFFF">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
   <link href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/animate.css" type="text/css" rel="stylesheet" />
@@ -593,8 +593,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 </div>
 </div>
+<a href="javascript:" id="top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+<script>
+// ===== Funcion top====
+$(window).scroll(function() {
+  if ($(this).scrollTop() >= 50) {    // Si se mueve mas de 50px
+    $('#top').fadeIn("fast");       //octula la flecha
+  } else {
+    $('#top').fadeOut("fast");      // des oculta la flecha
+  }
+});
+$('#top').click(function() {            // cuando la fecha es precionada
+  $('body,html').animate({
+    scrollTop : 0                   // mueve la pagina
+  }, 500);
+});
+// ===== Funcion top==== FIN
+</script>
 </body>
 </html>

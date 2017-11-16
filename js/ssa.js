@@ -84,18 +84,19 @@ $(document).ready(function(){
     });
     event.preventDefault();
   });
-  // ===== Scroll to Top ====
+  // ===== Funcion top====
   $(window).scroll(function() {
-      if ($(this).scrollTop() >= 50) {    // If page is scrolled more than 50px
-          $('#top').fadeIn("fast");       // Fade in the arrow
+      if ($(this).scrollTop() >= 50) {    // Si se mueve mas de 50px
+          $('#top').fadeIn("fast");       //octula la flecha
       } else {
-          $('#top').fadeOut("fast");      // Else fade out the arrow
+          $('#top').fadeOut("fast");      // des oculta la flecha
       }
   });
-  $('#top').click(function() {            // When arrow is clicked
+  $('#top').click(function() {            // cuando la fecha es precionada
       $('body,html').animate({
-          scrollTop : 0                   // Scroll to top of body
+          scrollTop : 0                   // mueve la pagina
       }, 500);
   });
+    // ===== Funcion top==== FIN
 });
 /*FIN JS*/
