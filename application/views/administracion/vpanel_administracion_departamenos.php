@@ -26,10 +26,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-lg-12">
 			<div class="card menus">
 				<div class="card-body">
-
 					<div class="row" >
 						<div class="col-lg-4">
 							<h3><i class="fa fa-users" aria-hidden="true"></i> Lista de departamentos académicos</h3>
+							<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/lista_usuarios" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+
 						</div>
 						<div class="col-lg-6">
 							<a href="<?php echo base_url(); ?>index.php/panel_administracion/nuevo_departamento" class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> AGREGAR NUEVO DEPARTAMENTO</a>

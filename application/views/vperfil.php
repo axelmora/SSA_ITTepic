@@ -33,9 +33,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="card sombrapaneles    ">
 					<div class="card-body cuerpo "   >
 						<h3><i class="fa fa-user" aria-hidden="true"></i> Perfil del usuario</h3>
-						<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver al menu" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button">
-							<i class="fa fa-undo" aria-hidden="true"></i>
-						</a>
+						<?php
+						if($this->session->userdata('tipo')=='2')
+						{
+							?>
+							<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver al menu" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button">
+								<i class="fa fa-undo" aria-hidden="true"></i>
+							</a>
+							<?php
+						}
+						?>
+						<?php
+						if($this->session->userdata('tipo')=='1')
+						{
+							?>
+							<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver al menu" href="<?php echo base_url(); ?>index.php/Panel_administracion/" role="button">
+								<i class="fa fa-undo" aria-hidden="true"></i>
+							</a>
+							<?php
+						}
+						?>
 						<button id="botonEditar" type="button" data-toggle="tooltip" data-placement="top" title="Modificar la informacion del usuario."  class="btn btn-secondary" >
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDITAR INFORMACION
 						</button>

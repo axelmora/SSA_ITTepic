@@ -27,9 +27,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="card-body">
 					<div class="row">
 						<div class="col-lg-12">
-							<h3><i class="fa fa-server" aria-hidden="true"></i> Configuracion Sistema</h3>
+							<h3><i class="fa fa-server" aria-hidden="true"></i> Configuracion Sistema</h3> 							<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
 							<p>
-								<br>
 								<p><b>VERSION ACTUAL:</b> 1.0.0 <p>
 									<form>
 										<label><b>ESTADO ACTUAL DEL SITEMA </b> <label>

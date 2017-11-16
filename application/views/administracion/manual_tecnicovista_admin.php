@@ -25,7 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-lg-12">
 				<div class="card sombrapanel">
 					<div class="card-body">
-						<center><h4><i class="fa fa-graduation-cap" aria-hidden="true"></i> Manual de tecnico</h4></center>
+						<center><h4><i class="fa fa-graduation-cap" aria-hidden="true"></i> Manual de tecnico</h4><a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+</center>
 					</div>
 				</div>
 			</div>
