@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       $peridotlista= genePerido($valorPeriodo->periodo);
                     }
                     ?>
-                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupos de aplicacion del periodo <?php echo "$peridotlista";  ?>
+                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupos de aplicación  del periodo <?php echo "$peridotlista";  ?>
 
                       </h3>
                       <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>

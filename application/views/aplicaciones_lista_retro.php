@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     }
                     ?>
                     <h3>
-                      <i class="fa fa-commenting-o" aria-hidden="true"></i> Retroalimentación de la aplicacion del periodo <?php echo "$peridotlista";  ?>
+                      <i class="fa fa-commenting-o" aria-hidden="true"></i> Retroalimentación de la aplicación  del periodo de <?php echo "$peridotlista";  ?>
                     </h3>
                     <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
 
@@ -97,7 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="card-body">
                       <center>
                         <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-                        Actualmente no existen grupos para esta aplicacion de seguimiento en el aula generada.
+                        Actualmente no existen grupos para esta aplicación  de seguimiento en el aula generada.
                       </center>
                     </div>
                   </div>
