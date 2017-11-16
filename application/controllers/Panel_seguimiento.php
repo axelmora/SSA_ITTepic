@@ -339,13 +339,21 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		$idenviar=1;
 		$idarreglo;
+		$arreloaumnos;
 		$datos=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idaplicacion);
 		if($datos)
 		{
 			foreach ($datos as $key => $value) {
 				if($value->retroalimentacion=="")
 				{
-					$idarreglo[]=$value->idencuesta_seguimiento;
+					/*$d=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
+					foreach ($d as $key => $value2) {
+						 $arreloaumnos[]=$value2->total;
+					}*/
+					//if($arreloaumnos[0]>0){
+						echo "$value->idencuesta_seguimiento ";
+						$idarreglo[]=$value->idencuesta_seguimiento;
+				//	}
 				}
 			}
 			$this->retroalimentacionseguimientocon($idarreglo[0]);
