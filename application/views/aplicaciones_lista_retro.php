@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row" style="margin-right: 0px; margin-left: 0px;">
       <div class="col-lg-12">
         <div class="card caro">
-          <div class="card-body">
+          <div class="card-body" style="z-index: 1">
             <div class="row">
               <div class="col-lg-12">
                 <div class="row">
@@ -93,7 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
                 else {
                   ?>
-                  <div class="card bg-danger text-white animated fadeInUp">
+                  <div class="card bg-danger text-white animated fadeInUp" style="z-index: 1" >
                     <div class="card-body">
                       <center>
                         <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
