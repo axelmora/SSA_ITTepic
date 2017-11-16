@@ -261,10 +261,6 @@ fieldset[disabled] .btn-naranja.active {
     overflow-y: scroll;
   }
 }
-.tablaRetro {
-    margin-left:auto;
-    margin-right:auto;
-  }
 /*---------SEGUIMIENTO---------*/
 /*-logins-*/
 canvas {

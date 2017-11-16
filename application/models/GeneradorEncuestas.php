@@ -106,15 +106,16 @@ class GeneradorEncuestas extends CI_Model {
               if($value2->tipo=="seleccion"){
                 // echo "POS $pos SELECION $value2->pregunta<BR>";
                 $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
-                $encuestaRetro.='<table class="table table table-responsive table-sm table-hover tablaRetro"><thead><tr>';
+                $encuestaRetro.='<table class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
                 $datos_tabla;
                 foreach ($value2->datos as $key => $value3) {
-                  $datos_tabla[]=$value3->valor;
+                  $datos_tabla[]="".$value3->valor;
                   $encuestaRetro.="<th>".$value3->nombre."</th>";
                 }
                 $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
                 $encuestaRetro.=' </tr></thead>';
                 $encuestaRetro.="</table>";
+                unset($datos_tabla) ;
                 $pos++;
               }else {
                 if($value2->tipo=="texto"){
@@ -240,21 +241,33 @@ class GeneradorEncuestas extends CI_Model {
   {
     $textos="";
     $enviar=0;
+    $datoscontables = array_fill(0, count($datos_tabla), NULL);
     for ($i=0; $i < count($responses); $i++) {
       $pospregunta=0;
       foreach ($responses[$i] as $value)
       {
         if($pos==$pospregunta)
         {
-          if($datos_tabla==$value)
+          for($e=0;$e<count($datos_tabla);$e++)
           {
-           echo "$value";
+            if($datos_tabla[$e]==$value)
+            {
+              $datoscontables[$e]+=1;
+              //    echo "$e $value <br>";
+            }else {
+              $datoscontables[$e]+=0;
+            }
           }
         }
         $pospregunta++;
       }
       $pospregunta=0;
     }
+    $textos.='<tr>';
+    for ($i=0; $i < count($datos_tabla); $i++) {
+      $textos.='<td>'.$datoscontables[$i].' </td>';
+    }
+    $textos.='</tr>';
     return $textos;
   }
   public function card($pregunta)
