@@ -28,9 +28,6 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones"><i class="icon-clipboard" aria-hidden="true"></i>ENCUESTAS </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS </a>
-        </li>
       </ul>
       <ul class='navbar-nav'>
         <li class="nav-item dropdown ">
