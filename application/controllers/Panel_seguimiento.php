@@ -340,25 +340,35 @@ class Panel_seguimiento extends CI_Controller {
 		$idenviar=1;
 		$idarreglo;
 		$arreloaumnos;
+		$idfinales;
 		$datos=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idaplicacion);
 		if($datos)
 		{
+			$poosi=0;
 			foreach ($datos as $key => $value) {
 				if($value->retroalimentacion=="")
 				{
-					/*$d=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
+					$d=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
 					foreach ($d as $key => $value2) {
-						 $arreloaumnos[]=$value2->total;
-					}*/
-					//if($arreloaumnos[0]>0){
-						echo "$value->idencuesta_seguimiento ";
-						$idarreglo[]=$value->idencuesta_seguimiento;
-				//	}
+						$arreloaumnos[]=$value2->total;
+					}
+					$idarreglo[]=$value->idencuesta_seguimiento;
 				}
 			}
-			$this->retroalimentacionseguimientocon($idarreglo[0]);
+			for($i=0;$i<count($idarreglo);$i++)
+			{
+				if($arreloaumnos[$i]>0){
+					$idfinales[]=$idarreglo[$i];
+				}
+			}
+			if(isset($idfinales))
+			{
+				$this->retroalimentacionseguimientocon($idfinales[0]);
+			}else {
+				redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idaplicacion);
+			}
 		}else {
-
+			redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idaplicacion);
 		}
 	}
 	public function manual_usuario($value='')
