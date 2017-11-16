@@ -112,8 +112,7 @@ class GeneradorEncuestas extends CI_Model {
                   $datos_tabla[]=$value3->valor;
                   $encuestaRetro.="<th>".$value3->nombre."</th>";
                 }
-                $this->GeneradorEncuestas->preguntatitulo($responses,$pos1,$datos_tabla);
-
+                $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
                 $encuestaRetro.=' </tr></thead>';
                 $encuestaRetro.="</table>";
                 $pos++;
