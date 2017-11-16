@@ -240,6 +240,7 @@ class Panel_seguimiento extends CI_Controller {
 					$ALUMNOSCONTESTADOS[]=false;
 				}
 			}
+			$datos["idEncuesta"]=$idEncuesta;
 			$datos["IDGRUPO"]=$idGrupo;
 			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idEncuesta);
 			$datos["APLICADOS"]=$ALUMNOSCONTESTADOS;
