@@ -32,12 +32,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="col-lg-10">
                   <h3>Retroalimentación</h3>
                   <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
-
+                    <?php
+                    $id="";
+                    foreach ($idSegui as $key => $value) {
+                     $id=$value->aplicaciones_idaplicaciones;
+                    }
+                     ?>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-5 col-md-5">
-                  <form method="post" action=" ">
+                  <form method="post" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/guardaretroAlimentacion/<?php echo $idRetroAlimntacion; ?>">
+                    <input type="number"name="id" value="<?php echo $id; ?>" hidden required >
                     <textarea name="retroalimentacion" required> </textarea>
                     <br>
                     <center>

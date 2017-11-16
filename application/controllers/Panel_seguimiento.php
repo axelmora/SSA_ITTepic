@@ -288,9 +288,11 @@ class Panel_seguimiento extends CI_Controller {
 		// 		}
 		// 	}
 		// }
+
+		$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
 		$this->load->model('GeneradorEncuestas');
 		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idaplicacion);
-		$datos["idSeguimiento"]=$idaplicacion;
+		$datos["idRetroAlimntacion"]=$idaplicacion;
 		if(!$resultados)
 		{
 			$datos["ExistenResultados"]=true;
@@ -299,9 +301,13 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->view('aplicaciones_retro',$datos);
 		//echo "".$json->preguntas[0]->tipo." <br> ".$json->preguntas[0]->pregunta;
 	}
-	public function guardaretroAlimentacion($idSeguimiento)
+	public function guardaretroAlimentacion($idretro)
 	{
-
+		$idVolver=$this->input->post('id');
+		$retro=$this->input->post('retroalimentacion');
+		$fecha=date('Y-m-d H:i:s');
+		$this->SeguimientoModelo->actualizarRetro($idretro,$retro,$fecha);
+		redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idVolver);
 	}
 	public function retroalimentacioncontinua($idaplicacion)
 	{

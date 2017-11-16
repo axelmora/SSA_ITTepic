@@ -273,4 +273,25 @@ class SeguimientoModelo extends CI_Model {
     return false;
   }
 }
+public function actualizarRetro($id,$retro,$fecha)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $DBcon->set('retroalimentacion', $retro);
+  $DBcon->set('fecha_retro', $fecha);
+  $DBcon->where('idencuesta_seguimiento', $id);
+  $DBcon->update('encuestas_seguimiento');
+  return true;
+}
+public function obtenerIdSeguimientoporGrupo($seguimiento)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT aplicaciones_idaplicaciones from encuestas_seguimiento where idencuesta_seguimiento=$seguimiento"
+);
+if ($query->num_rows() > 0)
+{
+  return $query->result();
+} else {
+  return false;
+}
+}
 }
