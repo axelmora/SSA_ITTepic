@@ -69,4 +69,12 @@ class Usuarios extends CI_Model {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->insert('usuarios',$datos);
   }
+  public function actualizarEstado($id,$estado)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $DBcon->set('estado', $estado);
+    $DBcon->where('idusuarios', $id);
+    $DBcon->update('usuarios');
+    return true;
+  }
 }

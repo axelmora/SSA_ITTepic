@@ -13,9 +13,9 @@ class C_usuarios extends CI_Controller {
 	public function index()
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' ) {
-				$this->load->view('vperfil');
+			$this->load->view('vperfil');
 		}else {
-				redirect(base_url().'index.php');
+			redirect(base_url().'index.php');
 		}
 	}
 	/* inicio de sesion*/
@@ -38,12 +38,39 @@ class C_usuarios extends CI_Controller {
 			$sistemaproduccion = $this->Sistema->obtenerproduccion();
 			if ($sistemaproduccion[0]->produccion==1) {
 				$this->session->set_userdata($datos);
-				$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
 				if ($this->session->userdata('perfil')=="Administrador") {
-					redirect(base_url().'index.php/Panel_administracion/');
+					if($verificarusuario[0]->estado==1)
+					{
+						$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
+					  redirect(base_url().'index.php/Panel_administracion/');
+					}else {
+						$datos["mensajesistema"]="
+						<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
+						<center>
+						<i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
+						<br><b> Lo sentimos su cuenta esta actualmente desactivada. </b>
+						</center>
+						</div>
+						";
+						$this->load->view('inicio',$datos);
+					}
 				}
 				else {
-					redirect(base_url().'index.php/Panel_seguimiento/');
+					if($verificarusuario[0]->estado==1)
+					{
+						$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
+						redirect(base_url().'index.php/Panel_seguimiento/');
+					}else {
+						$datos["mensajesistema"]="
+						<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
+						<center>
+						<i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
+						<br><b> Lo sentimos su cuenta esta actualmente desactivada. </b>
+						</center>
+						</div>
+						";
+						$this->load->view('inicio',$datos);
+					}
 				}
 			}else {
 				if ($verificarusuario[0]->tipo==1) {
@@ -132,6 +159,12 @@ class C_usuarios extends CI_Controller {
 			}
 		}
 		return $periodo;
+	}
+	public function cambiarEstado()
+	{
+		$idusuarios = $this->input->post('idusuarios');
+		$estado = $this->input->post('estado');
+		$this->Usuarios->actualizarEstado($idusuarios,$estado);
 	}
 	/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
 	public function mensajeError($Mensaje)

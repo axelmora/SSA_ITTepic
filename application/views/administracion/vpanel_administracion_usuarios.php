@@ -46,6 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<th>NOMBRE DE USUARIO</th>
 								<th>DEPARTAMENTO</th>
 								<th>ULTIMA CONEXION</th>
+								<th>ESTADO</th>
 								<th>OPCIONES</th>
 							</tr>
 						</thead>
@@ -66,7 +67,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<?php
 											} ?>
 
+
 											<td colspan=""><?php if($valores->ult_conexion!=""){echo $valores->ult_conexion;}else{echo "-";} ?></td>
+											<?php if($valores->estado =="1"){ ?>
+												<td>
+													<label class="switch">
+														<input type="checkbox"  onclick="cambiarEstado(<?php  echo $valores->idusuarios;?>,0)" checked>
+														<span class="slider round"></span>
+													</label>
+												</td>
+												<?php
+											}
+											else { ?>
+												<td>
+													<label class="switch">
+														<input type="checkbox" onclick="cambiarEstado(<?php  echo $valores->idusuarios;?>,1)">
+														<span class="slider round"></span>
+													</label>
+												</td>
+												<?php
+											} ?>
 											<td colspan="">
 												<div class="btn-group btn-block">
 													<button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -111,6 +131,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
 <script>
+function cambiarEstado(id,estado)
+{
+	var parametros2 = {
+		"idusuarios" :id,
+		"estado" :estado
+	};
+	$(document).ready(function() {
+		$.ajax({
+			data:  parametros2,
+			url:   '<?php echo base_url(); ?>index.php/C_usuarios/cambiarEstado',
+			type:  'post',
+			success:  function (response) {
+			}
+		});
+	});
+}
+
 $(document).ready(function() {
 	$('#tablausuarios').DataTable({
 		"language": {
