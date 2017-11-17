@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Departamento: </label>
-                      <select name="departamento_academico" id="departamento_academico" class="custom-select">
+                      <select name="departamento_academico" id="departamento_academico" class="custom-select" required>
                         <?php
                         if($DEPARTAMENTOS)
                         {
