@@ -4,14 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>SSA - Usuarios</title>
+  <title>SSA - Agregar usuario</title>
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="description" content="">
-	<meta name="author" content="Fernando Manuel Avila Cataño">
-	<meta name="theme-color" content="#FFFFFF">
-	<meta name="msapplication-navbutton-color" content="#FFFFFF">
-	<meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <meta name="author" content="Fernando Manuel Avila Cataño">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="msapplication-navbutton-color" content="#FFFFFF">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
   <link href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/animate.css" type="text/css" rel="stylesheet" />
@@ -36,21 +36,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="card-body">
               <div class="row" >
                 <div class="col-lg-12">
-                  <form>
+                  <form method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/agrearUsuario" >
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      <label for="nombre_user">Nombre de usuario:</label>
+                      <input type="text" class="form-control" id="nombre_user" name="nombre_user" aria-describedby="nombre_userHelp" placeholder="Ingresar nombre del usuario." required>
+                      <small id="nombre_userHelp" class="form-text text-muted">Nombre del usuario por el cual iniciara sesión.</small>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <label for="nombre_userc">Nombre completo de usuario:</label>
+                      <input type="text" class="form-control" id="nombre_userc"  name="nombre_userc"  value="" placeholder="Ingresar nombre completo de usuario." required>
                     </div>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
-                        Check me out
-                      </label>
+                    <div class="form-group">
+                      <label for="contrasena">Contraseña:</label>
+                      <input type="password" class="form-control" id="contrasena" name="contrasena"  value="" placeholder="Ingresar contraseña" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Departamento: </label>
+                      <select name="departamento_academico" id="departamento_academico" class="custom-select">
+                        <?php
+                        if($DEPARTAMENTOS)
+                        {
+                          $pos=0;
+                          foreach ($DEPARTAMENTOS as $key => $value) {
+                            if($pos==1)
+                            {
+                              echo '<option selected value="'.$value->iddepartamento_academico.'">'.$value->nombre_departamento.'</option>';
+                            }
+                            else {
+                              echo '<option value="'.$value->iddepartamento_academico.'">'.$value->nombre_departamento.'</option>';
+                            }
+                            $pos++;
+                          }
+                        }
+                        ?>
+                      </select>
+                      <div id="esAdmin" class="alert alert-warning" role="alert" style="display:none; margin-top:10px;">
+                        <i class="fa fa-exclamation-circle animated tada infinite" aria-hidden="true"></i>   Atención esta seleccionado un tipo de cuenta de administración.
+                      </div>
                     </div>
                     <button type="submit" class="btn btn-primary">AGREGAR NUEVO USUARIO</button>
                   </form>
@@ -62,7 +84,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
     </div>
   </div>
-
   <?php $this->load->view('include/manual_usuario'); ?>
   <?php $this->load->view('include/footer'); ?>
 </body>
@@ -82,6 +103,15 @@ $(document).ready(function(){
     fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
   };
   PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
+  $('#departamento_academico').change(function(){
+    if($(this).find("option:selected").attr('value')==1)
+    {
+      $("#esAdmin").fadeIn();
+    }else {
+      $("#esAdmin").fadeOut();
+
+    }
+  });
 });
 </script>
 </html>

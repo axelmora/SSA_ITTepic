@@ -64,4 +64,9 @@ class Usuarios extends CI_Model {
         return false;
     }
   }
+  public function insertarUsuario($datos)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->insert('usuarios',$datos);
+  }
 }

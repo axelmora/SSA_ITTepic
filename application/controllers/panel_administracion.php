@@ -51,15 +51,40 @@ class Panel_administracion extends CI_Controller {
 		$this->load->view('editor_plantillas');
 	}
 	public function adduser() {
-		$this->load->view('administracion/vpanel_nusuario');
+		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
+		$this->load->view('administracion/vpanel_nusuario',$datos);
+	}
+	public function agrearUsuario( )
+	{
+		$nombre_user = $this->input->post('nombre_user');
+		$contrasena = $this->input->post('contrasena');
+		$nombre_userc = $this->input->post('nombre_userc');
+		$departamento_academico= $this->input->post('departamento_academico');
+		$tipo="";
+		if($departamento_academico==1)
+		{
+			$tipo=1;
+		}else {
+			$tipo=2;
+		}
+		$datos= array(
+			'usuario' => ''.$nombre_user,
+			'password' => sha1($contrasena),
+			'tipo'=>$tipo,
+			'estado'=>1,
+			'nombre_usuario'=> ''.$nombre_userc,
+			'departamento_academico_iddepartamento_academico'=> ''.$departamento_academico
+		);
+		$this->Usuarios->insertarUsuario($datos);
+		redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
 	}
 	public function manual_tecnico(){
-	$this->load->view('administracion/manual_tecnicovista_admin');
+		$this->load->view('administracion/manual_tecnicovista_admin');
 	}
 	public function manual_usuario(){
-	$this->load->view('administracion/manual_usuariovista_admin');
+		$this->load->view('administracion/manual_usuariovista_admin');
 	}
-		/* SECCION DE DEPARTAMENTOS ACADEMICOS */
+	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
 	public function departamentos()
 	{
 		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
