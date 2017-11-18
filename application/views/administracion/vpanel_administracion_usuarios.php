@@ -26,19 +26,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="col-lg-12">
 			<div class="card menus">
 				<div class="card-body">
-
 					<div class="row" >
-						<div class="col-lg-2">
+						<div class="col-lg-3">
 							<h3><i class="fa fa-users" aria-hidden="true"></i> Lista de usuarios</h3>
 							<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
 						</div>
 						<div class="col-lg-6">
 							<a href="<?php echo base_url(); ?>index.php/panel_administracion/adduser" class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> AGREGAR USUARIO</a>
 							<a href="<?php echo base_url(); ?>index.php/panel_administracion/departamentos" class="btn btn-success"><i class="fa fa-users" aria-hidden="true"></i> GESTIONAR DEPARTAMENTOS</a>
-
 						</div>
 					</div>
-
 					<table id="tablausuarios" class="table table-striped table-bordered  table-sm dt-responsive " cellspacing="0" width="100%">
 						<thead>
 							<tr>
