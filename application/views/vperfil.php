@@ -169,7 +169,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.validate.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa-validador.js"></script>
 <script type="text/javascript">var urlsistema = '<?php echo base_url()?>';</script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 <script>
 $(document).ready(function(){
 	var opciones = {
