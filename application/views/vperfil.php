@@ -162,11 +162,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.validate.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa-validador.js"></script>
+<script type="text/javascript">var urlsistema = '<?php echo base_url()?>';</script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script
 <script>
 $(document).ready(function(){
 	var opciones = {

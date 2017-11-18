@@ -92,7 +92,8 @@ class Panel_administracion extends CI_Controller {
 	}
 	public function nuevo_departamento()
 	{
-		$this->load->view('administracion/vpanel_administracion_departamenos_nuevo');
+		$datos['CARRERAS'] = $this->Departamentos->cargarCarreras();
+		$this->load->view('administracion/vpanel_administracion_departamenos_nuevo',$datos);
 	}
 	public function editar_departamento($iddepartamento_academico)
 	{
@@ -102,7 +103,12 @@ class Panel_administracion extends CI_Controller {
 	public function add_departamento()
 	{
 		$nombre_departamento = $this->input->post('nombre_departamento');
+		$carreras = $this->input->post('carreras');
 		$this->Departamentos->insertarDepartamento($nombre_departamento);
+		$idMaximo=$this->Departamentos->obtenerIDdepartamento();
+		for ($i=0; $i <count($carreras) ; $i++) {
+			$this->Departamentos->insRelacionDepaCarrera($idMaximo[0]->maximo,$carreras[$i]);
+		}
 		redirect(base_url().'index.php/panel_administracion/departamentos');
 	}
 	public function agregarCorreoElectronico()

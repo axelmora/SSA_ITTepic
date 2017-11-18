@@ -24,10 +24,37 @@ class Departamentos extends CI_Model {
       return false;
     }
   }
+  public function cargarCarreras()
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM carreras");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
   public function insertarDepartamento($nombre_departamento)
   {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->set('nombre_departamento', $nombre_departamento );
     $DB2->insert('departamento_academico');
+  }
+  public function obtenerIDdepartamento()
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT MAX(iddepartamento_academico) as maximo FROM departamento_academico");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
+  public function insRelacionDepaCarrera($iddepa,$idcarrera)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->set('departamento_academico_iddepartamento_academico', $iddepa );
+    $DB2->set('carreras_id_carrera', $idcarrera );
+    $DB2->insert('departamento_carreras');
   }
 }

@@ -22,7 +22,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
   <?php $this->load->view('include/menu'); ?>
-
   <div class="">
     <!-- Return to Top -->
 

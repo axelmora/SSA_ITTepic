@@ -27,19 +27,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="card menus">
 				<div class="card-body">
 					<div class="row" >
-						<div class="col-lg-4">
+						<div class="col-lg-6">
 							<h3><i class="fa fa-users" aria-hidden="true"></i> Agregar nuevo departamento academico</h3>
 							<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/departamentos" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
-
 						</div>
 						<div class="col-lg-6">
 						</div>
 					</div>
 					<div class="container">
-						<form method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/add_departamento">
+						<form id="formularioDepartamento" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/add_departamento">
 							<div class="form-group">
 								<label for="nombre_departamento">Nombre del departamento academico:</label>
 								<input required type="text" class="form-control" id="nombre_departamento" name="nombre_departamento" aria-describedby="emailHelp" placeholder="Ingresar el nombre del departamento academico.">
+							</div>
+							<div class="row" >
+								<div class="col-lg-3">
+										<label for="carreras">Selecionar carrera/s:</label> <br>
+										<small class="text-muted"><i class="fa fa-list" aria-hidden="true"></i> Se pueden selecionar varias carreras en la misma lista. <kbd><kbd>ctrl</kbd> + <kbd><i class="fa fa-mouse-pointer" aria-hidden="true"></i></kbd></kbd></small>
+								</div>
+								<div class="col-lg-9">
+									<div id="dynamicInput"></div>
+									<div class="form-group">
+										<select multiple class="form-control" id="carreras" required name="carreras[]">
+											<?php
+												if(isset($CARRERAS))
+												{
+													foreach ($CARRERAS as $key => $value) {
+														 ?>
+														 	<option value="<?php echo $value->id_carrera; ?>" ><?php echo $value->codigo."-".$value->carrera ; ?></option>
+														 <?php
+													}
+												}
+											 ?>
+										</select>
+									</div>
+								</div>
 							</div>
 							<center>
 								<button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR</button>
@@ -63,6 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
 <script>
+
 $(document).ready(function() {
 	$('#tablausuarios').DataTable({
 		"language": {
