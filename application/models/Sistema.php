@@ -26,4 +26,11 @@ class Sistema extends CI_Model {
     $DB2->update('configuracion_sistema');
     return true;
   }
+  public function actualizarCorreo($correo)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->set('correo_sistema', $correo);
+    $DB2->update('configuracion_sistema');
+    return true;
+  }
 }

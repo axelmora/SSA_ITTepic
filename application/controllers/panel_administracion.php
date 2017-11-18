@@ -105,5 +105,11 @@ class Panel_administracion extends CI_Controller {
 		$this->Departamentos->insertarDepartamento($nombre_departamento);
 		redirect(base_url().'index.php/panel_administracion/departamentos');
 	}
+	public function agregarCorreoElectronico()
+	{
+		$correo = $this->input->post('correo');
+		$this->Sistema->actualizarCorreo($correo);
+		redirect(base_url().'index.php/panel_administracion/sistemainfo');
+	}
 	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
 }

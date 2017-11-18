@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="card menus">
         <div class="card-body">
           <div class="row" >
-            <div class="col-lg-2">
+            <div class="col-lg-4">
               <h3><i class="fa fa-users" aria-hidden="true"></i> Nuevo usuario</h3>
               <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/lista_usuarios" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
             </div>

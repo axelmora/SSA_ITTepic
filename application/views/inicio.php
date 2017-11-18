@@ -55,6 +55,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<center><button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> ACCESO</button></center>
 						<div class="red-text"><center><?php echo validation_errors(); ?></center></div>
 					</div>
+					<?php
+					if(isset($CORREO))
+					{
+						?>
+						<center>
+							<small class="text-muted">Correo administración del sistema <i class="fa fa-envelope-open-o" aria-hidden="true"></i><a href="mailto:<?php echo "$CORREO"; ?>"> <?php echo "$CORREO"; ?></a></small>
+						</center>
+						<?php
+					}
+					?>
 				</form>
 			</div>
 		</div>
