@@ -57,7 +57,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													</button>
 													<div class="dropdown-menu">
 														<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/panel_administracion/editar_departamento/<?php echo $valores->iddepartamento_academico; ?>"><i class="fa fa-pencil-square-o colorEditar" aria-hidden="true"></i> EDITAR</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-trash colorBorrar" aria-hidden="true"></i> ELIMINAR</a>
+														<?php
+														if($valores->iddepartamento_academico >=1 && $valores->iddepartamento_academico <=11){
+															?>
+															<a class="dropdown-item" href=""><i class="fa fa-trash colorBorrar" aria-hidden="true"></i> NO ES POSIBLE ELIMINAR</a>
+															<?php
+														}else {
+															?>
+															<a class="dropdown-item" href="#"><i class="fa fa-trash colorBorrar" aria-hidden="true"></i> ELIMINAR</a>
+															<?php
+														}
+														?>
+
 													</div>
 												</div>
 											</center>
