@@ -64,11 +64,11 @@
               <form id="mesayudaform" method="post"  > <!--action="<?php echo base_url(); ?>index.php/Mesa_ayuda/insertarSolicitud" -->
                 <div class="form-group">
                   <label for="asunto"><i class="fa fa-file-text" aria-hidden="true"></i>  ASUNTO:</label>
-                  <input type="text" class="form-control" name="asunto" id="asunto"  size="100" placeholder="Ingrese el asunto del problema." required>
+                  <input type="text" class="form-control" name="asunto" id="asunto"  size="10" maxlength="100" placeholder="Ingrese el asunto del problema." required>
                 </div>
                 <div class="form-group">
                   <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> DESCRIPCION DEL PROBLEMA:</label>
-                  <textarea class="form-control" maxlength="1000" name="descipcion" id="descipcion" maxlength="100" ></textarea>
+                  <textarea class="form-control" maxlength="1000" name="descipcion" id="descipcion" maxlength="100" required ></textarea>
                 </div>
                 <input type="text" name="url" hidden value="<?php echo base_url('index.php/'.uri_string()); ?>">
                 <center><button type="submit" class="btn btn-naranja "><i class="fa fa-share-square" aria-hidden="true"></i>  ENVIAR SOLICITUD</button></center>
