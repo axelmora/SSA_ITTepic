@@ -56,27 +56,38 @@ class Panel_administracion extends CI_Controller {
 	}
 	public function agrearUsuario( )
 	{
-		$nombre_user = $this->input->post('nombre_user');
-		$contrasena = $this->input->post('contrasena');
-		$nombre_userc = $this->input->post('nombre_userc');
-		$departamento_academico= $this->input->post('departamento_academico');
-		$tipo="";
-		if($departamento_academico==1)
+		$nombre_userv = $this->input->post('nombre_user');
+		$nombre_userv = preg_replace('/\s/', '', $nombre_userv);
+		$existe= $this->Usuarios->verificarNUsuario($nombre_userv);
+		if ($existe == FALSE)
 		{
-			$tipo=1;
+			$datos["error_mismo_usario"]="El nombre de usuario  '$nombre_userv' ya existe.";
+			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
+			$this->load->view('administracion/vpanel_nusuario',$datos);
 		}else {
-			$tipo=2;
+			$nombre_user = $this->input->post('nombre_user');
+			$contrasena = $this->input->post('contrasena');
+			$nombre_userc = $this->input->post('nombre_userc');
+			$departamento_academico= $this->input->post('departamento_academico');
+			$tipo="";
+			if($departamento_academico==1)
+			{
+				$tipo=1;
+			}else {
+				$tipo=2;
+			}
+			$nombre_user = preg_replace('/\s/', '', $nombre_user);
+			$datos= array(
+				'usuario' => ''.$nombre_user,
+				'password' => sha1($contrasena),
+				'tipo'=>$tipo,
+				'estado'=>1,
+				'nombre_usuario'=> ''.$nombre_userc,
+				'departamento_academico_iddepartamento_academico'=> ''.$departamento_academico
+			);
+			$this->Usuarios->insertarUsuario($datos);
+			redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
 		}
-		$datos= array(
-			'usuario' => ''.$nombre_user,
-			'password' => sha1($contrasena),
-			'tipo'=>$tipo,
-			'estado'=>1,
-			'nombre_usuario'=> ''.$nombre_userc,
-			'departamento_academico_iddepartamento_academico'=> ''.$departamento_academico
-		);
-		$this->Usuarios->insertarUsuario($datos);
-		redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
 	}
 	public function manual_tecnico(){
 		$this->load->view('administracion/manual_tecnicovista_admin');

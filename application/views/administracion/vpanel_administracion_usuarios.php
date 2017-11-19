@@ -144,7 +144,6 @@ function cambiarEstado(id,estado)
 		});
 	});
 }
-
 $(document).ready(function() {
 	$('#tablausuarios').DataTable({
 		"language": {

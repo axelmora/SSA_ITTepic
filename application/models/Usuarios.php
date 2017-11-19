@@ -77,4 +77,15 @@ class Usuarios extends CI_Model {
     $DBcon->update('usuarios');
     return true;
   }
+  public function verificarNUsuario($usuario)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM usuarios where usuario='$usuario';");
+    if ($query->num_rows() > 0) {
+        return false;
+    } else {
+        return true;
+    }
+  }
+
 }

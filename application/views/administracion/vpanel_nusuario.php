@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="card-body">
           <div class="row" >
             <div class="col-lg-4">
-              <h3><i class="fa fa-users" aria-hidden="true"></i> Nuevo usuario</h3>
+              <h3><i class="fa fa-users" aria-hidden="true"></i> Nuevo usuario SSA</h3>
               <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/lista_usuarios" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
             </div>
           </div>
@@ -39,12 +39,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <form method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/agrearUsuario" >
                     <div class="form-group">
                       <label for="nombre_user">Nombre de usuario:</label>
-                      <input type="text" class="form-control" id="nombre_user" name="nombre_user" aria-describedby="nombre_userHelp" placeholder="Ingresar nombre del usuario." required>
+                      <input type="text" class="form-control" id="nombre_user" name="nombre_user" aria-describedby="nombre_userHelp" placeholder="Ingresar nombre del usuario." required value="<?php echo set_value('nombre_user'); ?>">
                       <small id="nombre_userHelp" class="form-text text-muted">Nombre del usuario por el cual iniciara sesión.</small>
+                      <?php
+                      if(isset($error_mismo_usario)){
+                        ?>
+                        <div class="alert alert-danger" role="alert"> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+
+                          <?php
+                            echo "$error_mismo_usario";
+                          ?>
+                        </div>
+                        <?php
+                      }
+                      ?>
                     </div>
                     <div class="form-group">
                       <label for="nombre_userc">Nombre completo de usuario:</label>
-                      <input type="text" class="form-control" id="nombre_userc"  name="nombre_userc"  value="" placeholder="Ingresar nombre completo de usuario." required>
+                      <input type="text" class="form-control" id="nombre_userc"  name="nombre_userc"  value="" placeholder="Ingresar nombre completo de usuario." value="<?php echo set_value('nombre_userc'); ?>" required>
                     </div>
                     <div class="form-group">
                       <label for="contrasena">Contraseña:</label>
