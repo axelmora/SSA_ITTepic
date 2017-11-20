@@ -304,4 +304,22 @@ public function cargarRetroAlimentacionID($seguimiento)
     return false;
   }
 }
+public function borrarEncuestaSeguimiento($idencuesta)
+{
+  if ($this->mostrarMensjesAunsto($idmensaje)==false) {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->where('idmesa_ayuda', $idmensaje );
+    $DB2->delete('mesa_ayuda');
+  }else {
+    /*  echo "existen mensajes interno";*/
+    /*Borrar los mensajes internos*/
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->where('mesa_ayuda_idmesa_ayuda', $idmensaje );
+    $DB2->delete('respuestas_mesa');
+    /*Borra el mensaje principal */
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->where('idmesa_ayuda', $idmensaje );
+    $DB2->delete('mesa_ayuda');
+  }
+}
 }
