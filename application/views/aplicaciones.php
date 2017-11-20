@@ -223,7 +223,7 @@ function genePeridoActual($peridot)
 </form>
 <!-- Modal Agregar Aplicacion -->
 <!-- Modal Borrar Aplicaciones -->
-<form class="" action="" method="post">
+<form  action="<?php echo base_url(); ?>index.php/Panel_seguimiento/eliminarEncuestaSeguimientoCompleta" method="post">
   <div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -238,7 +238,7 @@ function genePeridoActual($peridot)
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> NO</button>
-          <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> SI </button>
+          <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> SI </button>
         </div>
       </div>
     </div>
@@ -277,12 +277,6 @@ function genePeridoActual($peridot)
 <script>var urlsistema = '<?php echo base_url()?>';</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
-<script type="text/javascript">
-function eliminarAplicacion(idaplicaciones) {
-  $('#idAplicacionesBorrar').val(idaplicaciones);
-  $('#modalBorrar').modal('show');
-}
-</script>
 <?php
 if (isset($ErrorContra)) {
   ?>

@@ -130,6 +130,10 @@ function eliminarEncuestaSeguimiento(idencuesta_seguimiento){
   });
   $("#idEliminarEncu").val(idencuesta_seguimiento);
 }
+function eliminarAplicacion(idaplicaciones) {
+  $('#idAplicacionesBorrar').val(idaplicaciones);
+  $('#modalBorrar').modal('show');
+}
 try {
   var msg ='================SSA=====================\n';
   msg += '========================================\n¡Bienvenid@ a la consola! Parece que sabes lo que haces.\n¡Y si no lo sabes mejor no veas mucho!\n========================================\n';

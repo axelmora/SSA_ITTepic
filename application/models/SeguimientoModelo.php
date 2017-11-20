@@ -315,6 +315,17 @@ public function verificarExistenciaRespuestas($idencuesta_seguimiento)
     return false;
   }
 }
+public function verificarExistenciaAlumnos($idencuesta_seguimiento)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT * from grupos as gr,grupo_alumnos as ga where gr.encuestas_seguimiento_idencuesta_seguimiento=$idencuesta_seguimiento and gr.idgrupos=ga.grupos_idgrupos");
+  if ($query->num_rows() > 0)
+  {
+    return true;
+  } else {
+    return false;
+  }
+}
 public function getIDGruposSeguimiento($idencuesta_seguimiento)
 {
   $DBcon = $this->load->database('default', TRUE);
@@ -346,5 +357,9 @@ public function borrarEncuestaSeguimiento($idencuesta_seguimiento)
     $DB2->where('idencuesta_seguimiento', $idencuesta_seguimiento );
     $DB2->delete('encuestas_seguimiento');
   }
+}
+public function borrarAplicacionSeguimiento($idaplicaciones)
+{
+
 }
 }
