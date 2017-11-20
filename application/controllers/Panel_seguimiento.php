@@ -428,7 +428,12 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		$idAplicaciones=$this->input->post('idAplicacionesBorrar');
 		$this->SeguimientoModelo->borrarAplicacionSeguimiento($idAplicaciones);
-	  redirect(base_url().'index.php/Panel_seguimiento/aplicaciones/');
+		redirect(base_url().'index.php/Panel_seguimiento/aplicaciones/');
+	}
+	public function resulados($idSeguimiento)
+	{
+		$datos="";
+		$this->load->view('aplicaciones_resultados',$datos);
 	}
 	/* Elimar grupo fin*/
 	public function reportePrueba( )
