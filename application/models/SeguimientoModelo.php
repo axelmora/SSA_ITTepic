@@ -304,22 +304,47 @@ public function cargarRetroAlimentacionID($seguimiento)
     return false;
   }
 }
-public function borrarEncuestaSeguimiento($idencuesta)
+public function verificarExistenciaRespuestas($idencuesta_seguimiento)
 {
-  if ($this->mostrarMensjesAunsto($idmensaje)==false) {
-    $DB2 = $this->load->database('default', TRUE);
-    $DB2->where('idmesa_ayuda', $idmensaje );
-    $DB2->delete('mesa_ayuda');
-  }else {
-    /*  echo "existen mensajes interno";*/
-    /*Borrar los mensajes internos*/
-    $DB2 = $this->load->database('default', TRUE);
-    $DB2->where('mesa_ayuda_idmesa_ayuda', $idmensaje );
-    $DB2->delete('respuestas_mesa');
-    /*Borra el mensaje principal */
-    $DB2 = $this->load->database('default', TRUE);
-    $DB2->where('idmesa_ayuda', $idmensaje );
-    $DB2->delete('mesa_ayuda');
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT * from resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idencuesta_seguimiento");
+  if ($query->num_rows() > 0)
+  {
+    return true;
+  } else {
+    return false;
+  }
+}
+public function getIDGruposSeguimiento($idencuesta_seguimiento)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT idgrupos from grupos where encuestas_seguimiento_idencuesta_seguimiento=$idencuesta_seguimiento");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
+}
+public function borrarEncuestaSeguimiento($idencuesta_seguimiento)
+{
+  $DB2 = $this->load->database('default', TRUE);
+  if ($this->verificarExistenciaRespuestas($idencuesta_seguimiento)==false)
+  {
+    $DB2->where('idencuesta_seguimiento', $idencuesta_seguimiento );
+    $DB2->delete('encuestas_seguimiento');
+  }
+  else
+  {
+    $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
+    $DB2->delete('resultados_seguimiento');
+    $tempIDGRUPO=$this->getIDGruposSeguimiento($idencuesta_seguimiento);
+    $DB2->where('grupos_idgrupos', $tempIDGRUPO[0]->idgrupos );
+    $DB2->delete('grupo_alumnos');
+    $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
+    $DB2->delete('grupos');
+    $DB2->where('idencuesta_seguimiento', $idencuesta_seguimiento );
+    $DB2->delete('encuestas_seguimiento');
   }
 }
 }

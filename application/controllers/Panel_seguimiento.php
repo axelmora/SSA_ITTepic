@@ -420,6 +420,8 @@ class Panel_seguimiento extends CI_Controller {
 	public function eliminarEncuestaGrupo()
 	{
 		$idVolver=$this->input->post('idAplicacionPostEliminar');
+		$idEliminarEncur=$this->input->post('idEliminarEncu');
+		$this->SeguimientoModelo->borrarEncuestaSeguimiento($idEliminarEncur);
 		redirect(base_url().'index.php/Panel_seguimiento/listado/'.$idVolver);
 	}
 	/* Elimar grupo fin*/
