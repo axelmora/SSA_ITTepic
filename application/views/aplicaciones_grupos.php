@@ -105,17 +105,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <td>
                                   <center>
                                     <div class="btn-group">
-                                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        OPCIONES
-                                      </button>
-                                      <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/<?php echo $IDGRUPO; ?>"> AGREGAR ALUMNO</a>
-                                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"> RESULTADOS</a>
-                                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"> RESULTADOS GRAFICOS</a>
-                                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"> RETROALIMENTACION</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"> BORRAR ENCUESTA</a>
-                                      </div>
+                                      <center>
+                                        <div class="btn-group">
+                                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
+                                          </button>
+                                          <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR ALUMNO</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
+                                            <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS GRAFICOS</a>
+                                            <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
+                                            <div class="dropdown-divider"></div>
+                                            <button type="button" class="dropdown-item " data-toggle="modal" data-target="#modalEliminar" onclick="eliminarEncuestaSeguimiento(<?php echo $IDGRUPO; ?>)" ><i class="fa fa-trash text-danger" aria-hidden="true"></i> BORRAR ENCUESTA</button>
+                                          </div>
+                                        </div>
+                                      </center>
                                     </div>
                                   </center>
                                 </td>
@@ -264,6 +269,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
       </form>
       <!-- Modal Agregar Aplicacion -->
+
+      <!-- modal eliminar -->
+      <form class="" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/eliminarEncuestaGrupo/" method="post">
+        <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-trash text-danger" aria-hidden="true"></i>¿Desea  eliminar esta encuesta de seguimiento en el aula? </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <input type="number" id="idEliminarEncu" name="idEliminarEncu" value="" required hidden>
+                <input type="number" id="idAplicacionPostEliminar" name="idAplicacionPostEliminar" value="" required hidden>
+                <table class="table table-bordered table-sm">
+                  <caption>Datos de la encuesta a eliminar.</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">MATERIA</th>
+                      <th scope="col">DOCENTE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><div id="idEliminarMateriaNombre"></div></td>
+                      <td><div id="idEliminarDocenteNombre"></div></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="card text-white bg-danger ">
+                  <div class="card-body">
+                    <h4 class="card-title"><i class="fa fa-exclamation-triangle animated tada infinite" aria-hidden="true"></i> Atención</h4>
+                    <p class="card-text">Al borrar esta encuesta de seguimiento se perderán todas las respuestas. </p>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> CANCELAR</button>
+                <button type="submit" class="btn btn-danger"><i class="fa fa-trash " aria-hidden="true"></i> ELIMINAR </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
       <?php $this->load->view('include/footer'); ?>
     </body>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>

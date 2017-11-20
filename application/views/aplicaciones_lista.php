@@ -8,10 +8,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="description" content="">
-	<meta name="author" content="Fernando Manuel Avila Cataño">
-	<meta name="theme-color" content="#FFFFFF">
-	<meta name="msapplication-navbutton-color" content="#FFFFFF">
-	<meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <meta name="author" content="Fernando Manuel Avila Cataño">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="msapplication-navbutton-color" content="#FFFFFF">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
   <link href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/animate.css" type="text/css" rel="stylesheet" />
@@ -38,12 +38,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     }
                     ?>
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupos de aplicación  del periodo <?php echo "$peridotlista";  ?>
-                      </h3>
-                      <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
-                      <button type="button" id="botonCopiar" class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>index.php/Seguimiento/"  role="button">
-                        <i class="fa  fa-share-square-o" aria-hidden="true" ></i>
-                        OBTENER ENLACE ENCUESTA</button>
-                        
+                    </h3>
+                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                    <button type="button" id="botonCopiar" class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>index.php/Seguimiento/"  role="button">
+                      <i class="fa  fa-share-square-o" aria-hidden="true" ></i>
+                      OBTENER ENLACE ENCUESTA</button>
+
                     </div>
                     <div class="col-lg-2">
                       <center>
@@ -77,11 +77,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <td><?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></td>
                             <td><?php echo "".$valor->fecha_creacion; ?></td>
                             <td>
-                              <div class="btn-group btn-block">
-                                <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo "".$valor->idgrupos; ?>"  class="btn btn-primary btn-block text-white"   >
-                                  <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
-                                </a>
-                              </div>
+                              <center>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
+                                  </button>
+                                  <div class="dropdown-menu">
+                                    <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo "".$valor->idgrupos; ?>"  class="dropdown-item" ><i class="fa fa-object-group" aria-hidden="true"></i> GESTIONAR</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo "".$valor->idgrupos; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo "".$valor->idgrupos; ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS GRAFICOS</a>
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo "".$valor->idgrupos; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
+                                    <div class="dropdown-divider"></div>
+                                    <button type="button" class="dropdown-item " data-toggle="modal" data-target="#modalEliminar" onclick="eliminarEncuestaSeguimiento(<?php echo "".$valor->idgrupos; ?>)" ><i class="fa fa-trash text-danger" aria-hidden="true"></i> BORRAR ENCUESTA</button>
+                                  </div>
+                                </div>
+                              </center>
                             </td>
                           </tr>
                           <?php
@@ -136,53 +147,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $peridotTexto;
     }
     ?>
-    <!-- Modal Agregar Aplicacion -->
-    <form method="post" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/generarAplicacion" >
-      <div class="modal fade" id="modalAplicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+    <!-- modal eliminar -->
+    <form class="" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/eliminarEncuestaGrupo/" method="post">
+      <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Crear nueva aplicacion  <b><?php echo "$peridotTexto  $anioac"; ?></b> </h5>
+              <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-trash text-danger" aria-hidden="true"></i>¿Desea  eliminar esta encuesta de seguimiento en el aula? </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <?php
-            if ($AplicacionesPerido) {
-              ?>
-              <div class="container">
-                <div class="card bg-danger text-white">
-                  <div class="card-body">
-                    <center>   <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite ' aria-hidden='true'></i></center> <br>
-                    <center>  <?php  echo " Ya existen aplicaciones en el semestre actual"; ?> </center>
-                  </div>
-                </div>
-              </div>
-              <?php
-            }
-            ?>
             <div class="modal-body">
-              <div class="form-group">
-                <label for="contrasenaapp">Contraseña aplicacion</label>
-                <input type="text" class="form-control" id="contrasenaapp" name="contrasenaapp" aria-describedby="contrasenaapp" placeholder="Ingresa una contraseña para la aplicacion " required>
-              </div>
-              <div class="form-group">
-                <label for="plantilla">Seleccionar plantilla</label>
-                <select  class="form-control" id="plantilla" name="plantilla" required >
-                  <option selected value="1">ITTEPIC-AC-PO-004-07</option>
-                </select>
+              <input type="number" id="idEliminarEncu" name="idEliminarEncu" value="" required hidden>
+                <input type="number" id="idAplicacionPostEliminar" name="idAplicacionPostEliminar" value="" required hidden>
+              <table class="table table-bordered table-sm">
+                 <caption>Datos de la encuesta a eliminar.</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">MATERIA</th>
+                    <th scope="col">DOCENTE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><div id="idEliminarMateriaNombre"></div></td>
+                    <td><div id="idEliminarDocenteNombre"></div></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="card text-white bg-danger ">
+                <div class="card-body">
+                  <h4 class="card-title"><i class="fa fa-exclamation-triangle animated tada infinite" aria-hidden="true"></i> Atención</h4>
+                  <p class="card-text">Al borrar esta encuesta de seguimiento se perderán todas las respuestas. </p>
+                </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i> CANCELAR</button>
-              <button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR NUEVA APLICACION</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> CANCELAR</button>
+              <button type="submit" class="btn btn-danger"><i class="fa fa-trash " aria-hidden="true"></i> ELIMINAR </button>
             </div>
           </div>
         </div>
       </div>
     </form>
-    <!-- Modal Agregar Aplicacion -->
-
     <?php $this->load->view('include/footer'); ?>
   </body>
   <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>

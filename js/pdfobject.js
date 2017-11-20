@@ -112,7 +112,7 @@
 
     log = function (msg){
         if(typeof console !== "undefined" && console.log){
-            console.log("[PDFObject] " + msg);
+        //    console.log("[PDFObject] " + msg);
         }
     };
 

@@ -398,6 +398,31 @@ class Panel_seguimiento extends CI_Controller {
 		$datos["MATERIAS"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
 		$this->load->view('seg_materias',$datos);
 	}
+	/* Elimar grupo inicio*/
+	public function eliminarEncuestaDatos($idEncuesta)
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos=$this->SeguimientoModelo->obtenerDocenteMateria($idEncuesta);
+			echo json_encode($datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function eliminarEncuestaDatosAplicacion($idEncuesta)
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idEncuesta);
+			echo json_encode($datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function eliminarEncuestaGrupo()
+	{
+		$idVolver=$this->input->post('idAplicacionPostEliminar');
+		redirect(base_url().'index.php/Panel_seguimiento/listado/'.$idVolver);
+	}
+	/* Elimar grupo fin*/
 	public function reportePrueba( )
 	{
 		$this->load->library('Pdf');

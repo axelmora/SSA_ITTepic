@@ -597,21 +597,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-<script>
-// ===== Funcion top====
-$(window).scroll(function() {
-  if ($(this).scrollTop() >= 50) {    // Si se mueve mas de 50px
-    $('#top').fadeIn("fast");       //octula la flecha
-  } else {
-    $('#top').fadeOut("fast");      // des oculta la flecha
-  }
-});
-$('#top').click(function() {            // cuando la fecha es precionada
-  $('body,html').animate({
-    scrollTop : 0                   // mueve la pagina
-  }, 500);
-});
-// ===== Funcion top==== FIN
-</script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa-alumno.js"></script>
 </body>
 </html>

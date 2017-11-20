@@ -25,14 +25,17 @@ $(document).ready(function(){
   });
   /* CARGR MANUAL PDF */
   var opciones = {
+    pdfOpenParams: { messages: '0' },
     fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
   };
   PDFObject.embed(urlsistema+"file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
   var opciones2 = {
+    pdfOpenParams: { messages: '0' },
     fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
   };
   PDFObject.embed(urlsistema+"file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover2", opciones2);
   var opciones3 = {
+    pdfOpenParams: { messages: '0' },
     fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
   };
   PDFObject.embed(urlsistema+"file/manual/Manual_Tecnico_SSA.pdf","#manualdeusuariover3", opciones3);
@@ -86,17 +89,50 @@ $(document).ready(function(){
   });
   // ===== Funcion top====
   $(window).scroll(function() {
-      if ($(this).scrollTop() >= 50) {    // Si se mueve mas de 50px
-          $('#top').fadeIn("fast");       //octula la flecha
-      } else {
-          $('#top').fadeOut("fast");      // des oculta la flecha
-      }
+    if ($(this).scrollTop() >= 50) {    // Si se mueve mas de 50px
+      $('#top').fadeIn("fast");       //octula la flecha
+    } else {
+      $('#top').fadeOut("fast");      // des oculta la flecha
+    }
   });
   $('#top').click(function() {            // cuando la fecha es precionada
-      $('body,html').animate({
-          scrollTop : 0                   // mueve la pagina
-      }, 500);
+    $('body,html').animate({
+      scrollTop : 0                   // mueve la pagina
+    }, 500);
   });
-    // ===== Funcion top==== FIN
+  // ===== Funcion top==== FIN
 });
+function eliminarEncuestaSeguimiento(idencuesta_seguimiento){
+  $.ajax({
+    type: 'GET',
+    url: urlsistema+'index.php/Panel_seguimiento/eliminarEncuestaDatos/'+idencuesta_seguimiento,
+    data: { get_param: 'value' },
+    dataType: 'json',
+    success: function (data) {
+      $.each(data, function(index, elemento) {
+        $("#idEliminarMateriaNombre").html(elemento.nombre_materia);
+        $("#idEliminarDocenteNombre").html(elemento.nombres+" "+elemento.apellidos);
+        console.log(elemento.nombre_materia);
+      });
+    }
+  });
+  $.ajax({
+    type: 'GET',
+    url: urlsistema+'index.php/Panel_seguimiento/eliminarEncuestaDatosAplicacion/'+idencuesta_seguimiento,
+    data: { get_param: 'value' },
+    dataType: 'json',
+    success: function (data) {
+      $.each(data, function(index, elemento) {
+        $("#idAplicacionPostEliminar").val(elemento.aplicaciones_idaplicaciones);
+        console.log(elemento.nombre_materia);
+      });
+    }
+  });
+  $("#idEliminarEncu").val(idencuesta_seguimiento);
+}
+try {
+  var msg ='================SSA=====================\n';
+  msg += '========================================\n¡Bienvenid@ a la consola! Parece que sabes lo que haces.\n¡Y si no lo sabes mejor no veas mucho!\n========================================\n';
+  console.log(msg);
+} catch (e) {}
 /*FIN JS*/

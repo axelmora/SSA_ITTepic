@@ -46,7 +46,7 @@ $(document).ready(function(){
       contra_aplicacion: {
         required: true,
         minlength: 2,
-        maxlength: 10
+        maxlength: 20
       }
     },
     messages :{
@@ -58,7 +58,7 @@ $(document).ready(function(){
       contra_aplicacion: {
         required: ""+generarErrores("Se requiere la contraseña proporcionada por su departamento academico.","texto-plano"),
         minlength: ""+generarErrores("Se requiere al menos 5 caracteres.","texto-plano"),
-        maxlength: ""+generarErrores("Se requiere un maximo de 10 caracteres.","texto-plano")
+        maxlength: ""+generarErrores("Se requiere un maximo de 20 caracteres.","texto-plano")
       }
     }
   });
