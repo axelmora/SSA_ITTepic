@@ -101,7 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	if ($asuntos) {
 		$pos=0;
 		foreach ($asuntos as $filas => $valores2) {  ?>
-			<form method="post" action="<?php echo base_url(); ?>index.php/Mesa_ayuda/borarMensajeSoporte/<?php echo $valores2->idmesa_ayuda?>">
+			<form method="post" action="<?php echo base_url(); ?>index.php/Mesa_ayuda/borrarMensajeprincipal/<?php echo $valores2->idmesa_ayuda?>">
 				<!-- Modal borrar -->
 				<div class="modal fade" id="modalborrar<?php echo $pos; ?>" tabindex="-1" role="dialog" aria-labelledby="modalborrar" aria-hidden="true">
 					<div class="modal-dialog" role="document">
