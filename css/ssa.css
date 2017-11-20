@@ -90,6 +90,24 @@ input:checked + .slider:before {
   background-color: #ffffff;
   padding: 13px 15px;
 }
+.navbar img {
+  margin:0px auto;
+  display:block;
+}
+@media only screen and (max-width: 600px) {
+  .pulse-header {
+    height: 80px;
+    min-height: 60px;
+    max-height: 65px;
+    background-color: #ffffff;
+    padding: 13px 15px;
+  }
+  .navbar img {
+    margin:0px auto;
+    display:block;
+    margin-top: -2%;
+  }
+}
 .pulse-header .navbar-nav-left {
   margin-left: 20px;
 }
@@ -99,10 +117,7 @@ input:checked + .slider:before {
 .pulse-header .nav > .nav-item > a {
   position: relative;
 }
-.navbar img {
-  margin:0px auto;
-  display:block;
-}
+
 .sombranav {
   -webkit-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.27);
   -moz-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.27);
