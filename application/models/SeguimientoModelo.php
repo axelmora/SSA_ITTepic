@@ -365,8 +365,28 @@ public function borrarEncuestaSeguimiento($idencuesta_seguimiento)
   $DB2->where('idencuesta_seguimiento', $idencuesta_seguimiento );
   $DB2->delete('encuestas_seguimiento');
 }
+public function getIDSeguimientoEnElAula($idaplicaciones)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT idencuesta_seguimiento from encuestas_seguimiento where aplicaciones_idaplicaciones=$idaplicaciones");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
+}
 public function borrarAplicacionSeguimiento($idaplicaciones)
 {
-
+  $DBcon = $this->load->database('default', TRUE);
+  $tempID=$this->getIDSeguimientoEnElAula($idaplicaciones);
+  if($tempID)
+  {
+    foreach ($tempID as $key => $value) {
+      $this->borrarEncuestaSeguimiento($value->idencuesta_seguimiento);
+    }
+  }
+  $DBcon->where('idaplicaciones', $idaplicaciones );
+  $DBcon->delete('aplicaciones');
 }
 }

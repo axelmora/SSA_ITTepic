@@ -422,13 +422,13 @@ class Panel_seguimiento extends CI_Controller {
 		$idVolver=$this->input->post('idAplicacionPostEliminar');
 		$idEliminarEncur=$this->input->post('idEliminarEncu');
 		$this->SeguimientoModelo->borrarEncuestaSeguimiento($idEliminarEncur);
-		//redirect(base_url().'index.php/Panel_seguimiento/listado/'.$idVolver);
+		redirect(base_url().'index.php/Panel_seguimiento/listado/'.$idVolver);
 	}
 	public function eliminarEncuestaSeguimientoCompleta()
 	{
 		$idAplicaciones=$this->input->post('idAplicacionesBorrar');
 		$this->SeguimientoModelo->borrarAplicacionSeguimiento($idAplicaciones);
-	//	redirect(base_url().'index.php/Panel_seguimiento/aplicaciones/');
+	  redirect(base_url().'index.php/Panel_seguimiento/aplicaciones/');
 	}
 	/* Elimar grupo fin*/
 	public function reportePrueba( )
