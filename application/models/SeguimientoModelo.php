@@ -340,23 +340,30 @@ public function getIDGruposSeguimiento($idencuesta_seguimiento)
 public function borrarEncuestaSeguimiento($idencuesta_seguimiento)
 {
   $DB2 = $this->load->database('default', TRUE);
-  if ($this->verificarExistenciaRespuestas($idencuesta_seguimiento)==false)
+  if($this->verificarExistenciaAlumnos($idencuesta_seguimiento))
   {
-    $DB2->where('idencuesta_seguimiento', $idencuesta_seguimiento );
-    $DB2->delete('encuestas_seguimiento');
-  }
-  else
-  {
-    $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
-    $DB2->delete('resultados_seguimiento');
-    $tempIDGRUPO=$this->getIDGruposSeguimiento($idencuesta_seguimiento);
-    $DB2->where('grupos_idgrupos', $tempIDGRUPO[0]->idgrupos );
-    $DB2->delete('grupo_alumnos');
+    if ($this->verificarExistenciaRespuestas($idencuesta_seguimiento))
+    {
+      $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
+      $DB2->delete('resultados_seguimiento');
+      $tempIDGRUPO=$this->getIDGruposSeguimiento($idencuesta_seguimiento);
+      $DB2->where('grupos_idgrupos', $tempIDGRUPO[0]->idgrupos );
+      $DB2->delete('grupo_alumnos');
+      $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
+      $DB2->delete('grupos');
+    }else {
+      $tempIDGRUPO=$this->getIDGruposSeguimiento($idencuesta_seguimiento);
+      $DB2->where('grupos_idgrupos', $tempIDGRUPO[0]->idgrupos );
+      $DB2->delete('grupo_alumnos');
+      $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
+      $DB2->delete('grupos');
+    }
+  }else {
     $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
     $DB2->delete('grupos');
-    $DB2->where('idencuesta_seguimiento', $idencuesta_seguimiento );
-    $DB2->delete('encuestas_seguimiento');
   }
+  $DB2->where('idencuesta_seguimiento', $idencuesta_seguimiento );
+  $DB2->delete('encuestas_seguimiento');
 }
 public function borrarAplicacionSeguimiento($idaplicaciones)
 {
