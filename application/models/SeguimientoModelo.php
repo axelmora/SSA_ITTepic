@@ -1,4 +1,5 @@
 <?php
+/**/
 class SeguimientoModelo extends CI_Model {
   public function __construct()
   {
