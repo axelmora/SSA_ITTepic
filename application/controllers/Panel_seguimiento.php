@@ -468,47 +468,30 @@ class Panel_seguimiento extends CI_Controller {
 
 		$this->load->library('Pdf');
 		$resolution = array(216, 279);
+
 		$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
 		$pdf->SetAuthor('Fernando Manuel Avila Cataño');
 		$pdf->SetTitle('Instituto Tecnologico de Tepic');
 		$pdf->SetSubject('Seguimiento en el aula repote');
-		$pdf->SetKeywords('Reporte');
+		$pdf->SetKeywords('Reporte, individual, ');
 
-		// datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
-		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-
-		$image_file = base_url().'images/tec.ico';
-		//$image_file = K_PATH_IMAGES.'cabecera2.png';
-		
-		$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, 'Instituto Tecnologico de Tepic', 's');
-		// se pueden modificar en el archivo tcpdf_config.php de libraries/config
-		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-		// se pueden modificar en el archivo tcpdf_config.php de libraries/config
-		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-
-		// se pueden modificar en el archivo tcpdf_config.php de libraries/config
-		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-		//relación utilizada para ajustar la conversión de los píxeles
-		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-		// establecer el modo de fuente por defecto
-		$pdf->setFontSubsetting(true);
-
-		// Establecer el tipo de letra
-		//Si tienes que imprimir carácteres ASCII estándar, puede utilizar las fuentes básicas como
-		// Helvetica para reducir el tamaño del archivo.
-		$pdf->SetFont('helvetica', '', 10);
-
-		// Añadir una página
-		$pdf->SetPrintHeader(false);
-		$pdf->SetPrintFooter(false);
-
+		 $image_file = 'cabecera.png';
+		 $pdf->Image(K_PATH_IMAGES . 'cabecera.png', 15, 0, 180, 40, 'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
+		 $pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, 'Instituto Tecnologico de Tepic', 's');
+		 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		 $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		 $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+		 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+		 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		 $pdf->setFontSubsetting(true);
+		 $pdf->SetFont('helvetica', '', 10);
+		 $pdf->SetPrintHeader(false);
+		 $pdf->SetPrintFooter(true);
+		 $pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
 		// Este método tiene varias opciones, consulta la documentación para más información.
 		$resolution = array(279, 216);
 		$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
-
 		//fijar efecto de sombra en el texto
 		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
 
