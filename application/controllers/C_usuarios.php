@@ -42,7 +42,7 @@ class C_usuarios extends CI_Controller {
 					if($verificarusuario[0]->estado==1)
 					{
 						$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
-					  redirect(base_url().'index.php/Panel_administracion/');
+						redirect(base_url().'index.php/Panel_administracion/');
 					}else {
 						$datos["mensajesistema"]="
 						<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
@@ -168,8 +168,12 @@ class C_usuarios extends CI_Controller {
 	}
 	public function datosUsuario($idusuarios)
 	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' ) {
 			$datosUser=$this->Usuarios->selecionarUsuario($idusuarios);
 			echo json_encode($datosUser);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
 	public function mensajeError($Mensaje)
