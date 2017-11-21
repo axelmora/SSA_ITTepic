@@ -477,6 +477,8 @@ class Panel_seguimiento extends CI_Controller {
 			$DOCENTE="ERROR";
 			$MATERIA="ERROR";
 		}
+		$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idencuesta_seguimiento);
+
 		/*    CARGAR DATOS      */
 		$this->load->library('Pdf');
 		$resolution = array(216, 279);
@@ -525,6 +527,13 @@ class Panel_seguimiento extends CI_Controller {
 		";
 		//	$html .= "<h2>Sistema para el seguimiento en el Aula</h2>";
 		$html.= $datos["EncuestasResultados"];
+		if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
+			$html.= " ";
+			$html.= "<br><b>Retroalimentación</b>";
+			$html.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
+		}
+
+
 		$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 		$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_individual.pdf");
 		$pdf->Output($nombre_archivo, 'I');
