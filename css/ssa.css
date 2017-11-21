@@ -381,6 +381,9 @@ fieldset[disabled] .btn-naranja.active {
   color: #fff;
   top: 5px;
 }
+.tablaRetro{
+  margin-left: 5%;
+}
 /*---------SEGUIMIENTO---------*/
 /*-logins-*/
 canvas {

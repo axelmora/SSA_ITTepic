@@ -93,197 +93,209 @@ class GeneradorEncuestas extends CI_Model {
             $encuestaRetro.=$this->GeneradorEncuestas->card($temp);
           }else {
             if($value2->tipo=="radio"){
-              $tabla_opciones;
+              /* $tabla_opciones;
               $tabla_opciones_valor;
               foreach ($value2->respuesta as $key => $value3) {
-                $tabla_opciones[]=$value3->texto;
-                $tabla_opciones_valor[]=$value3->valor;
+              $tabla_opciones[]=$value3->texto;
+              $tabla_opciones_valor[]=$value3->valor;
+            }
+            $encuestaRetro.=$this->GeneradorEncuestas->preguntaradioR($value2->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
+            unset($tabla_opciones) ; */
+            $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
+            $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+            $datos_tabla;
+            foreach ($value2->respuesta as $key => $value3) {
+              $datos_tabla[]="".$value3->valor;
+              $encuestaRetro.="<th>".$value3->texto."</th>";
+            }
+            $encuestaRetro.='</thead></tr>';
+            $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
+            $encuestaRetro.='';
+            $encuestaRetro.="</table>";
+            unset($datos_tabla) ;
+            $pos++;
+          }else {
+            if($value2->tipo=="seleccion"){
+              // echo "POS $pos SELECION $value2->pregunta<BR>";
+              $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
+              $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+              $datos_tabla;
+              foreach ($value2->datos as $key => $value3) {
+                $datos_tabla[]="".$value3->valor;
+                $encuestaRetro.="<th>".$value3->nombre."</th>";
               }
-              $encuestaRetro.=$this->GeneradorEncuestas->preguntaradioR($value2->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
-              unset($tabla_opciones) ;
+              $encuestaRetro.='</thead></tr>';
+              $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
+              $encuestaRetro.='';
+              $encuestaRetro.="</table>";
+              unset($datos_tabla) ;
               $pos++;
             }else {
-              if($value2->tipo=="seleccion"){
-                // echo "POS $pos SELECION $value2->pregunta<BR>";
+              if($value2->tipo=="texto"){
                 $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
-                $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
-                $datos_tabla;
-                foreach ($value2->datos as $key => $value3) {
-                  $datos_tabla[]="".$value3->valor;
-                  $encuestaRetro.="<th>".$value3->nombre."</th>";
-                }
-                $encuestaRetro.='</thead></tr>';
-                $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
-                $encuestaRetro.='';
-                $encuestaRetro.="</table>";
-                unset($datos_tabla) ;
+                $encuestaRetro.="<div class='row'>";
+                $encuestaRetro.=$this->GeneradorEncuestas->obtenerTexto($responses,$pos);
+                $encuestaRetro.="</div'>";
+                // echo "POS $pos TEXTO $value2->pregunta<BR>";
                 $pos++;
-              }else {
-                if($value2->tipo=="texto"){
-                  $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
-                  $encuestaRetro.="<div class='row'>";
-                  $encuestaRetro.=$this->GeneradorEncuestas->obtenerTexto($responses,$pos);
-                  $encuestaRetro.="</div'>";
-                  // echo "POS $pos TEXTO $value2->pregunta<BR>";
-                  $pos++;
-                }
               }
             }
           }
         }
       }
-    }else {
-      $encuestaRetro='
-      <center>
-      <div class="card text-white bg-danger ">
-      <div class="card-body">
-      <h4 class="card-title"><i class="fa fa-exclamation-triangle fa-5x" aria-hidden="true"></i></h4>
-      <p class="card-text">Aun no se cuentan con resultados en esta encuesta. </p>
-      </div>
-      </div>
-      </center>
-      ';
     }
-    return $encuestaRetro;
-  }
-  public function preguntatitulo($nombre)
-  {
-    $datos='
-    <p class="textopreguntas">'.$nombre.'</p>
-    ';
-    return $datos;
-  }
-  public function preguntaradioR($preguntas,$respuestas,$tabla_opciones_valor,$responses,$pos)
-  {
-    $datos='
-    <div class="textopreguntas">'.$preguntas.'</div>
-    ';
-    for($i=0;$i<count($respuestas);$i++)
-    {
-      $datos.='
-      <div class="textoopciones" >
-      <div class="row">
-      <div class="col-md-2">
-      <i>'.$respuestas[$i].':</i>
-      </div>
-      <div class="col-md-2">
-      '.$this->GeneradorEncuestas->contarResultado($responses,$pos,$tabla_opciones_valor[$i]).'
-      </div>
-      </div>
-      </div>';
-    }
-    $datos.=" ";
-    return $datos;
-  }
-
-  public function contarResultado($responses,$pos,$tabla_opciones_valor)
-  {
-    $enviar=0;
-    for ($i=0; $i < count($responses); $i++) {
-      $pospregunta=0;
-      foreach ($responses[$i] as $value)
-      {
-        if($pos==$pospregunta)
-        {
-          if($tabla_opciones_valor==$value)
-          {
-            $enviar++;
-          }
-        }
-        $pospregunta++;
-      }
-      $pospregunta=0;
-    }
-    $textoenviar="";
-    if($tabla_opciones_valor=="SI")
-    {
-      $textoenviar='<span class="badge badge-pill badge-success">'.$enviar.'</span>';
-    }else {
-      if($tabla_opciones_valor=="NO")
-      {
-        $textoenviar='<span class="badge badge-pill badge-danger">'.$enviar.'</span>';
-      }else {
-        if($tabla_opciones_valor=="NO RECUERDO")
-        {
-          $textoenviar='<span class="badge badge-pill badge-warning">'.$enviar.'</span>';
-        }else {
-          $textoenviar='<span class="badge badge-pill badge-secondary">'.$enviar.'</span>';
-        }
-      }
-    }
-    return $textoenviar;
-  }
-  public function obtenerTexto($responses,$pos1)
-  {
-    $textos="";
-    for ($i=0; $i < count($responses); $i++) {
-      $pospregunta=0;
-      foreach ($responses[$i] as $value)
-      {
-        if($pos1==$pospregunta)
-        {
-          if($value!="")
-          {
-            $textos.='
-            <div class="col-md-4" style="margin-top:0.5%;">
-            <div class="card border-dark cardMensajes">
-            <div class="card-body">
-            '.$value.'
-            </div>
-            </div>
-            </div>
-            ';
-          }
-
-        }
-        $pospregunta++;
-      }
-      $pospregunta=0;
-    }
-    return $textos;
-  }
-  public function generarFilas($responses,$pos,$datos_tabla)
-  {
-    $textos="";
-    $enviar=0;
-    $datoscontables = array_fill(0, count($datos_tabla), NULL);
-    for ($i=0; $i < count($responses); $i++) {
-      $pospregunta=0;
-      foreach ($responses[$i] as $value)
-      {
-        if($pos==$pospregunta)
-        {
-          for($e=0;$e<count($datos_tabla);$e++)
-          {
-            if($datos_tabla[$e]==$value)
-            {
-              $datoscontables[$e]+=1;
-              //    echo "$e $value <br>";
-            }else {
-              $datoscontables[$e]+=0;
-            }
-          }
-        }
-        $pospregunta++;
-      }
-      $pospregunta=0;
-    }
-    $textos.='<tr>';
-    for ($i=0; $i < count($datos_tabla); $i++) {
-      $textos.='<td>'.$datoscontables[$i].' </td>';
-    }
-    $textos.='</tr>';
-    return $textos;
-  }
-  public function card($pregunta)
-  {
-    $datos='
-    <div class="card">
+  }else {
+    $encuestaRetro='
+    <center>
+    <div class="card text-white bg-danger ">
     <div class="card-body">
-    '.$pregunta.'
+    <h4 class="card-title"><i class="fa fa-exclamation-triangle fa-5x" aria-hidden="true"></i></h4>
+    <p class="card-text">Aun no se cuentan con resultados en esta encuesta. </p>
     </div>
     </div>
+    </center>
     ';
-    return $datos;
   }
+  return $encuestaRetro;
+}
+public function preguntatitulo($nombre)
+{
+  $datos='
+  <p class="textopreguntas">'.$nombre.'</p>
+  ';
+  return $datos;
+}
+public function preguntaradioR($preguntas,$respuestas,$tabla_opciones_valor,$responses,$pos)
+{
+  $datos='
+  <div class="textopreguntas">'.$preguntas.'</div>
+  ';
+  for($i=0;$i<count($respuestas);$i++)
+  {
+    $datos.='
+    <div class="textoopciones" >
+    <div class="row">
+    <div class="col-md-2">
+    <i>'.$respuestas[$i].':</i>
+    </div>
+    <div class="col-md-2">
+    '.$this->GeneradorEncuestas->contarResultado($responses,$pos,$tabla_opciones_valor[$i]).'
+    </div>
+    </div>
+    </div>';
+  }
+  $datos.=" ";
+  return $datos;
+}
+
+public function contarResultado($responses,$pos,$tabla_opciones_valor)
+{
+  $enviar=0;
+  for ($i=0; $i < count($responses); $i++) {
+    $pospregunta=0;
+    foreach ($responses[$i] as $value)
+    {
+      if($pos==$pospregunta)
+      {
+        if($tabla_opciones_valor==$value)
+        {
+          $enviar++;
+        }
+      }
+      $pospregunta++;
+    }
+    $pospregunta=0;
+  }
+  $textoenviar="";
+  if($tabla_opciones_valor=="SI")
+  {
+    $textoenviar='<span class="badge badge-pill badge-success">'.$enviar.'</span>';
+  }else {
+    if($tabla_opciones_valor=="NO")
+    {
+      $textoenviar='<span class="badge badge-pill badge-danger">'.$enviar.'</span>';
+    }else {
+      if($tabla_opciones_valor=="NO RECUERDO")
+      {
+        $textoenviar='<span class="badge badge-pill badge-warning">'.$enviar.'</span>';
+      }else {
+        $textoenviar='<span class="badge badge-pill badge-secondary">'.$enviar.'</span>';
+      }
+    }
+  }
+  return $textoenviar;
+}
+public function obtenerTexto($responses,$pos1)
+{
+  $textos="";
+  for ($i=0; $i < count($responses); $i++) {
+    $pospregunta=0;
+    foreach ($responses[$i] as $value)
+    {
+      if($pos1==$pospregunta)
+      {
+        if($value!="")
+        {
+          $textos.='
+          <div class="col-md-4" style="margin-top:0.5%;">
+          <div class="card border-dark cardMensajes">
+          <div class="card-body">
+          '.$value.'
+          </div>
+          </div>
+          </div>
+          ';
+        }
+
+      }
+      $pospregunta++;
+    }
+    $pospregunta=0;
+  }
+  return $textos;
+}
+public function generarFilas($responses,$pos,$datos_tabla)
+{
+  $textos="";
+  $enviar=0;
+  $datoscontables = array_fill(0, count($datos_tabla), NULL);
+  for ($i=0; $i < count($responses); $i++) {
+    $pospregunta=0;
+    foreach ($responses[$i] as $value)
+    {
+      if($pos==$pospregunta)
+      {
+        for($e=0;$e<count($datos_tabla);$e++)
+        {
+          if($datos_tabla[$e]==$value)
+          {
+            $datoscontables[$e]+=1;
+            //    echo "$e $value <br>";
+          }else {
+            $datoscontables[$e]+=0;
+          }
+        }
+      }
+      $pospregunta++;
+    }
+    $pospregunta=0;
+  }
+  $textos.='<tr>';
+  for ($i=0; $i < count($datos_tabla); $i++) {
+    $textos.='<td>'.$datoscontables[$i].' </td>';
+  }
+  $textos.='</tr>';
+  return $textos;
+}
+public function card($pregunta)
+{
+  $datos='
+  <div class="card">
+  <div class="card-body">
+  '.$pregunta.'
+  </div>
+  </div>
+  ';
+  return $datos;
+}
 }
