@@ -349,7 +349,6 @@ public function generarEncuPDF($json,$resultados)
               $encuestaRetro.='';
               $encuestaRetro.="</table>";
               unset($datos_tabla) ;
-              // echo "POS  $pos TABLA $value2->pregunta<BR>";
               $pos++;
             }
             else {
@@ -369,8 +368,8 @@ public function generarEncuPDF($json,$resultados)
               }
             }
           }
-          $encuestaRetro.=$this->GeneradorEncuestas->card($temp);
-          $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
+        //  $encuestaRetro.=$this->GeneradorEncuestas->card($temp);
+        //  $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
         }else {
           if($value2->tipo=="radio"){
           $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
@@ -384,7 +383,7 @@ public function generarEncuPDF($json,$resultados)
           $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
           $encuestaRetro.='';
           $encuestaRetro.="</table>";
-          $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
+        //  $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
           unset($datos_tabla) ;
           $pos++;
         }else {
