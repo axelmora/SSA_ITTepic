@@ -484,8 +484,8 @@ class Panel_seguimiento extends CI_Controller {
 		$resolution = array(216, 279);
 		$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
 		$pdf->SetAuthor('Fernando Manuel Avila Cataño');
-		$pdf->SetTitle('Instituto Tecnologico de Tepic');
-		$pdf->SetSubject('Seguimiento en el aula repote');
+		$pdf->SetTitle('Instituto Tecnologico de Tepic - Seguimiento en el aula');
+		$pdf->SetSubject('Seguimiento en el aula reporte');
 		$pdf->SetKeywords('Reporte, individual, ');
 		$image_file = 'cabecera.png';
 		// $pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, 'Instituto Tecnologico de Tepic', 's');
@@ -532,8 +532,6 @@ class Panel_seguimiento extends CI_Controller {
 			$html.= "<b>Retroalimentación</b>";
 			$html.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
 		}
-
-
 		$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 		$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_individual.pdf");
 		$pdf->Output($nombre_archivo, 'I');

@@ -87,102 +87,102 @@
       "pregunta": "2.- ¿Qué unidad estas cursando actualmente?",
       "tipo": "seleccion",
       "datos":[
-          {
-            "nombre":"Unidad 1",
-            "valor":1
-          },
-          {
-            "nombre":"Unidad 2",
-            "valor":2
-          },
-          {
-            "nombre":"Unidad 3",
-            "valor":3
-          },
-          {
-            "nombre":"Unidad 4",
-            "valor":4
-          },
-          {
-            "nombre":"Unidad 5",
-            "valor":5
-          },
-          {
-            "nombre":"Unidad 6",
-            "valor":6
-          },
-          {
-            "nombre":"Unidad 7",
-            "valor":7
-          },
-          {
-            "nombre":"Unidad 8",
-            "valor":8
-          },
-          {
-            "nombre":"Unidad 9",
-            "valor":9
-          },
-          {
-            "nombre":"No recuerdo",
-            "valor":0
-          },
-          {
-            "nombre":"No se específico",
-            "valor":0
-          }
-        ]
+        {
+          "nombre":"Unidad 1",
+          "valor":1
+        },
+        {
+          "nombre":"Unidad 2",
+          "valor":2
+        },
+        {
+          "nombre":"Unidad 3",
+          "valor":3
+        },
+        {
+          "nombre":"Unidad 4",
+          "valor":4
+        },
+        {
+          "nombre":"Unidad 5",
+          "valor":5
+        },
+        {
+          "nombre":"Unidad 6",
+          "valor":6
+        },
+        {
+          "nombre":"Unidad 7",
+          "valor":7
+        },
+        {
+          "nombre":"Unidad 8",
+          "valor":8
+        },
+        {
+          "nombre":"Unidad 9",
+          "valor":9
+        },
+        {
+          "nombre":"No recuerdo",
+          "valor":0
+        },
+        {
+          "nombre":"No se específico",
+          "valor":0
+        }
+      ]
     },
     {
       "name": "pregunta3",
       "pregunta": "3.- ¿Cuál fue la última unidad evaluada?",
       "tipo": "seleccion",
       "datos":[
-          {
-            "nombre":"Unidad 1",
-            "valor":1
-          },
-          {
-            "nombre":"Unidad 2",
-            "valor":2
-          },
-          {
-            "nombre":"Unidad 3",
-            "valor":3
-          },
-          {
-            "nombre":"Unidad 4",
-            "valor":4
-          },
-          {
-            "nombre":"Unidad 5",
-            "valor":5
-          },
-          {
-            "nombre":"Unidad 6",
-            "valor":6
-          },
-          {
-            "nombre":"Unidad 7",
-            "valor":7
-          },
-          {
-            "nombre":"Unidad 8",
-            "valor":8
-          },
-          {
-            "nombre":"Unidad 9",
-            "valor":9
-          },
-          {
-            "nombre":"No recuerdo",
-            "valor":0
-          },
-          {
-            "nombre":"No se específico",
-            "valor":0
-          }
-        ]
+        {
+          "nombre":"Unidad 1",
+          "valor":1
+        },
+        {
+          "nombre":"Unidad 2",
+          "valor":2
+        },
+        {
+          "nombre":"Unidad 3",
+          "valor":3
+        },
+        {
+          "nombre":"Unidad 4",
+          "valor":4
+        },
+        {
+          "nombre":"Unidad 5",
+          "valor":5
+        },
+        {
+          "nombre":"Unidad 6",
+          "valor":6
+        },
+        {
+          "nombre":"Unidad 7",
+          "valor":7
+        },
+        {
+          "nombre":"Unidad 8",
+          "valor":8
+        },
+        {
+          "nombre":"Unidad 9",
+          "valor":9
+        },
+        {
+          "nombre":"No recuerdo",
+          "valor":0
+        },
+        {
+          "nombre":"No se específico",
+          "valor":0
+        }
+      ]
     },
     {
       "name": "pregunta4",
@@ -283,33 +283,33 @@
       "name": "pregunta10",
       "pregunta": "10.- De la siguiente lista seleccione y cuantifique las prácticas que ha realizado",
       "tipo": "tabla",
-      "subpreguntas": {
-        "1": {
+      "subpreguntas":[
+        {
           "name": "pregunta10_1",
           "pregunta": "a) Visitas a empresas, de obra o de campo",
           "tipo": "numero"
         },
-        "2": {
+        {
           "name": "pregunta10_2",
           "pregunta": "b) Laboratorio",
           "tipo": "numero"
         },
-        "3": {
+        {
           "name": "pregunta10_3",
           "pregunta": "c) Resolución de problemas o ejercicios en el aula",
           "tipo": "numero"
         },
-        "4": {
+        {
           "name": "pregunta10_4",
           "pregunta": "d) Formulación de proyectos",
           "tipo": "numero"
         },
-        "5": {
+        {
           "name": "pregunta10_5",
           "pregunta": "e) Elaboración de un producto",
           "tipo": "numero"
         },
-        "6": {
+        {
           "name": "pregunta10_6",
           "pregunta": "f)otro: Especifique",
           "tipo": "numeroespsificar",
@@ -322,7 +322,7 @@
             }
           ]
         }
-      }
+      ]
     },
     {
       "name": "pregunta11",
