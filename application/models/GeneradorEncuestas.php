@@ -46,7 +46,6 @@ class GeneradorEncuestas extends CI_Model {
         //  echo "$init $value <br>";
         $init++;
       }
-
       $encuestaRetro="";
       $posGraficos=0;
       $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
@@ -338,16 +337,18 @@ public function generarEncuPDF($json,$resultados)
           foreach ($value2->subpreguntas as $key => $value3) {
             if($value3->tipo=="radio")
             {
-              $tabla_opciones;
-              $tabla_opciones_valor;
+              $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
+              $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+              $datos_tabla;
               foreach ($value3->respuesta as $key => $value4) {
-                $tabla_opciones[]=$value4->texto;
-                $tabla_opciones_valor[]=$value4->valor;
-
+                $datos_tabla[]="".$value4->valor;
+                $encuestaRetro.="<th>".$value4->texto."</th>";
               }
-              $temp.=$this->GeneradorEncuestas->preguntaradioR($value3->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
-              unset($tabla_opciones) ;
-
+              $encuestaRetro.='</thead></tr>';
+              $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
+              $encuestaRetro.='';
+              $encuestaRetro.="</table>";
+              unset($datos_tabla) ;
               // echo "POS  $pos TABLA $value2->pregunta<BR>";
               $pos++;
             }
