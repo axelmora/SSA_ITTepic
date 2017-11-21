@@ -417,14 +417,7 @@ public function generarEncuPDF($json,$resultados)
   }
 }else {
   $encuestaRetro='
-  <center>
-  <div class="card text-white bg-danger ">
-  <div class="card-body">
-  <h4 class="card-title"><i class="fa fa-exclamation-triangle fa-5x" aria-hidden="true"></i></h4>
-  <p class="card-text">Aun no se cuentan con resultados en esta encuesta. </p>
-  </div>
-  </div>
-  </center>
+  <p style="text-align:center; margin-top:200px;font-size: 200%;">Aun no se cuentan con resultados en esta encuesta. </p>
   ';
 }
 return $encuestaRetro;

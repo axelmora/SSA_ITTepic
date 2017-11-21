@@ -463,7 +463,7 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		/*    CARGAR DATOS      */
 		$this->load->model('GeneradorEncuestas');
-		$resultados=$this->SeguimientoModelo->resultadosEncuesta(1);
+		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
 		$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
 		$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
 		$DOCENTE="";
@@ -528,8 +528,8 @@ class Panel_seguimiento extends CI_Controller {
 		//	$html .= "<h2>Sistema para el seguimiento en el Aula</h2>";
 		$html.= $datos["EncuestasResultados"];
 		if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
-			$html.= " ";
-			$html.= "<br><b>Retroalimentación</b>";
+			$html.= "\n";
+			$html.= "<b>Retroalimentación</b>";
 			$html.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
 		}
 
