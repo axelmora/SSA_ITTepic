@@ -527,15 +527,14 @@ class Panel_seguimiento extends CI_Controller {
 		</tr>
 		</table>
 		";
-		//	$html .= "<h2>Sistema para el seguimiento en el Aula</h2>";
-		//$html.= $datos["EncuestasResultados"];
+		$html.= $datos["EncuestasResultados"];
 		if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
 			$html.= "\n";
 			$html.= "<b>Retroalimentación</b>";
 			$html.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
 		}
-		//$imghtml='<img src="'.K_PATH_IMAGES.'abajoReportes.png" border="0" align="bottom"  />';
-		//$pdf->writeHTMLCell(50, '', 0, 29.7 - 4, $imghtml, 0, 1, false, true, 'L', false);
+		/*$imghtml='<img src="'.K_PATH_IMAGES.'abajoReportes.png" border="0" align="bottom"  />';
+		$pdf->writeHTMLCell(50, '', 0, 29.7 - 4, $imghtml, 0, 1, false, true, 'L', false); */
 		$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 		$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_individual.pdf");
 		$pdf->Output($nombre_archivo, 'I');
