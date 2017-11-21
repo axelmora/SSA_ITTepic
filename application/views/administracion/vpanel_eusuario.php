@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="card-body">
               <div class="row" >
                 <div class="col-lg-12">
-                  <form method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/agrearUsuario" >
+                  <form method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/updateUser/<?php  echo $usuarioEditar[0]->idusuarios; ?>" >
                     <div class="form-group">
                       <label for="nombre_user">Nombre actual  del usuario:</label>
                       <input type="text" class="form-control" id="nombre_user" name="nombre_user" aria-describedby="nombre_userHelp" placeholder="Ingresar nombre del usuario." required value="<?php echo set_value('nombre_user'); echo $usuarioEditar[0]->usuario; ?>">
@@ -86,7 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <i class="fa fa-exclamation-circle animated tada infinite" aria-hidden="true"></i>   Atención esta seleccionado un tipo de cuenta de administración.
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">AGREGAR NUEVO USUARIO</button>
+                    <button type="submit" class="btn btn-success">ACTUALIZAR INFORMACION DE <?php  echo $usuarioEditar[0]->nombre_usuario; ?></button>
                   </form>
                 </div>
               </div>
