@@ -461,6 +461,7 @@ class Panel_seguimiento extends CI_Controller {
 	/* Elimar grupo fin*/
 	public function reporteIndividual($idencuesta_seguimiento)
 	{
+
 		/*    CARGAR DATOS      */
 		$this->load->model('GeneradorEncuestas');
 		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
@@ -501,6 +502,7 @@ class Panel_seguimiento extends CI_Controller {
 		$pdf->SetPrintHeader(true);
 		$pdf->SetPrintFooter(true);
 		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
+
 		// Este método tiene varias opciones, consulta la documentación para más información.
 		$resolution = array(279, 216);
 		$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
@@ -520,18 +522,20 @@ class Panel_seguimiento extends CI_Controller {
 		</tr>
 		</thead>
 		<tr>
-		<td>$MATERIA</td>
-		<td>$DOCENTE</td>
+		<td>  $MATERIA</td>
+		<td>  $DOCENTE</td>
 		</tr>
 		</table>
 		";
 		//	$html .= "<h2>Sistema para el seguimiento en el Aula</h2>";
-		$html.= $datos["EncuestasResultados"];
+		//$html.= $datos["EncuestasResultados"];
 		if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
 			$html.= "\n";
 			$html.= "<b>Retroalimentación</b>";
 			$html.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
 		}
+		//$imghtml='<img src="'.K_PATH_IMAGES.'abajoReportes.png" border="0" align="bottom"  />';
+		//$pdf->writeHTMLCell(50, '', 0, 29.7 - 4, $imghtml, 0, 1, false, true, 'L', false);
 		$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 		$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_individual.pdf");
 		$pdf->Output($nombre_archivo, 'I');
