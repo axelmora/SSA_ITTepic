@@ -349,13 +349,16 @@ public function generarEncuPDF($json,$resultados)
               $pos++;
             }
             else {
+
               if ($value3->tipo=="numero") {
+                  $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
                 // echo "POS  $pos TABLA NUMERO $value2->pregunta<BR>";
                 $pos++;
                 // $pos++;
               }else {
                 if($value3->tipo=="numeroespsificar")
                 {
+                  $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
                   foreach ($value3->campos as $key => $value4) {
                     //  echo "".$value4->tipo;
                     $pos++;
