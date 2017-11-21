@@ -477,7 +477,9 @@ class Panel_seguimiento extends CI_Controller {
 		// datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
 		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 
-		$image_file = 'cabecera2.png';
+		$image_file = base_url().'images/tec.ico';
+		//$image_file = K_PATH_IMAGES.'cabecera2.png';
+		
 		$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, 'Instituto Tecnologico de Tepic', 's');
 		// se pueden modificar en el archivo tcpdf_config.php de libraries/config
 		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
