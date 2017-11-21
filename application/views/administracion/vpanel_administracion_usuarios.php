@@ -90,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														<i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
 													</button>
 													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o colorEditar" aria-hidden="true"></i> EDITAR</a>
+														<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/panel_administracion/editarUsuario/<?php  echo $valores->idusuarios;?>"><i class="fa fa-pencil-square-o colorEditar" aria-hidden="true"></i> EDITAR</a>
 														<?php
 														if($valores->idusuarios >=1 && $valores->idusuarios<=11)
 														{

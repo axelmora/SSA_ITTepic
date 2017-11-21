@@ -134,5 +134,11 @@ class Panel_administracion extends CI_Controller {
 		$this->Sistema->actualizarCorreo($correo);
 		redirect(base_url().'index.php/panel_administracion/sistemainfo');
 	}
+	public function editarUsuario($idusuarios)
+	{
+		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
+		$datos["usuarioEditar"]=$datosUser=$this->Usuarios->selecionarUsuario($idusuarios);
+		$this->load->view('administracion/vpanel_eusuario',$datos);
+	}
 	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
 }
