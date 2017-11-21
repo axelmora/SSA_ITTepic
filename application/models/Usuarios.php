@@ -87,5 +87,19 @@ class Usuarios extends CI_Model {
         return true;
     }
   }
-
+  public function selecionarUsuario($usuario)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM usuarios where idusuarios='$usuario';");
+    if ($query->num_rows() > 0) {
+          return $query->result();
+    } else {
+        return true;
+    }
+  }
+  function borrarUSUARIO($usuario) {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->where('idusuarios', $usuario );
+    $DB2->delete('usuarios');
+  }
 }

@@ -114,7 +114,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <?php echo "".$EncuestasResultados; ?>
                         </div>
                       </div>
-                                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

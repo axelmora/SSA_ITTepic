@@ -48,6 +48,7 @@ class GeneradorEncuestas extends CI_Model {
       }
 
       $encuestaRetro="";
+      $posGraficos=0;
       $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
       foreach ($json as $key => $value) {
         $pos=0;
@@ -69,6 +70,7 @@ class GeneradorEncuestas extends CI_Model {
                 }
                 $temp.=$this->GeneradorEncuestas->preguntaradioR($value3->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
                 unset($tabla_opciones) ;
+
                 // echo "POS  $pos TABLA $value2->pregunta<BR>";
                 $pos++;
               }
@@ -88,9 +90,11 @@ class GeneradorEncuestas extends CI_Model {
                   }
                 }
               }
+
               //  $pos++;
             }
             $encuestaRetro.=$this->GeneradorEncuestas->card($temp);
+            $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
           }else {
             if($value2->tipo=="radio"){
               /* $tabla_opciones;
@@ -112,6 +116,7 @@ class GeneradorEncuestas extends CI_Model {
             $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
             $encuestaRetro.='';
             $encuestaRetro.="</table>";
+            $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
             unset($datos_tabla) ;
             $pos++;
           }else {
@@ -129,6 +134,7 @@ class GeneradorEncuestas extends CI_Model {
               $encuestaRetro.='';
               $encuestaRetro.="</table>";
               unset($datos_tabla) ;
+              $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
               $pos++;
             }else {
               if($value2->tipo=="texto"){
@@ -142,6 +148,7 @@ class GeneradorEncuestas extends CI_Model {
             }
           }
         }
+          $posGraficos++;
       }
     }
   }else {
@@ -297,5 +304,9 @@ public function card($pregunta)
   </div>
   ';
   return $datos;
+}
+public function generadorGraficos($posGrafico)
+{
+   return '<canvas id="grafico'.$posGrafico.'"></canvas>';
 }
 }

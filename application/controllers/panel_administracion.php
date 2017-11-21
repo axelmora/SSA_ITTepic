@@ -89,6 +89,12 @@ class Panel_administracion extends CI_Controller {
 			redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
 		}
 	}
+	public function deleteUsuario()
+	{
+		  $idusuarios= $this->input->post('idusuarios');
+			$this->Usuarios->borrarUSUARIO($idusuarios);
+		 	redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
+	}
 	public function manual_tecnico(){
 		$this->load->view('administracion/manual_tecnicovista_admin');
 	}

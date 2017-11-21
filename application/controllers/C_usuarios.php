@@ -166,6 +166,11 @@ class C_usuarios extends CI_Controller {
 		$estado = $this->input->post('estado');
 		$this->Usuarios->actualizarEstado($idusuarios,$estado);
 	}
+	public function datosUsuario($idusuarios)
+	{
+			$datosUser=$this->Usuarios->selecionarUsuario($idusuarios);
+			echo json_encode($datosUser);
+	}
 	/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
 	public function mensajeError($Mensaje)
 	{

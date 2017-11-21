@@ -91,7 +91,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													</button>
 													<div class="dropdown-menu">
 														<a class="dropdown-item" href="#"><i class="fa fa-pencil-square-o colorEditar" aria-hidden="true"></i> EDITAR</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-trash colorBorrar" aria-hidden="true"></i> ELIMINAR</a>
+														<?php
+														if($valores->idusuarios >=1 && $valores->idusuarios<=11)
+														{
+															?>
+															<?php
+														}else {
+															?>
+															<button  onclick="eliminarusuario(<?php  echo $valores->idusuarios;?>);" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalEliminar">
+																<i class="fa fa-trash colorBorrar" aria-hidden="true"></i> ELIMINAR
+															</button>
+															<?php
+														}
+														?>
 													</div>
 												</div>
 											</td>
@@ -115,48 +127,111 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<input type="text" value="3" name="3" id="3" />
 		<input type="submit" value="PROBAr"   />
 	</form> -->
-	<?php $this->load->view('include/manual_usuario'); ?>
-	<?php $this->load->view('include/footer'); ?>
-</body>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
-<script>
-function cambiarEstado(id,estado)
-{
-	var parametros2 = {
-		"idusuarios" :id,
-		"estado" :estado
-	};
-	$(document).ready(function() {
+	<!-- modal eliminar -->
+	<form class="" action="<?php echo base_url(); ?>index.php/Panel_administracion/deleteUsuario/" method="post">
+		<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">
+							<center><i class="fa fa-trash text-danger" aria-hidden="true"></i>¿Desea  eliminar a este usuario?    </center> </h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<input type="number" id="idusuarios" name="idusuarios" value="" required hidden>
+							<table class="table table-bordered table-sm">
+								<caption>Datos de la cuenta a eliminar.</caption>
+								<thead>
+									<tr>
+										<th scope="col">NOMBRE COMPLETO</th>
+										<th scope="col">NOMBRE DE USUARIO</th>
+										<th scope="col">ULTIMA CONEXION</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><div id="A1"></div></td>
+										<td><div id="A2"></div></td>
+										<td><div id="A3"></div></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> CANCELAR</button>
+							<button type="submit" class="btn btn-danger"><i class="fa fa-trash " aria-hidden="true"></i> ELIMINAR </button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<!-- modal eliminar  fin -->
+		<?php $this->load->view('include/manual_usuario'); ?>
+		<?php $this->load->view('include/footer'); ?>
+	</body>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.bootstrap4.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
+	<script>
+	function cambiarEstado(id,estado)
+	{
+		var parametros2 = {
+			"idusuarios" :id,
+			"estado" :estado
+		};
+		$(document).ready(function() {
+			$.ajax({
+				data:  parametros2,
+				url:   '<?php echo base_url(); ?>index.php/C_usuarios/cambiarEstado',
+				type:  'post',
+				success:  function (response) {
+				}
+			});
+		});
+	}
+	function eliminarusuario(id)
+	{
 		$.ajax({
-			data:  parametros2,
-			url:   '<?php echo base_url(); ?>index.php/C_usuarios/cambiarEstado',
-			type:  'post',
-			success:  function (response) {
+			type: 'GET',
+			url: '<?php echo base_url(); ?>index.php/C_usuarios/datosUsuario/'+id,
+			data: { get_param: 'value' },
+			dataType: 'json',
+			success: function (data) {
+				$.each(data, function(index, elemento) {
+					$("#A1").html(elemento.nombre_usuario);
+					$("#A2").html(elemento.usuario);
+					if (!elemento.ult_conexion) {
+						$("#A3").html("SIN CONEXION");
+					}else {
+							$("#A3").html(elemento.ult_conexion);
+					}
+					$("#idusuarios").val(elemento.idusuarios);
+
+				});
 			}
 		});
+	}
+	$(document).ready(function() {
+		$('#tablausuarios').DataTable({
+			"language": {
+				"url": "<?php echo base_url(); ?>js/datatables/usuarios.json"
+			},
+			"order": [[ 3, "desc" ]]
+		});
+	} );
+	$(document).ready(function(){
+		var opciones = {
+			fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
+		};
+		PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
 	});
-}
-$(document).ready(function() {
-	$('#tablausuarios').DataTable({
-		"language": {
-			"url": "<?php echo base_url(); ?>js/datatables/usuarios.json"
-		},
-		"order": [[ 3, "desc" ]]
-	});
-} );
-$(document).ready(function(){
-	var opciones = {
-		fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
-	};
-	PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
-});
 </script>
 </html>
