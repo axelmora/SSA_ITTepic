@@ -148,7 +148,7 @@ class GeneradorEncuestas extends CI_Model {
             }
           }
         }
-          $posGraficos++;
+        $posGraficos++;
       }
     }
   }else {
@@ -307,6 +307,126 @@ public function card($pregunta)
 }
 public function generadorGraficos($posGrafico)
 {
-   return '<canvas id="grafico'.$posGrafico.'"></canvas>';
+  return '<canvas id="grafico'.$posGrafico.'"></canvas>';
+}
+public function generarEncuPDF($json,$resultados)
+{
+  if ($resultados) {
+    $responses;
+    foreach ($resultados as $key => $value) {
+      //echo "$value->respuestas";
+      $responses[] = json_decode(html_entity_decode($value->respuestas), TRUE);
+    }
+    $init=0;
+    foreach ($responses[0] as $value)
+    {
+      //  echo "$init $value <br>";
+      $init++;
+    }
+
+    $encuestaRetro="";
+    $posGraficos=0;
+    $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
+    foreach ($json as $key => $value) {
+      $pos=0;
+      foreach ($value as $key => $value2) {
+        if($value2->tipo=="tabla")
+        {
+          $temp="";
+          $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
+          $tabla_pregunta;
+          foreach ($value2->subpreguntas as $key => $value3) {
+            if($value3->tipo=="radio")
+            {
+              $tabla_opciones;
+              $tabla_opciones_valor;
+              foreach ($value3->respuesta as $key => $value4) {
+                $tabla_opciones[]=$value4->texto;
+                $tabla_opciones_valor[]=$value4->valor;
+
+              }
+              $temp.=$this->GeneradorEncuestas->preguntaradioR($value3->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
+              unset($tabla_opciones) ;
+
+              // echo "POS  $pos TABLA $value2->pregunta<BR>";
+              $pos++;
+            }
+            else {
+              if ($value3->tipo=="numero") {
+                // echo "POS  $pos TABLA NUMERO $value2->pregunta<BR>";
+                $pos++;
+                // $pos++;
+              }else {
+                if($value3->tipo=="numeroespsificar")
+                {
+                  foreach ($value3->campos as $key => $value4) {
+                    //  echo "".$value4->tipo;
+                    $pos++;
+                  }
+                  // echo "POS  $pos TABLA ESESIFICAR $value2->pregunta<BR>";
+                }
+              }
+            }
+          }
+          $encuestaRetro.=$this->GeneradorEncuestas->card($temp);
+          $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
+        }else {
+          if($value2->tipo=="radio"){
+          $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
+          $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+          $datos_tabla;
+          foreach ($value2->respuesta as $key => $value3) {
+            $datos_tabla[]="".$value3->valor;
+            $encuestaRetro.="<th>".$value3->texto."</th>";
+          }
+          $encuestaRetro.='</thead></tr>';
+          $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
+          $encuestaRetro.='';
+          $encuestaRetro.="</table>";
+          $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
+          unset($datos_tabla) ;
+          $pos++;
+        }else {
+          if($value2->tipo=="seleccion"){
+            // echo "POS $pos SELECION $value2->pregunta<BR>";
+            $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
+            $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+            $datos_tabla;
+            foreach ($value2->datos as $key => $value3) {
+              $datos_tabla[]="".$value3->valor;
+              $encuestaRetro.="<th>".$value3->nombre."</th>";
+            }
+            $encuestaRetro.='</thead></tr>';
+            $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
+            $encuestaRetro.='';
+            $encuestaRetro.="</table>";
+            unset($datos_tabla) ;
+            $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
+            $pos++;
+          }else {
+            if($value2->tipo=="texto"){
+
+              // echo "POS $pos TEXTO $value2->pregunta<BR>";
+              $pos++;
+            }
+          }
+        }
+      }
+      $posGraficos++;
+    }
+  }
+}else {
+  $encuestaRetro='
+  <center>
+  <div class="card text-white bg-danger ">
+  <div class="card-body">
+  <h4 class="card-title"><i class="fa fa-exclamation-triangle fa-5x" aria-hidden="true"></i></h4>
+  <p class="card-text">Aun no se cuentan con resultados en esta encuesta. </p>
+  </div>
+  </div>
+  </center>
+  ';
+}
+return $encuestaRetro;
 }
 }

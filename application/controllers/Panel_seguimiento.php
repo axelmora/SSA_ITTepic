@@ -459,8 +459,13 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->view('aplicaciones_resultados',$datos);
 	}
 	/* Elimar grupo fin*/
-	public function reportePrueba( )
+	public function reporteIndividual($idencuesta_seguimiento)
 	{
+
+		$this->load->model('GeneradorEncuestas');
+		$resultados=$this->SeguimientoModelo->resultadosEncuesta(1);
+		$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+
 		$this->load->library('Pdf');
 		$resolution = array(216, 279);
 		$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
@@ -472,6 +477,8 @@ class Panel_seguimiento extends CI_Controller {
 		// datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config
 		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 
+		$image_file = 'cabecera2.png';
+		$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, 'Instituto Tecnologico de Tepic', 's');
 		// se pueden modificar en el archivo tcpdf_config.php de libraries/config
 		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
@@ -503,18 +510,16 @@ class Panel_seguimiento extends CI_Controller {
 		//fijar efecto de sombra en el texto
 		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
 
-
-
 		$html = '';
 		$html .= "<style type=text/css>";
 		$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
 		$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
 		$html .= "</style>";
-		$html .= "<h2>Sistema para el seguimiento en el Aula</h4>";
-
+		$html .= "<h2>Sistema para el seguimiento en el Aula</h2>";
+		$html.= $datos["EncuestasResultados"];
 		$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 		$nombre_archivo = utf8_decode("Reportes_Seguimiento.pdf");
 		$pdf->Output($nombre_archivo, 'I');
-
+		//echo '<link rel="shortcut icon" href="'.base_url().'images/tec.ico">';
 	}
 }
