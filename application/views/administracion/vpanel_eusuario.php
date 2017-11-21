@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="row" >
                 <div class="col-lg-12">
                   <form method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/updateUser/<?php  echo $usuarioEditar[0]->idusuarios; ?>" >
-                    <div class="form-group">
+                  <!--  <div class="form-group">
                       <label for="nombre_user">Nombre actual  del usuario:</label>
                       <input type="text" class="form-control" id="nombre_user" name="nombre_user" aria-describedby="nombre_userHelp" placeholder="Ingresar nombre del usuario." required value="<?php echo set_value('nombre_user'); echo $usuarioEditar[0]->usuario; ?>">
                       <small id="nombre_userHelp" class="form-text text-muted">Nombre del usuario por el cual iniciara sesión.</small>
@@ -53,12 +53,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php
                       }
                       ?>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                       <label for="nombre_userc">Nombre completo actual del usuario:</label>
                       <input type="text" class="form-control" id="nombre_userc"  name="nombre_userc"  placeholder="Ingresar nombre completo de usuario." value="<?php echo set_value('nombre_userc'); echo $usuarioEditar[0]->nombre_usuario; ?>" required>
                     </div>
                     <div class="form-group">
+                      <input hidden type="text" class="form-control" id="contrasena"  name="contrasena"   value="<?php echo set_value('nombre_userc'); echo $usuarioEditar[0]->password; ?>" required>
+
                   <!--    <label for="contrasena">Contraseña:</label>
                       <input type="password" class="form-control" id="contrasena" name="contrasena"  value="" placeholder="Ingresar contraseña" required>
                 -->    </div>
