@@ -432,7 +432,30 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function resulados($idSeguimiento)
 	{
-		$datos="";
+		//$datos["idEncuesta"]=1;
+
+		$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idSeguimiento);
+		$ALUMNOSCONTESTADOS;
+		foreach ($datos["ALUMNOSGRUPO"] as $key => $alumnos) {
+			if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->alumnos_numero_control,$idSeguimiento))
+			{
+				$ALUMNOSCONTESTADOS[]=true;
+			}else {
+				$ALUMNOSCONTESTADOS[]=false;
+			}
+		}
+		$datos["APLICADOS"]=$ALUMNOSCONTESTADOS;
+		$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idSeguimiento);
+		$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idSeguimiento);
+		$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idSeguimiento);
+		$this->load->model('GeneradorEncuestas');
+		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idSeguimiento);
+		$datos["idEncuesta"]=$idSeguimiento;
+		if(!$resultados)
+		{
+			$datos["ExistenResultados"]=true;
+		}
+		$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
 		$this->load->view('aplicaciones_resultados',$datos);
 	}
 	/* Elimar grupo fin*/

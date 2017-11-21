@@ -106,14 +106,15 @@ class GeneradorEncuestas extends CI_Model {
               if($value2->tipo=="seleccion"){
                 // echo "POS $pos SELECION $value2->pregunta<BR>";
                 $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
-                $encuestaRetro.='<table class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+                $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
                 $datos_tabla;
                 foreach ($value2->datos as $key => $value3) {
                   $datos_tabla[]="".$value3->valor;
                   $encuestaRetro.="<th>".$value3->nombre."</th>";
                 }
+                $encuestaRetro.='</thead></tr>';
                 $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
-                $encuestaRetro.=' </tr></thead>';
+                $encuestaRetro.='';
                 $encuestaRetro.="</table>";
                 unset($datos_tabla) ;
                 $pos++;
@@ -221,15 +222,19 @@ class GeneradorEncuestas extends CI_Model {
       {
         if($pos1==$pospregunta)
         {
-          $textos.='
-          <div class="col-md-4" style="margin-top:0.5%;">
-          <div class="card border-dark cardMensajes">
-          <div class="card-body">
-          '.$value.'
-          </div>
-          </div>
-          </div>
-          ';
+          if($value!="")
+          {
+            $textos.='
+            <div class="col-md-4" style="margin-top:0.5%;">
+            <div class="card border-dark cardMensajes">
+            <div class="card-body">
+            '.$value.'
+            </div>
+            </div>
+            </div>
+            ';
+          }
+
         }
         $pospregunta++;
       }
