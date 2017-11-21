@@ -515,7 +515,7 @@ class Panel_seguimiento extends CI_Controller {
 		$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
 		$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
 		$html .= "</style>";
-		$html .= "<h2>Sistema para el seguimiento en el Aula</h2>";
+	//	$html .= "<h2>Sistema para el seguimiento en el Aula</h2>";
 		$html.= $datos["EncuestasResultados"];
 		$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 		$nombre_archivo = utf8_decode("Reportes_Seguimiento.pdf");
