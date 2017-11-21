@@ -476,7 +476,6 @@ class Panel_seguimiento extends CI_Controller {
 		$pdf->SetKeywords('Reporte, individual, ');
 
 		 $image_file = 'cabecera.png';
-		 $pdf->Image(K_PATH_IMAGES . 'cabecera.png', 15, 0, 180, 40, 'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
 		 $pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, 'Instituto Tecnologico de Tepic', 's');
 		 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 		 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
@@ -486,7 +485,7 @@ class Panel_seguimiento extends CI_Controller {
 		 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		 $pdf->setFontSubsetting(true);
 		 $pdf->SetFont('helvetica', '', 10);
-		 $pdf->SetPrintHeader(false);
+		 $pdf->SetPrintHeader(true);
 		 $pdf->SetPrintFooter(true);
 		 $pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
 		// Este método tiene varias opciones, consulta la documentación para más información.
@@ -505,6 +504,6 @@ class Panel_seguimiento extends CI_Controller {
 		$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 		$nombre_archivo = utf8_decode("Reportes_Seguimiento.pdf");
 		$pdf->Output($nombre_archivo, 'I');
-		//echo '<link rel="shortcut icon" href="'.base_url().'images/tec.ico">';
+		echo '<link rel="shortcut icon" href="'.base_url().'images/tec.ico">';
 	}
 }
