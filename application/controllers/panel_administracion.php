@@ -96,10 +96,18 @@ class Panel_administracion extends CI_Controller {
 		redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
 	}
 	public function manual_tecnico(){
-		$this->load->view('administracion/manual_tecnicovista_admin');
+		if ($this->session->userdata('tipo')=='1') {
+			$this->load->view('administracion/manual_tecnicovista_admin');
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function manual_usuario(){
-		$this->load->view('administracion/manual_usuariovista_admin');
+		if ($this->session->userdata('tipo')=='1') {
+			$this->load->view('administracion/manual_usuariovista_admin');
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
 	public function departamentos()
@@ -158,6 +166,13 @@ class Panel_administracion extends CI_Controller {
 			'departamento_academico_iddepartamento_academico'=> ''.$departamento_academico
 		);
 		$this->Usuarios->actualizarUsuarioInformacion($idusuarios,$datos);
+		redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
+	}
+	public function restablecerpassword()
+	{
+		$contrasña=sha1($this->input->post('usuarioname'));
+		$idusuarioenviar= $this->input->post('idusuarioenviar');
+		$this->Usuarios->actualizar_contrasena($idusuarioenviar,$contrasña);
 		redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
 	}
 	/* SECCION DE DEPARTAMENTOS ACADEMICOS */

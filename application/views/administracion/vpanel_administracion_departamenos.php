@@ -46,34 +46,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<?php
 							if ($DEPARTAMENTOS) {
 								foreach ($DEPARTAMENTOS as $filas => $valores) {
-									?>
-									<tr>
-										<td colspan=""><?php echo $valores->nombre_departamento; ?> </td>
-										<td colspan="">
-											<center>
-												<div class="btn-group ">
-													<button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-														<i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
-													</button>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/panel_administracion/editar_departamento/<?php echo $valores->iddepartamento_academico; ?>"><i class="fa fa-pencil-square-o colorEditar" aria-hidden="true"></i> EDITAR</a>
-														<?php
-														if($valores->iddepartamento_academico >=1 && $valores->iddepartamento_academico <=11){
-															?>
-															<a class="dropdown-item" href=""><i class="fa fa-trash colorBorrar" aria-hidden="true"></i> NO ES POSIBLE ELIMINAR</a>
+									if($valores->iddepartamento_academico !=1 ){
+										?>
+										<tr>
+											<td colspan=""><?php echo $valores->nombre_departamento; ?> </td>
+											<td colspan="">
+												<center>
+													<div class="btn-group ">
+														<button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+															<i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
+														</button>
+														<div class="dropdown-menu">
 															<?php
-														}else {
+															if($valores->iddepartamento_academico ==1 ){
+															}else {
+																?>
+																<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/panel_administracion/editar_departamento/<?php echo $valores->iddepartamento_academico; ?>"><i class="fa fa-pencil-square-o colorEditar" aria-hidden="true"></i> EDITAR</a>
+																<?php
+															}
 															?>
-															<a class="dropdown-item" href="#"><i class="fa fa-trash colorBorrar" aria-hidden="true"></i> ELIMINAR</a>
 															<?php
-														}
-														?>
+															if($valores->iddepartamento_academico >=1 && $valores->iddepartamento_academico <=11){
+																?>
+																<button type="button" class="dropdown-item" name="button"><i class="fa fa-trash colorBorrar" aria-hidden="true"></i> NO ES POSIBLE ELIMINAR</button>
+																<?php
+															}else {
+																?>
+																<a class="dropdown-item" href="#"><i class="fa fa-trash colorBorrar" aria-hidden="true"></i> ELIMINAR</a>
+																<?php
+															}
+															?>
+														</div>
 													</div>
-												</div>
-											</center>
-										</td>
-									</tr>
-									<?php
+												</center>
+											</td>
+										</tr>
+										<?php
+									}
 								}
 							}else {
 							}

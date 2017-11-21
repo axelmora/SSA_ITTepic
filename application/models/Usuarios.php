@@ -108,4 +108,8 @@ class Usuarios extends CI_Model {
     $DB2->where('idusuarios', $usuario );
     $DB2->delete('usuarios');
   }
+  public function idusuarioenviar($value='')
+  {
+     
+  }
 }

@@ -59,8 +59,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <input type="text" class="form-control" id="nombre_userc"  name="nombre_userc"  placeholder="Ingresar nombre completo de usuario." value="<?php echo set_value('nombre_userc'); echo $usuarioEditar[0]->nombre_usuario; ?>" required>
                     </div>
                     <div class="form-group">
+                      <label for="contrasena">Contraseña:</label>
                       <input hidden type="text" class="form-control" id="contrasena"  name="contrasena"   value="<?php echo set_value('nombre_userc'); echo $usuarioEditar[0]->password; ?>" required>
-
+                      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-key" aria-hidden="true"></i>  Restablecer contraseña
+                      </button>
                   <!--    <label for="contrasena">Contraseña:</label>
                       <input type="password" class="form-control" id="contrasena" name="contrasena"  value="" placeholder="Ingresar contraseña" required>
                 -->    </div>
@@ -98,6 +101,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
     </div>
   </div>
+  <form class="" action="<?php echo base_url(); ?>index.php/Panel_administracion/restablecerpassword" method="post">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¿Restablecer contraseña para este usuario?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="text" name="usuarioname" hidden name="" value="<?php echo $usuarioEditar[0]->usuario; ?>">
+            <input type="text" name="idusuarioenviar" hidden name="" value="<?php echo $usuarioEditar[0]->idusuarios; ?>">
+            <div class="card text-white bg-danger ">
+              <div class="card-body">
+                <h4 class="card-title"><i class="fa fa-exclamation-triangle animated tada infinite" aria-hidden="true"></i> Atención</h4>
+                <p class="card-text"><b>Al restablecer esta contraseña, la contraseña nueva será el nombre de usuario.</b></p>
+                <p class="card-text">  Por lo tanto:</p>
+                <ul>
+                  <li>Solo se debe restablecer si el usuario así lo pidió.</li>
+                  <li>En caso de restablecer la contraseña sin autorización, se deberá avisar al usuario del cambio.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">CANCELAR</button>
+            <button type="submit" class="btn btn-warning">RESTABLECER</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
   <?php $this->load->view('include/manual_usuario'); ?>
   <?php $this->load->view('include/footer'); ?>
 </body>
