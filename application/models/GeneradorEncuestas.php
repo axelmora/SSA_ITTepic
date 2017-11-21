@@ -313,16 +313,13 @@ public function generarEncuPDF($json,$resultados)
   if ($resultados) {
     $responses;
     foreach ($resultados as $key => $value) {
-      //echo "$value->respuestas";
       $responses[] = json_decode(html_entity_decode($value->respuestas), TRUE);
     }
     $init=0;
     foreach ($responses[0] as $value)
     {
-      //  echo "$init $value <br>";
       $init++;
     }
-
     $encuestaRetro="";
     $posGraficos=0;
     $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
@@ -405,8 +402,6 @@ public function generarEncuPDF($json,$resultados)
             $pos++;
           }else {
             if($value2->tipo=="texto"){
-
-              // echo "POS $pos TEXTO $value2->pregunta<BR>";
               $pos++;
             }
           }
