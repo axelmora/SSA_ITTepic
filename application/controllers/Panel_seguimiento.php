@@ -450,7 +450,7 @@ class Panel_seguimiento extends CI_Controller {
 		$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idSeguimiento);
 		$this->load->model('GeneradorEncuestas');
 		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idSeguimiento);
-		$datos["idEncuesta"]=$idSeguimiento;
+		$datos["idEncuesta"]=$datos["idSegui"][0]->aplicaciones_idaplicaciones;
 		if(!$resultados)
 		{
 			$datos["ExistenResultados"]=true;

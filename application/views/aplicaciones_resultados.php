@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   }
   ?>
   <meta charset="utf-8">
-  <title>SSA-GRUPO <?php /* echo "$MATERIA $DOCENTE"; */ ?></title>
+  <title>SSA-GRUPO RESULTADOS ENCUESTA - <?php  echo "$MATERIA - $DOCENTE";  ?></title>
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="description" content="">
