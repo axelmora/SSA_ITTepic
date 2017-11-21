@@ -9,9 +9,9 @@
 	<meta name="theme-color" content="##FFFFFF">
 	<meta name="msapplication-navbutton-color" content="##FFFFFF">
 	<meta name="apple-mobile-web-app-status-bar-style" content="white">
-	<link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="../../css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 	<link href='https://fonts.googleapis.com/css?family=Anton|Passion+One|PT+Sans+Caption' rel='stylesheet' type='text/css'>
-	<link href="../css/paginaerror.css" type="text/css" rel="stylesheet" />
+	<link href="../../css/paginaerror.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<div class="error">
@@ -31,6 +31,6 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../js/error.js"></script>
+<script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../js/error.js"></script>
 </html>
