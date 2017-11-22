@@ -64,10 +64,9 @@ class GeneradorEncuestas extends CI_Model {
                 foreach ($value3->respuesta as $key => $value4) {
                   $tabla_opciones[]=$value4->texto;
                   $tabla_opciones_valor[]=$value4->valor;
-
                 }
                 $temp.=$this->GeneradorEncuestas->preguntaradioR($value3->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
-                unset($tabla_opciones) ;
+                unset($tabla_opciones);
                 $pos++;
               }
               else {
@@ -84,7 +83,7 @@ class GeneradorEncuestas extends CI_Model {
                 }else {
                   if($value3->tipo=="numeroespsificar")
                   {
-                    $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
+                    $temp.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
                     foreach ($value3->campos as $key => $value4) {
                       $datos_tabla[0]="DESCRIPCION";
                       $datos_tabla[1]="CANTIDAD";
@@ -93,6 +92,7 @@ class GeneradorEncuestas extends CI_Model {
                       $temp.=$this->GeneradorEncuestas->generarFilas3($responses,$pos,$datos_tabla,$totalAlumnosContestados);
                       $temp.="</table>";
                       $pos++;
+                        unset($datos_tabla);
                     }
                     // echo "POS  $pos TABLA ESESIFICAR $value2->pregunta<BR>";
                   }
@@ -119,9 +119,8 @@ class GeneradorEncuestas extends CI_Model {
               $datos_tabla[]="".$value3->valor;
               $encuestaRetro.="<th>".$value3->texto."</th>";
             }
-            $encuestaRetro.='</thead></tr>';
+            $encuestaRetro.='</tr></thead>';
             $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
-            $encuestaRetro.='';
             $encuestaRetro.="</table>";
             $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
             unset($datos_tabla) ;
@@ -313,7 +312,7 @@ public function generarFilas2($responses,$pos,$datos_tabla,$total)
       {
         for($e=0;$e<count($datos_tabla);$e++)
         {
-            $datoscontables[$e]+=1;
+          $datoscontables[$e]+=1;
         }
       }
       $pospregunta++;
@@ -340,7 +339,7 @@ public function generarFilas3($responses,$pos,$datos_tabla,$total)
       {
         for($e=0;$e<count($datos_tabla);$e++)
         {
-            $datoscontables[$e]+="el valor ".$value;
+          $datoscontables[$e]+="el valor ".$value;
         }
       }
       $pospregunta++;
@@ -411,49 +410,50 @@ public function generarEncuPDF($json,$resultados)
             }
             else {
               if ($value3->tipo=="numero") {
-                  $datos_tabla;
-                  $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
-                  $datos_tabla[0]="CANTIDAD";
-                  $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
-                  $encuestaRetro.="<th>".$datos_tabla[0]."</th></tr></thead><tbody>";
-                  $encuestaRetro.=$this->GeneradorEncuestas->generarFilas2($responses,$pos,$datos_tabla,$totalAlumnosContestados);
-                  $encuestaRetro.="</tbody></table>";
+                $datos_tabla;
+                $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
+                $datos_tabla[0]="CANTIDAD";
+                $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+                $encuestaRetro.="<th>".$datos_tabla[0]."</th></tr></thead><tbody>";
+                $encuestaRetro.=$this->GeneradorEncuestas->generarFilas2($responses,$pos,$datos_tabla,$totalAlumnosContestados);
+                $encuestaRetro.="</tbody></table>";
                 //  $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
                 /*  $datos_tabla;
-                  foreach ($value3->subpreguntas as $key => $value4) {
-                    $datos_tabla[]="".$value4->valor;
-                    $encuestaRetro.="<th>".$value4->texto."</th>";
-                  }
-                  $encuestaRetro.='</thead></tr>';
-                  $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
-                  $encuestaRetro.='';
-                  $encuestaRetro.="</table>";*/
-                  unset($datos_tabla) ;
-                // echo "POS  $pos TABLA NUMERO $value2->pregunta<BR>";
-                $pos++;
-                // $pos++;
-              }else {
-                if($value3->tipo=="numeroespsificar")
-                {
-                  $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
-                  foreach ($value3->campos as $key => $value4) {
-                    $datos_tabla[0]="DESCRIPCION";
-                    $datos_tabla[1]="CANTIDAD";
-                    $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
-                    $encuestaRetro.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr>";
-                    $encuestaRetro.=$this->GeneradorEncuestas->generarFilas3($responses,$pos,$datos_tabla,$totalAlumnosContestados);
-                    $encuestaRetro.="</table>";
-                    $pos++;
-                  }
-                  // echo "POS  $pos TABLA ESESIFICAR $value2->pregunta<BR>";
+                foreach ($value3->subpreguntas as $key => $value4) {
+                $datos_tabla[]="".$value4->valor;
+                $encuestaRetro.="<th>".$value4->texto."</th>";
+              }
+              $encuestaRetro.='</thead></tr>';
+              $encuestaRetro.=$this->GeneradorEncuestas->generarFilas($responses,$pos,$datos_tabla);
+              $encuestaRetro.='';
+              $encuestaRetro.="</table>";*/
+              unset($datos_tabla) ;
+              // echo "POS  $pos TABLA NUMERO $value2->pregunta<BR>";
+              $pos++;
+              // $pos++;
+            }else {
+              if($value3->tipo=="numeroespsificar")
+              {
+                $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
+                foreach ($value3->campos as $key => $value4) {
+                  $datos_tabla[0]="DESCRIPCION";
+                  $datos_tabla[1]="CANTIDAD";
+                  $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+                  $encuestaRetro.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr>";
+                  $encuestaRetro.=$this->GeneradorEncuestas->generarFilas3($responses,$pos,$datos_tabla,$totalAlumnosContestados);
+                  $encuestaRetro.="</table>";
+                    unset($datos_tabla);
+                  $pos++;
                 }
+                // echo "POS  $pos TABLA ESESIFICAR $value2->pregunta<BR>";
               }
             }
           }
+        }
         //  $encuestaRetro.=$this->GeneradorEncuestas->card($temp);
         //  $encuestaRetro.=$this->GeneradorEncuestas->generadorGraficos($posGraficos);
-        }else {
-          if($value2->tipo=="radio"){
+      }else {
+        if($value2->tipo=="radio"){
           $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
           $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
           $datos_tabla;
