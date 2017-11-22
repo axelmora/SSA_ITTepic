@@ -700,13 +700,11 @@ class Panel_seguimiento extends CI_Controller {
 		$pdf->SetPrintHeader(true);
 		$pdf->SetPrintFooter(true);
 		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
-
 		// Este método tiene varias opciones, consulta la documentación para más información.
 		$resolution = array(279, 216);
 		$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
 		//fijar efecto de sombra en el texto
 		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-
 		$html = '';
 		$html .= "<style type=text/css>";
 		$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
