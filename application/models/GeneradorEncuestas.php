@@ -81,20 +81,23 @@ class GeneradorEncuestas extends CI_Model {
                   $temp.="</tbody></table>";
                   unset($datos_tabla) ;
                   $pos++;
-
-
                 }else {
                   if($value3->tipo=="numeroespsificar")
                   {
+                    $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
                     foreach ($value3->campos as $key => $value4) {
-                      //  echo "".$value4->tipo;
+                      $datos_tabla[0]="DESCRIPCION";
+                      $datos_tabla[1]="CANTIDAD";
+                      $temp.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+                      $temp.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr>";
+                      $temp.=$this->GeneradorEncuestas->generarFilas3($responses,$pos,$datos_tabla,$totalAlumnosContestados);
+                      $temp.="</table>";
                       $pos++;
                     }
                     // echo "POS  $pos TABLA ESESIFICAR $value2->pregunta<BR>";
                   }
                 }
               }
-
               //  $pos++;
             }
             $encuestaRetro.=$this->GeneradorEncuestas->card($temp);
@@ -324,6 +327,33 @@ public function generarFilas2($responses,$pos,$datos_tabla,$total)
   $textos.='</tr>';
   return $textos;
 }
+public function generarFilas3($responses,$pos,$datos_tabla,$total)
+{
+  $textos="";
+  $enviar=0;
+  $datoscontables = array_fill(0, count($datos_tabla), NULL);
+  for ($i=0; $i < count($responses); $i++) {
+    $pospregunta=0;
+    foreach ($responses[$i] as $value)
+    {
+      if($pos==$pospregunta)
+      {
+        for($e=0;$e<count($datos_tabla);$e++)
+        {
+            $datoscontables[$e]+="el valor ".$value;
+        }
+      }
+      $pospregunta++;
+    }
+    $pospregunta=0;
+  }
+  $textos.='<tr>';
+  for ($i=0; $i < count($datos_tabla); $i++) {
+    $textos.='<td>'.$datoscontables[$i].' </td>';
+  }
+  $textos.='</tr>';
+  return $textos;
+}
 public function card($pregunta)
 {
   $datos='
@@ -411,7 +441,7 @@ public function generarEncuPDF($json,$resultados)
                     $datos_tabla[1]="CANTIDAD";
                     $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
                     $encuestaRetro.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr>";
-                    $encuestaRetro.=$this->GeneradorEncuestas->generarFilas2($responses,$pos,$datos_tabla,$totalAlumnosContestados);
+                    $encuestaRetro.=$this->GeneradorEncuestas->generarFilas3($responses,$pos,$datos_tabla,$totalAlumnosContestados);
                     $encuestaRetro.="</table>";
                     $pos++;
                   }
