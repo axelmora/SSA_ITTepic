@@ -517,8 +517,8 @@ class Panel_seguimiento extends CI_Controller {
 		$html .= "    <table  class='' cellspacing='0' >
 		<thead>
 		<tr>
-		<th>MATERIA</th>
-		<th>DOCENTE</th>
+		<th> MATERIA</th>
+		<th> DOCENTE</th>
 		</tr>
 		</thead>
 		<tr>
