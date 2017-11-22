@@ -577,42 +577,46 @@ class Panel_seguimiento extends CI_Controller {
 		$idAplicacionesGenerar=$this->SeguimientoModelo->reporteDocentePDFMaterias($rfcdoncete,$idAplicaciones);
 		$this->load->model('GeneradorEncuestas');
 		$EncuestasIMPRIMIR;
-		foreach ($idAplicacionesGenerar as $key => $value) {
-			$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
-			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
-			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
-			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
-			$DOCENTE="";
-			$MATERIA="";
-			if(isset($datos["DATOSMATERIA"])){
-				foreach ($datos["DATOSMATERIA"] as $key => $value) {
-					$DOCENTE="".$value->nombres." ".$value->apellidos;
-					$MATERIA="".$value->nombre_materia ;
+		if($idAplicacionesGenerar){
+			foreach ($idAplicacionesGenerar as $key => $value) {
+				$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
+				$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+				$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
+				$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
+				$DOCENTE="";
+				$MATERIA="";
+				if(isset($datos["DATOSMATERIA"])){
+					foreach ($datos["DATOSMATERIA"] as $key => $value) {
+						$DOCENTE="".$value->nombres." ".$value->apellidos;
+						$MATERIA="".$value->nombre_materia ;
+					}
+				}else {
+					$DOCENTE="ERROR";
+					$MATERIA="ERROR";
 				}
-			}else {
-				$DOCENTE="ERROR";
-				$MATERIA="ERROR";
+				$temphtml= "    <table  class='' cellspacing='0' >
+				<thead>
+				<tr>
+				<th> MATERIA</th>
+				<th> DOCENTE</th>
+				</tr>
+				</thead>
+				<tr>
+				<td>  $MATERIA</td>
+				<td>  $DOCENTE</td>
+				</tr>
+				</table>
+				";
+				$temphtml.= $datos["EncuestasResultados"];
+				if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
+					$temphtml.= "\n";
+					$temphtml.= "<b>Retroalimentación</b>";
+					$temphtml.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
+				}
+				$EncuestasIMPRIMIR[]=$temphtml;
 			}
-			$temphtml= "    <table  class='' cellspacing='0' >
-			<thead>
-			<tr>
-			<th> MATERIA</th>
-			<th> DOCENTE</th>
-			</tr>
-			</thead>
-			<tr>
-			<td>  $MATERIA</td>
-			<td>  $DOCENTE</td>
-			</tr>
-			</table>
-			";
-			$temphtml.= $datos["EncuestasResultados"];
-			if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
-				$temphtml.= "\n";
-				$temphtml.= "<b>Retroalimentación</b>";
-				$temphtml.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
-			}
-			$EncuestasIMPRIMIR[]=$temphtml;
+		}else {
+			$EncuestasIMPRIMIR[0]="Error al generar reporte";
 		}
 		/*    CARGAR DATOS      */
 		$this->load->library('Pdf');
@@ -662,7 +666,6 @@ class Panel_seguimiento extends CI_Controller {
 		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
 		$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
 		$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
-
 		$DOCENTE="";
 		$MATERIA="";
 		if(isset($datos["DATOSMATERIA"])){
@@ -675,7 +678,6 @@ class Panel_seguimiento extends CI_Controller {
 			$MATERIA="ERROR";
 		}
 		$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idencuesta_seguimiento);
-
 		/*    CARGAR DATOS      */
 		$this->load->library('Pdf');
 		$resolution = array(216, 279);
