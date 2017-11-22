@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       $peridotlista= genePerido($valorPeriodo->periodo);
                     }
                     ?>
-                    <h3><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Reportes de la aplicacion  <?php echo "$peridotlista"; ?>
+                    <h3><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  Reportes de la aplicación de <?php echo "$peridotlista"; ?>
                     </h3>
                     <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
                   </div>
@@ -54,12 +54,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <li class="nav-item">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i> DOCENTES</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="profile" aria-selected="false"><i class="icon-clipboard" aria-hidden="true"></i> APLICACIÓN</a>
+                  </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div class="card menus">
                       <div class="card-body">
-                         <h5>Reportes por materia</h5>
+                        <h5>Reportes por materia</h5>
                         <?php
                         if ($Aplicaciones) {
                           ?>
@@ -114,7 +117,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="card menus">
                       <div class="card-body">
-                         <h5>Reportes por docentes</h5>
+                        <h5>Reportes por docentes</h5>
                         <?php
                         if (isset($DOCENTES)) {
                           ?>
@@ -164,6 +167,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </div>
                     </div>
                   </div>
+                  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="container">
+                      <div class="card menus" style="margin-top:50px;margin-bottom:100px;">
+                        <div class="card-body">
+                          <h5>Resultados generales para esta aplicación del periodo comprendido de <?php echo "$peridotlista"; ?> </h5> <br>
+                          <center>
+                            <a  class="btn btn-primary btn-lg" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteGeneradorAplicacion/<?php echo $AplicacionData; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> GENERAR REPORTE</a>
+                          </center>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -210,13 +225,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/clipboard.js"></script>
+<script type="text/javascript">var urlsistema = '<?php echo base_url()?>';</script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 <script type="text/javascript">
 var botonCopiar = new Clipboard('.btncopiar');
 botonCopiar.on('success', function(e) {
   $('#botonCopiar').tooltip('show');
 });
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  $($.fn.dataTable.tables(true)).DataTable()
+  .columns.adjust()
+  .responsive.recalc();
+})
 </script>
-<script type="text/javascript">var urlsistema = '<?php echo base_url()?>';</script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 </html>

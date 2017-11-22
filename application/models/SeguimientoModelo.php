@@ -412,4 +412,15 @@ public function reporteDocentePDFMaterias($rfcdoncete,$idAplicaciones)
     return false;
   }
 }
+public function reportesAplicacionesGeneral($idAplicaciones)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT * FROM encuestas_seguimiento where aplicaciones_idaplicaciones=$idAplicaciones;");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
+}
 }
