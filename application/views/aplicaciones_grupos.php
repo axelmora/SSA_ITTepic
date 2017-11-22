@@ -113,6 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                           <div class="dropdown-menu">
                                             <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR ALUMNO</a>
                                             <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteIndividual/<?php echo  $IDGRUPO; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> REPORTE INDIVIDUAL</a>
                                             <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
                                             <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS GRAFICOS</a>
                                             <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
