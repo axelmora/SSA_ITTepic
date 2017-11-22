@@ -119,7 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <div class="card-body">
                         <h5>Reportes por docentes</h5>
                         <?php
-                        if (isset($DOCENTES)) {
+                        if ($DOCENTES) {
                           ?>
                           <table id="tablaDocentes" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                             <thead>
