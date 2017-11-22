@@ -390,4 +390,26 @@ public function borrarAplicacionSeguimiento($idaplicaciones)
   $DBcon->where('idaplicaciones', $idaplicaciones );
   $DBcon->delete('aplicaciones');
 }
+public function docentesReportes($idAplicacion)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT DISTINCT es.docentes_rfc,d.rfc,d.nombres,d.apellidos,es.aplicaciones_idaplicaciones FROM encuestas_seguimiento as es,docentes as d where es.aplicaciones_idaplicaciones=$idAplicacion and d.rfc=es.docentes_rfc;");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
+}
+public function reporteDocentePDFMaterias($rfcdoncete,$idAplicaciones)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es,docentes as d where es.aplicaciones_idaplicaciones=$idAplicaciones and d.rfc=es.docentes_rfc and  '$rfcdoncete'=es.docentes_rfc;");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
+}
 }

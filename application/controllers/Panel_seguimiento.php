@@ -459,6 +459,117 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->view('aplicaciones_resultados',$datos);
 	}
 	/* Elimar grupo fin*/
+	public function reportesAplicacion($idAplicaciones)
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicaciones);
+			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicaciones);
+			$datos["AplicacionData"]=$idAplicaciones;
+			$NumeroTotal;
+			$ActualContestados;
+			if($datos["Aplicaciones"])
+			{
+				foreach ($datos["Aplicaciones"] as $key => $value) {
+					$tempTotal=$this->SeguimientoModelo->contadorAlumnosGrupo($value->idencuesta_seguimiento);
+					$NumeroTotal[]=$tempTotal[0]->total;
+					$tempContestados=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
+					$ActualContestados[]=$tempContestados[0]->total;
+				}
+				$datos["totalAlumnos"]=$NumeroTotal;
+				$datos["totalContestados"]=$ActualContestados;
+			}else {
+			}
+			$datos["DOCENTES"]=$this->SeguimientoModelo->docentesReportes($idAplicaciones);
+			$this->load->view('aplicaciones_reportes',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	function reporteDocenteGenerador($rfcdoncete,$idAplicaciones) {
+		$idAplicacionesGenerar=$this->SeguimientoModelo->reporteDocentePDFMaterias($rfcdoncete,$idAplicaciones);
+		$this->load->model('GeneradorEncuestas');
+		$EncuestasIMPRIMIR;
+		foreach ($idAplicacionesGenerar as $key => $value) {
+			$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
+			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
+			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
+			$DOCENTE="";
+			$MATERIA="";
+			if(isset($datos["DATOSMATERIA"])){
+				foreach ($datos["DATOSMATERIA"] as $key => $value) {
+					$DOCENTE="".$value->nombres." ".$value->apellidos;
+					$MATERIA="".$value->nombre_materia ;
+				}
+			}else {
+				$DOCENTE="ERROR";
+				$MATERIA="ERROR";
+			}
+			$temphtml= "    <table  class='' cellspacing='0' >
+			<thead>
+			<tr>
+			<th> MATERIA</th>
+			<th> DOCENTE</th>
+			</tr>
+			</thead>
+			<tr>
+			<td>  $MATERIA</td>
+			<td>  $DOCENTE</td>
+			</tr>
+			</table>
+			";
+			$temphtml.= $datos["EncuestasResultados"];
+			if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
+				$temphtml.= "\n";
+				$temphtml.= "<b>Retroalimentación</b>";
+				$temphtml.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
+			}
+			$EncuestasIMPRIMIR[]=$temphtml;
+			//echo "$temphtml";
+		}
+		$this->load->library('Pdf');
+		$resolution = array(216, 279);
+		$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
+		$pdf->SetAuthor('Fernando Manuel Avila Cataño');
+		$pdf->SetTitle('Instituto Tecnologico de Tepic - Seguimiento en el aula - Docente');
+		$pdf->SetSubject('Seguimiento en el aula reporte');
+		$pdf->SetKeywords('Reporte, docente, seguimiento, en, el , aula');
+		$image_file = 'cabecera.png';
+		// $pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, 'Instituto Tecnologico de Tepic', 's');
+		$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 058', PDF_HEADER_STRING, array(0,0,0), array(255,255,255));
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP-15, PDF_MARGIN_RIGHT);
+		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM-10);
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->setFontSubsetting(true);
+		$pdf->SetFont('helvetica', '', 9);
+		$pdf->SetPrintHeader(true);
+		$pdf->SetPrintFooter(true);
+		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
+		$resolution = array(279, 216);
+		$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
+		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
+		$html = '';
+		for ($i=0; $i < count($EncuestasIMPRIMIR) ; $i++) {
+			$html .= "<style type=text/css>";
+			$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
+			$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
+			$html .= "</style>";
+			$html .= "    <table  class='' cellspacing='0' >";
+			$html.=$EncuestasIMPRIMIR[$i];
+			$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+			$html="";
+			if( $i <count($EncuestasIMPRIMIR)-1){
+				$pdf->AddPage();
+			}
+		}
+	//	$pdf->lastPage();
+
+		$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_docente.pdf");
+		$pdf->Output($nombre_archivo, 'I');
+	}
 	public function reporteIndividual($idencuesta_seguimiento)
 	{
 
@@ -467,6 +578,7 @@ class Panel_seguimiento extends CI_Controller {
 		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
 		$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
 		$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
+
 		$DOCENTE="";
 		$MATERIA="";
 		if(isset($datos["DATOSMATERIA"])){
