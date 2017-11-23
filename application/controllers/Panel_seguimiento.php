@@ -230,21 +230,23 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idGrupo);
-			$idEncuesta=$datos["ALUMNOSGRUPO"][0]->encuestas_seguimiento_idencuesta_seguimiento;
 			$ALUMNOSCONTESTADOS;
-			foreach ($datos["ALUMNOSGRUPO"] as $key => $alumnos) {
-				if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->alumnos_numero_control,$idEncuesta))
-				{
-					$ALUMNOSCONTESTADOS[]=true;
-				}else {
-					$ALUMNOSCONTESTADOS[]=false;
+			if($datos["ALUMNOSGRUPO"] ){
+				$idEncuesta=$datos["ALUMNOSGRUPO"][0]->encuestas_seguimiento_idencuesta_seguimiento;
+				foreach ($datos["ALUMNOSGRUPO"] as $key => $alumnos) {
+					if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->alumnos_numero_control,$idEncuesta))
+					{
+						$ALUMNOSCONTESTADOS[]=true;
+					}else {
+						$ALUMNOSCONTESTADOS[]=false;
+					}
 				}
+				$datos["APLICADOS"]=$ALUMNOSCONTESTADOS;
 			}
-			$idSeguimiento=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idEncuesta);
+			$idSeguimiento=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idGrupo);
 			$datos["idEncuesta"]=$idSeguimiento[0]->aplicaciones_idaplicaciones;
 			$datos["IDGRUPO"]=$idGrupo;
-			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idEncuesta);
-			$datos["APLICADOS"]=$ALUMNOSCONTESTADOS;
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idGrupo);
 			$this->load->view('aplicaciones_grupos',$datos);
 		}else {
 			redirect(base_url().'index.php');
