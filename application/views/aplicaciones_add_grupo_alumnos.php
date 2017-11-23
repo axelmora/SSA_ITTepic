@@ -120,7 +120,7 @@ if(isset($DATOSMATERIA)){
                     <th><!--<input type="checkbox" name="select_all" value="1" id="example-select-all">--></th>
                     <th>NUMERO CONTROL</th>
                     <th>NOMBRE</th>
-                    <!--<th>CODIGO</th>-->
+                    <th>CODIGO</th>
                     <th>CARRERA</th>
                   </tr>
                 </thead>
@@ -136,26 +136,26 @@ if(isset($DATOSMATERIA)){
                       <td>
                         <?php echo "".($valores->nombre); ?>
                       </td>
-                      <!--  <td>
-                      <?php echo "".utf8_decode($valores->codigo); ?>
-                    </td> -->
-                    <td>
-                      <?php echo "".($valores->carrera); ?>
-                    </td>
+                      <td>
+                        <?php echo "".utf8_decode($valores->codigo); ?>
+                      </td>
+                      <td>
+                        <?php echo "".($valores->carrera); ?>
+                      </td>
 
-                  </tr>
-                  <?php
-                }
-                ?>
-              </tbody>
-            </table>
+                    </tr>
+                    <?php
+                  }
+                  ?>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<?php $this->load->view('include/footer'); ?>
+  <?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
