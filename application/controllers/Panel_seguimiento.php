@@ -736,4 +736,20 @@ class Panel_seguimiento extends CI_Controller {
 		$pdf->Output($nombre_archivo, 'I');
 		echo '<link rel="shortcut icon" href="'.base_url().'images/tec.ico">';
 	}
+	function borrarAlumnos($idalumnos,$idgrupo,$idSeguimiento)
+	{
+		redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idSeguimiento);
+	}
+	public function reactivaralumno()
+	{
+		$numero_control=$this->input->post('numero_Control_reactivar');
+		$idencuesta=$this->input->post('idGrupoEnviar');
+		$resultados=$this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
+		redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idencuesta);
+	}
+	public function datosAlumno($numero_control)
+	{
+			$resultados=$this->Alumnos->getAlumno($numero_control);
+			echo json_encode($resultados);
+	}
 }

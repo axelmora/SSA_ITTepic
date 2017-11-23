@@ -130,6 +130,25 @@ function eliminarEncuestaSeguimiento(idencuesta_seguimiento){
   });
   $("#idEliminarEncu").val(idencuesta_seguimiento);
 }
+
+function reactivarEncuesta(numero_control,idencuesta_seguimiento){
+  $.ajax({
+    type: 'GET',
+    url: urlsistema+'index.php/Panel_seguimiento/datosAlumno/'+numero_control,
+    data: { get_param: 'value' },
+    dataType: 'json',
+    success: function (data) {
+      $.each(data, function(index, elemento) {
+        $("#nombreAlumno").html(elemento.nombre);
+        $("#tablaReactivarAlumnos").val(elemento.numero_control);
+
+      //  $("#idEliminarDocenteNombre").html(elemento.nombres+" "+elemento.apellidos);
+      });
+    }
+  });
+
+}
+
 function eliminarAplicacion(idaplicaciones) {
   $('#idAplicacionesBorrar').val(idaplicaciones);
   $('#modalBorrar').modal('show');

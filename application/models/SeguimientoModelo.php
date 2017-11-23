@@ -423,4 +423,11 @@ public function reportesAplicacionesGeneral($idAplicaciones)
     return false;
   }
 }
+public function deleteEncuestaAlumno($numero_control,$seguimieno)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $DBcon->where('encuestas_seguimiento_idencuesta_seguimiento', $seguimieno );
+  $DBcon->where('no_de_control', $numero_control );
+  $DBcon->delete('resultados_seguimiento');
+}
 }

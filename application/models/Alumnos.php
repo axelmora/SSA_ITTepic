@@ -15,6 +15,17 @@ class Alumnos extends CI_Model {
         return false;
       }
     }
+    public function getAlumno($NUMERO_CONTROL)
+    {
+      $DBcon = $this->load->database('default', TRUE);
+      $query=$DBcon->query("SELECT * FROM alumnos  where numero_control='$NUMERO_CONTROL'");
+        if ($query->num_rows() > 0) {
+          return $query->result();
+        } else {
+          return false;
+        }
+      
+    }
     public function cargarAlumnosPorDepartamento($carreras_id_carrera)
     {
       $DB2 = $this->load->database('default', TRUE);
