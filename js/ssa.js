@@ -157,7 +157,6 @@ function borrarAlumnoEncuesta(numero_control,idencuesta_seguimiento){
       $.each(data, function(index, elemento) {
         $("#nombreAlumnoEliminr").html(elemento.nombre);
         $("#numero_Control_eliminar").val(elemento.numero_control);
-      //  $("#idEliminarDocenteNombre").html(elemento.nombres+" "+elemento.apellidos);
       });
     }
   });

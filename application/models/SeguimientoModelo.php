@@ -430,4 +430,22 @@ public function deleteEncuestaAlumno($numero_control,$seguimieno)
   $DBcon->where('no_de_control', $numero_control );
   $DBcon->delete('resultados_seguimiento');
 }
+public function getGrupoPorEncuesta($idseguimiento)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT idgrupos FROM grupos where encuestas_seguimiento_idencuesta_seguimiento=$idseguimiento");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
+}
+public function deleteAlumnoGrupo($numerocontrol,$idgrupo)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $DBcon->where('grupos_idgrupos', $idgrupo );
+  $DBcon->where('alumnos_numero_control', $numerocontrol );
+  $DBcon->delete('grupo_alumnos');
+}
 }

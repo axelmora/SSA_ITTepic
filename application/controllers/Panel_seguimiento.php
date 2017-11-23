@@ -740,8 +740,10 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		$numero_control=$this->input->post('numero_Control_eliminar');
 		$idencuesta=$this->input->post('idGrupoEnviar');
-		echo "$numero_control  $idencuesta ";
-		//redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idSeguimiento);
+		$idgrupo=$this->SeguimientoModelo->getGrupoPorEncuesta($idencuesta);
+	  $this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
+	  $this->SeguimientoModelo->deleteAlumnoGrupo($numero_control,$idgrupo[0]->idgrupos);
+		redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idencuesta);
 	}
 	public function reactivaralumno()
 	{
