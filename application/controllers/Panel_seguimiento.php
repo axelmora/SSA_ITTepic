@@ -140,6 +140,8 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["AlumnosCopiar"]=$this->SeguimientoModelo->cargarEncuestasGrupos($idAplicacion);
 			$datos["AplicacionDatos"]=$idAplicacion;
 			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
+
+			echo "A: ".$this->session->userdata('departamento');
 			$this->load->view('aplicaciones_add_grupo',$datos);
 		}else {
 			redirect(base_url().'index.php');
@@ -179,7 +181,7 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		$AlumosEnviar;
 		$idenviar="";
-		$carreras=$this->Departamentos->cargarCarrerasDepartamento($departamentoid);
+		$carreras=$this->Departamentos->obtenerCarrerasDepartamento($departamentoid);
 		$tamano=count($carreras);
 		$pos=0;
 		foreach ($carreras as $key => $value) {

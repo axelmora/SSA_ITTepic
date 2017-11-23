@@ -67,4 +67,14 @@ class Departamentos extends CI_Model {
       return false;
     }
   }
+  public function obtenerCarrerasDepartamento($iddepartamento_academico)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM departamento_carreras where departamento_academico_iddepartamento_academico=$iddepartamento_academico");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
 }
