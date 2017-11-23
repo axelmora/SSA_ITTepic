@@ -146,7 +146,21 @@ function reactivarEncuesta(numero_control,idencuesta_seguimiento){
       });
     }
   });
-
+}
+function borrarAlumnoEncuesta(numero_control,idencuesta_seguimiento){
+  $.ajax({
+    type: 'GET',
+    url: urlsistema+'index.php/Panel_seguimiento/datosAlumno/'+numero_control,
+    data: { get_param: 'value' },
+    dataType: 'json',
+    success: function (data) {
+      $.each(data, function(index, elemento) {
+        $("#nombreAlumnoEliminr").html(elemento.nombre);
+        $("#numero_Control_eliminar").val(elemento.numero_control);
+      //  $("#idEliminarDocenteNombre").html(elemento.nombres+" "+elemento.apellidos);
+      });
+    }
+  });
 }
 
 function eliminarAplicacion(idaplicaciones) {

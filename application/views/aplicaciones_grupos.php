@@ -172,7 +172,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   <div class="dropdown-menu">
                                     <button type="button" data-toggle="modal" onclick="reactivarEncuesta(<?php echo $valor->numero_control ?>,<?php echo $IDGRUPO ?>)" data-target="#modalReActivarAlumno"  class="dropdown-item"><i class="fa fa-check-square-o text-warning" aria-hidden="true"></i> REACTIVAR ENCUESTA</button>
                                     <div class="dropdown-divider"></div>
-                                    <button type="button" data-toggle="modal" data-target="#modalEliminarAlumno" class="dropdown-item"><i class="fa fa-ban text-danger" aria-hidden="true"></i> ELIMINAR ALUMNO DE ESTA ENCUESTA</button>
+                                    <button type="button" data-toggle="modal" onclick="borrarAlumnoEncuesta(<?php echo $valor->numero_control ?>,<?php echo $IDGRUPO ?>)" data-target="#modalEliminarAlumno" class="dropdown-item"><i class="fa fa-ban text-danger" aria-hidden="true"></i> ELIMINAR ALUMNO DE ESTA ENCUESTA</button>
                                   </div>
                                 </div>
                                 <!--    <div class="btn-group btn-block">
@@ -236,22 +236,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   ?>
 
   <!-- Modal eliminar alumno-->
-  <form action="<?php echo base_url(); ?>index.php/Panel_seguimiento/" method="post">
+  <form action="<?php echo base_url(); ?>index.php/Panel_seguimiento/borrarAlumnosNumeroControl" method="post">
     <div class="modal fade" id="modalEliminarAlumno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Eliminar alumno</h5>
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-ban" aria-hidden="true"></i> ¿Eliminar alumno de esta encuesta?</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <input type="text" hidden name="idGrupoEnviar" value="<?php echo $IDGRUPO; ?>">
+            <input type="text" hidden name="numero_Control_eliminar" id="numero_Control_eliminar" value="">
+            <table class="table table-bordered table-sm">
+              <caption>Datos del alumno a eliminar.</caption>
+              <thead>
+                <tr>
+                  <th scope="col">NOMBRE ALUMNO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div id="nombreAlumnoEliminr"> </div></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="card text-white bg-danger">
+              <center>
+              <div class="card-body">
+                <h4 class="card-title"><i class="fa fa-exclamation-circle animated tada infinite" aria-hidden="true"></i> Alerta</h4>
+                <p class="card-text">Al momento de borrar al alumno no se podrá recuperar su respuesta, pero podrá volver a ser agregado a esta  encuesta.</p>
+              </div>
+            </center>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> CANCELAR</button>
-            <button type="button" class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> ELIMINAR ALUMNO</button>
+            <button type="submit" class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> ELIMINAR ALUMNO</button>
           </div>
         </div>
       </div>
