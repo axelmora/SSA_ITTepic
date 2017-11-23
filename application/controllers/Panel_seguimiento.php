@@ -92,7 +92,6 @@ class Panel_seguimiento extends CI_Controller {
 				'plantilla_encuestas_idplantilla_encuestas' => ''.$this->input->post('plantilla'),
 				'fecha_creacion' => ''.date('Y-m-d H:i:s'),
 				'periodo'=> ''.$this->session->userdata('periodosemestre'),
-				'usuarios_idusuarios'=> ''.$this->session->userdata('idusuarios'),
 				'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
 			);
 			$this->SeguimientoModelo->crearAplicacion($datos);
