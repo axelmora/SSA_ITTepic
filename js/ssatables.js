@@ -63,6 +63,13 @@ $(document).ready(function(){
     },
     "order": [[3, "asc" ],[0, "asc" ]]
   });
+  $('#tablaGrupoAlumnosAgregar').DataTable({
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/Alumnos.json"
+    },
+    "order": [[0, "asc" ]]
+  });
   /*TABLA ALUMNOS*/
   /* TABLA ALUMNOS COPIAR */
   $('#tablaCopiarAlumnos').DataTable({

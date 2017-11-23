@@ -8,6 +8,7 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->model('Materia');
 		$this->load->model('Docentes');
 		$this->load->model('Alumnos');
+		$this->load->model('Departamentos');
 
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
@@ -170,7 +171,6 @@ class Panel_seguimiento extends CI_Controller {
 			$departamentoRetorno="DEPARTAMENTO DE CIENCIAS DE LA TIERRA";
 			break;
 			default:
-			# code...
 			break;
 		}
 		return $departamentoRetorno;
@@ -178,17 +178,19 @@ class Panel_seguimiento extends CI_Controller {
 	public function obtenerAlumnosPorDepartamento($departamentoid)
 	{
 		$AlumosEnviar;
-		switch ($departamentoid) {
-			case '3':
-			$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras(2,7);
-			break;
-			case '2':
-			$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras(3,4);
-			break;
-			default:
-			# code...
-			break;
+		$idenviar="";
+		$carreras=$this->Departamentos->cargarCarrerasDepartamento($departamentoid);
+		$tamano=count($carreras);
+		$pos=0;
+		foreach ($carreras as $key => $value) {
+			if($pos<$tamano-1){
+				$idenviar.="".$value->carreras_id_carrera.",";
+			}else {
+				$idenviar.="".$value->carreras_id_carrera;
+			}
+			$pos++;
 		}
+		$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras($idenviar);
 		return $AlumosEnviar;
 	}
 	public function insertarSeguimientoGrupo($idAplicacion)
@@ -247,6 +249,18 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["IDGRUPO"]=$idGrupo;
 			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idGrupo);
 			$this->load->view('aplicaciones_grupos',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function agregarAlumnosGrupo($idGrupo)
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idGrupo);
+			$datos["IDGRUPO"]=$idGrupo;
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idGrupo);
+			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
+			$this->load->view('aplicaciones_add_grupo_alumnos',$datos);
 		}else {
 			redirect(base_url().'index.php');
 		}
@@ -671,7 +685,7 @@ class Panel_seguimiento extends CI_Controller {
 		$MATERIA="";
 		if(isset($datos["DATOSMATERIA"])){
 			foreach ($datos["DATOSMATERIA"] as $key => $value) {
-				$DOCENTE="".$value->nombres." ".$value->apellidos;
+				$DOCENTE="".utf8_decode($value->nombres." ".$value->apellidos);
 				$MATERIA="".$value->nombre_materia ;
 			}
 		}else {
@@ -742,8 +756,8 @@ class Panel_seguimiento extends CI_Controller {
 		$numero_control=$this->input->post('numero_Control_eliminar');
 		$idencuesta=$this->input->post('idGrupoEnviar');
 		$idgrupo=$this->SeguimientoModelo->getGrupoPorEncuesta($idencuesta);
-	  $this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
-	  $this->SeguimientoModelo->deleteAlumnoGrupo($numero_control,$idgrupo[0]->idgrupos);
+		$this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
+		$this->SeguimientoModelo->deleteAlumnoGrupo($numero_control,$idgrupo[0]->idgrupos);
 		redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idencuesta);
 	}
 	public function reactivaralumno()
@@ -755,7 +769,7 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function datosAlumno($numero_control)
 	{
-			$resultados=$this->Alumnos->getAlumno($numero_control);
-			echo json_encode($resultados);
+		$resultados=$this->Alumnos->getAlumno($numero_control);
+		echo json_encode($resultados);
 	}
 }
