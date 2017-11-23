@@ -77,14 +77,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								{
 									?>
 									<label for="departamento" class="col-sm-3 col-form-label"><b>Departamento academico:</b></label>
-									<div class="col-sm-9">
-										<input type="text" readonly class="form-control-plaintext" name="departamento" id="departamento" value="<?php echo $this->session->userdata('departamentonombre'); ?>">
+									<div class="col-md-9">
+										<p><?php echo $this->session->userdata('departamentonombre'); ?></p>
+										<!--<input type="text" readonly class="form-control-plaintext" name="departamento" id="departamento" value="<?php echo $this->session->userdata('departamentonombre'); ?>">-->
 									</div>
 									<?php
 								}else {
 									?>
-									<label for="departamento" class="col-sm-3 col-form-label"><b>Tipo:</b></label>
-									<div class="col-sm-9">
+									<label for="departamento" class="col-sm-6 col-form-label"><b>Tipo:</b></label>
+									<div class="col-sm-12">
 										<input type="text" readonly class="form-control-plaintext" name="departamento" id="departamento" value="<?php echo $this->session->userdata('departamentonombre'); ?>">
 									</div>
 									<?php
