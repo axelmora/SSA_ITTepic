@@ -64,6 +64,14 @@ $(document).ready(function(){
     "order": [[3, "asc" ],[0, "asc" ]]
   });
   /*TABLA ALUMNOS*/
+  $('#tablaGrupoAlumnosAgregar').DataTable({
+  responsive: true,
+  "language": {
+    "url": urlsistema+"js/datatables/Alumnos.json"
+  },
+  "order": [[0, "asc" ]]
+});
+
   /* TABLA ALUMNOS COPIAR */
   $('#tablaCopiarAlumnos').DataTable({
     responsive: true,
@@ -91,6 +99,7 @@ $(document).ready(function(){
     },
     "order": [[2, "asc" ]]
   });
+  
   $('#formularioAlumnos').on('submit', function(e){
     var form = this;
     var rows_selected = tablealumnos.column(0).checkboxes.selected();

@@ -779,7 +779,7 @@ class Panel_seguimiento extends CI_Controller {
 		$NumerosDeControl = explode(',', $this->input->post('numero_control_alumnos'));
 		$GrupoAlumnosNumeros =array();
 		for ($i=0; $i < count($NumerosDeControl) ; $i++) {
-			echo "$NumerosDeControl[$i]";
+			echo "$NumerosDeControl[$i] <br>";
 			//$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoIDg);
 		}
 	}

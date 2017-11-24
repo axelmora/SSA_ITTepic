@@ -127,7 +127,7 @@ if(isset($DATOSMATERIA)){
                   <center><h5 class="text-primary"><i class="fa fa-graduation-cap animated tada infinite" aria-hidden="true"></i> AGREGAR NUEVOS ALUMNOS</h5></center>
                 </h4>
                 <div class="card-body">
-                  <table id="tablaSeleccionAlumnos" class="table table-striped  table-bordered dt-responsive tablaletradocentes "  width="100%" cellspacing="0" >
+                  <table id="tablaSeleccionAlumnos2" class="table table-striped  table-bordered dt-responsive tablaletradocentes "  width="100%" cellspacing="0" >
                     <thead>
                       <tr>
                         <th><!--<input type="checkbox" name="select_all" value="1" id="example-select-all">--></th>
@@ -189,14 +189,24 @@ if(isset($DATOSMATERIA)){
 <script>
 var tablealumnosagregar;
 $( document ).ready(function() {
-  tablealumnosagregar =  $('#tablaGrupoAlumnosAgregar').DataTable({
+  tablealumnosagregar = $('#tablaSeleccionAlumnos2').DataTable({
     responsive: true,
     "language": {
       "url": urlsistema+"js/datatables/Alumnos.json"
     },
-    "order": [[0, "asc" ]]
+    "columnDefs": [
+      {
+        "targets": 0,
+        "checkboxes": {
+          "selectRow": true
+        }
+      }
+    ],
+    "select": {
+      "style": "multi"
+    },
+    "order": [[2, "asc" ]]
   });
-
   $('#formularioNuevosAlumnos').on('submit', function(e){
     alert("s");
     var form = this;
@@ -210,7 +220,7 @@ $( document ).ready(function() {
       );
     });
     $('#numero_control_alumnos').val(rows_selected.join(","));
-    e.preventDefault();
+    //e.preventDefault();
   });
 });
 
