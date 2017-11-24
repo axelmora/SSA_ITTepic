@@ -46,6 +46,16 @@ class Alumnos extends CI_Model {
         return false;
       }
     }
+    public function cargarAlumnosPorDepartamentoEncuestaSeguimiento($carreras_id_carrera)
+    {
+      $DB2 = $this->load->database('default', TRUE);
+      $query=$DB2->query("SELECT * FROM alumnos as al,carreras as ca where ca.id_carrera=al.carreras_id_carrera and al.carreras_id_carrera IN ($carreras_id_carrera);");
+      if ($query->num_rows() > 0) {
+        return $query->result();
+      } else {
+        return false;
+      }
+    }
     public function cargarAlumnosporGrupo($idgrupo)
     {
       // $DB2 = $this->load->database('default', TRUE);
