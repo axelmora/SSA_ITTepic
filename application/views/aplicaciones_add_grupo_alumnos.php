@@ -68,87 +68,101 @@ if(isset($DATOSMATERIA)){
           </div>
           <div class="row">
             <div class="col-lg-6">
-              <?php
-              if ($ALUMNOSGRUPO) {
-                ?>
-                <center><h5 class="text-success"><i class="fa fa-graduation-cap animated tada infinite" aria-hidden="true"></i> ALUMNOS ACTUALES EN EVALUACION</h5></center>
-                <table id="tablaGrupoAlumnosAgregar" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
-                  <thead>
-                    <tr>
-                      <th><i class="fa fa-hashtag" aria-hidden="true"></i> NUMERO DE CONTROL</th>
-                      <th><i class="fa fa-graduation-cap" aria-hidden="true"></i> NOMBRE</th>
-                      <th><i class="fa fa-users" aria-hidden="true"></i> CARRERA</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $pos=0;
-                    foreach ($ALUMNOSGRUPO as $key => $valor) {
-                      ?>
-                      <tr>
-                        <td><?php echo "".$valor->numero_control; ?></td>
-                        <td><?php echo "".$valor->nombre ?></td>
-                        <td><?php echo "".$valor->carrera; ?></td>
-                      </tr>
-                      <?php
-                      $pos++;
-                    }
-                    ?>
-                  </tbody>
-                </table>
-                <?php
-              }
-              else {
-                ?>
-                <div class="card bg-danger text-white animated fadeInUp">
-                  <div class="card-body">
-                    <center>
-                      <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-                      Actualmente no se cuentan con alumnos en este grupo.
-                    </center>
-                  </div>
+              <div class="card menus carolina">
+                <div class="card-header">
+                  <center><h5 class="text-success"><i class="fa fa-graduation-cap animated tada infinite" aria-hidden="true"></i> ALUMNOS ACTUALES EN EVALUACION</h5></center>
                 </div>
-                <?php
-              }
-              ?>
-            </div>
-            <div class="col-lg-6">
-              <center><h5 class="text-primary"><i class="fa fa-graduation-cap animated tada infinite" aria-hidden="true"></i> AGREGAR NUEVOS ALUMNOS</h5></center>
-              <table id="tablaSeleccionAlumnos" class="table table-striped  table-bordered dt-responsive tablaletradocentes "  width="100%" cellspacing="0" >
-                <thead>
-                  <tr>
-                    <th><!--<input type="checkbox" name="select_all" value="1" id="example-select-all">--></th>
-                    <th>NUMERO CONTROL</th>
-                    <th>NOMBRE</th>
-                    <th>CODIGO</th>
-                    <th>CARRERA</th>
-                  </tr>
-                </thead>
-                <tbody>
+                <div class="card-body">
                   <?php
-                  foreach ($AlumnosCargados as $key => $valores) {
+                  if ($ALUMNOSGRUPO) {
                     ?>
-                    <tr>
-                      <td><?php echo "".utf8_decode($valores->numero_control);?></td>
-                      <td>
-                        <?php echo "".utf8_decode($valores->numero_control); ?>
-                      </td>
-                      <td>
-                        <?php echo "".($valores->nombre); ?>
-                      </td>
-                      <td>
-                        <?php echo "".utf8_decode($valores->codigo); ?>
-                      </td>
-                      <td>
-                        <?php echo "".($valores->carrera); ?>
-                      </td>
-
-                    </tr>
+                    <table id="tablaGrupoAlumnosAgregar" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th><i class="fa fa-hashtag" aria-hidden="true"></i> NUMERO DE CONTROL</th>
+                          <th><i class="fa fa-graduation-cap" aria-hidden="true"></i> NOMBRE</th>
+                          <th><i class="fa fa-users" aria-hidden="true"></i> CARRERA</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $pos=0;
+                        foreach ($ALUMNOSGRUPO as $key => $valor) {
+                          ?>
+                          <tr>
+                            <td><?php echo "".$valor->numero_control; ?></td>
+                            <td><?php echo "".$valor->nombre ?></td>
+                            <td><?php echo "".$valor->carrera; ?></td>
+                          </tr>
+                          <?php
+                          $pos++;
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                    <?php
+                  }
+                  else {
+                    ?>
+                    <div class="card bg-danger text-white animated fadeInUp carolina">
+                      <div class="card-body ">
+                        <center>
+                          <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
+                          Actualmente no se cuentan con alumnos en este grupo.
+                        </center>
+                      </div>
+                    </div>
                     <?php
                   }
                   ?>
-                </tbody>
-              </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card menus carolina">
+                <h4 class="card-header">
+                  <center><h5 class="text-primary"><i class="fa fa-graduation-cap animated tada infinite" aria-hidden="true"></i> AGREGAR NUEVOS ALUMNOS</h5></center>
+                </h4>
+                <div class="card-body">
+                  <table id="tablaSeleccionAlumnos" class="table table-striped  table-bordered dt-responsive tablaletradocentes "  width="100%" cellspacing="0" >
+                    <thead>
+                      <tr>
+                        <th><!--<input type="checkbox" name="select_all" value="1" id="example-select-all">--></th>
+                        <th>NUMERO CONTROL</th>
+                        <th>NOMBRE</th>
+                        <th>CODIGO</th>
+                        <th>CARRERA</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      foreach ($AlumnosCargados as $key => $valores) {
+                        ?>
+                        <tr>
+                          <td><?php echo "".utf8_decode($valores->numero_control);?></td>
+                          <td>
+                            <?php echo "".utf8_decode($valores->numero_control); ?>
+                          </td>
+                          <td>
+                            <?php echo "".($valores->nombre); ?>
+                          </td>
+                          <td>
+                            <?php echo "".utf8_decode($valores->codigo); ?>
+                          </td>
+                          <td>
+                            <?php echo "".($valores->carrera); ?>
+                          </td>
+
+                        </tr>
+                        <?php
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>
