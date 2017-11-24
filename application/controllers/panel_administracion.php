@@ -144,36 +144,73 @@ class Panel_administracion extends CI_Controller {
 	}
 	public function editarUsuario($idusuarios)
 	{
-		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
-		$datos["usuarioEditar"]=$datosUser=$this->Usuarios->selecionarUsuario($idusuarios);
-		$this->load->view('administracion/vpanel_eusuario',$datos);
+		if ($this->session->userdata('tipo')=='1') {
+			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
+			$datos["usuarioEditar"]=$datosUser=$this->Usuarios->selecionarUsuario($idusuarios);
+			$this->load->view('administracion/vpanel_eusuario',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function updateUser($idusuarios)
 	{
-		$contrasena = $this->input->post('contrasena');
-		$nombre_userc = $this->input->post('nombre_userc');
-		$departamento_academico= $this->input->post('departamento_academico');
-		$tipo="";
-		if($departamento_academico==1)
-		{
-			$tipo=1;
+		if ($this->session->userdata('tipo')=='1') {
+			$contrasena = $this->input->post('contrasena');
+			$nombre_userc = $this->input->post('nombre_userc');
+			$departamento_academico= $this->input->post('departamento_academico');
+			$tipo="";
+			if($departamento_academico==1)
+			{
+				$tipo=1;
+			}else {
+				$tipo=2;
+			}
+			$datos= array(
+				'tipo'=>$tipo,
+				'nombre_usuario'=> ''.$nombre_userc,
+				'departamento_academico_iddepartamento_academico'=> ''.$departamento_academico
+			);
+			$this->Usuarios->actualizarUsuarioInformacion($idusuarios,$datos);
+			redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
 		}else {
-			$tipo=2;
+			redirect(base_url().'index.php');
 		}
-		$datos= array(
-			'tipo'=>$tipo,
-			'nombre_usuario'=> ''.$nombre_userc,
-			'departamento_academico_iddepartamento_academico'=> ''.$departamento_academico
-		);
-		$this->Usuarios->actualizarUsuarioInformacion($idusuarios,$datos);
-		redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
 	}
 	public function restablecerpassword()
 	{
-		$contrasña=sha1($this->input->post('usuarioname'));
-		$idusuarioenviar= $this->input->post('idusuarioenviar');
-		$this->Usuarios->actualizar_contrasena($idusuarioenviar,$contrasña);
-		redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
+		if ($this->session->userdata('tipo')=='1') {
+			$contrasña=sha1($this->input->post('usuarioname'));
+			$idusuarioenviar= $this->input->post('idusuarioenviar');
+			$this->Usuarios->actualizar_contrasena($idusuarioenviar,$contrasña);
+			redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function db()
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$CI = &get_instance();
+			$CI->load->database();
+			$datos["nomnbrebase"]="Tables_in_".$CI->db->database;
+			$datos["nomnbrebasemostrar"]=$CI->db->database;
+			$datos["TABLAS"]=$this->Sistema->cargarTablasBaseDedatos();
+			$this->load->view('administracion/vpanel_administracion_db',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function dbtablas($nombretabla)
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$CI = &get_instance();
+			$CI->load->database();
+			$datos["nomnbretabla"]=$nombretabla ;
+			$datos["TABLA"]=$this->Sistema->cargarDatosTabla($nombretabla);
+			$this->load->view('administracion/vpanel_administracion_db_tabla',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
 }

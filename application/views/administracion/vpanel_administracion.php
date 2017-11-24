@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</a>
 		</div>
 		<div class="col-lg-6">
-			<a href="<?php echo base_url(); ?>index.php/panel_administracion/" class="linkmenu">
+			<a href="<?php echo base_url(); ?>index.php/panel_administracion/db" class="linkmenu">
 				<div class="card menus animenu caro">
 					<div class="card-body">
 						<div class="row">

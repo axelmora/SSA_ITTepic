@@ -12,9 +12,9 @@ class Sistema extends CI_Model {
     $DB2->from('configuracion_sistema');
     $query = $DB2->get();
     if ($query->num_rows() > 0) {
-        return $query->result();
+      return $query->result();
     } else {
-        return false;
+      return false;
     }
   }
   public function actualizarprodiccion($valor,$fechayhora)
@@ -32,5 +32,28 @@ class Sistema extends CI_Model {
     $DB2->set('correo_sistema', $correo);
     $DB2->update('configuracion_sistema');
     return true;
+  }
+  function cargarTablasBaseDedatos() {
+    $CI = &get_instance();
+    $CI->load->database();
+    $CI->db->database;
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SHOW TABLES FROM  ".$CI->db->database.";");
+    if ($query->num_rows() > 0) {
+        return $query->result();
+    } else {
+        return false;
+    }
+  }
+  public function cargarDatosTabla($nombretabla)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("show full columns from ".$nombretabla.";");
+    if ($query->num_rows() > 0) {
+        return $query->result();
+    } else {
+        return false;
+    }
+
   }
 }
