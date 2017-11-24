@@ -59,7 +59,10 @@ if(isset($DATOSMATERIA)){
                     <tr>
                       <td><?php echo "$MATERIA" ; ?></td>
                       <td><?php echo "$DOCENTE" ; ?></td>
-                      <td> </td>
+                      <td><form id="formularioNuevosAlumnos" class="" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/addAlumnos/1" method="post">
+                        <input type="text" name="numero_control_alumnos" id="numero_control_alumnos" value="">
+                        <button class="btn btn-primary" type="submit">Button</button>
+                      </form> </td>
                     </tr>
                   </tbody>
                 </table>
@@ -184,6 +187,33 @@ if(isset($DATOSMATERIA)){
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.checkboxes.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 <script>
+var tablealumnosagregar;
+$( document ).ready(function() {
+  tablealumnosagregar =  $('#tablaGrupoAlumnosAgregar').DataTable({
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/Alumnos.json"
+    },
+    "order": [[0, "asc" ]]
+  });
+
+  $('#formularioNuevosAlumnos').on('submit', function(e){
+    alert("s");
+    var form = this;
+    var rows_selected = tablealumnosagregar.column(0).checkboxes.selected();
+    $.each(rows_selected, function(index, rowId){
+      $(form).append(
+        $('<input>')
+        .attr('type', 'hidden')
+        .attr('name', 'id[]')
+        .val(rowId)
+      );
+    });
+    $('#numero_control_alumnos').val(rows_selected.join(","));
+    e.preventDefault();
+  });
+});
+
 function selecionarMat(idmateria,nombre) {
   $("#idmateria").val(""+idmateria);
   $("#nombre_materiaenviar").val(""+nombre.toUpperCase());
