@@ -32,6 +32,7 @@ if(isset($DATOSMATERIA)){
   <link href="<?php echo base_url(); ?>css/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/responsive.bootstrap4.min.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/dataTables.checkboxes.css" type="text/css" rel="stylesheet" />
+  <link href="<?php echo base_url(); ?>css/awesome-bootstrap-checkbox2.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
   <?php $this->load->view('include/menu'); ?>
@@ -60,8 +61,8 @@ if(isset($DATOSMATERIA)){
                       <td><?php echo "$MATERIA" ; ?></td>
                       <td><?php echo "$DOCENTE" ; ?></td>
                       <td><form id="formularioNuevosAlumnos" class="" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/addAlumnos/1" method="post">
-                        <input type="text" name="numero_control_alumnos" id="numero_control_alumnos" value="">
-                        <button class="btn btn-primary" type="submit">Button</button>
+                        <input hidden  type="text" name="numero_control_alumnos" id="numero_control_alumnos" value="">
+                        <button class="btn btn-primary" type="submit">AGREGAR ALUMNOS SELECIONADOS</button>
                       </form> </td>
                     </tr>
                   </tbody>
@@ -199,6 +200,16 @@ $( document ).ready(function() {
         "targets": 0,
         "checkboxes": {
           "selectRow": true
+        },
+        "render": function(data, type, row, meta){
+          if(type === 'display'){
+            data = '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+          }
+          return data;
+        },
+        'checkboxes': {
+          'selectRow': true,
+          'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'
         }
       }
     ],
@@ -208,7 +219,6 @@ $( document ).ready(function() {
     "order": [[2, "asc" ]]
   });
   $('#formularioNuevosAlumnos').on('submit', function(e){
-    alert("s");
     var form = this;
     var rows_selected = tablealumnosagregar.column(0).checkboxes.selected();
     $.each(rows_selected, function(index, rowId){

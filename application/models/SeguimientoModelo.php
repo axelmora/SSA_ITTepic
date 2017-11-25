@@ -448,4 +448,15 @@ public function deleteAlumnoGrupo($numerocontrol,$idgrupo)
   $DBcon->where('alumnos_numero_control', $numerocontrol );
   $DBcon->delete('grupo_alumnos');
 }
+public function verificarAlumnoGrupoDB($numerocontrol,$idgrupoverificar)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT * FROM grupo_alumnos where grupos_idgrupos=$idgrupoverificar and alumnos_numero_control='$numerocontrol'");
+  if ($query->num_rows() > 0)
+  {
+    return false;
+  } else {
+    return true;
+  }
+}
 }

@@ -140,8 +140,6 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["AlumnosCopiar"]=$this->SeguimientoModelo->cargarEncuestasGrupos($idAplicacion);
 			$datos["AplicacionDatos"]=$idAplicacion;
 			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
-
-			echo "A: ".$this->session->userdata('departamento');
 			$this->load->view('aplicaciones_add_grupo',$datos);
 		}else {
 			redirect(base_url().'index.php');
@@ -771,17 +769,34 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function datosAlumno($numero_control)
 	{
-		$resultados=$this->Alumnos->getAlumno($numero_control);
-		echo json_encode($resultados);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$resultados=$this->Alumnos->getAlumno($numero_control);
+			echo json_encode($resultados);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function addAlumnos($idseguimiento)
 	{
-		$NumerosDeControl = explode(',', $this->input->post('numero_control_alumnos'));
-		$GrupoAlumnosNumeros =array();
-		for ($i=0; $i < count($NumerosDeControl) ; $i++) {
-			echo "$NumerosDeControl[$i] <br>";
-			//$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoIDg);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			if($this->input->post('numero_control_alumnos')!=""){
+				$idgrupo=$this->SeguimientoModelo->getGrupoPorEncuesta($idseguimiento);
+				$NumerosDeControl = explode(',', $this->input->post('numero_control_alumnos'));
+				$GrupoAlumnosNumeros =array();
+				if(count($NumerosDeControl)>0){
+					for ($i=0; $i < count($NumerosDeControl) ; $i++) {
+						if($this->SeguimientoModelo->verificarAlumnoGrupoDB($NumerosDeControl[$i],$idgrupo[0]->idgrupos)){
+							$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$idgrupo[0]->idgrupos);
+						}
+					}
+					if(count($GrupoAlumnosNumeros)>0){
+						$this->SeguimientoModelo->insertarGrupos($GrupoAlumnosNumeros);
+					}
+				}
+			}
+			redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idseguimiento);
+		}else {
+			redirect(base_url().'index.php');
 		}
 	}
-
 }
