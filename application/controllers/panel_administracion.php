@@ -136,6 +136,7 @@ class Panel_administracion extends CI_Controller {
 		}
 		redirect(base_url().'index.php/panel_administracion/departamentos');
 	}
+	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
 	public function agregarCorreoElectronico()
 	{
 		$correo = $this->input->post('correo');
@@ -212,5 +213,19 @@ class Panel_administracion extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
-	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
+	public function db_backup()
+	{
+		$this->load->dbutil();
+		$prefs = array(
+			'format'      => 'zip',
+			'filename'    => 'ssadb-'.date("Y-m-d-H-i-s").'.sql'
+		);
+		$backup =& $this->dbutil->backup($prefs);
+		$db_name = 'resplado-ssa-'. date("Y-m-d-H-i-s") .'.zip';
+		$save = 'file/db/backups/'.$db_name;
+		$this->load->helper('file');
+		write_file($save, $backup);
+		$this->load->helper('download');
+		force_download($db_name, $backup);
+	}
 }
