@@ -24,29 +24,24 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function aplicaciones()
 	{
-		$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'));
-		$datos["AplicacionesPerido"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'),$this->session->userdata('periodo'));
-		//$datos["Cantidad_Encuestas"]="";
-		if($datos["Aplicaciones"]!=false)
-		{
-			$valorescontados;
-			foreach ($datos["Aplicaciones"] as $key => $value) {
-				$valor=$this->SeguimientoModelo->contarEncuestas($value->idaplicaciones);
-				foreach ($valor as $key => $nuermos) {
-					$valorescontados[]=$nuermos->numero;
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'));
+			$datos["AplicacionesPerido"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'),$this->session->userdata('periodo'));
+			//$datos["Cantidad_Encuestas"]="";
+			if($datos["Aplicaciones"]!=false)
+			{
+				$valorescontados;
+				foreach ($datos["Aplicaciones"] as $key => $value) {
+					$valor=$this->SeguimientoModelo->contarEncuestas($value->idaplicaciones);
+					foreach ($valor as $key => $nuermos) {
+						$valorescontados[]=$nuermos->numero;
+					}
 				}
+				$datos["Cantidad_Encuestas"]=$valorescontados;
 			}
-			$datos["Cantidad_Encuestas"]=$valorescontados;
-		}
-		if ($this->session->userdata('tipo')=='1') {
 			$this->load->view('aplicaciones',$datos);
 		}else {
-			if ($this->session->userdata('tipo')=='2') {
-				$this->load->view('aplicaciones',$datos);
-			}
-			else {
-				redirect(base_url().'index.php');
-			}
+			redirect(base_url().'index.php');
 		}
 	}
 	public function generarAplicacion()
@@ -148,17 +143,21 @@ class Panel_seguimiento extends CI_Controller {
 	/*  INSERTAR MATERIA */
 	public function insertarMateria()
 	{
-		$datos= array(
-			'nombre_materia' => ''.strtoupper($this->input->post('nombre_materia')),
-			'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
-		);
-		$this->Materia->insertarMateria($datos);
-		$datos['idmaterias']=$this->Materia->ultimaMateriaAgregadaDepa($this->session->userdata('departamento'));
-		$idenviar="";
-		foreach ($datos['idmaterias'] as $key => $value) {
-			$idenviar = array("idmateria"=>$value->maximo);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos= array(
+				'nombre_materia' => ''.strtoupper($this->input->post('nombre_materia')),
+				'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
+			);
+			$this->Materia->insertarMateria($datos);
+			$datos['idmaterias']=$this->Materia->ultimaMateriaAgregadaDepa($this->session->userdata('departamento'));
+			$idenviar="";
+			foreach ($datos['idmaterias'] as $key => $value) {
+				$idenviar = array("idmateria"=>$value->maximo);
+			}
+			echo json_encode($idenviar);
+		}else {
+			redirect(base_url().'index.php');
 		}
-		echo json_encode($idenviar);
 	}
 	public function obtenerDepartamento($departamentoid)
 	{
@@ -177,55 +176,63 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function obtenerAlumnosPorDepartamento($departamentoid)
 	{
-		$AlumosEnviar;
-		$idenviar="";
-		$carreras=$this->Departamentos->obtenerCarrerasDepartamento($departamentoid);
-		$tamano=count($carreras);
-		$pos=0;
-		foreach ($carreras as $key => $value) {
-			if($pos<$tamano-1){
-				$idenviar.="".$value->carreras_id_carrera.",";
-			}else {
-				$idenviar.="".$value->carreras_id_carrera;
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$AlumosEnviar;
+			$idenviar="";
+			$carreras=$this->Departamentos->obtenerCarrerasDepartamento($departamentoid);
+			$tamano=count($carreras);
+			$pos=0;
+			foreach ($carreras as $key => $value) {
+				if($pos<$tamano-1){
+					$idenviar.="".$value->carreras_id_carrera.",";
+				}else {
+					$idenviar.="".$value->carreras_id_carrera;
+				}
+				$pos++;
 			}
-			$pos++;
+			$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras($idenviar);
+			return $AlumosEnviar;
+		}else {
+			redirect(base_url().'index.php');
 		}
-		$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras($idenviar);
-		return $AlumosEnviar;
 	}
 	public function insertarSeguimientoGrupo($idAplicacion)
 	{
-		/*CREACION SEGUIMIENTO*/
-		$Seguimiento= array(
-			'fecha_creacion' => ''.date('Y-m-d H:i:s'),
-			'aplicaciones_idaplicaciones' => ''.$idAplicacion,
-			'materias_idmaterias' => ''.$this->input->post('idmateria'),
-			'docentes_rfc' => ''.$this->input->post('rfcdocente')
-		);
-		$this->SeguimientoModelo->crearSeguimiento($Seguimiento);
-		$idSeguimientoCreado=$this->SeguimientoModelo->obtenerIdSeguimiento();
-		$UltimoID="";
-		foreach ($idSeguimientoCreado as $key => $id) {
-			$UltimoID=$id->maximo;
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			/*CREACION SEGUIMIENTO*/
+			$Seguimiento= array(
+				'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+				'aplicaciones_idaplicaciones' => ''.$idAplicacion,
+				'materias_idmaterias' => ''.$this->input->post('idmateria'),
+				'docentes_rfc' => ''.$this->input->post('rfcdocente')
+			);
+			$this->SeguimientoModelo->crearSeguimiento($Seguimiento);
+			$idSeguimientoCreado=$this->SeguimientoModelo->obtenerIdSeguimiento();
+			$UltimoID="";
+			foreach ($idSeguimientoCreado as $key => $id) {
+				$UltimoID=$id->maximo;
+			}
+			/*CREACION GRUPO*/
+			$GrupoData= array("encuestas_seguimiento_idencuesta_seguimiento"=>$UltimoID);
+			$this->SeguimientoModelo->crearGrupo($GrupoData);
+			$idGrupóCreado=$this->SeguimientoModelo->obtenerIdGrupo();
+			$UltimoIDg="";
+			foreach ($idSeguimientoCreado as $key => $id) {
+				$UltimoIDg=$id->maximo;
+			}
+			/*CREACION GRUPO*/
+			/*CREACION GRUPO-ALUMNOS*/
+			$NumerosDeControl = explode(',', $this->input->post('numero_control_alumnos'));
+			$GrupoAlumnosNumeros =array();
+			for ($i=0; $i < count($NumerosDeControl) ; $i++) {
+				$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoIDg);
+			}
+			$this->SeguimientoModelo->insertarGrupos($GrupoAlumnosNumeros);
+			/*CREACION GRUPO-ALUMNOS FIN*/
+			redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$UltimoID.'');
+		}else {
+			redirect(base_url().'index.php');
 		}
-		/*CREACION GRUPO*/
-		$GrupoData= array("encuestas_seguimiento_idencuesta_seguimiento"=>$UltimoID);
-		$this->SeguimientoModelo->crearGrupo($GrupoData);
-		$idGrupóCreado=$this->SeguimientoModelo->obtenerIdGrupo();
-		$UltimoIDg="";
-		foreach ($idSeguimientoCreado as $key => $id) {
-			$UltimoIDg=$id->maximo;
-		}
-		/*CREACION GRUPO*/
-		/*CREACION GRUPO-ALUMNOS*/
-		$NumerosDeControl = explode(',', $this->input->post('numero_control_alumnos'));
-		$GrupoAlumnosNumeros =array();
-		for ($i=0; $i < count($NumerosDeControl) ; $i++) {
-			$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoIDg);
-		}
-		$this->SeguimientoModelo->insertarGrupos($GrupoAlumnosNumeros);
-		/*CREACION GRUPO-ALUMNOS FIN*/
-		redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$UltimoID.'');
 	}
 	public function gestionarGrupo($idGrupo)
 	{
@@ -267,10 +274,10 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function retroalimentacionlista($idAplicacion)
 	{
-		$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
-		$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
-		$datos["AplicacionData"]=$idAplicacion;
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
+			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
+			$datos["AplicacionData"]=$idAplicacion;
 			$this->load->view('aplicaciones_lista_retro',$datos);
 		}else {
 			redirect(base_url().'index.php');
@@ -306,86 +313,106 @@ class Panel_seguimiento extends CI_Controller {
 		// 		}
 		// 	}
 		// }
-		$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idaplicacion);
-		$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
-		$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
-		$this->load->model('GeneradorEncuestas');
-		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idaplicacion);
-		$datos["idRetroAlimntacion"]=$idaplicacion;
-		if(!$resultados)
-		{
-			$datos["ExistenResultados"]=true;
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idaplicacion);
+			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
+			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
+			$this->load->model('GeneradorEncuestas');
+			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idaplicacion);
+			$datos["idRetroAlimntacion"]=$idaplicacion;
+			if(!$resultados)
+			{
+				$datos["ExistenResultados"]=true;
+			}
+			$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
+			$this->load->view('aplicaciones_retro',$datos);
+		}else {
+			redirect(base_url().'index.php');
 		}
-		$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
-		$this->load->view('aplicaciones_retro',$datos);
 		//echo "".$json->preguntas[0]->tipo." <br> ".$json->preguntas[0]->pregunta;
 	}
 	public function guardaretroAlimentacion($idretro)
 	{
-		$idVolver=$this->input->post('id');
-		$retro=$this->input->post('retroalimentacion');
-		$fecha=date('Y-m-d H:i:s');
-		$this->SeguimientoModelo->actualizarRetro($idretro,$retro,$fecha);
-		redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idVolver);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$idVolver=$this->input->post('id');
+			$retro=$this->input->post('retroalimentacion');
+			$fecha=date('Y-m-d H:i:s');
+			$this->SeguimientoModelo->actualizarRetro($idretro,$retro,$fecha);
+			redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idVolver);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function retroalimentacionseguimientocon($idaplicacion)
 	{
-		$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idaplicacion);
-		$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
-		$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idaplicacion);
+			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
+			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
 
-		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idaplicacion);
-		$datos["idRetroAlimntacion"]=$idaplicacion;
-		if(!$resultados)
-		{
-			$datos["ExistenResultados"]=true;
+			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idaplicacion);
+			$datos["idRetroAlimntacion"]=$idaplicacion;
+			if(!$resultados)
+			{
+				$datos["ExistenResultados"]=true;
+			}
+			$this->load->model('GeneradorEncuestas');
+			$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
+			$this->load->view('aplicaciones_retro_m',$datos);
+		}else {
+			redirect(base_url().'index.php');
 		}
-		$this->load->model('GeneradorEncuestas');
-		$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
-		$this->load->view('aplicaciones_retro_m',$datos);
 	}
 	public function guardaretroAlimentacionContinua($idretro)
 	{
-		$idVolver=$this->input->post('id');
-		$retro=$this->input->post('retroalimentacion');
-		$fecha=date('Y-m-d H:i:s');
-		$this->SeguimientoModelo->actualizarRetro($idretro,$retro,$fecha);
-		redirect(base_url().'index.php/Panel_seguimiento/retroalimentacioncontinua/'.$idVolver);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$idVolver=$this->input->post('id');
+			$retro=$this->input->post('retroalimentacion');
+			$fecha=date('Y-m-d H:i:s');
+			$this->SeguimientoModelo->actualizarRetro($idretro,$retro,$fecha);
+			redirect(base_url().'index.php/Panel_seguimiento/retroalimentacioncontinua/'.$idVolver);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function retroalimentacioncontinua($idaplicacion)
 	{
-		$idenviar=1;
-		$idarreglo;
-		$arreloaumnos;
-		$idfinales;
-		$datos=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idaplicacion);
-		if($datos)
-		{
-			$poosi=0;
-			foreach ($datos as $key => $value) {
-				if($value->retroalimentacion=="")
-				{
-					$d=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
-					foreach ($d as $key => $value2) {
-						$arreloaumnos[]=$value2->total;
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$idenviar=1;
+			$idarreglo;
+			$arreloaumnos;
+			$idfinales;
+			$datos=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idaplicacion);
+			if($datos)
+			{
+				$poosi=0;
+				foreach ($datos as $key => $value) {
+					if($value->retroalimentacion=="")
+					{
+						$d=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
+						foreach ($d as $key => $value2) {
+							$arreloaumnos[]=$value2->total;
+						}
+						$idarreglo[]=$value->idencuesta_seguimiento;
 					}
-					$idarreglo[]=$value->idencuesta_seguimiento;
 				}
-			}
-			for($i=0;$i<count($idarreglo);$i++)
-			{
-				if($arreloaumnos[$i]>0){
-					$idfinales[]=$idarreglo[$i];
+				for($i=0;$i<count($idarreglo);$i++)
+				{
+					if($arreloaumnos[$i]>0){
+						$idfinales[]=$idarreglo[$i];
+					}
 				}
-			}
-			if(isset($idfinales))
-			{
-				$this->retroalimentacionseguimientocon($idfinales[0]);
+				if(isset($idfinales))
+				{
+					$this->retroalimentacionseguimientocon($idfinales[0]);
+				}else {
+					redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idaplicacion);
+				}
 			}else {
 				redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idaplicacion);
 			}
 		}else {
-			redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idaplicacion);
+			redirect(base_url().'index.php');
 		}
 	}
 	public function manual_usuario($value='')
@@ -399,19 +426,31 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function docentes()
 	{
-		$depa=$this->obtenerDepartamento($this->session->userdata('departamento'));
-		$datos["DOCENTES"]=$this->Docentes->cargarDocentesDepartamento($depa);
-		$this->load->view('seg_docentes',$datos);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$depa=$this->obtenerDepartamento($this->session->userdata('departamento'));
+			$datos["DOCENTES"]=$this->Docentes->cargarDocentesDepartamento($depa);
+			$this->load->view('seg_docentes',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function alumnos()
 	{
-		$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
-		$this->load->view('seg_alumnos',$datos);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
+			$this->load->view('seg_alumnos',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function materias()
 	{
-		$datos["MATERIAS"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
-		$this->load->view('seg_materias',$datos);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["MATERIAS"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
+			$this->load->view('seg_materias',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	/* Elimar grupo inicio*/
 	public function eliminarEncuestaDatos($idEncuesta)
@@ -434,44 +473,54 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function eliminarEncuestaGrupo()
 	{
-		$idVolver=$this->input->post('idAplicacionPostEliminar');
-		$idEliminarEncur=$this->input->post('idEliminarEncu');
-		$this->SeguimientoModelo->borrarEncuestaSeguimiento($idEliminarEncur);
-		redirect(base_url().'index.php/Panel_seguimiento/listado/'.$idVolver);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$idVolver=$this->input->post('idAplicacionPostEliminar');
+			$idEliminarEncur=$this->input->post('idEliminarEncu');
+			$this->SeguimientoModelo->borrarEncuestaSeguimiento($idEliminarEncur);
+			redirect(base_url().'index.php/Panel_seguimiento/listado/'.$idVolver);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function eliminarEncuestaSeguimientoCompleta()
 	{
-		$idAplicaciones=$this->input->post('idAplicacionesBorrar');
-		$this->SeguimientoModelo->borrarAplicacionSeguimiento($idAplicaciones);
-		redirect(base_url().'index.php/Panel_seguimiento/aplicaciones/');
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$idAplicaciones=$this->input->post('idAplicacionesBorrar');
+			$this->SeguimientoModelo->borrarAplicacionSeguimiento($idAplicaciones);
+			redirect(base_url().'index.php/Panel_seguimiento/aplicaciones/');
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function resulados($idSeguimiento)
 	{
-		//$datos["idEncuesta"]=1;
-
-		$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idSeguimiento);
-		$ALUMNOSCONTESTADOS;
-		foreach ($datos["ALUMNOSGRUPO"] as $key => $alumnos) {
-			if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->alumnos_numero_control,$idSeguimiento))
-			{
-				$ALUMNOSCONTESTADOS[]=true;
-			}else {
-				$ALUMNOSCONTESTADOS[]=false;
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idSeguimiento);
+			$ALUMNOSCONTESTADOS;
+			foreach ($datos["ALUMNOSGRUPO"] as $key => $alumnos) {
+				if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->alumnos_numero_control,$idSeguimiento))
+				{
+					$ALUMNOSCONTESTADOS[]=true;
+				}else {
+					$ALUMNOSCONTESTADOS[]=false;
+				}
 			}
+			$datos["APLICADOS"]=$ALUMNOSCONTESTADOS;
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idSeguimiento);
+			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idSeguimiento);
+			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idSeguimiento);
+			$this->load->model('GeneradorEncuestas');
+			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idSeguimiento);
+			$datos["idEncuesta"]=$datos["idSegui"][0]->aplicaciones_idaplicaciones;
+			if(!$resultados)
+			{
+				$datos["ExistenResultados"]=true;
+			}
+			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
+			$this->load->view('aplicaciones_resultados',$datos);
+		}else {
+			redirect(base_url().'index.php');
 		}
-		$datos["APLICADOS"]=$ALUMNOSCONTESTADOS;
-		$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idSeguimiento);
-		$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idSeguimiento);
-		$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idSeguimiento);
-		$this->load->model('GeneradorEncuestas');
-		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idSeguimiento);
-		$datos["idEncuesta"]=$datos["idSegui"][0]->aplicaciones_idaplicaciones;
-		if(!$resultados)
-		{
-			$datos["ExistenResultados"]=true;
-		}
-		$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
-		$this->load->view('aplicaciones_resultados',$datos);
 	}
 	/* Elimar grupo fin*/
 	public function reportesAplicacion($idAplicaciones)
@@ -502,270 +551,284 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function reporteGeneradorAplicacion($idAplicacion)
 	{
-		$datos["APLICACIONESCONSULTADAS"]=$this->SeguimientoModelo->reportesAplicacionesGeneral($idAplicacion);
-		$this->load->model('GeneradorEncuestas');
-		$EncuestasIMPRIMIR;
-		if($datos["APLICACIONESCONSULTADAS"]){
-			foreach ($datos["APLICACIONESCONSULTADAS"] as $key => $value) {
-				$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
-				$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
-				$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
-				$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
-				$DOCENTE="";
-				$MATERIA="";
-				if(isset($datos["DATOSMATERIA"])){
-					foreach ($datos["DATOSMATERIA"] as $key => $value) {
-						$DOCENTE="". utf8_decode($value->nombres." ".$value->apellidos);
-						$MATERIA="".$value->nombre_materia ;
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["APLICACIONESCONSULTADAS"]=$this->SeguimientoModelo->reportesAplicacionesGeneral($idAplicacion);
+			$this->load->model('GeneradorEncuestas');
+			$EncuestasIMPRIMIR;
+			if($datos["APLICACIONESCONSULTADAS"]){
+				foreach ($datos["APLICACIONESCONSULTADAS"] as $key => $value) {
+					$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
+					$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
+					$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
+					$DOCENTE="";
+					$MATERIA="";
+					if(isset($datos["DATOSMATERIA"])){
+						foreach ($datos["DATOSMATERIA"] as $key => $value) {
+							$DOCENTE="". utf8_decode($value->nombres." ".$value->apellidos);
+							$MATERIA="".$value->nombre_materia ;
+						}
+					}else {
+						$DOCENTE="ERROR";
+						$MATERIA="ERROR";
 					}
-				}else {
-					$DOCENTE="ERROR";
-					$MATERIA="ERROR";
+					$temphtml= "    <table  class='' cellspacing='0' >
+					<thead>
+					<tr>
+					<th> MATERIA</th>
+					<th> DOCENTE</th>
+					</tr>
+					</thead>
+					<tr>
+					<td>  $MATERIA</td>
+					<td>  $DOCENTE</td>
+					</tr>
+					</table>
+					";
+					$temphtml.= $datos["EncuestasResultados"];
+					if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
+						$temphtml.= "\n";
+						$temphtml.= "<b>Retroalimentación</b>";
+						$temphtml.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
+					}
+					$EncuestasIMPRIMIR[]=$temphtml;
 				}
-				$temphtml= "    <table  class='' cellspacing='0' >
-				<thead>
-				<tr>
-				<th> MATERIA</th>
-				<th> DOCENTE</th>
-				</tr>
-				</thead>
-				<tr>
-				<td>  $MATERIA</td>
-				<td>  $DOCENTE</td>
-				</tr>
-				</table>
-				";
-				$temphtml.= $datos["EncuestasResultados"];
-				if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
-					$temphtml.= "\n";
-					$temphtml.= "<b>Retroalimentación</b>";
-					$temphtml.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
-				}
-				$EncuestasIMPRIMIR[]=$temphtml;
+			}else {
+				$EncuestasIMPRIMIR[0]="<p style='font-size: 250%;'>No existen materias en esta aplicacion.</p>";
 			}
+			/*    CARGAR DATOS      */
+			$this->load->library('Pdf');
+			$resolution = array(216, 279);
+			$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
+			$pdf->SetAuthor('Fernando Manuel Avila Cataño');
+			$pdf->SetTitle('Instituto Tecnologico de Tepic - Seguimiento en el aula - Docente');
+			$pdf->SetSubject('Seguimiento en el aula reporte');
+			$pdf->SetKeywords('Reporte, docente, seguimiento, en, el , aula');
+			$image_file = 'cabecera.png';
+			$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 058', PDF_HEADER_STRING, array(0,0,0), array(255,255,255));
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP-15, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM-10);
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+			$pdf->setFontSubsetting(true);
+			$pdf->SetFont('helvetica', '', 9);
+			$pdf->SetPrintHeader(true);
+			$pdf->SetPrintFooter(true);
+			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
+			$resolution = array(279, 216);
+			$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
+			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
+			$html = '';
+			for ($i=0; $i < count($EncuestasIMPRIMIR) ; $i++) {
+				$html .= "<style type=text/css>";
+				$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
+				$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
+				$html .= "</style>";
+				$html .= "    <table  class='' cellspacing='0' >";
+				$html.=$EncuestasIMPRIMIR[$i];
+				$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+				$html="";
+				if( $i <count($EncuestasIMPRIMIR)-1){
+					$pdf->AddPage();
+				}
+			}
+			$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_general.pdf");
+			$pdf->Output($nombre_archivo, 'I');
 		}else {
-			$EncuestasIMPRIMIR[0]="<p style='font-size: 250%;'>No existen materias en esta aplicacion.</p>";
+			redirect(base_url().'index.php');
 		}
-		/*    CARGAR DATOS      */
-		$this->load->library('Pdf');
-		$resolution = array(216, 279);
-		$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
-		$pdf->SetAuthor('Fernando Manuel Avila Cataño');
-		$pdf->SetTitle('Instituto Tecnologico de Tepic - Seguimiento en el aula - Docente');
-		$pdf->SetSubject('Seguimiento en el aula reporte');
-		$pdf->SetKeywords('Reporte, docente, seguimiento, en, el , aula');
-		$image_file = 'cabecera.png';
-		$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 058', PDF_HEADER_STRING, array(0,0,0), array(255,255,255));
-		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP-15, PDF_MARGIN_RIGHT);
-		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM-10);
-		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-		$pdf->setFontSubsetting(true);
-		$pdf->SetFont('helvetica', '', 9);
-		$pdf->SetPrintHeader(true);
-		$pdf->SetPrintFooter(true);
-		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
-		$resolution = array(279, 216);
-		$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
-		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-		$html = '';
-		for ($i=0; $i < count($EncuestasIMPRIMIR) ; $i++) {
-			$html .= "<style type=text/css>";
-			$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
-			$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
-			$html .= "</style>";
-			$html .= "    <table  class='' cellspacing='0' >";
-			$html.=$EncuestasIMPRIMIR[$i];
-			$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
-			$html="";
-			if( $i <count($EncuestasIMPRIMIR)-1){
-				$pdf->AddPage();
-			}
-		}
-		$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_general.pdf");
-		$pdf->Output($nombre_archivo, 'I');
 	}
 	function reporteDocenteGenerador($rfcdoncete,$idAplicaciones) {
-		/*    CARGAR DATOS      */
-		$idAplicacionesGenerar=$this->SeguimientoModelo->reporteDocentePDFMaterias($rfcdoncete,$idAplicaciones);
-		$this->load->model('GeneradorEncuestas');
-		$EncuestasIMPRIMIR;
-		if($idAplicacionesGenerar){
-			foreach ($idAplicacionesGenerar as $key => $value) {
-				$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
-				$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
-				$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
-				$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
-				$DOCENTE="";
-				$MATERIA="";
-				if(isset($datos["DATOSMATERIA"])){
-					foreach ($datos["DATOSMATERIA"] as $key => $value) {
-						$DOCENTE="".$value->nombres." ".$value->apellidos;
-						$MATERIA="".$value->nombre_materia ;
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			/*    CARGAR DATOS      */
+			$idAplicacionesGenerar=$this->SeguimientoModelo->reporteDocentePDFMaterias($rfcdoncete,$idAplicaciones);
+			$this->load->model('GeneradorEncuestas');
+			$EncuestasIMPRIMIR;
+			if($idAplicacionesGenerar){
+				foreach ($idAplicacionesGenerar as $key => $value) {
+					$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
+					$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
+					$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
+					$DOCENTE="";
+					$MATERIA="";
+					if(isset($datos["DATOSMATERIA"])){
+						foreach ($datos["DATOSMATERIA"] as $key => $value) {
+							$DOCENTE="".$value->nombres." ".$value->apellidos;
+							$MATERIA="".$value->nombre_materia ;
+						}
+					}else {
+						$DOCENTE="ERROR";
+						$MATERIA="ERROR";
 					}
-				}else {
-					$DOCENTE="ERROR";
-					$MATERIA="ERROR";
+					$temphtml= "    <table  class='' cellspacing='0' >
+					<thead>
+					<tr>
+					<th> MATERIA</th>
+					<th> DOCENTE</th>
+					</tr>
+					</thead>
+					<tr>
+					<td>  $MATERIA</td>
+					<td>  $DOCENTE</td>
+					</tr>
+					</table>
+					";
+					$temphtml.= $datos["EncuestasResultados"];
+					if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
+						$temphtml.= "\n";
+						$temphtml.= "<b>Retroalimentación</b>";
+						$temphtml.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
+					}
+					$EncuestasIMPRIMIR[]=$temphtml;
 				}
-				$temphtml= "    <table  class='' cellspacing='0' >
-				<thead>
-				<tr>
-				<th> MATERIA</th>
-				<th> DOCENTE</th>
-				</tr>
-				</thead>
-				<tr>
-				<td>  $MATERIA</td>
-				<td>  $DOCENTE</td>
-				</tr>
-				</table>
-				";
-				$temphtml.= $datos["EncuestasResultados"];
-				if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
-					$temphtml.= "\n";
-					$temphtml.= "<b>Retroalimentación</b>";
-					$temphtml.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
-				}
-				$EncuestasIMPRIMIR[]=$temphtml;
+			}else {
+				$EncuestasIMPRIMIR[0]="Error al generar reporte";
 			}
+			/*    CARGAR DATOS      */
+			$this->load->library('Pdf');
+			$resolution = array(216, 279);
+			$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
+			$pdf->SetAuthor('Fernando Manuel Avila Cataño');
+			$pdf->SetTitle('Instituto Tecnologico de Tepic - Seguimiento en el aula - Docente');
+			$pdf->SetSubject('Seguimiento en el aula reporte');
+			$pdf->SetKeywords('Reporte, docente, seguimiento, en, el , aula');
+			$image_file = 'cabecera.png';
+			$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 058', PDF_HEADER_STRING, array(0,0,0), array(255,255,255));
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP-15, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM-10);
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+			$pdf->setFontSubsetting(true);
+			$pdf->SetFont('helvetica', '', 9);
+			$pdf->SetPrintHeader(true);
+			$pdf->SetPrintFooter(true);
+			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
+			$resolution = array(279, 216);
+			$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
+			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
+			$html = '';
+			for ($i=0; $i < count($EncuestasIMPRIMIR) ; $i++) {
+				$html .= "<style type=text/css>";
+				$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
+				$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
+				$html .= "</style>";
+				$html .= "    <table  class='' cellspacing='0' >";
+				$html.=$EncuestasIMPRIMIR[$i];
+				$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+				$html="";
+				if( $i <count($EncuestasIMPRIMIR)-1){
+					$pdf->AddPage();
+				}
+			}
+			$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_docente.pdf");
+			$pdf->Output($nombre_archivo, 'I');
 		}else {
-			$EncuestasIMPRIMIR[0]="Error al generar reporte";
+			redirect(base_url().'index.php');
 		}
-		/*    CARGAR DATOS      */
-		$this->load->library('Pdf');
-		$resolution = array(216, 279);
-		$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
-		$pdf->SetAuthor('Fernando Manuel Avila Cataño');
-		$pdf->SetTitle('Instituto Tecnologico de Tepic - Seguimiento en el aula - Docente');
-		$pdf->SetSubject('Seguimiento en el aula reporte');
-		$pdf->SetKeywords('Reporte, docente, seguimiento, en, el , aula');
-		$image_file = 'cabecera.png';
-		$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 058', PDF_HEADER_STRING, array(0,0,0), array(255,255,255));
-		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP-15, PDF_MARGIN_RIGHT);
-		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM-10);
-		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-		$pdf->setFontSubsetting(true);
-		$pdf->SetFont('helvetica', '', 9);
-		$pdf->SetPrintHeader(true);
-		$pdf->SetPrintFooter(true);
-		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
-		$resolution = array(279, 216);
-		$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
-		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-		$html = '';
-		for ($i=0; $i < count($EncuestasIMPRIMIR) ; $i++) {
-			$html .= "<style type=text/css>";
-			$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
-			$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
-			$html .= "</style>";
-			$html .= "    <table  class='' cellspacing='0' >";
-			$html.=$EncuestasIMPRIMIR[$i];
-			$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
-			$html="";
-			if( $i <count($EncuestasIMPRIMIR)-1){
-				$pdf->AddPage();
-			}
-		}
-		$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_docente.pdf");
-		$pdf->Output($nombre_archivo, 'I');
 	}
 	public function reporteIndividual($idencuesta_seguimiento)
 	{
-		/*    CARGAR DATOS      */
-		$this->load->model('GeneradorEncuestas');
-		$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
-		$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
-		$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
-		$DOCENTE="";
-		$MATERIA="";
-		if(isset($datos["DATOSMATERIA"])){
-			foreach ($datos["DATOSMATERIA"] as $key => $value) {
-				$DOCENTE="".utf8_decode($value->nombres." ".$value->apellidos);
-				$MATERIA="".$value->nombre_materia ;
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			/*    CARGAR DATOS      */
+			$this->load->model('GeneradorEncuestas');
+			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
+			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
+			$DOCENTE="";
+			$MATERIA="";
+			if(isset($datos["DATOSMATERIA"])){
+				foreach ($datos["DATOSMATERIA"] as $key => $value) {
+					$DOCENTE="".utf8_decode($value->nombres." ".$value->apellidos);
+					$MATERIA="".$value->nombre_materia ;
+				}
+			}else {
+				$DOCENTE="ERROR";
+				$MATERIA="ERROR";
 			}
+			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idencuesta_seguimiento);
+			/*    CARGAR DATOS      */
+			$this->load->library('Pdf');
+			$resolution = array(216, 279);
+			$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
+			$pdf->SetAuthor('Fernando Manuel Avila Cataño');
+			$pdf->SetTitle('Instituto Tecnologico de Tepic - Seguimiento en el aula');
+			$pdf->SetSubject('Seguimiento en el aula reporte');
+			$pdf->SetKeywords('Reporte, individual, ');
+			$image_file = 'cabecera.png';
+			$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 058', PDF_HEADER_STRING, array(0,0,0), array(255,255,255));
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP-15, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM-10);
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+			$pdf->setFontSubsetting(true);
+			$pdf->SetFont('helvetica', '', 9);
+			$pdf->SetPrintHeader(true);
+			$pdf->SetPrintFooter(true);
+			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
+			$resolution = array(279, 216);
+			$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
+			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
+			$html = '';
+			$html .= "<style type=text/css>";
+			$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
+			$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
+			$html .= "</style>";
+			$html .= "    <table  class='' cellspacing='0' >
+			<thead>
+			<tr>
+			<th> MATERIA</th>
+			<th> DOCENTE</th>
+			</tr>
+			</thead>
+			<tr>
+			<td>  $MATERIA</td>
+			<td>  $DOCENTE</td>
+			</tr>
+			</table>
+			";
+			$html.= $datos["EncuestasResultados"];
+			if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
+				$html.= "\n";
+				$html.= "<b>Retroalimentación</b>";
+				$html.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
+			}
+			$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+			$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_individual.pdf");
+			$pdf->Output($nombre_archivo, 'I');
 		}else {
-			$DOCENTE="ERROR";
-			$MATERIA="ERROR";
+			redirect(base_url().'index.php');
 		}
-		$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idencuesta_seguimiento);
-		/*    CARGAR DATOS      */
-		$this->load->library('Pdf');
-		$resolution = array(216, 279);
-		$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
-		$pdf->SetAuthor('Fernando Manuel Avila Cataño');
-		$pdf->SetTitle('Instituto Tecnologico de Tepic - Seguimiento en el aula');
-		$pdf->SetSubject('Seguimiento en el aula reporte');
-		$pdf->SetKeywords('Reporte, individual, ');
-		$image_file = 'cabecera.png';
-		// $pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, 'Instituto Tecnologico de Tepic', 's');
-		$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 058', PDF_HEADER_STRING, array(0,0,0), array(255,255,255));
-		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP-15, PDF_MARGIN_RIGHT);
-		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM-10);
-		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-		$pdf->setFontSubsetting(true);
-		$pdf->SetFont('helvetica', '', 9);
-		$pdf->SetPrintHeader(true);
-		$pdf->SetPrintFooter(true);
-		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
-		// Este método tiene varias opciones, consulta la documentación para más información.
-		$resolution = array(279, 216);
-		$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
-		//fijar efecto de sombra en el texto
-		$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-		$html = '';
-		$html .= "<style type=text/css>";
-		$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
-		$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
-		$html .= "</style>";
-		$html .= "    <table  class='' cellspacing='0' >
-		<thead>
-		<tr>
-		<th> MATERIA</th>
-		<th> DOCENTE</th>
-		</tr>
-		</thead>
-		<tr>
-		<td>  $MATERIA</td>
-		<td>  $DOCENTE</td>
-		</tr>
-		</table>
-		";
-		$html.= $datos["EncuestasResultados"];
-		if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
-			$html.= "\n";
-			$html.= "<b>Retroalimentación</b>";
-			$html.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
-		}
-		/*$imghtml='<img src="'.K_PATH_IMAGES.'abajoReportes.png" border="0" align="bottom"  />';
-		$pdf->writeHTMLCell(50, '', 0, 29.7 - 4, $imghtml, 0, 1, false, true, 'L', false); */
-		$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
-		$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_individual.pdf");
-		$pdf->Output($nombre_archivo, 'I');
-		echo '<link rel="shortcut icon" href="'.base_url().'images/tec.ico">';
 	}
 	function borrarAlumnosNumeroControl()
 	{
-		$numero_control=$this->input->post('numero_Control_eliminar');
-		$idencuesta=$this->input->post('idGrupoEnviar');
-		$idgrupo=$this->SeguimientoModelo->getGrupoPorEncuesta($idencuesta);
-		$this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
-		$this->SeguimientoModelo->deleteAlumnoGrupo($numero_control,$idgrupo[0]->idgrupos);
-		redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idencuesta);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$numero_control=$this->input->post('numero_Control_eliminar');
+			$idencuesta=$this->input->post('idGrupoEnviar');
+			$idgrupo=$this->SeguimientoModelo->getGrupoPorEncuesta($idencuesta);
+			$this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
+			$this->SeguimientoModelo->deleteAlumnoGrupo($numero_control,$idgrupo[0]->idgrupos);
+			redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idencuesta);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function reactivaralumno()
 	{
-		$numero_control=$this->input->post('numero_Control_reactivar');
-		$idencuesta=$this->input->post('idGrupoEnviar');
-		$resultados=$this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
-		redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idencuesta);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$numero_control=$this->input->post('numero_Control_reactivar');
+			$idencuesta=$this->input->post('idGrupoEnviar');
+			$resultados=$this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
+			redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idencuesta);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function datosAlumno($numero_control)
 	{
@@ -794,7 +857,7 @@ class Panel_seguimiento extends CI_Controller {
 					}
 				}
 			}
-	 	redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idseguimiento);
+			redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idseguimiento);
 		}else {
 			redirect(base_url().'index.php');
 		}

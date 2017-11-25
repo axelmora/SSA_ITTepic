@@ -159,7 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
           <div class="modal-body">
             <div style="overflow-x:auto;">
-              <table id="tablaSeleccionAlumnos" class="table table-striped  table-bordered dt-responsive tablaletradocentes "  width="100%" cellspacing="0" >
+              <table id="tablaSeleccionAlumnos" class="table table-striped table-hover  table-sm  table-bordered dt-responsive  "  width="100%" cellspacing="0" >
                 <thead>
                   <tr>
                     <th><!--<input type="checkbox" name="select_all" value="1" id="example-select-all">--></th>
@@ -295,7 +295,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
       <div class="modal-body">
         <div class="table-responsive">
-          <table id="tablaSeleccionDocentes" class="table table-striped  table-responsive table-bordered dt-responsive " cellspacing="0" width="100%">
+          <table id="tablaSeleccionDocentes" class="table table-striped   table-sm table-responsive table-bordered dt-responsive " cellspacing="0" width="100%">
             <thead>
               <tr>
                 <th>MATERIA</th>
@@ -381,7 +381,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="row">
           <div class="col-lg-12">
             <div class="table-responsive">
-              <table id="tablaSelecionarMaterias" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+              <table id="tablaSelecionarMaterias" class="table table-striped table-hover  table-sm  table-bordered dt-responsive " cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th>MATERIA</th>
