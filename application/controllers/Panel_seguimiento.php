@@ -794,7 +794,7 @@ class Panel_seguimiento extends CI_Controller {
 					}
 				}
 			}
-			redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idseguimiento);
+	 	redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idseguimiento);
 		}else {
 			redirect(base_url().'index.php');
 		}

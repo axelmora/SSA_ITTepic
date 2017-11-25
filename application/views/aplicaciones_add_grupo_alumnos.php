@@ -60,7 +60,7 @@ if(isset($DATOSMATERIA)){
                     <tr>
                       <td><?php echo "$MATERIA" ; ?></td>
                       <td><?php echo "$DOCENTE" ; ?></td>
-                      <td><form id="formularioNuevosAlumnos" class="" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/addAlumnos/1" method="post">
+                      <td><form id="formularioNuevosAlumnos" class="" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/addAlumnos/<?php echo $IDGRUPO; ?>" method="post">
                         <input hidden  type="text" name="numero_control_alumnos" id="numero_control_alumnos" value="">
                         <button class="btn btn-primary" type="submit">AGREGAR ALUMNOS SELECIONADOS</button>
                       </form> </td>
