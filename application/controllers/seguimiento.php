@@ -48,208 +48,193 @@ class Seguimiento extends CI_Controller {
 	public function enviarEncuesta($idencuesta_seguimiento)
 	{
 		$RESULTADO = $this->input->post();
-		/*echo json_encode($RESULTADO);
-		echo "<br>";
-		foreach ($RESULTADO as $value)
-		{
-		echo "$value <br>";
-	}
-	echo "<br>";
-	print_r(array_keys($RESULTADO));
-	echo "<br>";*/
-	/*$data = json_decode(html_entity_decode('{"1":"Hola","2":"xD","3":":3 carito ññ mi amor <3"}'), TRUE);
-	foreach ($data as $value)
-	{
-	echo "$value <br>";
-}*/
-$IDencuestas=$this->session->userdata('idencuestas');
-$IDencuEnviar = explode(",",$IDencuestas);
-$NUEVOS_ID="";
-if(count($IDencuEnviar)>1){
-	for ($i=1; $i < count($IDencuEnviar); $i++) {
-		if($i<count($IDencuEnviar)-1)
-		{
-			$NUEVOS_ID.=$IDencuEnviar[$i].",";
-		}else {
-			$NUEVOS_ID.=$IDencuEnviar[$i];
-		}
-	}
-}
-$DATOS_RESULTADOS= array(
-	'fecha_contestado' =>''.date('Y-m-d H:i:s'),
-	'respuestas' => json_encode($RESULTADO),
-	'estado'=>1,
-	'no_de_control'=>$this->session->userdata('numero_control'),
-	'encuestas_seguimiento_idencuesta_seguimiento'=>$idencuesta_seguimiento
-);
-//	echo "".$NUEVOS_ID;
-$this->SeguimientoModelo->insertarRespuestas($DATOS_RESULTADOS);
-$progresoactual=$this->session->userdata('progresoactual');
-$progresoactual++;
-$this->session->set_userdata('idencuestas',$NUEVOS_ID);
-$this->session->set_userdata('progresoactual',$progresoactual);
-redirect(base_url().'index.php/Seguimiento/contestar/');
-}
-public function verificarAlumnoEncuesta()
-{
-	$sistemaproduccion = $this->Sistema->obtenerproduccion();
-	if ($sistemaproduccion[0]->produccion==1) {
-		/* VERIFICAR ALUMNOS */
-		$NUMERO_CONTROL=$this->input->post('numero_control');
-		$ALUMNOVERIFICADO = $this->Alumnos->verificarAlumno($NUMERO_CONTROL);
-		$NOMBREALUM="";
-		if($ALUMNOVERIFICADO)
-		{
-			$idcarreras="";
-			foreach ($ALUMNOVERIFICADO as $key => $value) {
-				$idcarreras=$value->id_carrera;
-				$NOMBREALUM=$value->nombre;
-			}
-			/* OBTENER DEPARTAMENTO ALUMNO*/
-			$IDDEPARTAMENTO=$this->obtenerDepartamentoPorCarrera($idcarreras);
-			$PERIODOACTUAL=$this-> generarPeriodo();
-			$contra_aplicacion=$this->input->post('contra_aplicacion');
-			/* VERIFICAR SI EXISTE APLICACION EL PERIODO Y DEPARTAMENTO*/
-			$APLICACIONVERIFICADA = $this->SeguimientoModelo->verificarAplicacion($contra_aplicacion,$PERIODOACTUAL,$IDDEPARTAMENTO);
-			if($APLICACIONVERIFICADA){
-				$idaplicaciones="";
-				$idplantilla="";
-				foreach ($APLICACIONVERIFICADA as $key => $value) {
-					$idaplicaciones=$value->idaplicaciones;
-					$idplantilla=$value->plantilla_encuestas_idplantilla_encuestas;
+		$IDencuestas=$this->session->userdata('idencuestas');
+		$IDencuEnviar = explode(",",$IDencuestas);
+		$NUEVOS_ID="";
+		if(count($IDencuEnviar)>1){
+			for ($i=1; $i < count($IDencuEnviar); $i++) {
+				if($i<count($IDencuEnviar)-1)
+				{
+					$NUEVOS_ID.=$IDencuEnviar[$i].",";
+				}else {
+					$NUEVOS_ID.=$IDencuEnviar[$i];
 				}
-				$ENCUESTAS= $this->SeguimientoModelo->obtenerEncuestas($idaplicaciones,$NUMERO_CONTROL);
-				if($ENCUESTAS){
-					$PROGRESOENCUESTAS=0;
-					//	echo "$IDDEPARTAMENTO $PERIODOACTUAL $idaplicaciones  $idplantilla ";
-					//echo "EXISTE <br>";
-					$ID_ENCUESTAS="";
-					$TAMANO=count($ENCUESTAS); // OBTENER EL TAMAÑO
-					$POSENCUESTAS=0; //
-					/* CONCATENAR ID ENCUESTAS*/
-					foreach ($ENCUESTAS as $key => $value) {
-						//$this->consolaLOG("".$value->idencuesta_seguimiento."");
-						/* VERIFICAR SI YA FUE CONTESTADA */
-						if(!$this->SeguimientoModelo->verificarEncuestaContestada($value->idencuesta_seguimiento,$NUMERO_CONTROL)){
-							if($POSENCUESTAS<$TAMANO-1)
-							{
-								$ID_ENCUESTAS.=$value->idencuesta_seguimiento.",";
+			}
+		}
+		$DATOS_RESULTADOS= array(
+			'fecha_contestado' =>''.date('Y-m-d H:i:s'),
+			'respuestas' => json_encode($RESULTADO),
+			'estado'=>1,
+			'no_de_control'=>$this->session->userdata('numero_control'),
+			'encuestas_seguimiento_idencuesta_seguimiento'=>$idencuesta_seguimiento
+		);
+		$this->SeguimientoModelo->insertarRespuestas($DATOS_RESULTADOS);
+		$progresoactual=$this->session->userdata('progresoactual');
+		$progresoactual++;
+		$this->session->set_userdata('idencuestas',$NUEVOS_ID);
+		$this->session->set_userdata('progresoactual',$progresoactual);
+		redirect(base_url().'index.php/Seguimiento/contestar/');
+	}
+	public function verificarAlumnoEncuesta()
+	{
+		$sistemaproduccion = $this->Sistema->obtenerproduccion();
+		if ($sistemaproduccion[0]->produccion==1) {
+			/* VERIFICAR ALUMNOS */
+			$NUMERO_CONTROL=$this->input->post('numero_control');
+			$ALUMNOVERIFICADO = $this->Alumnos->verificarAlumno($NUMERO_CONTROL);
+			$NOMBREALUM="";
+			if($ALUMNOVERIFICADO)
+			{
+				$idcarreras="";
+				foreach ($ALUMNOVERIFICADO as $key => $value) {
+					$idcarreras=$value->id_carrera;
+					$NOMBREALUM=$value->nombre;
+				}
+				/* OBTENER DEPARTAMENTO ALUMNO*/
+				$IDDEPARTAMENTO=$this->obtenerDepartamentoPorCarrera($idcarreras);
+				$PERIODOACTUAL=$this-> generarPeriodo();
+				$contra_aplicacion=$this->input->post('contra_aplicacion');
+				/* VERIFICAR SI EXISTE APLICACION EL PERIODO Y DEPARTAMENTO*/
+				$APLICACIONVERIFICADA = $this->SeguimientoModelo->verificarAplicacion($contra_aplicacion,$PERIODOACTUAL,$IDDEPARTAMENTO);
+				if($APLICACIONVERIFICADA){
+					$idaplicaciones="";
+					$idplantilla="";
+					foreach ($APLICACIONVERIFICADA as $key => $value) {
+						$idaplicaciones=$value->idaplicaciones;
+						$idplantilla=$value->plantilla_encuestas_idplantilla_encuestas;
+					}
+					$ENCUESTAS= $this->SeguimientoModelo->obtenerEncuestas($idaplicaciones,$NUMERO_CONTROL);
+					if($ENCUESTAS){
+						$PROGRESOENCUESTAS=0;
+						//	echo "$IDDEPARTAMENTO $PERIODOACTUAL $idaplicaciones  $idplantilla ";
+						//echo "EXISTE <br>";
+						$ID_ENCUESTAS="";
+						$TAMANO=count($ENCUESTAS); // OBTENER EL TAMAÑO
+						$POSENCUESTAS=0; //
+						/* CONCATENAR ID ENCUESTAS*/
+						foreach ($ENCUESTAS as $key => $value) {
+							//$this->consolaLOG("".$value->idencuesta_seguimiento."");
+							/* VERIFICAR SI YA FUE CONTESTADA */
+							if(!$this->SeguimientoModelo->verificarEncuestaContestada($value->idencuesta_seguimiento,$NUMERO_CONTROL)){
+								if($POSENCUESTAS<$TAMANO-1)
+								{
+									$ID_ENCUESTAS.=$value->idencuesta_seguimiento.",";
+								}else {
+									$ID_ENCUESTAS.=$value->idencuesta_seguimiento;
+								}
+								$PROGRESOENCUESTAS++;
+								$POSENCUESTAS++;
 							}else {
-								$ID_ENCUESTAS.=$value->idencuesta_seguimiento;
 							}
-							$PROGRESOENCUESTAS++;
-							$POSENCUESTAS++;
-						}else {
 						}
-					}
-					$POSENCUESTAS=0;
-					//$this->consolaLOG("ID ENCUESTAS: ".$ID_ENCUESTAS);
-					$DATOS_ALUMNOS = array(
-						'is_logued_in' => true,
-						'numero_control' => $NUMERO_CONTROL,
-						'nombre_alumno' => $NOMBREALUM,
-						'alumno'=>true,
-						'idencuestas'=>$ID_ENCUESTAS,
-						'progresolimite'=>$PROGRESOENCUESTAS,
-						'progresoactual'=>0,
-						'idplantilla'=>$idplantilla
-					);
-					$this->session->set_userdata($DATOS_ALUMNOS);
-					if($idplantilla==1) //PLANTILLA NORMAL
-					{
-						redirect(base_url().'index.php/Seguimiento/contestar/');
-					}else { // PLANTILLA EDITADAS
+						$POSENCUESTAS=0;
+						//$this->consolaLOG("ID ENCUESTAS: ".$ID_ENCUESTAS);
+						$DATOS_ALUMNOS = array(
+							'is_logued_in' => true,
+							'numero_control' => $NUMERO_CONTROL,
+							'nombre_alumno' => $NOMBREALUM,
+							'alumno'=>true,
+							'idencuestas'=>$ID_ENCUESTAS,
+							'progresolimite'=>$PROGRESOENCUESTAS,
+							'progresoactual'=>0,
+							'idplantilla'=>$idplantilla
+						);
+						$this->session->set_userdata($DATOS_ALUMNOS);
+						if($idplantilla==1) //PLANTILLA NORMAL
+						{
+							redirect(base_url().'index.php/Seguimiento/contestar/');
+						}else { // PLANTILLA EDITADAS
 
+						}
+					}else{
+						$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuesta hasta el momento");
+						$this->load->view('encuesta/inicio',$datos);
 					}
-				}else{
-					$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuesta hasta el momento");
+					/* OBTENER LAS APLICACIONES CORE*/
+				}else {
+					$datos["ErrorInicio"]=$this->mensajeError(" Error con la contraseña de la aplicacion y/o la aplicacion no existe.");
 					$this->load->view('encuesta/inicio',$datos);
 				}
-				/* OBTENER LAS APLICACIONES CORE*/
 			}else {
-				$datos["ErrorInicio"]=$this->mensajeError(" Error con la contraseña de la aplicacion y/o la aplicacion no existe.");
+				$datos["ErrorInicio"]=$this->mensajeError("Error al ingresar el numero de control.");
 				$this->load->view('encuesta/inicio',$datos);
 			}
+
 		}else {
-			$datos["ErrorInicio"]=$this->mensajeError("Error al ingresar el numero de control.");
+			$datos["mensajesistema"]=$this->mensajeErrorSistema();
 			$this->load->view('encuesta/inicio',$datos);
 		}
-
-	}else {
-		$datos["mensajesistema"]=$this->mensajeErrorSistema();
-		$this->load->view('encuesta/inicio',$datos);
 	}
-}
-public function obtenerDepartamentoPorCarrera($idCarrera)
-{
-	$DepartamentoEnviar="";
-	switch ($idCarrera) {
-		case '2': //TIC´S
-		$DepartamentoEnviar=3; //DEPARTAMENTO DE SISTEMAS Y COMPUTACION
-		break;
-		case '7': //SISTEMAS
-		$DepartamentoEnviar=3;  //DEPARTAMENTO DE SISTEMAS Y COMPUTACION
-		break;
-		case '3':// ARQUITECTURA
-		$DepartamentoEnviar=2; //CIENCIAS DE LA TIERRA
-		break;
-		default:
-		# code...
-		break;
-	}
-	return $DepartamentoEnviar;
-}
-public function generarPeriodo()
-{ /* FUNCION PARA OBTENER EL PERIODO ACTUAL  */
-	$anio=date("Y");
-	$mes=date("m");
-	$periodo="";
-	if ($mes>=1 && $mes<=6) {
-		$periodo=$anio."1";
-	}else {
-		if ($mes>=8 && $mes<=12) {
-			$periodo=$anio."3";
+	public function obtenerDepartamentoPorCarrera($idCarrera)
+	{
+		$DepartamentoEnviar="";
+		switch ($idCarrera) {
+			case '2': //TIC´S
+			$DepartamentoEnviar=3; //DEPARTAMENTO DE SISTEMAS Y COMPUTACION
+			break;
+			case '7': //SISTEMAS
+			$DepartamentoEnviar=3;  //DEPARTAMENTO DE SISTEMAS Y COMPUTACION
+			break;
+			case '3':// ARQUITECTURA
+			$DepartamentoEnviar=2; //CIENCIAS DE LA TIERRA
+			break;
+			default:
+			# code...
+			break;
 		}
-		else {
-			$periodo=$anio."2";
-		}
+		return $DepartamentoEnviar;
 	}
-	return $periodo;
-}
-/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
-public function mensajeError($Mensaje)
-{
-	$enviar="
-	<br>
-	<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
-	<center>
-	<i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
-	<br><br><b>".$Mensaje."</b>
-	</center>
-	</div>
-	";
-	return $enviar;
-}
-/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
-public function mensajeErrorSistema()
-{
-	$enviar="
-	<br>
-	<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
-	<center>
-	<br>
-	<i style='font-size:600%;' class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
-	<br><br><b  style='font-size:150%;' > El sistema se encuentra actualmente en mantenimiento<i class='fa fa-wrench' aria-hidden='true'></i>.</b>
-	</center>
-	<br>
-	<br>
-	<br>
-	</div>
-	";
-	return $enviar;
-}
-public function consolaLOG($Mensaje)
-{
-	echo "$Mensaje <br>";
-}
+	public function generarPeriodo()
+	{ /* FUNCION PARA OBTENER EL PERIODO ACTUAL  */
+		$anio=date("Y");
+		$mes=date("m");
+		$periodo="";
+		if ($mes>=1 && $mes<=6) {
+			$periodo=$anio."1";
+		}else {
+			if ($mes>=8 && $mes<=12) {
+				$periodo=$anio."3";
+			}
+			else {
+				$periodo=$anio."2";
+			}
+		}
+		return $periodo;
+	}
+	/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
+	public function mensajeError($Mensaje)
+	{
+		$enviar="
+		<br>
+		<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
+		<center>
+		<i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
+		<br><br><b>".$Mensaje."</b>
+		</center>
+		</div>
+		";
+		return $enviar;
+	}
+	/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
+	public function mensajeErrorSistema()
+	{
+		$enviar="
+		<br>
+		<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
+		<center>
+		<br>
+		<i style='font-size:600%;' class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
+		<br><br><b  style='font-size:150%;' > El sistema se encuentra actualmente en mantenimiento<i class='fa fa-wrench' aria-hidden='true'></i>.</b>
+		</center>
+		<br>
+		<br>
+		<br>
+		</div>
+		";
+		return $enviar;
+	}
+	public function consolaLOG($Mensaje)
+	{
+		echo "$Mensaje <br>";
+	}
 }

@@ -27,7 +27,6 @@ class Panel_seguimiento extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'));
 			$datos["AplicacionesPerido"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'),$this->session->userdata('periodo'));
-			//$datos["Cantidad_Encuestas"]="";
 			if($datos["Aplicaciones"]!=false)
 			{
 				$valorescontados;
