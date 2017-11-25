@@ -215,17 +215,21 @@ class Panel_administracion extends CI_Controller {
 	}
 	public function db_backup()
 	{
-		$this->load->dbutil();
-		$prefs = array(
-			'format'      => 'zip',
-			'filename'    => 'ssadb-'.date("Y-m-d-H-i-s").'.sql'
-		);
-		$backup =& $this->dbutil->backup($prefs);
-		$db_name = 'resplado-ssa-'. date("Y-m-d-H-i-s") .'.zip';
-		$save = 'file/db/backups/'.$db_name;
-		$this->load->helper('file');
-		write_file($save, $backup);
-		$this->load->helper('download');
-		force_download($db_name, $backup);
+		if ($this->session->userdata('tipo')=='1') {
+			$this->load->dbutil();
+			$preferencias= array(
+				'format'      => 'zip',
+				'filename'    => 'ssadb-'.date("Y-m-d-H-i-s").'.sql'
+			);
+			$respladodb=& $this->dbutil->backup($preferencias);
+			$db_nombre = 'resplado-ssa-'. date("Y-m-d-H-i-s") .'.zip';
+			$guardar = 'file/db/backups/'.$db_nombre;
+			$this->load->helper('file');
+			write_file($guardar, $respladodb);
+			$this->load->helper('download');
+			force_download($db_nombre, $respladodb);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 }
