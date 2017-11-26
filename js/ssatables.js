@@ -21,6 +21,13 @@ $(document).ready(function(){
     },
     "order": [[ 0, "asc" ]]
   });
+  $('#tablaAplicacionespordepa').DataTable({
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/aplicaciones.json"
+    },
+    "order": [[ 0, "asc" ]]
+  });
 });
 /* TABLA SELECCION MATERIAS*/
 $(document).ready(function(){

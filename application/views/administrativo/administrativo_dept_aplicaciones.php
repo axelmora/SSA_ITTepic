@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php
                 if ($APLICACIONES) {
                   ?>
-                  <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                  <table id="tablaAplicacionespordepa" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                     <thead>
                       <tr>
                         <th><i class="fa fa-book " aria-hidden="true"></i> NOMBRE DEPARTAMENTO</th>
@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td><b><?php echo "Periodo ".genePerido($valor->periodo); ?></b></td>
                           <td>
                             <center>
-                              <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteGeneradorAplicacion/<?php echo $valor->idaplicaciones; ?>" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> GENERAR REPORTE</a>
+                              <a class="btn btn-primary" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteGeneradorAplicacion/<?php echo $valor->idaplicaciones; ?>" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> GENERAR REPORTE</a>
                             </center>
                           </td>
                         </tr>
