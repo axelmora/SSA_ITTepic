@@ -14,7 +14,13 @@ $(document).ready(function(){
     },
     "order": [[ 3, "desc" ]]
   });
-
+  $('#tablaAdministrativos').DataTable({
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/departamentos.json"
+    },
+    "order": [[ 0, "asc" ]]
+  });
 });
 /* TABLA SELECCION MATERIAS*/
 $(document).ready(function(){
