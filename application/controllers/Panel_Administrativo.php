@@ -32,6 +32,11 @@ class Panel_Administrativo extends CI_Controller {
 	}
 	public function reportes()
 	{
-		# code...
+		if ($this->session->userdata('tipo')=='3'|| $this->session->userdata('tipo')=='1' ) {
+			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
+			$this->load->view('administrativo/administrativo_departamentos',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 }
