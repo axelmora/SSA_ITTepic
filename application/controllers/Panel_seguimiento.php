@@ -550,7 +550,7 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function reporteGeneradorAplicacion($idAplicacion)
 	{
-		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
 			$datos["APLICACIONESCONSULTADAS"]=$this->SeguimientoModelo->reportesAplicacionesGeneral($idAplicacion);
 			$this->load->model('GeneradorEncuestas');
 			$EncuestasIMPRIMIR;

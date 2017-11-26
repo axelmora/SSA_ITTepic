@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
   <meta charset="utf-8">
-    <title>SSA- APLICACIONES</title>
+  <title>SSA- APLICACIONES</title>
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="description" content="">
@@ -53,13 +53,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <tbody>
                       <?php
                       foreach ($APLICACIONES as $key => $valor) {
-                          ?>
-                          <tr>
-                            <td><?php echo "".$valor->periodo; ?></td>
-                            <td>
-                            </td>
-                          </tr>
-                          <?php
+                        ?>
+                        <tr>
+                          <td><b><?php echo "Periodo ".genePerido($valor->periodo); ?></b></td>
+                          <td>
+                            <center>
+                              <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteGeneradorAplicacion/<?php echo $valor->idaplicaciones; ?>" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> GENERAR REPORTE</a>
+                            </center>
+                          </td>
+                        </tr>
+                        <?php
                       }
                       ?>
                     </tbody>
