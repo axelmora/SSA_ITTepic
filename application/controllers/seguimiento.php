@@ -7,6 +7,8 @@ class Seguimiento extends CI_Controller {
 		$this->load->model('Sistema');
 		/*MODELO ALUMNOS*/
 		$this->load->model('Alumnos');
+		$this->load->model('Departamentos');
+
 		/*MODELO SEGUIMIENTO*/
 		$this->load->model('SeguimientoModelo');
 		$this->load->helper(array('url', 'form'));
