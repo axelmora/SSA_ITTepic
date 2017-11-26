@@ -166,24 +166,20 @@ class C_usuarios extends CI_Controller {
 	}
 	public function generarPeriodo()
 	{
-		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
-			$anio=date("Y");
-			$mes=date("m");
-			$periodo="";
-			if ($mes>=1 && $mes<=6) {
-				$periodo=$anio."1";
-			}else {
-				if ($mes>=8 && $mes<=12) {
-					$periodo=$anio."3";
-				}
-				else {
-					$periodo=$anio."2";
-				}
-			}
-			return $periodo;
+		$anio=date("Y");
+		$mes=date("m");
+		$periodo="";
+		if ($mes>=1 && $mes<=6) {
+			$periodo=$anio."1";
 		}else {
-			redirect(base_url().'index.php');
+			if ($mes>=8 && $mes<=12) {
+				$periodo=$anio."3";
+			}
+			else {
+				$periodo=$anio."2";
+			}
 		}
+		return $periodo;
 	}
 	public function cambiarEstado()
 	{
