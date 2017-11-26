@@ -58,7 +58,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="card">
+        <div class="card menus">
           <div class="card-body">
             <div id="panelformulario">
               <form id="mesayudaform" method="post"  > <!--action="<?php echo base_url(); ?>index.php/Mesa_ayuda/insertarSolicitud" -->
@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group">
                   <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> DESCRIPCION DEL PROBLEMA:</label>
-                  <textarea class="form-control" maxlength="1000" name="descipcion" id="descipcion" maxlength="100" required ></textarea>
+                  <textarea placeholder="Descripción del problema suscitado. " class="form-control" maxlength="1000" name="descipcion" id="descipcion" maxlength="100" required ></textarea>
                 </div>
                 <input type="text" name="url" hidden value="<?php echo base_url('index.php/'.uri_string()); ?>">
                 <center><button type="submit" class="btn btn-naranja "><i class="fa fa-share-square" aria-hidden="true"></i>  ENVIAR SOLICITUD</button></center>
@@ -85,8 +85,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" href="#" role="button">VER RESPUESTAS</a>
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-window-close" aria-hidden="true"></i> Cerrar</button>
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/soporte_tecnico" role="button"><i class="fa fa-ticket" aria-hidden="true"></i> VER RESPUESTAS</a>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-window-close" aria-hidden="true"></i>  Cerrar</button>
       </div>
     </div>
   </div>

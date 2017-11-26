@@ -77,4 +77,14 @@ class Departamentos extends CI_Model {
       return false;
     }
   }
+  public function obtenerDepartamentoPorCarrera($idcarreras)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM departamento_carreras where carreras_id_carrera=$idcarreras");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
 }

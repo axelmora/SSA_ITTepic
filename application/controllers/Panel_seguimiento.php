@@ -861,4 +861,12 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
+	public function soporte_tecnico()
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+				$this->load->view('mesa_ayuda_usuario',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
 }

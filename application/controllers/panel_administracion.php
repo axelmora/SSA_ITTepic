@@ -12,14 +12,14 @@ class Panel_administracion extends CI_Controller {
 	}
 	public function index()
 	{
-		if ($this->session->userdata('perfil')=='Administrador') {
+		if ($this->session->userdata('tipo')=='1') {
 			$this->load->view('administracion/vpanel_administracion');
 		}else {
 			redirect(base_url().'index.php');
 		}
 	}
 	public function sistemainfo() {
-		if ($this->session->userdata('perfil')=='Administrador') {
+		if ($this->session->userdata('tipo')=='1') {
 			$sistemadatos['produccion']= $this->Sistema->obtenerproduccion();
 			$this->load->view('administracion/vpanel_administracion_info',$sistemadatos);
 		}else {
@@ -27,10 +27,14 @@ class Panel_administracion extends CI_Controller {
 		}
 	}
 	public function sistemainfoactualizarpro($valor) {
-		$this->Sistema->actualizarprodiccion($valor,"".date('Y-m-d H:i:s'));
+		if ($this->session->userdata('tipo')=='1') {
+			$this->Sistema->actualizarprodiccion($valor,"".date('Y-m-d H:i:s'));
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function lista_usuarios() {
-		if ($this->session->userdata('perfil')=='Administrador') {
+		if ($this->session->userdata('tipo')=='1') {
 			$iduser=$this->session->userdata('idusuarios');
 			$datos['usuarios'] = $this->Usuarios->mostrarusuarios($iduser);
 			$this->load->view('administracion/vpanel_administracion_usuarios',$datos);
@@ -48,52 +52,72 @@ class Panel_administracion extends CI_Controller {
 		}
 	}
 	public function editor() {
-		$this->load->view('editor_plantillas');
+		if ($this->session->userdata('tipo')=='1') {
+			$this->load->view('editor_plantillas');
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function adduser() {
-		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
-		$this->load->view('administracion/vpanel_nusuario',$datos);
-	}
-	public function agrearUsuario( )
-	{
-		$nombre_userv = $this->input->post('nombre_user');
-		$nombre_userv = preg_replace('/\s/', '', $nombre_userv);
-		$existe= $this->Usuarios->verificarNUsuario($nombre_userv);
-		if ($existe == FALSE)
-		{
-			$datos["error_mismo_usario"]="El nombre de usuario  '$nombre_userv' ya existe.";
+		if ($this->session->userdata('tipo')=='1') {
 			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
 			$this->load->view('administracion/vpanel_nusuario',$datos);
 		}else {
-			$nombre_user = $this->input->post('nombre_user');
-			$contrasena = $this->input->post('contrasena');
-			$nombre_userc = $this->input->post('nombre_userc');
-			$departamento_academico= $this->input->post('departamento_academico');
-			$tipo="";
-			if($departamento_academico==1)
+			redirect(base_url().'index.php');
+		}
+	}
+	public function agrearUsuario( )
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$nombre_userv = $this->input->post('nombre_user');
+			$nombre_userv = preg_replace('/\s/', '', $nombre_userv);
+			$existe= $this->Usuarios->verificarNUsuario($nombre_userv);
+			if ($existe == FALSE)
 			{
-				$tipo=1;
+				$datos["error_mismo_usario"]="El nombre de usuario  '$nombre_userv' ya existe.";
+				$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
+				$this->load->view('administracion/vpanel_nusuario',$datos);
 			}else {
-				$tipo=2;
+				$nombre_user = $this->input->post('nombre_user');
+				$contrasena = $this->input->post('contrasena');
+				$nombre_userc = $this->input->post('nombre_userc');
+				$departamento_academico= $this->input->post('departamento_academico');
+				$tipo="";
+				if($departamento_academico==1)
+				{
+					$tipo=1;
+				}else {
+					if($departamento_academico== 10 || $departamento_academico== 11  || $departamento_academico== 12  || $departamento_academico== 13 || $departamento_academico== 9 ){
+						$tipo=3;
+					}else {
+						$tipo=2;
+					}
+				}
+				$nombre_user = preg_replace('/\s/', '', $nombre_user);
+				$datos= array(
+					'usuario' => ''.$nombre_user,
+					'password' => sha1($contrasena),
+					'tipo'=>$tipo,
+					'estado'=>1,
+					'nombre_usuario'=> ''.$nombre_userc,
+					'departamento_academico_iddepartamento_academico'=> ''.$departamento_academico
+				);
+				$this->Usuarios->insertarUsuario($datos);
+				redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
 			}
-			$nombre_user = preg_replace('/\s/', '', $nombre_user);
-			$datos= array(
-				'usuario' => ''.$nombre_user,
-				'password' => sha1($contrasena),
-				'tipo'=>$tipo,
-				'estado'=>1,
-				'nombre_usuario'=> ''.$nombre_userc,
-				'departamento_academico_iddepartamento_academico'=> ''.$departamento_academico
-			);
-			$this->Usuarios->insertarUsuario($datos);
-			redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
+		}else {
+			redirect(base_url().'index.php');
 		}
 	}
 	public function deleteUsuario()
 	{
-		$idusuarios= $this->input->post('idusuarios');
-		$this->Usuarios->borrarUSUARIO($idusuarios);
-		redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
+		if ($this->session->userdata('tipo')=='1') {
+			$idusuarios= $this->input->post('idusuarios');
+			$this->Usuarios->borrarUSUARIO($idusuarios);
+			redirect(base_url().'index.php/Panel_administracion/lista_usuarios');
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function manual_tecnico(){
 		if ($this->session->userdata('tipo')=='1') {
@@ -112,18 +136,30 @@ class Panel_administracion extends CI_Controller {
 	/* SECCION DE DEPARTAMENTOS ACADEMICOS */
 	public function departamentos()
 	{
-		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
-		$this->load->view('administracion/vpanel_administracion_departamenos',$datos);
+		if ($this->session->userdata('tipo')=='1') {
+			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentos();
+			$this->load->view('administracion/vpanel_administracion_departamenos',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function nuevo_departamento()
 	{
-		$datos['CARRERAS'] = $this->Departamentos->cargarCarreras();
-		$this->load->view('administracion/vpanel_administracion_departamenos_nuevo',$datos);
+		if ($this->session->userdata('tipo')=='1') {
+			$datos['CARRERAS'] = $this->Departamentos->cargarCarreras();
+			$this->load->view('administracion/vpanel_administracion_departamenos_nuevo',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function editar_departamento($iddepartamento_academico)
 	{
-		$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentosID($iddepartamento_academico);
-		$this->load->view('administracion/vpanel_administracion_departamenos',$datos);
+		if ($this->session->userdata('tipo')=='1') {
+			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentosID($iddepartamento_academico);
+			$this->load->view('administracion/vpanel_administracion_departamenos',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function add_departamento()
 	{

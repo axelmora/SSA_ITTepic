@@ -167,7 +167,7 @@ class Seguimiento extends CI_Controller {
 	}
 	public function obtenerDepartamentoPorCarrera($idCarrera)
 	{
-		$DepartamentoEnviar="";
+		/*$DepartamentoEnviar="";
 		switch ($idCarrera) {
 			case '2': //TIC´S
 			$DepartamentoEnviar=3; //DEPARTAMENTO DE SISTEMAS Y COMPUTACION
@@ -181,7 +181,9 @@ class Seguimiento extends CI_Controller {
 			default:
 			# code...
 			break;
-		}
+		}*/
+		$departamento=$this->Departamentos->obtenerDepartamentoPorCarrera($idCarrera);
+		$DepartamentoEnviar=$departamento[0]->departamento_academico_iddepartamento_academico;
 		return $DepartamentoEnviar;
 	}
 	public function generarPeriodo()
