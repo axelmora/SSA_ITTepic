@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										$valorestado="";
 									}
 									?>
-									<div class="card  mb-3">
+									<div class="card  menus">
 										<div class="card-body">
 											<div class="row">
 												<input id="idmensaje" name="idmensaje" value="<?php echo $valores->idmesa_ayuda; ?>" required type="hidden"/>
@@ -83,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<?php
 							}
 							?>
-							<div class="card">
+							<div class="card menus">
 								<div class="card-body">
 									<h5><i class="fa fa-comments-o" aria-hidden="true"></i>Respuestas</h5>
 									<?php
@@ -94,7 +94,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<div class="card-body">
 													<div class="row">
 														<div class="col-lg-8">
-															<p><b>Administrador:</b> <?php echo $valores2->nombre_usuario; ?> </p>
+															<?php
+															if($valores2->tipo==1){
+																?>
+																	<p><b><i class="fa fa-user-secret" aria-hidden="true"></i> Administrador:</b> <?php echo $valores2->nombre_usuario; ?> </p>
+																<?php
+															}else {
+																?>
+																	<p><b><i class="fa fa-user-circle" aria-hidden="true"></i> Usuario:</b> <?php echo $valores2->nombre_usuario; ?> </p>
+																<?php
+															}
+															 ?>
 														</div>
 														<div class="col-lg-3">
 															<center>
@@ -115,7 +125,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															?>
 														</div>
 													</div>
-
 													<p><b>Respuesta:</b>  <?php echo $valores2->respuesta; ?> </p>
 												</div>
 											</div>
@@ -138,7 +147,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<textarea required class="form-control" maxlength="500" name="respuestamesaje" id="respuestamesaje"></textarea>
 										</div>
 										<center>
-											<button type="submit" class="btn btn-success">RESPONDER</button>
+											<button type="submit" class="btn btn-success"><i class="fa fa-share-square-o" aria-hidden="true"></i>
+ RESPONDER</button>
 										</center>
 									</form>
 								</div>

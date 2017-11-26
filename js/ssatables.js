@@ -28,6 +28,13 @@ $(document).ready(function(){
     },
     "order": [[ 0, "asc" ]]
   });
+  $('#tablasoporte_tenico_usuario').DataTable({
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/soporte_tecnico.json"
+    },
+    "order": [[ 1, "asc" ]]
+  });
 });
 /* TABLA SELECCION MATERIAS*/
 $(document).ready(function(){

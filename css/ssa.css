@@ -137,7 +137,7 @@ input:checked + .slider:before {
   font-weight: bold;
 }
 .pulse-header .navbar-nav-left {
-  margin-left: 20px;
+  /*margin-left: 20px;*/
 }
 .pulse-header .nav > .nav-item {
   margin-right: 20px;
@@ -145,7 +145,6 @@ input:checked + .slider:before {
 .pulse-header .nav > .nav-item > a {
   position: relative;
 }
-
 .sombranav {
   -webkit-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.27);
   -moz-box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.27);
@@ -189,7 +188,6 @@ footer .footer-copyright {
   height: 50px;
   line-height: 50px;
   color: 	#000000;
-  /*  background-color: rgba(51, 51, 51, 0.08);*/
   background-color: #f8f9fa!important;
 }
 .amber-text {color: 	#000000;}
@@ -204,7 +202,6 @@ footer .footer-copyright {
   background-color: #F36B39;
   border-color: #DB6134;
 }
-
 .btn-naranja:hover,
 .btn-naranja:focus,
 .btn-naranja:active,
@@ -214,13 +211,11 @@ footer .footer-copyright {
   background-color: #D95A2B;
   border-color: #DB6134;
 }
-
 .btn-naranja:active,
 .btn-naranja.active,
 .open .dropdown-toggle.btn-naranja {
   background-image: none;
 }
-
 .btn-naranja.disabled,
 .btn-naranja[disabled],
 fieldset[disabled] .btn-naranja,
@@ -239,19 +234,16 @@ fieldset[disabled] .btn-naranja.active {
   background-color: #F36B39;
   border-color: #DB6134;
 }
-
 .btn-naranja .badge {
   color: #F36B39;
   background-color: #FFFFFF;
 }
 /*FIN COLRO BOTON NARANJA*/
-
 .menus{
   -webkit-box-shadow: 0px 0px 18px 1px rgba(0,0,0,0.1);
   -moz-box-shadow: 0px 0px 18px 1px rgba(0,0,0,0.1);
   box-shadow: 0px 0px 18px 1px rgba(0,0,0,0.1);
 }
-
 .coloriconosmenu{
   color: #f58220;
   text-shadow: 2px 2px 0px #800000;
@@ -303,7 +295,6 @@ fieldset[disabled] .btn-naranja.active {
   text-shadow: 2px 2px 0px #800000;
   /*  text-shadow: 4px 4px 8px rgba(150, 150, 150, 0.64);*/
 }
-
 .pdfobject-container { height: 650px;}
 .pdfobject { border: 1px solid #666; }
 @media only screen and (max-height: 700px) {
@@ -322,7 +313,6 @@ fieldset[disabled] .btn-naranja.active {
   font-size: 80%;
 }
 .tablaCargarAlumnos{
-
 }
 .cardMensajes{
   -webkit-box-shadow: 6px 6px 5px -2px rgba(0,0,0,0.32);
@@ -346,7 +336,6 @@ fieldset[disabled] .btn-naranja.active {
   background: rgb(0, 0, 0);
   /*background: rgba(0, 0, 0, 0.7);*/
   background:   #F36B39;
-
   width: 50px;
   height: 50px;
   display: block;

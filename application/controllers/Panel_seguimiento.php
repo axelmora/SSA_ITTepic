@@ -9,7 +9,7 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->model('Docentes');
 		$this->load->model('Alumnos');
 		$this->load->model('Departamentos');
-
+		$this->load->model('Mesa_AyudaModel');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 		$this->load->database('default');
@@ -864,7 +864,66 @@ class Panel_seguimiento extends CI_Controller {
 	public function soporte_tecnico()
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-				$this->load->view('mesa_ayuda_usuario',$datos);
+			$datos["MENSAJESENVIADOS"]=$this->Mesa_AyudaModel->cargarSolicitudesDeSoporte($this->session->userdata('idusuarios'));
+			$this->load->view('mesa_ayuda_usuario',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function soporte_respuesta($idsoporte)
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
+			$datos['asuntos'] = $this->Mesa_AyudaModel->mostrarAsuntosUnico($idsoporte);
+			$datos['respuestas'] = $this->Mesa_AyudaModel->mostrarMensjesAunsto($idsoporte);
+			$this->load->view('soporte_individual',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function borrarMensajeprincipal($mensaje)
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
+			$this->Mesa_AyudaModel->borarMensajeSoporte($mensaje);
+			redirect(base_url().'index.php/Panel_seguimiento/soporte_tecnico');
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function cambiarEstadoMensaje()
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
+			$idmensaje = $this->input->post('idmensaje');
+			$nuevoestado = $this->input->post('estado');
+			$this->Mesa_AyudaModel->cambioEstado($idmensaje,$nuevoestado);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function respuesta($idmensajeprincipal)
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
+			$respus = $this->input->post('respuestamesaje');
+			$iduser=$this->session->userdata('idusuarios');
+			$this->Mesa_AyudaModel->insertarRespuesta($idmensajeprincipal,$respus,$iduser);
+			redirect(base_url().'index.php/Panel_seguimiento/soporte_respuesta/'.$idmensajeprincipal);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function borrarRespuesta($mensaje)
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
+			$idmensajeprincipal = $this->input->post('idmensajeprincipal_b');
+			$this->Mesa_AyudaModel->borarMensajeRespuesta($mensaje);
+			redirect(base_url().'index.php/Panel_seguimiento/soporte_respuesta/'.$idmensajeprincipal);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function gestion_del_curso()
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
+			$this->load->view('procedimiento_gestion_del_curso');
 		}else {
 			redirect(base_url().'index.php');
 		}

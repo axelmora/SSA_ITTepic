@@ -87,5 +87,14 @@ class Mesa_AyudaModel extends CI_Model {
     $DB2->update('mesa_ayuda');
     return true;
   }
-
+  public function cargarSolicitudesDeSoporte($idusuario)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $query=$DB2->query("SELECT *  From mesa_ayuda where usuarios_idusuarios=$idusuario order by fecha_mensaje desc;");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
 }

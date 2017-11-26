@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 		<!--SEGUNDA ROW -->
 		<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
-			<div class="col-lg-6">
+			<div class="col-lg-4">
 				<a href="<?php echo base_url(); ?>index.php/Panel_Administrativo/manual_usuario" class="linkmenu">
 					<div class="card menus animenu caro">
 						<div class="card-body">
@@ -71,7 +71,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</a>
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-4">
+				<a href="<?php echo base_url(); ?>index.php/Panel_Administrativo/gestion_del_curso" class="linkmenu">
+					<div class="card menus animenu caro">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div>
+										<center>
+											<i class="fa fa-file-text coloriconosmenu4" aria-hidden="true"></i>
+											<p class="textotitulo2">PROCEDIMIENTO PARA LA GESTIÓN DEL CURSO</p>
+										</center>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-4">
 				<a href="<?php echo base_url(); ?>index.php/C_usuarios/logout" class="linkmenu">
 					<div class="card menus animenu caro">
 						<div class="card-body">

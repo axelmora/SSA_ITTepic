@@ -48,6 +48,13 @@ class Panel_Administrativo extends CI_Controller {
 		}else {
 			redirect(base_url().'index.php');
 		}
-
+	}
+	public function gestion_del_curso()
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
+				$this->load->view('procedimiento_gestion_del_curso');
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 }

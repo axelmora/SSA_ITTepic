@@ -25,8 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-lg-12">
 				<div class="card sombrapanel">
 					<div class="card-body">
-						<center><h4><i class="fa fa-graduation-cap" aria-hidden="true"></i> Manual de usuario</h4></center>
-						<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_Administrativo/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+						<center><h4><a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver al menu principal" href="<?php echo base_url(); ?>index.php/Panel_Administrativo/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a> <i class="fa fa-graduation-cap" aria-hidden="true"></i> Manual de usuario</h4></center>
 					</div>
 				</div>
 			</div>
@@ -34,10 +33,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-12">
-			<div id="manualdeusuariover2"></div>
+			<div class="menus" id="manualdeusuariover2"></div>
 			<br>
 			<center>
-				<a href="<?php echo base_url();?>file/manual/Manual_Usuario_SSA.pdf" class="btn btn-primary" download> <i class="fa fa-download" aria-hidden="true"></i>DESCARGAR MANUAL</a>
+				<a href="<?php echo base_url();?>file/manual/Manual_Usuario_SSA.pdf" class="btn btn-primary animenu" download> <i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a>
 			</center>
 		</div>
 	</div>
