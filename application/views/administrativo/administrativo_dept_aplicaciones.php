@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <br>
                 <br>
                 <?php
-                if ($DEPARTAMENTOS) {
+                if ($APLICACIONES) {
                   ?>
                   <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                     <thead>
@@ -52,23 +52,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </thead>
                     <tbody>
                       <?php
-                      $pos=0;
-                      foreach ($DEPARTAMENTOS as $key => $valor) {
-                        if ($valor->iddepartamento_academico==1 || $valor->iddepartamento_academico==9 || $valor->iddepartamento_academico==10 || $valor->iddepartamento_academico==11 || $valor->iddepartamento_academico==12 || $valor->iddepartamento_academico==13 )
-                        {
-
-                        }
-                        else {
+                      foreach ($APLICACIONES as $key => $valor) {
                           ?>
                           <tr>
-                            <td><?php echo "".$valor->nombre_departamento; ?></td>
+                            <td><?php echo "".$valor->periodo; ?></td>
                             <td>
-
                             </td>
                           </tr>
                           <?php
-                          $pos++;
-                        }
                       }
                       ?>
                     </tbody>
@@ -81,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="card-body">
                       <center>
                         <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-                        Actualmente no existen grupos para esta aplicacion de seguimiento en el aula generada.
+                        Actualmente no existen aplicaciones para este departamento.
                       </center>
                     </div>
                   </div>

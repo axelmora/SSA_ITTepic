@@ -462,12 +462,12 @@ public function verificarAlumnoGrupoDB($numerocontrol,$idgrupoverificar)
 public function obtenerApliacionesDepartamento($iddepartamento_academico)
 {
   $DBcon = $this->load->database('default', TRUE);
-  $query=$DBcon->query("SELECT * FROM aplicaciones where departamento_academico_iddepartamento_academico=$iddepartamento_academico");
+  $query=$DBcon->query("SELECT * FROM aplicaciones where departamento_academico_iddepartamento_academico=$iddepartamento_academico;");
   if ($query->num_rows() > 0)
   {
-    return false;
+    return $query->result();
   } else {
-    return true;
+    return false;
   }
 }
 }
