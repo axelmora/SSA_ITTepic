@@ -12,7 +12,7 @@ class C_usuarios extends CI_Controller {
 	}
 	public function index()
 	{
-		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' ) {
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3'  ) {
 			$this->load->view('vperfil');
 		}else {
 			redirect(base_url().'index.php');
@@ -58,8 +58,17 @@ class C_usuarios extends CI_Controller {
 				else {
 					if($verificarusuario[0]->estado==1)
 					{
-						$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
-						redirect(base_url().'index.php/Panel_seguimiento/');
+						if($this->session->userdata('tipo')=="2")
+						{
+							$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
+							redirect(base_url().'index.php/Panel_seguimiento/');
+						}else {
+							if($this->session->userdata('tipo')=="3")
+							{
+								$this->Usuarios->actualizarultima_sesion($verificarusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
+								redirect(base_url().'index.php/Panel_Administrativo/');
+							}
+						}
 					}else {
 						$datos["mensajesistema"]="
 						<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
@@ -110,65 +119,85 @@ class C_usuarios extends CI_Controller {
 	}
 	/* funcion para destruri sesiones*/
 	public function logout() {
-		$this->session->sess_destroy();
-		redirect(base_url().'index.php/');
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3'  ) {
+			$this->session->sess_destroy();
+			redirect(base_url().'index.php/');
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function actualizarInformacion()
 	{
-		$usuario = $this->input->post('nombre_usuario');
-		$this->Usuarios->actualizar_nombre($usuario,$this->session->userdata('idusuarios'));
-		$this->session->set_userdata('username', $usuario);
-		redirect(base_url().'index.php/C_usuarios/');
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3'  ) {
+			$usuario = $this->input->post('nombre_usuario');
+			$this->Usuarios->actualizar_nombre($usuario,$this->session->userdata('idusuarios'));
+			$this->session->set_userdata('username', $usuario);
+			redirect(base_url().'index.php/C_usuarios/');
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function actualizarContrasena()
 	{
-		$contraactual = $this->input->post('contraactual');
-		$contranueva = $this->input->post('contra_nueva1');
-		$contrabase=$this->Usuarios->verificarContrasena($this->session->userdata('idusuarios'));
-		if($contraactual!=$contranueva)
-		{
-			//echo "".$contrabase[0]->password."---".sha1($contraactual);
-			if($contrabase[0]->password==sha1($contraactual))
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3'  ) {
+			$contraactual = $this->input->post('contraactual');
+			$contranueva = $this->input->post('contra_nueva1');
+			$contrabase=$this->Usuarios->verificarContrasena($this->session->userdata('idusuarios'));
+			if($contraactual!=$contranueva)
 			{
-				$this->Usuarios->actualizar_contrasena($this->session->userdata('idusuarios'),sha1($contranueva));
-				//redirect(base_url().'index.php/C_usuarios/');
-				$datos["MensajeExito"]=$this->mensajeExisto("La contraseña se actualizo  correctamente.");
-				$this->load->view('vperfil',$datos);
+				//echo "".$contrabase[0]->password."---".sha1($contraactual);
+				if($contrabase[0]->password==sha1($contraactual))
+				{
+					$this->Usuarios->actualizar_contrasena($this->session->userdata('idusuarios'),sha1($contranueva));
+					//redirect(base_url().'index.php/C_usuarios/');
+					$datos["MensajeExito"]=$this->mensajeExisto("La contraseña se actualizo  correctamente.");
+					$this->load->view('vperfil',$datos);
+				}else {
+					$datos["errorSubmit"]=$this->mensajeError("La contraseña actual es incorrecta.");
+					$this->load->view('vperfil',$datos);
+				}
 			}else {
-				$datos["errorSubmit"]=$this->mensajeError("La contraseña actual es incorrecta.");
+				$datos["errorSubmit"]=$this->mensajeError("La contraseña nueva es la misma contraseña que la actual.");
 				$this->load->view('vperfil',$datos);
 			}
 		}else {
-			$datos["errorSubmit"]=$this->mensajeError("La contraseña nueva es la misma contraseña que la actual.");
-			$this->load->view('vperfil',$datos);
+			redirect(base_url().'index.php');
 		}
 	}
 	public function generarPeriodo()
 	{
-		$anio=date("Y");
-		$mes=date("m");
-		$periodo="";
-		if ($mes>=1 && $mes<=6) {
-			$periodo=$anio."1";
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
+			$anio=date("Y");
+			$mes=date("m");
+			$periodo="";
+			if ($mes>=1 && $mes<=6) {
+				$periodo=$anio."1";
+			}else {
+				if ($mes>=8 && $mes<=12) {
+					$periodo=$anio."3";
+				}
+				else {
+					$periodo=$anio."2";
+				}
+			}
+			return $periodo;
 		}else {
-			if ($mes>=8 && $mes<=12) {
-				$periodo=$anio."3";
-			}
-			else {
-				$periodo=$anio."2";
-			}
+			redirect(base_url().'index.php');
 		}
-		return $periodo;
 	}
 	public function cambiarEstado()
 	{
-		$idusuarios = $this->input->post('idusuarios');
-		$estado = $this->input->post('estado');
-		$this->Usuarios->actualizarEstado($idusuarios,$estado);
+		if ($this->session->userdata('tipo')=='1') {
+			$idusuarios = $this->input->post('idusuarios');
+			$estado = $this->input->post('estado');
+			$this->Usuarios->actualizarEstado($idusuarios,$estado);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function datosUsuario($idusuarios)
 	{
-		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' ) {
+		if ($this->session->userdata('tipo')=='1') {
 			$datosUser=$this->Usuarios->selecionarUsuario($idusuarios);
 			echo json_encode($datosUser);
 		}else {
