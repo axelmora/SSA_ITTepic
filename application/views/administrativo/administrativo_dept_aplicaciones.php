@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="col-lg-12">
                 <div class="row">
                   <div class="col-lg-10">
-                    <h3><i class="icon-clipboard" aria-hidden="true"></i> Departamentos Académicos del Instituto Tecnologico de Tepic
+                    <h3><i class="icon-clipboard" aria-hidden="true"></i> Aplicaciones del departamento de <?php echo "".$DEPARTAMENTOS[0]->nombre_departamento; ?>
                     </h3>
                     <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_Administrativo/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
                   </div>

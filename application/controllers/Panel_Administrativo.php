@@ -39,4 +39,15 @@ class Panel_Administrativo extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
+	public function aplicaciones($iddepartamento_academico)
+	{
+		if ($this->session->userdata('tipo')=='3'|| $this->session->userdata('tipo')=='1' ) {
+			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentosID($iddepartamento_academico);
+			$datos['APLICACIONES'] = $this->SeguimientoModelo->obtenerApliacionesDepartamento($iddepartamento_academico);
+			$this->load->view('administrativo/administrativo_dept_aplicaciones',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+
+	}
 }
