@@ -24,7 +24,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	{
 		$this->load->view('include/menu');
 	}else {
-		$this->load->view('include/menuadmin');
+		if($this->session->userdata('tipo')=='3')
+		{
+			 $this->load->view('include/menuadministrativo');
+		}else {
+			$this->load->view('include/menuadmin');
+		}
 	}
 	?>
 	<div class="container"  >

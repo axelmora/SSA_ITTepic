@@ -16,15 +16,19 @@ class C_Inicio extends CI_Controller {
 				redirect(base_url().'index.php/panel_administracion/');
 			}else {
 				if ($this->session->userdata('tipo')=='2') {
-						redirect(base_url().'index.php/Panel_seguimiento/');
+					redirect(base_url().'index.php/Panel_seguimiento/');
 				}
 				else {
-					$this->load->view('inicio',$datos);
+					if ($this->session->userdata('tipo')=='3') {
+						redirect(base_url().'index.php/Panel_Administrativo/');
+					}else {
+						$this->load->view('inicio',$datos);
+					}
 				}
 			}
 		}
 		else {
-			if ($this->session->userdata('perfil')=='Administrador') {
+			if ($this->session->userdata('tipo')=='1') {
 				redirect(base_url().'index.php/panel_administracion/');
 			}else {
 				$datos["mensajesistema"]="
