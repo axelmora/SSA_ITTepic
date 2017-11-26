@@ -54,7 +54,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <?php
                       $pos=0;
                       foreach ($DEPARTAMENTOS as $key => $valor) {
-                        if ($valor->iddepartamento_academico!=1){
+                        if ($valor->iddepartamento_academico==1 || $valor->iddepartamento_academico==9 || $valor->iddepartamento_academico==10 || $valor->iddepartamento_academico==11 || $valor->iddepartamento_academico==12 || $valor->iddepartamento_academico==13 )
+                        {
+
+                        }
+                        else {
                           ?>
                           <tr>
                             <td><?php echo "".$valor->nombre_departamento; ?></td>
