@@ -200,7 +200,11 @@ class Panel_administracion extends CI_Controller {
 			{
 				$tipo=1;
 			}else {
-				$tipo=2;
+				if($departamento_academico== 10 || $departamento_academico== 11  || $departamento_academico== 12  || $departamento_academico== 13 || $departamento_academico== 9 ){
+					$tipo=3;
+				}else {
+					$tipo=2;
+				}
 			}
 			$datos= array(
 				'tipo'=>$tipo,
