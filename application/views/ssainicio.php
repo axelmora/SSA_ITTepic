@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row"  >
 			<div class="col-lg-12">
 				<div class="card sombrapanel">
-					<div class="card-body">
+					<div class="card-body" style="padding-bottom: 0px;padding-top: 5px;padding-left: 0px;	padding-right: 0px;">
 						<center><h4><i class="fa fa-graduation-cap" aria-hidden="true"></i> Departamento académico de <?php  echo "".$this->session->userdata('departamentonombre');?></h4></center>
 					</div>
 				</div>
