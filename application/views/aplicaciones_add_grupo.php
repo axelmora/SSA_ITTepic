@@ -36,13 +36,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
             </div>
             <br>
-            <form method="post"  action="<?php echo base_url(); ?>index.php/Panel_seguimiento/insertarSeguimientoGrupo/<?php echo $AplicacionDatos; ?>">
+            <form method="post" id="FORMULARIO_creargrupo"  action="<?php echo base_url(); ?>index.php/Panel_seguimiento/insertarSeguimientoGrupo/<?php echo $AplicacionDatos; ?>">
               <div class="row">
                 <div class="col-lg-2">
                   <label class="formulariolabel"><i class="fa fa-book" aria-hidden="true"></i> Materia:</label>
                 </div>
                 <div class="col-lg-4">
-                  <input value="" name="idmateria" id="idmateria" placeholder="Seleccionar materia" class="form-control"  hidden required/>
+                  <input value="" name="idmateria" id="idmateria" placeholder="Seleccionar materia" class="form-control"  hidden />
                   <input value="" name="nombre_materiaenviar" id="nombre_materiaenviar" placeholder="Seleccionar materia" class="form-control"  readonly required/>
                 </div>
                 <div class="col-lg-3">
@@ -67,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <label class="formulariolabel"><i class="fa fa-user-circle" aria-hidden="true"></i> Docente:</label>
                 </div>
                 <div class="col-lg-4">
-                  <input value="" id="rfcdocente" name="rfcdocente" placeholder="Seleccionar docente" class="form-control" hidden required/>
+                  <input value="" id="rfcdocente" name="rfcdocente" placeholder="Seleccionar docente" class="form-control" hidden />
                   <input value="" id="nombredocente" name="nombredocente" placeholder="Seleccionar docente" class="form-control"  readonly required/>
                 </div>
                 <div class="col-lg-3">
@@ -81,7 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="row">
                 <div class="col-lg-3">
                   <label class="formulariolabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Alumnos:</label>
-                  <input type="text"  value="" id="numero_control_alumnos" name="numero_control_alumnos" />
+                  <input type="text" hidden   value="" id="numero_control_alumnos" name="numero_control_alumnos" />
                 </div>
                 <div class="col-lg-3">
                   <a href="#" onclick="verSelecionados()">
@@ -103,7 +103,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   {
                     ?>
                     <button type="button"  data-toggle="modal" data-target="#modalAlumnosCopiar" class="btn btn-info btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> COPIAR ALUMNOS ENCUESTA</button>
-
                     <?php
                   }
                   ?>
@@ -112,6 +111,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <br>
               <div class="row">
                 <div class="col-lg-6">
+                  <div id="panelerror" class="card text-white bg-danger" style="display:none">
+                    <div class="card-body">
+                      <p id="mensajeerror" class="card-text"></p>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-lg-6">
                   <button type="submit" class="btn btn-success btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR GRUPO</button>
@@ -301,7 +305,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
     </div>
   </div>
-  <input type="text" name="numeros_control_copiados" id="numeros_control_copiados" value="">
+  <input type="text" hidden  name="numeros_control_copiados" id="numeros_control_copiados" value="">
 </form>
 <!-- MODAL ALUMNOS COPIAR FIN  -->
 <!-- MODAL DOCENTES  -->
@@ -473,7 +477,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
   </div>
 </div>
-
 <?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
@@ -536,10 +539,10 @@ $('#modalverAlumnosCopiar').on('hidden.bs.modal', function () {
     $('#modalAlumnosCopiar').modal('show');
     $('#numeros_control_copiados').val("");
   }else {
-      if($('#numeros_control_copiados').val()!=""){
-        $('#modalAlumnosCopiar').modal('show');
-        $('#numeros_control_copiados').val("");
-      }
+    if($('#numeros_control_copiados').val()!=""){
+      $('#modalAlumnosCopiar').modal('show');
+      $('#numeros_control_copiados').val("");
+    }
   }
 })
 var numeros_de_control;
@@ -586,6 +589,31 @@ $('#alumnos_copiar').on('submit', function(e){
   $('#numeros_control_copiados').val("");
   $("#panelAlumnosSelecionados").show();
   e.preventDefault();
+});
+$('#FORMULARIO_creargrupo').on('submit', function(e){
+  var error="<b>ERROR</b> ";
+  var form = this;
+  var errorvalor=0;
+  if($('#numero_control_alumnos').val()==""){
+    error+="<p>Aun no selecciona alumnos.</p>";
+    errorvalor++;
+    e.preventDefault();
+
+  }
+  if($('#idmateria').val()==""){
+    error+="<p> Aun no agrega/selecciona materia.</p>";
+        errorvalor++;
+    e.preventDefault();
+  }
+  if($('#rfcdocente').val()==""){
+    error+="<p>Aun no selecciona docente.</p>";
+      errorvalor++;
+    e.preventDefault();
+  }
+  if(errorvalor>0){
+  $('#mensajeerror').html(error);
+  $('#panelerror').show();
+  }
 });
 </script>
 </html>
