@@ -521,9 +521,9 @@ function verAlumnos(idEncuestSeguimiento) {
       $.each(data, function(i, campo){
         datosAlumno+="<tr><!--<td>"+campo.alumnos_numero_control+"</td>--><td>"+campo.alumnos_numero_control+"</td><td>"+campo.nombre+"</td><td>"+campo.carrera+"</td></tr>";
         if(i<tamano-1){
-          numerosdecontrol+=(""+campo.alumnos_numero_control+",");
+          numerosdecontrol+=("'"+campo.alumnos_numero_control+"',");
         }else {
-          numerosdecontrol+=(""+campo.alumnos_numero_control+"");
+          numerosdecontrol+=("'"+campo.alumnos_numero_control+"'");
         }
       });
       $('#numeros_control_copiados').val("");
@@ -550,8 +550,17 @@ var numeros_de_controlArrglo;
 var datosAlumno2="";
 function verSelecionados() {
   numeros_de_control =$('#numero_control_alumnos').val();
+  var numeros_enviar="";
+  var temporal_numeros = numeros_de_control.split(",");
+   for (var i = 0; i < temporal_numeros.length; i++) {
+     if(i < temporal_numeros.length-1){
+       numeros_enviar+="'"+temporal_numeros[i]+"',";
+     }else {
+        numeros_enviar+="'"+temporal_numeros[i]+"'";
+     }
+   }
   var parametros = {
-    "numeros_control" : numeros_de_control
+    "numeros_control" : numeros_enviar
   };
   $.ajax({
     type: "POST",
@@ -598,7 +607,6 @@ $('#FORMULARIO_creargrupo').on('submit', function(e){
     error+="<p>Aun no selecciona alumnos.</p>";
     errorvalor++;
     e.preventDefault();
-
   }
   if($('#idmateria').val()==""){
     error+="<p> Aun no agrega/selecciona materia.</p>";
