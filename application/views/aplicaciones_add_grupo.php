@@ -81,16 +81,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="row">
                 <div class="col-lg-3">
                   <label class="formulariolabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Alumnos:</label>
-                  <input type="text" hidden value="" id="numero_control_alumnos" name="numero_control_alumnos" />
+                  <input type="text"  value="" id="numero_control_alumnos" name="numero_control_alumnos" />
                 </div>
                 <div class="col-lg-3">
-                  <div class="card  bg-light " id="panelAlumnosSelecionados" style="display:none" >
-                    <div class="card-body">
-                      <center>
-                        <p class="card-text">Alumnos selecionados.</p>
-                      </center>
+                  <a href="#" onclick="verSelecionados()">
+                    <div class="card bg-success text-white animated pulse infinite" id="panelAlumnosSelecionados" style="display:none" >
+                      <div class="card-body">
+                        <center>
+                          <p class="card-text">Alumnos selecionados. <i class="fa fa-eye fa-1x" aria-hidden="true"></i> </p>
+                        </center>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
                 <div class="col-lg-3">
                   <button type="button"  data-toggle="modal" data-target="#modalAlumnos" class="btn btn-primary btn-block " ><i class="fa fa-plus-circle" aria-hidden="true"></i> SELECIONAR ALUMNOS</button>
@@ -159,10 +161,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
           <div class="modal-body">
             <div style="overflow-x:auto;">
-              <table id="tablaSeleccionAlumnos" class="table table-striped table-hover  table-sm  table-bordered dt-responsive  "  width="100%" cellspacing="0" >
+              <table id="tablaSeleccionAlumnos" class="table table-striped table-hover  table-sm  table-bordered dt-responsive"  width="100%" cellspacing="0" >
                 <thead>
                   <tr>
-                    <th><!--<input type="checkbox" name="select_all" value="1" id="example-select-all">--></th>
+                    <th></th>
                     <th>NUMERO CONTROL</th>
                     <th>NOMBRE</th>
                     <!--<th>CODIGO</th>-->
@@ -269,12 +271,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </button>
       </div>
       <div class="modal-body" >
-        <div style="   height: 300px;   overflow-y: scroll;">
-          <table class="table table-sm  table-responsive" id="tablaveralumnosya" >
+        <div style="   height: 450px;   overflow-y: scroll;">
+          <table class="table table-sm table-bordered table-striped  table-responsive" id="tablaveralumnosya" >
             <thead>
               <tr>
-                <th scope="col"></th>
-                <th scope="col">NUMERO DE CONTROL</th>
+                <!--  <th scope="col"></th> -->
+                <th scope="col">#</th>
                 <th scope="col">NOMBRE DEL ALUMNO</th>
                 <th scope="col">CARRERA</th>
               </tr>
@@ -427,6 +429,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </div>
 <!-- MODAL SELECIONAR MATERIAS  -->
+<div class="modal fade" id="modalSelecionados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Alumnos seleccionados para este grupo. </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="   height: 450px;   overflow-y: scroll;">
+          <table class="table table-sm table-bordered table-striped  table-responsive" id="tablaveralumnosya" >
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">NOMBRE DEL ALUMNO</th>
+                <th scope="col">CARRERA</th>
+              </tr>
+            </thead>
+            <tbody id="ttablaveralumnosyacuerpo">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
@@ -467,42 +500,19 @@ function verAlumnos(idEncuestSeguimiento) {
     success: function(data)
     {
       $.each(data, function(i, campo){
-        datosAlumno+="<tr><td></td><td>"+campo.alumnos_numero_control+"</td><td>"+campo.nombre+"</td><td>"+campo.carrera+"</td></tr>";
+        datosAlumno+="<tr><!--<td>"+campo.alumnos_numero_control+"</td>--><td>"+campo.alumnos_numero_control+"</td><td>"+campo.nombre+"</td><td>"+campo.carrera+"</td></tr>";
       });
       $('#ttablaveralumnosyacuerpo').html(""+datosAlumno);
       $('#tablaveralumnosya').width("100%");
       $('#modalverAlumnosCopiar').modal('show');
-    //  $('#tablaveralumnosya').dataTable();
-      $('#tablaveralumnosya').DataTable({
-        responsive: true,
-        "language": {
-          "url": urlsistema+"js/datatables/Alumnos.json"
-        },
-        "columnDefs": [
-          {
-            "targets": 0,
-            "checkboxes": {
-              "selectRow": true,
-              'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'
-            },
-            "render": function(data, type, row, meta){
-              if(type === 'display'){
-                data = '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>';
-              }
-              return data;
-            }
-          }
-        ],
-        "select": {
-          "style": "multi"
-        },
-        "order": [[2, "asc" ]]
-      });
     }
   });
 }
 $('#modalverAlumnosCopiar').on('hidden.bs.modal', function () {
   $('#modalAlumnosCopiar').modal('show');
 })
+function verSelecionados() {
+  $('#modalSelecionados').modal('show');
+}
 </script>
 </html>
