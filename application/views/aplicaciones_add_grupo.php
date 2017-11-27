@@ -85,8 +85,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="col-lg-3">
                   <a href="#" onclick="verSelecionados()">
-                    <div class="card bg-success text-white animated pulse infinite" id="panelAlumnosSelecionados" style="display:none" >
-                      <div class="card-body">
+                    <div class="card bg-success text-white animated pulse infinite " id="panelAlumnosSelecionados" style="display:none" >
+                      <div class="card-body menus">
                         <center>
                           <p class="card-text">Alumnos selecionados. <i class="fa fa-eye fa-1x" aria-hidden="true"></i> </p>
                         </center>
@@ -251,48 +251,58 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               ?>
             </tbody>
           </table>
+          <div class="card text-white bg-danger" >
+            <div class="card-body"  style="padding-top: 0px; padding-bottom: 0px;">
+              <center>
+                <h4 class="card-title"><i class="fa fa-exclamation-circle animated tada infinite" aria-hidden="true"></i> ALERTA</h4>
+                <h6 class="card-title">Copiar alumos <i class="fa fa-trash-o" aria-hidden="true"></i> borrara los alumnos selecionados.</h6>
+              </center>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
-        <button  type="submit" class="btn btn-success">ACPETAR SELECCIONAR GRUPO </button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> CERRAR</button>
       </div>
     </div>
   </div>
 </div>
 <!-- MODAL VER ALUMNOS -->
-<div class="modal fade menus" id="modalverAlumnosCopiar" tabindex="2" role="dialog" aria-labelledby="modalAlumnosCopiar" aria-hidden="true">
-  <div class="modal-dialog  modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" >Lista de alumnos incluidos en el grupo:</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" >
-        <div style="   height: 450px;   overflow-y: scroll;">
-          <table class="table table-sm table-bordered table-striped  table-responsive" id="tablaveralumnosya" >
-            <thead>
-              <tr>
-                <!--  <th scope="col"></th> -->
-                <th scope="col">#</th>
-                <th scope="col">NOMBRE DEL ALUMNO</th>
-                <th scope="col">CARRERA</th>
-              </tr>
-            </thead>
-            <tbody id="ttablaveralumnosyacuerpo">
-            </tbody>
-          </table>
+<form class="" id="alumnos_copiar" action="index.html" method="post">
+  <div class="modal fade menus" id="modalverAlumnosCopiar" tabindex="2" role="dialog" aria-labelledby="modalAlumnosCopiar" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" >Lista de alumnos incluidos en este grupo:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
-        <button type="button" class="btn btn-success">SELECIONAR ESTE GRUPO</button>
+        <div class="modal-body" >
+          <div style="   height: 450px;   overflow-y: scroll;">
+            <table class="table table-sm table-bordered table-striped  table-responsive" id="tablaveralumnosya" >
+              <thead>
+                <tr>
+                  <!--  <th scope="col"></th> -->
+                  <th scope="col">#</th>
+                  <th scope="col">NOMBRE DEL ALUMNO</th>
+                  <th scope="col">CARRERA</th>
+                </tr>
+              </thead>
+              <tbody id="ttablaveralumnosyacuerpo">
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> VOLVER A ELEGIR GRUPO</button>
+          <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i>SELECIONAR ESTE GRUPO</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <input type="text" name="numeros_control_copiados" id="numeros_control_copiados" value="">
+</form>
 <!-- MODAL ALUMNOS COPIAR FIN  -->
 <!-- MODAL DOCENTES  -->
 <div class="modal fade" id="modalDocentes" tabindex="-1" role="dialog" aria-labelledby="modalDocentes" aria-hidden="true">
@@ -433,24 +443,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Alumnos seleccionados para este grupo. </h5>
+        <h5 class="modal-title" >Alumnos seleccionados para este grupo. </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div style="   height: 450px;   overflow-y: scroll;">
-          <table class="table table-sm table-bordered table-striped  table-responsive" id="tablaveralumnosya" >
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">NOMBRE DEL ALUMNO</th>
-                <th scope="col">CARRERA</th>
-              </tr>
-            </thead>
-            <tbody id="ttablaveralumnosyacuerpo">
-            </tbody>
-          </table>
+        <div style="height: 450px;   overflow-y: scroll;">
+          <div class="card  menus  " >
+            <div class="card-body">
+              <table class="table table-sm table-bordered table-striped table-hover table-responsive" id="tablaveralumnosya2" >
+                <thead>
+                  <tr>
+                    <th scope="col">#NUMERO DE CONTROL</th>
+                    <th scope="col">NOMBRE DEL ALUMNO</th>
+                    <th scope="col">CARRERA</th>
+                  </tr>
+                </thead>
+                <tbody id="ttablaveralumnosyacuerpo2">
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -475,7 +489,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.checkboxes.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 <script>
-
 function selecionarMat(idmateria,nombre) {
   $("#idmateria").val(""+idmateria);
   $("#nombre_materiaenviar").val(""+nombre.toUpperCase());
@@ -490,8 +503,10 @@ function selecionarDoc(idmateria,nombre) {
   $('#modalDocentes').modal('hide')
   $("#nombredocente").addClass( "animated bounceIn" );
 }
+var numerosdecontrol="";
 function verAlumnos(idEncuestSeguimiento) {
-  var datosAlumno;
+  var datosAlumno="";
+  //.join(",")
   $('#modalAlumnosCopiar').modal('hide')
   $.ajax({
     type: "POST",
@@ -499,9 +514,17 @@ function verAlumnos(idEncuestSeguimiento) {
     url: urlsistema+'index.php/Panel_seguimiento/obtenerAlumnosSeguimiento/'+idEncuestSeguimiento,
     success: function(data)
     {
+      var tamano=data.length;
       $.each(data, function(i, campo){
         datosAlumno+="<tr><!--<td>"+campo.alumnos_numero_control+"</td>--><td>"+campo.alumnos_numero_control+"</td><td>"+campo.nombre+"</td><td>"+campo.carrera+"</td></tr>";
+        if(i<tamano-1){
+          numerosdecontrol+=(""+campo.alumnos_numero_control+",");
+        }else {
+          numerosdecontrol+=(""+campo.alumnos_numero_control+"");
+        }
       });
+      $('#numeros_control_copiados').val("");
+      $('#numeros_control_copiados').val(numerosdecontrol);
       $('#ttablaveralumnosyacuerpo').html(""+datosAlumno);
       $('#tablaveralumnosya').width("100%");
       $('#modalverAlumnosCopiar').modal('show');
@@ -509,10 +532,57 @@ function verAlumnos(idEncuestSeguimiento) {
   });
 }
 $('#modalverAlumnosCopiar').on('hidden.bs.modal', function () {
-  $('#modalAlumnosCopiar').modal('show');
+  if($('#numero_control_alumnos').val()==""){
+    $('#modalAlumnosCopiar').modal('show');
+  }else {
+      if($('#numeros_control_copiados').val()!=""){
+        $('#modalAlumnosCopiar').modal('show');
+      }
+  }
 })
+var numeros_de_control;
+var numeros_de_controlArrglo;
+var datosAlumno2="";
 function verSelecionados() {
-  $('#modalSelecionados').modal('show');
+  numeros_de_control =$('#numero_control_alumnos').val();
+  var parametros = {
+    "numeros_control" : numeros_de_control
+  };
+  $.ajax({
+    type: "POST",
+    data:  parametros,
+    dataType: 'json',
+    url: urlsistema+'index.php/Panel_seguimiento/obtenerAlumnosSelecionados/',
+    success: function(data)
+    {
+      datosAlumno2="";
+      $.each(data, function(i, campo){
+        datosAlumno2+="<tr><td>"+campo.numero_control+"</td><td>"+campo.nombre+"</td><td>"+campo.carrera+"</td></tr>";
+      });
+      $('#ttablaveralumnosyacuerpo2').html(""+datosAlumno2);
+      $('#tablaveralumnosya2').width("100%");
+      if ($.fn.dataTable.isDataTable( '#tablaveralumnosya2')){
+      }else {
+        $('#tablaveralumnosya2').DataTable({
+          responsive: true,
+          "language": {
+            "url": urlsistema+"js/datatables/Alumnos.json"
+          },
+          "order": [[0, "desc" ]]
+        });
+      }
+      $('#modalSelecionados').modal('show');
+    }
+  });
 }
+$('#alumnos_copiar').on('submit', function(e){
+  var form = this;
+  $('#numero_control_alumnos').val("");
+  $('#numero_control_alumnos').val($('#numeros_control_copiados').val());
+  $('#modalAlumnosCopiar').modal('hide');
+  $('#modalverAlumnosCopiar').modal('hide');
+  $('#numeros_control_copiados').val("");
+  e.preventDefault();
+});
 </script>
 </html>

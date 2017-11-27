@@ -66,4 +66,14 @@ class Alumnos extends CI_Model {
       //   return false;
       // }
     }
+    public function cargarAlumnosNumeroeControl($value)
+    {
+      $DB2 = $this->load->database('default', TRUE);
+      $query=$DB2->query("SELECT * FROM alumnos as al,carreras as ca where ca.id_carrera=al.carreras_id_carrera and al.numero_control IN ($value);");
+      if ($query->num_rows() > 0) {
+        return $query->result();
+      } else {
+        return false;
+      }
+    }
   }
