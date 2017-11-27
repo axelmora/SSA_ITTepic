@@ -144,6 +144,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
+	<a href="javascript:" id="top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 </body>
 <!--JS ADMIN -->
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
