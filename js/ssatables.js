@@ -85,12 +85,12 @@ $(document).ready(function(){
   });
   /*TABLA ALUMNOS*/
   $('#tablaGrupoAlumnosAgregar').DataTable({
-  responsive: true,
-  "language": {
-    "url": urlsistema+"js/datatables/Alumnos.json"
-  },
-  "order": [[0, "asc" ]]
-});
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/Alumnos.json"
+    },
+    "order": [[0, "asc" ]]
+  });
 
   /* TABLA ALUMNOS COPIAR */
   $('#tablaCopiarAlumnos').DataTable({
@@ -139,9 +139,13 @@ $(document).ready(function(){
       );
     });
     $('#modalAlumnos').modal('hide')
-    $("#panelAlumnosSelecionados").show();
     $('#numero_control_alumnos').val(rows_selected.join(","));
-    //$('#example-console').text(rows_selected.join(","));
+    if ($('#numero_control_alumnos').val()!="") {
+      $("#panelAlumnosSelecionados").show();
+    }
+    else {
+      $("#panelAlumnosSelecionados").hide();
+    }
     e.preventDefault();
   });
   /*TABLA ALUMNOS FIN*/

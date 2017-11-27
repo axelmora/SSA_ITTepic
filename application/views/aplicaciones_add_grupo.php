@@ -534,9 +534,11 @@ function verAlumnos(idEncuestSeguimiento) {
 $('#modalverAlumnosCopiar').on('hidden.bs.modal', function () {
   if($('#numero_control_alumnos').val()==""){
     $('#modalAlumnosCopiar').modal('show');
+    $('#numeros_control_copiados').val("");
   }else {
       if($('#numeros_control_copiados').val()!=""){
         $('#modalAlumnosCopiar').modal('show');
+        $('#numeros_control_copiados').val("");
       }
   }
 })
@@ -582,6 +584,7 @@ $('#alumnos_copiar').on('submit', function(e){
   $('#modalAlumnosCopiar').modal('hide');
   $('#modalverAlumnosCopiar').modal('hide');
   $('#numeros_control_copiados').val("");
+  $("#panelAlumnosSelecionados").show();
   e.preventDefault();
 });
 </script>
