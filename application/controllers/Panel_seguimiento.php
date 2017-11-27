@@ -134,10 +134,17 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["AlumnosCopiar"]=$this->SeguimientoModelo->cargarEncuestasGrupos($idAplicacion);
 			$datos["AplicacionDatos"]=$idAplicacion;
 			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
-			$this->load->view('aplicaciones_add_grupo',$datos);
+		  $this->load->view('aplicaciones_add_grupo',$datos);
 		}else {
 			redirect(base_url().'index.php');
 		}
+	}
+	public function obtenerAlumnosSeguimiento($idseguimiento)
+	{
+		$grupo=$this->SeguimientoModelo->obtenerGrupoPorSeguimiento($idseguimiento);
+		$alumnos=$this->SeguimientoModelo->getAlumnosEncuesta($grupo[0]->idgrupos);
+				echo json_encode($alumnos);
+		//var_dump($alumnos);
 	}
 	/*  INSERTAR MATERIA */
 	public function insertarMateria()

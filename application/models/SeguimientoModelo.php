@@ -252,7 +252,7 @@ class SeguimientoModelo extends CI_Model {
     {
       $DBcon = $this->load->database('default', TRUE);
       $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
-      " where es.idencuesta_seguimiento=$idAplicacion and es.materias_idmaterias=ma.idmaterias".
+      " where es.aplicaciones_idaplicaciones=$idAplicacion and es.materias_idmaterias=ma.idmaterias".
       " and es.docentes_rfc=d.rfc;"
     );
     if ($query->num_rows() > 0)
@@ -463,6 +463,28 @@ public function obtenerApliacionesDepartamento($iddepartamento_academico)
 {
   $DBcon = $this->load->database('default', TRUE);
   $query=$DBcon->query("SELECT * FROM aplicaciones where departamento_academico_iddepartamento_academico=$iddepartamento_academico;");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
+}
+public function obtenerGrupoPorSeguimiento($idencuesta_seguimiento)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT idgrupos FROM grupos where encuestas_seguimiento_idencuesta_seguimiento=$idencuesta_seguimiento;");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
+}
+public function getAlumnosEncuesta($grupo)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT * FROM grupo_alumnos as gl,alumnos as al,carreras as ca where gl.grupos_idgrupos=$grupo and al.numero_control=gl.alumnos_numero_control and al.carreras_id_carrera=ca.id_carrera;");
   if ($query->num_rows() > 0)
   {
     return $query->result();

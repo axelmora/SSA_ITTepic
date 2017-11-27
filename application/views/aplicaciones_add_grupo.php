@@ -239,7 +239,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php echo "".utf8_decode($valores->nombres)." ".utf8_decode($valores->apellidos);?>
                   </td>
                   <td>
-                    <a role="button" class="btn btn-info text-white" onclick="verAlumnos(<?php echo $valores->idencuesta_seguimiento; ?>)" >VER ALUMNOS</a>
+                    <center>
+                      <a role="button" class="btn btn-info text-white" onclick="verAlumnos(<?php echo $valores->idencuesta_seguimiento; ?>)" ><i class="fa fa-eye" aria-hidden="true"></i> VER ALUMNOS</a>
+                    </center>
                   </td>
                 </tr>
                 <?php
@@ -258,7 +260,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 <!-- MODAL VER ALUMNOS -->
 <div class="modal fade menus" id="modalverAlumnosCopiar" tabindex="2" role="dialog" aria-labelledby="modalAlumnosCopiar" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog  modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" >Lista de alumnos incluidos en el grupo:</h5>
@@ -268,11 +270,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
       <div class="modal-body" >
         <div style="   height: 300px;   overflow-y: scroll;">
-          <?php
-          for ($i=0; $i < 500; $i++) {
-            echo "".$i."<br>";
-          }
-          ?>
+          <table class="table table-sm  table-responsive" id="tablaveralumnosya" >
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">NUMERO DE CONTROL</th>
+                <th scope="col">NOMBRE DEL ALUMNO</th>
+                <th scope="col">CARRERA</th>
+              </tr>
+            </thead>
+            <tbody id="ttablaveralumnosyacuerpo">
+            </tbody>
+          </table>
         </div>
       </div>
       <div class="modal-footer">
@@ -433,6 +442,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.checkboxes.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 <script>
+
 function selecionarMat(idmateria,nombre) {
   $("#idmateria").val(""+idmateria);
   $("#nombre_materiaenviar").val(""+nombre.toUpperCase());
@@ -448,8 +458,48 @@ function selecionarDoc(idmateria,nombre) {
   $("#nombredocente").addClass( "animated bounceIn" );
 }
 function verAlumnos(idEncuestSeguimiento) {
+  var datosAlumno;
   $('#modalAlumnosCopiar').modal('hide')
-  $('#modalverAlumnosCopiar').modal('show');
+  $.ajax({
+    type: "POST",
+    dataType: 'json',
+    url: urlsistema+'index.php/Panel_seguimiento/obtenerAlumnosSeguimiento/'+idEncuestSeguimiento,
+    success: function(data)
+    {
+      $.each(data, function(i, campo){
+        datosAlumno+="<tr><td></td><td>"+campo.alumnos_numero_control+"</td><td>"+campo.nombre+"</td><td>"+campo.carrera+"</td></tr>";
+      });
+      $('#ttablaveralumnosyacuerpo').html(""+datosAlumno);
+      $('#tablaveralumnosya').width("100%");
+      $('#modalverAlumnosCopiar').modal('show');
+    //  $('#tablaveralumnosya').dataTable();
+      $('#tablaveralumnosya').DataTable({
+        responsive: true,
+        "language": {
+          "url": urlsistema+"js/datatables/Alumnos.json"
+        },
+        "columnDefs": [
+          {
+            "targets": 0,
+            "checkboxes": {
+              "selectRow": true,
+              'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'
+            },
+            "render": function(data, type, row, meta){
+              if(type === 'display'){
+                data = '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+              }
+              return data;
+            }
+          }
+        ],
+        "select": {
+          "style": "multi"
+        },
+        "order": [[2, "asc" ]]
+      });
+    }
+  });
 }
 $('#modalverAlumnosCopiar').on('hidden.bs.modal', function () {
   $('#modalAlumnosCopiar').modal('show');
