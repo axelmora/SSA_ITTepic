@@ -90,7 +90,7 @@ class Departamentos extends CI_Model {
   public function obtenerDepartamentoPorAplicacion($idaplicacion)
   {
     $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT departamento_academico_iddepartamento_academico as iddepa FROM aplicaciones where idaplicaciones=$idaplicacion");
+    $query=$DBcon->query("SELECT *  FROM aplicaciones as ap,departamento_academico as dc where ap.idaplicaciones=$idaplicacion and dc.iddepartamento_academico=ap.departamento_academico_iddepartamento_academico");
     if ($query->num_rows() > 0) {
       return $query->result();
     } else {
