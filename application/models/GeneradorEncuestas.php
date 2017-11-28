@@ -514,7 +514,8 @@ public function generarEncuPDF($json,$resultados)
   }
 }else {
   $encuestaRetro='
-  <p style="text-align:center; margin-top:200px;font-size: 200%;">Aun no se cuentan con resultados en esta encuesta. </p>
+  <p></p>
+  <p style="text-align:center;font-size: 200%;">Aun no se cuentan con resultados en esta encuesta. </p>
   ';
 }
 return $encuestaRetro;

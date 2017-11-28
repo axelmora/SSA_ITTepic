@@ -567,6 +567,7 @@ class Panel_seguimiento extends CI_Controller {
 					$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
 					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
 					$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
+					$peridoencuesta=$this->genePerido($value->periodo);
 					$DOCENTE="";
 					$MATERIA="";
 					if(isset($datos["DATOSMATERIA"])){
@@ -628,11 +629,13 @@ class Panel_seguimiento extends CI_Controller {
 			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
 			$html = '';
 			for ($i=0; $i < count($EncuestasIMPRIMIR) ; $i++) {
+				$html .= "<p  style='text-align:center;font-size:100%;'>Departamento de  </p>";
+				$html .= "<p style='text-align:center;font-size:100%;'>Periodo de $peridoencuesta </p>";
 				$html .= "<style type=text/css>";
 				$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
 				$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
 				$html .= "</style>";
-				$html .= "    <table  class='' cellspacing='0' >";
+				$html .= "<table  class='' cellspacing='0' >";
 				$html.=$EncuestasIMPRIMIR[$i];
 				$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 				$html="";
@@ -681,10 +684,11 @@ class Panel_seguimiento extends CI_Controller {
 					<td>  $DOCENTE</td>
 					</tr>
 					</table>
+
 					";
 					$temphtml.= $datos["EncuestasResultados"];
 					if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
-						$temphtml.= "\n";
+						$temphtml.= "<p>";
 						$temphtml.= "<b>Retroalimentación</b>";
 						$temphtml.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
 					}
@@ -723,7 +727,7 @@ class Panel_seguimiento extends CI_Controller {
 				$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
 				$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
 				$html .= "</style>";
-				$html .= "    <table  class='' cellspacing='0' >";
+				$html .= "<table  class='' cellspacing='0' >";
 				$html.=$EncuestasIMPRIMIR[$i];
 				$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
 				$html="";
@@ -937,8 +941,34 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function obtenerAlumnosSelecionados()
 	{
-		$numeros_control = $this->input->post('numeros_control');
-		$datos=$this->Alumnos->cargarAlumnosNumeroeControl($numeros_control);
-		echo json_encode($datos);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
+			$numeros_control = $this->input->post('numeros_control');
+			$datos=$this->Alumnos->cargarAlumnosNumeroeControl($numeros_control);
+			echo json_encode($datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	function genePerido($periodo)
+	{
+		$anioac = substr($periodo, 0,strlen($periodo)-1);
+		$peridotTexto="";
+		if($periodo==$anioac."1")
+		{
+			$peridotTexto="Enero-Junio ".$anioac;
+		}
+		else {
+			if($periodo==$anioac."2")
+			{
+				$peridotTexto="Verano ".$anioac;
+			}
+			else {
+				if($periodo==$anioac."3")
+				{
+					$peridotTexto="Agosto-Diciembre ".$anioac;
+				}
+			}
+		}
+		return $peridotTexto;
 	}
 }
