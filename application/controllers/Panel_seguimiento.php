@@ -559,6 +559,10 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
 			$datos["APLICACIONESCONSULTADAS"]=$this->SeguimientoModelo->reportesAplicacionesGeneral($idAplicacion);
+			$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
+			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idAplicacion);
+			$peridoencuesta=$this->genePerido($tempperiodo[0]->periodo);
+			$departamentoacademico=$this->genePerido($tempdepartamento[0]->iddepa);
 			$this->load->model('GeneradorEncuestas');
 			$EncuestasIMPRIMIR;
 			if($datos["APLICACIONESCONSULTADAS"]){
@@ -567,7 +571,7 @@ class Panel_seguimiento extends CI_Controller {
 					$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
 					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
 					$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
-					$peridoencuesta=$this->genePerido($value->periodo);
+
 					$DOCENTE="";
 					$MATERIA="";
 					if(isset($datos["DATOSMATERIA"])){
@@ -629,7 +633,7 @@ class Panel_seguimiento extends CI_Controller {
 			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
 			$html = '';
 			for ($i=0; $i < count($EncuestasIMPRIMIR) ; $i++) {
-				$html .= "<p  style='text-align:center;font-size:100%;'>Departamento de  </p>";
+				$html .= "<p  style='text-align:center;font-size:100%;'>Departamento de $departamentoacademico </p>";
 				$html .= "<p style='text-align:center;font-size:100%;'>Periodo de $peridoencuesta </p>";
 				$html .= "<style type=text/css>";
 				$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";

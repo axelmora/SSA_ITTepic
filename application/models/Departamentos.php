@@ -87,4 +87,14 @@ class Departamentos extends CI_Model {
       return false;
     }
   }
+  public function obtenerDepartamentoPorAplicacion($idaplicacion)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT departamento_academico_iddepartamento_academico as iddepa FROM aplicaciones where idaplicaciones=$idaplicacion");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
 }
