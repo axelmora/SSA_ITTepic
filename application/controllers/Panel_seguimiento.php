@@ -562,7 +562,7 @@ class Panel_seguimiento extends CI_Controller {
 			$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
 			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idAplicacion);
 			$peridoencuesta=$this->genePerido($tempperiodo[0]->periodo);
-			$departamentoacademico=$this->genePerido($tempdepartamento[0]->iddepa);
+			$departamentoacademico=$tempdepartamento[0]->iddepa;
 			$this->load->model('GeneradorEncuestas');
 			$EncuestasIMPRIMIR;
 			if($datos["APLICACIONESCONSULTADAS"]){
