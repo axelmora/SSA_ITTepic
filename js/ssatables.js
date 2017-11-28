@@ -26,7 +26,7 @@ $(document).ready(function(){
     "language": {
       "url": urlsistema+"js/datatables/aplicaciones.json"
     },
-    "order": [[ 0, "asc" ]]
+    "order": [[ 0, "desc" ]]
   });
   $('#tablasoporte_tenico_usuario').DataTable({
     responsive: true,
