@@ -633,11 +633,6 @@ class Panel_seguimiento extends CI_Controller {
 			$html = '';
 			for ($i=0; $i < count($EncuestasIMPRIMIR) ; $i++) {
 				$html.='
-				<style type="text/css">
-				table td{
-
-				}
-				</style>
 				<table style="height: 53px;" width="100%"  border="0">
 				<tbody>
 				<tr>
