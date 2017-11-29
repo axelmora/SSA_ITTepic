@@ -90,9 +90,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <?php
                             }else {?>
                               <div class="card text-white bg-danger" >
-                                <div class="card-body">
-
-                                  <p class="card-text"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                <div class="card-body"  style="  padding-bottom: 0px;   padding-top: 0px;">
+                                  <p class="card-text"><i class="fa fa-exclamation-triangle animated tada infinite" aria-hidden="true"></i>
                                     Sin progreso en la evaluación.</p>
                                   </div>
                                 </div>

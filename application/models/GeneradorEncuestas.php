@@ -178,8 +178,8 @@ class GeneradorEncuestas extends CI_Model {
     <center>
     <div class="card text-white bg-danger ">
     <div class="card-body">
-    <h4 class="card-title"><i class="fa fa-exclamation-triangle fa-5x" aria-hidden="true"></i></h4>
-    <p class="card-text">Aun no se cuentan con resultados en esta encuesta. </p>
+    <h4 class="card-title"><i class="fa fa-exclamation-triangle  fa-5x animated tada infinite" aria-hidden="true"></i></h4>
+    <p class="card-text"><b>Aun no se cuentan con resultados en esta encuesta.</b></p>
     </div>
     </div>
     </center>
