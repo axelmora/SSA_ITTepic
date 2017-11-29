@@ -635,16 +635,19 @@ class Panel_seguimiento extends CI_Controller {
 				$html.='
 				<style type="text/css">
 				table td{
-				border:none;
+
 				}
 				</style>
 				<table style="height: 53px;" width="100%"  border="0">
 				<tbody>
 				<tr>
-				<td style="text-align: center; width: 100%;">Departamento de '.$departamentoacademico.'</td>
+				<td style="text-align: center; border:none; width: 100%;"><h2><strong>Departamento de '.$departamentoacademico.'</strong></h2></td>
 				</tr>
 				<tr>
-				<td style="text-align: center; width: 100%;">Periodo de '.$peridoencuesta.'</td>
+				<td style="text-align: center; border:none; width: 100%;">Periodo de '.$peridoencuesta.'</td>
+				</tr>
+				<tr>
+				<td style="text-align: center; border:none; width: 100%;"> </td>
 				</tr>
 				</tbody>
 				</table>';
