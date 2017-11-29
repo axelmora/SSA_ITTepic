@@ -582,7 +582,7 @@ class Panel_seguimiento extends CI_Controller {
 						$DOCENTE="ERROR";
 						$MATERIA="ERROR";
 					}
-					$temphtml= "    <table  class='' cellspacing='0' >
+					$temphtml= "<table  class='' width='100%' cellspacing='0' >
 					<thead>
 					<tr>
 					<th> MATERIA</th>
@@ -632,8 +632,22 @@ class Panel_seguimiento extends CI_Controller {
 			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
 			$html = '';
 			for ($i=0; $i < count($EncuestasIMPRIMIR) ; $i++) {
-				$html .= "<p  style='text-align:center;font-size:100%;'>Departamento de $departamentoacademico </p>";
-				$html .= "<p style='text-align:center;font-size:100%;'>Periodo de $peridoencuesta </p>";
+				$html.='
+				<style type="text/css">
+				table td{
+				border:none;
+				}
+				</style>
+				<table style="height: 53px;" width="100%"  border="0">
+				<tbody>
+				<tr>
+				<td style="text-align: center; width: 100%;">Departamento de '.$departamentoacademico.'</td>
+				</tr>
+				<tr>
+				<td style="text-align: center; width: 100%;">Periodo de '.$peridoencuesta.'</td>
+				</tr>
+				</tbody>
+				</table>';
 				$html .= "<style type=text/css>";
 				$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
 				$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
