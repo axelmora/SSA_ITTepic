@@ -169,12 +169,28 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		$departamentoRetorno="";
 		switch ($departamentoid) {
-			case '3':
-			$departamentoRetorno="DEPARTAMENTO DE SISTEMAS Y COMPUTACION";
-			break;
 			case '2':
 			$departamentoRetorno="DEPARTAMENTO DE CIENCIAS DE LA TIERRA";
 			break;
+			case '3':
+			$departamentoRetorno="DEPARTAMENTO DE SISTEMAS Y COMPUTACION";
+			break;
+			case '4':
+			$departamentoRetorno="DEPARTAMENTO DE QUIMICA Y BIOQUIMICA";
+			break;
+			case '5':
+			$departamentoRetorno="DEPTO. DE INGENIERIA INDUSTRIAL";
+			break;
+			case '6':
+			$departamentoRetorno="DEPARTAMENTO DE INGENIERIA ELECTRICA Y ELECTRONICA";
+			break;
+			case '7':
+			$departamentoRetorno="DEPARTAMENTO DE INGENIERIAS";
+			break;
+			case '8':
+			$departamentoRetorno="DEPARTAMENTO DE CIENCIAS ECONOMICO ADMINISTRATIVAS";
+			break;
+
 			default:
 			break;
 		}
