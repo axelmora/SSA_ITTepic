@@ -317,6 +317,7 @@ public function generarFilas($responses,$pos,$datos_tabla)
 }
 public function generarFilas2($responses,$pos,$datos_tabla,$total)
 {
+
   $textos="";
   $enviar=0;
   $datoscontables = array_fill(0, count($datos_tabla), NULL);
@@ -328,7 +329,8 @@ public function generarFilas2($responses,$pos,$datos_tabla,$total)
       {
         for($e=0;$e<count($datos_tabla);$e++)
         {
-          $datoscontables[$e]+=1;
+
+          $datoscontables[$e]+=$value;
         }
       }
       $pospregunta++;
