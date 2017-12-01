@@ -86,7 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 if ($PorcentajeActual!=0) {
                                   ?>
                                   <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: <?php echo $PorcentajeActual; ?>%;" aria-valuenow="<?php echo $PorcentajeActual; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $PorcentajeActual; ?>%</div>
+                                    <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: <?php echo $PorcentajeActual; ?>%;" aria-valuenow="<?php echo $PorcentajeActual; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo round($PorcentajeActual,2); ?>%</div>
                                   </div>
                                   <?php
                                 }else {?>
