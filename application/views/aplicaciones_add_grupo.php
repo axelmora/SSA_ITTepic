@@ -528,6 +528,7 @@ function verAlumnos(idEncuestSeguimiento) {
       });
       $('#numeros_control_copiados').val("");
       $('#numeros_control_copiados').val(numerosdecontrol);
+      numerosdecontrol="";
       $('#ttablaveralumnosyacuerpo').html(""+datosAlumno);
       $('#tablaveralumnosya').width("100%");
       $('#modalverAlumnosCopiar').modal('show');
@@ -545,20 +546,21 @@ $('#modalverAlumnosCopiar').on('hidden.bs.modal', function () {
     }
   }
 })
-var numeros_de_control;
-var numeros_de_controlArrglo;
+var numeros_de_control="";
+var numeros_de_controlArrglo="";
 var datosAlumno2="";
 function verSelecionados() {
   numeros_de_control =$('#numero_control_alumnos').val();
   var numeros_enviar="";
-  var temporal_numeros = numeros_de_control.split(",");
-   for (var i = 0; i < temporal_numeros.length; i++) {
-     if(i < temporal_numeros.length-1){
-       numeros_enviar+="'"+temporal_numeros[i]+"',";
-     }else {
-        numeros_enviar+="'"+temporal_numeros[i]+"'";
-     }
-   }
+  var temporal_numeros = "";
+  temporal_numeros = numeros_de_control.split(",");
+  for (var i = 0; i < temporal_numeros.length; i++) {
+    if(i < temporal_numeros.length-1){
+      numeros_enviar+="'"+temporal_numeros[i]+"',";
+    }else {
+      numeros_enviar+="'"+temporal_numeros[i]+"'";
+    }
+  }
   var parametros = {
     "numeros_control" : numeros_enviar
   };
@@ -610,17 +612,17 @@ $('#FORMULARIO_creargrupo').on('submit', function(e){
   }
   if($('#idmateria').val()==""){
     error+="<p> Aun no agrega/selecciona materia.</p>";
-        errorvalor++;
+    errorvalor++;
     e.preventDefault();
   }
   if($('#rfcdocente').val()==""){
     error+="<p>Aun no selecciona docente.</p>";
-      errorvalor++;
+    errorvalor++;
     e.preventDefault();
   }
   if(errorvalor>0){
-  $('#mensajeerror').html(error);
-  $('#panelerror').show();
+    $('#mensajeerror').html(error);
+    $('#panelerror').show();
   }
 });
 </script>
