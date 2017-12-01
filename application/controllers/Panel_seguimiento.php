@@ -779,6 +779,13 @@ class Panel_seguimiento extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			/*    CARGAR DATOS      */
 			$this->load->model('GeneradorEncuestas');
+
+			$idseguimientotemp=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idencuesta_seguimiento);
+			$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idseguimientotemp[0]->aplicaciones_idaplicaciones);
+			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idseguimientotemp[0]->aplicaciones_idaplicaciones);
+			$peridoencuesta=$this->genePerido($tempperiodo[0]->periodo);
+			$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
+
 			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
 			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
 			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
@@ -819,6 +826,20 @@ class Panel_seguimiento extends CI_Controller {
 			$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
 			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
 			$html = '';
+			$html.='
+			<table style="height: 53px;" width="100%"  border="0">
+			<tbody>
+			<tr>
+			<td style="text-align: center; border:none; width: 100%;"><h2><strong>Departamento de '.$departamentoacademico.'</strong></h2></td>
+			</tr>
+			<tr>
+			<td style="text-align: center; border:none; width: 100%;">Periodo de '.$peridoencuesta.'</td>
+			</tr>
+			<tr>
+			<td style="text-align: center; border:none; width: 100%;"> </td>
+			</tr>
+			</tbody>
+			</table>';
 			$html .= "<style type=text/css>";
 			$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
 			$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
