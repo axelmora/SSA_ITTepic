@@ -190,8 +190,8 @@ class Panel_seguimiento extends CI_Controller {
 			case '8':
 			$departamentoRetorno="DEPARTAMENTO DE CIENCIAS ECONOMICO ADMINISTRATIVAS";
 			break;
-
 			default:
+			$departamentoRetorno="DEPARTAMENTO DE SISTEMAS Y COMPUTACION";
 			break;
 		}
 		return $departamentoRetorno;
