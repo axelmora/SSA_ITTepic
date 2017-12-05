@@ -68,13 +68,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="col-lg-10">
                       <center>
-                        <table  class="table table-sm table-striped table-responsive table-bordered dt-responsive " cellspacing="0" >
+                        <table  class="table table-sm table-striped table-responsive table-bordered dt-responsive " width="100%" cellspacing="0" >
                           <thead>
                             <tr>
                               <th><i class="fa fa-book" aria-hidden="true"></i> MATERIA</th>
                               <th><i class="fa fa-user" aria-hidden="true"></i> DOCENTE</th>
                               <th><i class="fa fa-bar-chart" aria-hidden="true"></i> PROGRESO EVALUACION</th>
-                              <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
+                              <!-- <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th> -->
                             </tr>
                           </thead>
                           <tbody>
@@ -101,7 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   }
                                   ?>
                                 </td>
-                                <td>
+                                <!-- <td>
                                   <center>
                                     <div class="btn-group">
                                       <center>
@@ -114,7 +114,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteIndividual/<?php echo  $IDGRUPO; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> REPORTE INDIVIDUAL</a>
                                             <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/resulados/<?php echo $IDGRUPO; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
-                                            <!-- <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS GRAFICOS</a> -->
                                             <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
                                             <div class="dropdown-divider"></div>
                                             <button type="button" class="dropdown-item " data-toggle="modal" data-target="#modalEliminar" onclick="eliminarEncuestaSeguimiento(<?php echo $IDGRUPO; ?>)" ><i class="fa fa-trash text-danger" aria-hidden="true"></i> BORRAR ENCUESTA</button>
@@ -123,10 +122,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                       </center>
                                     </div>
                                   </center>
-                                </td>
+                                </td> -->
                               </tr>
                             </tbody>
                           </table>
+                          <div class="btn-group">
+                            <center>
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
+                                </button>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/agregarAlumnosGrupo/<?php echo $IDGRUPO; ?>"><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR ALUMNO</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteIndividual/<?php echo  $IDGRUPO; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> REPORTE INDIVIDUAL</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/resulados/<?php echo $IDGRUPO; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
+                                  <!-- <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS GRAFICOS</a> -->
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
+                                  <div class="dropdown-divider"></div>
+                                  <button type="button" class="dropdown-item " data-toggle="modal" data-target="#modalEliminar" onclick="eliminarEncuestaSeguimiento(<?php echo $IDGRUPO; ?>)" ><i class="fa fa-trash text-danger" aria-hidden="true"></i> BORRAR ENCUESTA</button>
+                                </div>
+                              </div>
+                            </center>
+                          </div>
                         </center>
                       </div>
                     </div>
