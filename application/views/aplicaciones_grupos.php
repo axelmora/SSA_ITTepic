@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="col-lg-10">
                       <center>
-                        <table  class="table table-sm table-striped table-responsive table-bordered dt-responsive " width="100%" cellspacing="0" >
+                        <table  class="table table-sm table-striped table-responsive table-bordered dt-responsive " style="display:inline" width="100%" cellspacing="0" >
                           <thead>
                             <tr>
                               <th><i class="fa fa-book" aria-hidden="true"></i> MATERIA</th>
