@@ -1044,13 +1044,15 @@ class Panel_seguimiento extends CI_Controller {
 	public function generadorCatel($idAplicacion)
 	{
 		$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idAplicacion);
+		$tempseguimiento=$this->SeguimientoModelo->obtenerContraseñaApp($idAplicacion);
+
 		//$peridoencuesta=$this->genePerido($tempperiodo[0]->periodo);
 		$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
 		$iddepartamento=$tempdepartamento[0]->iddepartamento_academico;;
 		$datosenviar = array(	array('name'=> ''.$departamentoacademico,'font-size'=>'58','color'=>'negro'),
 		array('name'=> 'Ya se encuentra disponible la encuesta de seguimiento en el aula','font-size'=>'35','color'=>'negro'),
 		array('name'=> 'con la siguiente contraseña: ','font-size'=>'35','color'=>'negro'),
-		array('name'=> 'Contraseña','font-size'=>'50','color'=>'red'),
+		array('name'=> ''.$tempseguimiento[0]->contrasena,'font-size'=>'50','color'=>'red'),
 		array('name'=> '','font-size'=>'35','color'=>'negro'));
 
 		$filename = $this->generar_imagen($datosenviar,$iddepartamento);
@@ -1058,7 +1060,7 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->view('generar_imagen',$datos);
 	}
 	function generar_imagen($user,$iddepartamento){
-		$fontname =  $_SERVER['DOCUMENT_ROOT'].'/fonts/Capriola-Regular.ttf';
+		$fontname =  $_SERVER['DOCUMENT_ROOT'].'/fonts/SourceSansPro-Regular.ttf';
 		$i=60;
 		$quality = 90;
 		$file = FCPATH."file/carteles/cartel_promocional_aplicacion$iddepartamento.jpg";
@@ -1091,7 +1093,7 @@ class Panel_seguimiento extends CI_Controller {
 		return $ruta;
 	}
 	function centrar_texto($string, $font_size){
-		$fontname = $_SERVER['DOCUMENT_ROOT'] .'/fonts/Capriola-Regular.ttf';
+		$fontname = $_SERVER['DOCUMENT_ROOT'] .'/fonts/SourceSansPro-Regular.ttf';
 		$image_width = 1920;
 		$dimensions = imagettfbbox($font_size, 0, $fontname, $string);
 		return ceil(($image_width - $dimensions[4]) / 2);

@@ -494,4 +494,15 @@ public function getAlumnosEncuesta($grupo)
     return false;
   }
 }
+public function obtenerContraseñaApp($idAplicacion)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT contrasena FROM aplicaciones where idaplicaciones=$idAplicacion;");
+  if ($query->num_rows() > 0)
+  {
+    return $query->result();
+  } else {
+    return false;
+  }
+}
 }
