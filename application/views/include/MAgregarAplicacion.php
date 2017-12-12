@@ -1,5 +1,5 @@
 <!-- Modal Agregar Aplicacion -->
-<form method="post" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/generarAplicacion" >
+<form id="agregarAplicacionForm" method="post" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/generarAplicacion" >
   <div class="modal fade" id="modalAplicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">

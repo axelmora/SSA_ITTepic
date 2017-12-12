@@ -35,6 +35,43 @@ $(document).ready(function(){
     }
   });
   /* FORMULARIO LOGIN FIN */
+  /* FORMULARIO REGISTRO*/
+  $( "#formularionNuevoUsuario").validate({
+    rules: {
+      nombre_user: {
+        required: true,
+        minlength: 5,
+        maxlength: 20
+      },
+      nombre_userc: {
+        required: true,
+        minlength: 5,
+        maxlength: 40
+      },
+      contrasena: {
+        required: true,
+        minlength: 6,
+        maxlength: 20
+      }
+    },
+    messages :{
+      nombre_user: {
+        required: ""+generarErrores("Se requiere el nombre de usuario.","texto-plano"),
+        minlength: ""+generarErrores("Se requiere al menos 5 caracteres.","texto-plano"),
+        maxlength: ""+generarErrores("Se requiere un maximo de 20 caracteres.","texto-plano")
+      },
+      nombre_userc: {
+        required: ""+generarErrores("Se requiere el nombre de usuario.","texto-plano"),
+        minlength: ""+generarErrores("Se requiere al menos 5 caracteres.","texto-plano"),
+        maxlength: ""+generarErrores("Se requiere un maximo de 40 caracteres.","texto-plano")
+      },
+      contrasena: {
+        required: ""+generarErrores("Se requiere la contraseña de usuario.","texto-plano"),
+        minlength: ""+generarErrores("Se requiere al menos 6 caracteres.","texto-plano"),
+        maxlength: ""+generarErrores("Se requiere un maximo de 20 caracteres.","texto-plano")
+      }
+    }
+  });
   /* FORMULARIO SEGUIMIENTO LOGIN*/
   $( "#formularioAlumnoSeguimiento").validate({
     rules: {
@@ -45,7 +82,7 @@ $(document).ready(function(){
       },
       contra_aplicacion: {
         required: true,
-        minlength: 2,
+        minlength: 4,
         maxlength: 20
       }
     },
@@ -57,7 +94,7 @@ $(document).ready(function(){
       },
       contra_aplicacion: {
         required: ""+generarErrores("Se requiere la contraseña proporcionada por su departamento academico.","texto-plano"),
-        minlength: ""+generarErrores("Se requiere al menos 5 caracteres.","texto-plano"),
+        minlength: ""+generarErrores("Se requiere al menos 4 caracteres.","texto-plano"),
         maxlength: ""+generarErrores("Se requiere un maximo de 20 caracteres.","texto-plano")
       }
     }
@@ -104,23 +141,39 @@ $(document).ready(function(){
   });
   /* FORMULARIO SEGUIMIENTO CONTRASEÑA CAMBIAR */
   /* FORMULARIO SEGUIMIENTO DATOS */
-	$("#formularioDatosUsuarioModificar").validate({
-		rules: {
-			nombre_usuario: {
-				required: true,
-				minlength: 2,
-				maxlength: 120
-			}
-		},
-		messages :{
-			nombre_usuario: {
-				required: ""+generarErrores("Se requiere el nombre de usuario.","texto-plano"),
-				minlength: ""+generarErrores("Se requiere al menos 2 caracteres. ","texto-plano"),
-				maxlength: ""+generarErrores("Se requiere un maximo de 120 caracteres.","texto-plano")
-			}
-		}
-	});
-	/* FORMULARIO SEGUIMIENTO DATOS FIN*/
+  $("#formularioDatosUsuarioModificar").validate({
+    rules: {
+      nombre_usuario: {
+        required: true,
+        minlength: 2,
+        maxlength: 120
+      }
+    },
+    messages :{
+      nombre_usuario: {
+        required: ""+generarErrores("Se requiere el nombre de usuario.","texto-plano"),
+        minlength: ""+generarErrores("Se requiere al menos 2 caracteres. ","texto-plano"),
+        maxlength: ""+generarErrores("Se requiere un maximo de 120 caracteres.","texto-plano")
+      }
+    }
+  });
+  /* FORMULARIO SEGUIMIENTO DATOS FIN*/
+  $( "#agregarAplicacionForm").validate({
+    rules: {
+      contrasenaapp: {
+        required: true,
+        minlength: 4,
+        maxlength: 20
+      }
+    },
+    messages :{
+      contrasenaapp: {
+        required: ""+generarErrores("Se requiere la contraseña proporcionada por su departamento academico.","texto-plano"),
+        minlength: ""+generarErrores("Se requiere al menos 4 caracteres.","texto-plano"),
+        maxlength: ""+generarErrores("Se requiere un maximo de 20 caracteres.","texto-plano")
+      }
+    }
+  });
 });
 /*FUNCION QUE GENERA MENSAJES ERRORES PARA EL VALIDADOR*/
 function generarErrores(Mensaje,Tipo) {

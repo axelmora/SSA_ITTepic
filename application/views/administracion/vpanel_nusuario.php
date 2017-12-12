@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="card-body">
               <div class="row" >
                 <div class="col-lg-12">
-                  <form method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/agrearUsuario" >
+                  <form id="formularionNuevoUsuario" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/agrearUsuario" >
                     <div class="form-group">
                       <label for="nombre_user">Nombre de usuario:</label>
                       <input type="text" class="form-control" id="nombre_user" name="nombre_user" aria-describedby="nombre_userHelp" placeholder="Ingresar nombre del usuario." required value="<?php echo set_value('nombre_user'); ?>">
@@ -108,6 +108,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.validate.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa-validador.js"></script>
 <script>
 
 $(document).ready(function(){

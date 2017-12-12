@@ -190,6 +190,8 @@ function genePeridoActual($peridot)
 <script>var urlsistema = '<?php echo base_url()?>';</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.validate.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/ssa-validador.js"></script>
 <?php
 if (isset($ErrorContra)) {
   ?>
