@@ -94,7 +94,7 @@ switch (ENVIRONMENT)
 	<?php
 	echo '<center>';
 	echo '<b>ERROR</b> <br>';
-	echo 'El sistema no se configuro correctamente <br>';
+	echo 'El sistema no se configuro correctamente. <br>';
 	echo '</scenter>';
 	exit(1); // EXIT_ERROR
 }

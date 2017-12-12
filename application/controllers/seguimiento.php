@@ -171,74 +171,75 @@ class Seguimiento extends CI_Controller {
 	{
 		/*$DepartamentoEnviar="";
 		switch ($idCarrera) {
-			case '2': //TIC´S
-			$DepartamentoEnviar=3; //DEPARTAMENTO DE SISTEMAS Y COMPUTACION
-			break;
-			case '7': //SISTEMAS
-			$DepartamentoEnviar=3;  //DEPARTAMENTO DE SISTEMAS Y COMPUTACION
-			break;
-			case '3':// ARQUITECTURA
-			$DepartamentoEnviar=2; //CIENCIAS DE LA TIERRA
-			break;
-			default:
-			# code...
-			break;
-		}*/
-		$departamento=$this->Departamentos->obtenerDepartamentoPorCarrera($idCarrera);
-		$DepartamentoEnviar=$departamento[0]->departamento_academico_iddepartamento_academico;
-		return $DepartamentoEnviar;
-	}
-	public function generarPeriodo()
-	{ /* FUNCION PARA OBTENER EL PERIODO ACTUAL  */
-		$anio=date("Y");
-		$mes=date("m");
-		$periodo="";
-		if ($mes>=1 && $mes<=6) {
-			$periodo=$anio."1";
-		}else {
-			if ($mes>=8 && $mes<=12) {
-				$periodo=$anio."3";
-			}
-			else {
-				$periodo=$anio."2";
-			}
+		case '2': //TIC´S
+		$DepartamentoEnviar=3; //DEPARTAMENTO DE SISTEMAS Y COMPUTACION
+		break;
+		case '7': //SISTEMAS
+		$DepartamentoEnviar=3;  //DEPARTAMENTO DE SISTEMAS Y COMPUTACION
+		break;
+		case '3':// ARQUITECTURA
+		$DepartamentoEnviar=2; //CIENCIAS DE LA TIERRA
+		break;
+		default:
+		# code...
+		break;
+	}*/
+	$departamento=$this->Departamentos->obtenerDepartamentoPorCarrera($idCarrera);
+	$DepartamentoEnviar=$departamento[0]->departamento_academico_iddepartamento_academico;
+	return $DepartamentoEnviar;
+}
+public function generarPeriodo()
+{ /* FUNCION PARA OBTENER EL PERIODO ACTUAL  */
+	$anio=date("Y");
+	$mes=date("m");
+	$periodo="";
+	if ($mes>=1 && $mes<=6) {
+		$periodo=$anio."1";
+	}else {
+		if ($mes>=8 && $mes<=12) {
+			$periodo=$anio."3";
 		}
-		return $periodo;
+		else {
+			$periodo=$anio."2";
+		}
 	}
-	/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
-	public function mensajeError($Mensaje)
-	{
-		$enviar="
-		<br>
-		<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
-		<center>
-		<i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
-		<br><br><b>".$Mensaje."</b>
-		</center>
-		</div>
-		";
-		return $enviar;
-	}
-	/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
-	public function mensajeErrorSistema()
-	{
-		$enviar="
-		<br>
-		<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
-		<center>
-		<br>
-		<i style='font-size:600%;' class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
-		<br><br><b  style='font-size:150%;' > El sistema se encuentra actualmente en mantenimiento<i class='fa fa-wrench' aria-hidden='true'></i>.</b>
-		</center>
-		<br>
-		<br>
-		<br>
-		</div>
-		";
-		return $enviar;
-	}
-	public function consolaLOG($Mensaje)
-	{
-		echo "$Mensaje <br>";
-	}
+	return $periodo;
+}
+/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
+public function mensajeError($Mensaje)
+{
+	$enviar="
+	<br>
+	<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
+	<center>
+	<i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
+	<br><br><b>".$Mensaje."</b>
+	</center>
+	</div>
+	";
+	return $enviar;
+}
+/* FUNCION PARA GENERAR MENSAJES DE ERRORES*/
+public function mensajeErrorSistema()
+{
+	$enviar="
+	<br>
+	<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>
+	<center>
+	<br>
+	<i style='font-size:600%;' class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i>
+	<br><br><b  style='font-size:150%;' > El sistema se encuentra actualmente en mantenimiento<i class='fa fa-wrench' aria-hidden='true'></i>.</b>
+	</center>
+	<br>
+	<br>
+	<br>
+	</div>
+	";
+	return $enviar;
+}
+public function consolaLOG($Mensaje)
+{
+	echo "$Mensaje <br>";
+}
+
 }

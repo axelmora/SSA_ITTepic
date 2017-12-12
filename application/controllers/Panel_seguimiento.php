@@ -1041,4 +1041,76 @@ class Panel_seguimiento extends CI_Controller {
 		}
 		return $peridotTexto;
 	}
-}
+	public function generadorCatel()
+	{
+		$datosenviar = array(
+			array(
+				'name'=> 'Sistemas y Computacion',
+				'font-size'=>'58',
+				'color'=>'negro'),
+				array(
+					'name'=> 'Ya se encuentra disponible la encuesta de seguimiento en el aula',
+					'font-size'=>'35',
+					'color'=>'negro'),
+					array(
+						'name'=> 'con la siguiente contraseña: ',
+						'font-size'=>'35',
+						'color'=>'negro'),
+						array(
+							'name'=> 'Contraseña',
+							'font-size'=>'50',
+							'color'=>'red'
+						),
+						array(
+							'name'=> '',
+							'font-size'=>'35',
+							'color'=>'negro'
+						)
+					);
+					$iddepartamento=1;
+					$filename = $this->generar_imagen($datosenviar,$iddepartamento);
+					$datos["cartel"]=$filename;
+					$this->load->view('generar_imagen',$datos);
+				}
+				function generar_imagen($user,$iddepartamento){
+					$fontname =  $_SERVER['DOCUMENT_ROOT'].'/fonts/Capriola-Regular.ttf';
+					$i=60;
+					$quality = 90;
+					$file = FCPATH."file/carteles/cartel_promocional_aplicacion$iddepartamento.jpg";
+					$ruta="file/carteles/cartel_promocional_aplicacion$iddepartamento.jpg";
+					$height=500;
+					$im = imagecreatefromjpeg(base_url()."file/carteles/cartel_promocional.jpg");
+					$color['grey'] = imagecolorallocate($im, 54, 56, 60);
+					$color['green'] = imagecolorallocate($im, 55, 189, 102);
+					$color['red'] = imagecolorallocate($im, 255, 0, 0);
+					$color['negro'] = imagecolorallocate($im, 0, 0, 0);
+					$y = imagesy($im) - $height - 500;
+					foreach ($user as $value){
+						if($i==60){
+							$x =120+ $this->centrar_texto($value['name'], $value['font-size']);
+						}else {
+							$x =$this->centrar_texto($value['name'], $value['font-size']);
+						}
+						imagettftext($im, $value['font-size'], 0, $x, $y+$i, $color[$value['color']], $fontname,$value['name']);
+						if($i==60){
+							$i = $i+300;
+						}else {
+							if($i==555){
+								$i = $i+100;
+							}else {
+								$i = $i+65;
+							}
+
+						}
+					}
+					imagejpeg($im, $file, $quality);
+					return $ruta;
+				}
+				function centrar_texto($string, $font_size){
+					$fontname = $_SERVER['DOCUMENT_ROOT'] .'/fonts/Capriola-Regular.ttf';
+					$image_width = 1920;
+					$dimensions = imagettfbbox($font_size, 0, $fontname, $string);
+					return ceil(($image_width - $dimensions[4]) / 2);
+				}
+
+			}
