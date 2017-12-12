@@ -1052,7 +1052,8 @@ class Panel_seguimiento extends CI_Controller {
 			array('name'=> 'Ya se encuentra disponible la encuesta de seguimiento en el aula','font-size'=>'35','color'=>'negro'),
 			array('name'=> 'con la siguiente contraseña: ','font-size'=>'35','color'=>'negro'),
 			array('name'=> ''.$tempseguimiento[0]->contrasena,'font-size'=>'50','color'=>'red'),
-			array('name'=> '','font-size'=>'35','color'=>'negro'));
+			array('name'=> 'Solo accede a la siguiente direccion web: ','font-size'=>'35','color'=>'negro'),
+			array('name'=> base_url().'index.php/Seguimiento/','font-size'=>'35','color'=>'azul'));
 			$filename = $this->generar_imagen($datosenviar,$iddepartamento);
 			$datos["cartel"]=$filename;
 			$this->load->view('generar_imagen',$datos);
@@ -1073,6 +1074,7 @@ class Panel_seguimiento extends CI_Controller {
 			$color['green'] = imagecolorallocate($im, 55, 189, 102);
 			$color['red'] = imagecolorallocate($im, 255, 0, 0);
 			$color['negro'] = imagecolorallocate($im, 0, 0, 0);
+			$color['azul'] = imagecolorallocate($im, 0, 0, 255);
 			$y = imagesy($im) - $height - 500;
 			foreach ($user as $value){
 				if($i==60){
