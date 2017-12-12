@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-lg-12">
 				<div class="card sombrapaneles">
 					<div class="card-body cuerpo"   >
-						<h3>                <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a> <i class="fa fa-user" aria-hidden="true"></i> Cartel promocion</h3>
+						<h3> <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a> <i class="fa fa-picture-o" aria-hidden="true"></i> Cartel promocion</h3>
 						<center>
 							<img class="img-fluid" src="<?php echo base_url(); ?><?php echo $cartel;?>" width="1920" height="1080"/>
 							<a  download="cartel_promocional" class="btn btn-naranja hvr-pulse-grow" data-toggle="tooltip" data-placement="top" title="Descargar cartel promocional" href="<?php echo base_url(); ?><?php echo $cartel;?>" role="button"><i class="fa fa-download" aria-hidden="true"></i> Descargar cartel promocional</a>

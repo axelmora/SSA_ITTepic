@@ -85,6 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reportesAplicacion/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-file-pdf-o colorBorrar" aria-hidden="true"></i> REPORTES</a>
                                   <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionlista/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-commenting-o colorRetroAlimentacion" aria-hidden="true"></i> RETROALIMENTACIÓN INDIVIDUAL</a>
                                   <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacioncontinua/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-comments-o colorRetroAlimentacion" aria-hidden="true"></i> RETROALIMENTACIÓN CONTINUA</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/generadorCatel/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-picture-o colorRetroAlimentacion" aria-hidden="true"></i> GENERAR CARTEL PROMOCIONAL</a>
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="#" onclick="eliminarAplicacion(<?php echo "".$valor->idaplicaciones; ?>)" ><i class="fa fa-trash-o colorBorrar" aria-hidden="true"></i> ELIMINAR APLICACION</a>
                                 </div>
