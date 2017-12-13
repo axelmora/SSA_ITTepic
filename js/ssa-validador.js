@@ -168,7 +168,7 @@ $(document).ready(function(){
     },
     messages :{
       contrasenaapp: {
-        required: ""+generarErrores("Se requiere la contraseña proporcionada por su departamento academico.","texto-plano"),
+        required: ""+generarErrores("Se requiere la contraseña para esta aplicacion.","texto-plano"),
         minlength: ""+generarErrores("Se requiere al menos 4 caracteres.","texto-plano"),
         maxlength: ""+generarErrores("Se requiere un maximo de 20 caracteres.","texto-plano")
       }
