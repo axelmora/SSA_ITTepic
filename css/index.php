@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<meta name="description" content="">
 	<meta name="author" content="Fernando Manuel Avila Cataño">
-	<meta name="theme-color" content="##FFFFFF">
+	<meta name="theme-color" content="#FFFFFF">
 	<meta name="msapplication-navbutton-color" content="##FFFFFF">
 	<meta name="apple-mobile-web-app-status-bar-style" content="white">
 	<link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet" />
