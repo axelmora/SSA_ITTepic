@@ -1053,7 +1053,7 @@ class Panel_seguimiento extends CI_Controller {
 			array('name'=> 'con la siguiente contraseña: ','font-size'=>'35','color'=>'negro'),
 			array('name'=> ''.$tempseguimiento[0]->contrasena,'font-size'=>'50','color'=>'red'),
 			array('name'=> 'Solo accede a la siguiente direccion web: ','font-size'=>'35','color'=>'negro'),
-			array('name'=> base_url().'index.php/Seguimiento/','font-size'=>'35','color'=>'azul'));
+			array('name'=> base_url().'Seguimiento/ ','font-size'=>'35','color'=>'azul'));
 			$filename = $this->generar_imagen($datosenviar,$iddepartamento);
 			$datos["cartel"]=$filename;
 			$this->load->view('generar_imagen',$datos);
