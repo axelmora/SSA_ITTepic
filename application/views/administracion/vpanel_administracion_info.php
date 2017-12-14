@@ -67,6 +67,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 									</form>
 								</p>
+								<p>Información php  <a href="<?php echo base_url();?>panel_administracion/info_servidor" class="btn btn-naranja "><i class="fa fa-server" aria-hidden="true"></i>  PHP</a>
+</p>
 							</div>
 						</div>
 					</div>

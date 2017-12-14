@@ -272,4 +272,12 @@ class Panel_administracion extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
+	public function info_servidor()
+	{
+		if ($this->session->userdata('tipo')=='1') {
+				$this->load->view('administracion/vpanel_info');
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
 }
