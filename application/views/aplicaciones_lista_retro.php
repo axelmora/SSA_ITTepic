@@ -67,9 +67,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $retro="";
                         if($valor->retroalimentacion!="")
                         {
-                          $retro="SI";
+                          $retro='<center><span class="badge badge-success medalla"> <i class="fa fa-check-circle" aria-hidden="true"></i> SI</span></center>';
                         }else {
-                          $retro="NO";
+                          $retro='<center><span class="badge badge-danger medalla"> <i class="fa fa-times-circle " aria-hidden="true"></i> NO</span></center>';
                         }
                         ?>
                         <tr>
