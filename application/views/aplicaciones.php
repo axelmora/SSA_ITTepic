@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                   <div class="col-lg-9">
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones de seguimiento en el aula de <?php  echo "".$this->session->userdata('departamentonombre');?></h3>
-                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
 
                   </div>
                   <div class="col-lg-3">
@@ -51,7 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <thead>
                       <tr>
                         <th><i class="fa fa-calendar" aria-hidden="true"></i> PERIODO</th>
-                        <th><i class="fa fa-lock" aria-hidden="true"></i> CONTRASEÑA</th>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i> NUMERO DE ENCUESTAS</th>
                         <th><i class="fa fa-calendar-check-o" aria-hidden="true"></i> FECHA CREACION</th>
                         <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
@@ -70,7 +69,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         ?>
                         <tr>
                           <td><?php echo "".genePerido($valor->periodo); ?></td>
-                          <td><?php echo "".$valor->contrasena; ?></td>
                           <td> <?php echo "".$NumeroEncuestas?></td>
                           <td><?php echo "".$valor->fecha_creacion; ?></td>
                           <td>

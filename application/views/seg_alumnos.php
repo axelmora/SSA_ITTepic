@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </center>
                   </div>
                 </div>
-                <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
                 <br>
                 <br>
                 <?php

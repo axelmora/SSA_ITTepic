@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <h3>
                       <i class="fa fa-commenting-o" aria-hidden="true"></i> Retroalimentación de la aplicación  del periodo de <?php echo "$peridotlista";  ?>
                     </h3>
-                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
 
                   </div>
                   <div class="col-lg-2">

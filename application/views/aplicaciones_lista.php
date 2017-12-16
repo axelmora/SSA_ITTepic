@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     ?>
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupos de aplicación  del periodo <?php echo "$peridotlista";  ?>
                     </h3>
-                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
                     <button type="button" id="botonCopiar" class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>index.php/Seguimiento/"  role="button">
                       <i class="fa  fa-share-square-o" aria-hidden="true" ></i>
                       OBTENER ENLACE ENCUESTA</button>

@@ -9,24 +9,12 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <?php
-        if ($AplicacionesPerido) {
-          ?>
-          <div class="container">
-            <div class="card bg-danger text-white">
-              <div class="card-body">
-                <center>   <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite ' aria-hidden='true'></i></center> <br>
-                <center>  <?php  echo " Ya existen aplicaciones en el semestre actual"; ?> </center>
-              </div>
-            </div>
-          </div>
-          <?php
-        }
-        ?>
         <div class="modal-body">
           <div class="form-group">
-            <label for="contrasenaapp">Contraseña aplicacion</label>
-            <input type="text" class="form-control" id="contrasenaapp" name="contrasenaapp" aria-describedby="contrasenaapp" placeholder="Ingresa una contraseña para la aplicacion " required>
+            <label for="contrasenaapp">Elegir periodo:</label>
+            <select  class="form-control" id="periodo" name="periodo" required>
+              <option selected value="1">Agosto- Diciembre 2017</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="plantilla">Seleccionar plantilla</label>

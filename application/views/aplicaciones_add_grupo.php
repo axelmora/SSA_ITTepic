@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="row">
               <div class="col-lg-12">
                 <h3><i class="icon-clipboard" aria-hidden="true"></i>Crear nuevo grupo de aplicacion <!-- <?php// echo "$peridotlista";  ?> --> </h3>
-                <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo $AplicacionDatos; ?>" role="button" data-original-title="Volver"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo $AplicacionDatos; ?>" role="button" data-original-title="Volver"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
               </div>
             </div>
             <br>
@@ -266,7 +266,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> CERRAR</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> CERRAR</button>
       </div>
     </div>
   </div>
@@ -299,7 +299,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> VOLVER A ELEGIR GRUPO</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> VOLVER A ELEGIR GRUPO</button>
           <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i>SELECIONAR ESTE GRUPO</button>
         </div>
       </div>

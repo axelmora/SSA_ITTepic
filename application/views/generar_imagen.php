@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="card-body cuerpo"   >
 						<h3>
 							<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button">
-								<i class="fa fa-undo" aria-hidden="true"></i>
+								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
 							</a>
 							<i class="fa fa-picture-o" aria-hidden="true"></i> Cartel promocion</h3>
 							<center>

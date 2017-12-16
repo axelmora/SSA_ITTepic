@@ -62,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="col-lg-2">
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>DATOS GRUPO
                     </h3>
-                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo $idEncuesta; ?>" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo $idEncuesta; ?>" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
                     <button type="button" id="botonCopiar"  class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>index.php/Seguimiento/"  role="button">
                       <div style="font-size:75%;"><i class="fa  fa-share-square-o" aria-hidden="true" ></i> OBTENER ENCUESTA</div></button>
                     </div>
@@ -266,7 +266,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> CANCELAR</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> CANCELAR</button>
             <button type="submit" class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> ELIMINAR ALUMNO</button>
           </div>
         </div>
@@ -308,7 +308,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> CANCELAR</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> CANCELAR</button>
             <button type="submit" class="btn btn-danger"><i class="fa fa-ban" aria-hidden="true"></i> REACTIVAR ALUMNO</button>
           </div>
         </div>

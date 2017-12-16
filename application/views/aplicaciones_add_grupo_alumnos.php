@@ -43,7 +43,7 @@ if(isset($DATOSMATERIA)){
           <div class="row">
             <div class="col-lg-5">
               <h3><i class="icon-clipboard" aria-hidden="true"></i>Agregar alumnos a la aplicación existente <!-- <?php// echo "$peridotlista";  ?> --> </h3>
-              <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo $IDGRUPO; ?>" role="button" data-original-title="Volver"><i class="fa fa-undo" aria-hidden="true"></i></a>
+              <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo $IDGRUPO; ?>" role="button" data-original-title="Volver"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
             </div>
             <div class="col-lg-7">
               <center>

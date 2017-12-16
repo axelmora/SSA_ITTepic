@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $MATERIA="".$value->nombre_materia ;
                   }
                   ?>
-                  <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionlista/<?php echo "".$idcampo; ?>" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                  <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionlista/<?php echo "".$idcampo; ?>" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
                   <?php
                   $id="";
                   foreach ($idSegui as $key => $value) {
@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="card text-white bg-danger" >
                           <div class="card-body">
                             <p class="card-text">No es posible generar una retroalimentación sin resultados.
-                              <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionlista/<?php echo "".$idcampo; ?>" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                              <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionlista/<?php echo "".$idcampo; ?>" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
                             </p>
                           </div>
                         </div>

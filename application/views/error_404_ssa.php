@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h2 class="h1">Lo siento, 404 Not Found</h2>
 				<center>
 					<img  class="img-fluid" src="<?php echo base_url(); ?>images/escudo_itt_grande.png" height="150" width="150"> <br><br>
-					<a href="<?php echo base_url(); ?>index.php" class="btn btn-naranja hvr-pulse-grow "><i class="fa fa-undo" aria-hidden="true"></i> VOLVER AL INICIO</a>
+					<a href="<?php echo base_url(); ?>index.php" class="btn btn-naranja hvr-pulse-grow "><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> VOLVER AL INICIO</a>
 				</center>
 			</div>
 		</div>
