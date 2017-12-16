@@ -47,6 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <table id="tablaDocentes" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                     <thead>
                       <tr>
+                        <th><i class="fa fa-hashtag" aria-hidden="true"></i> RFC</th>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i> NOMBRE</th>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i> APELLIDOS</th>
                         <!--  <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>-->
@@ -57,6 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       foreach ($DOCENTES as $key => $valor) {
                         ?>
                         <tr>
+                          <td><?php echo "".utf8_decode($valor->rfc); ?></td>
                           <td><?php echo "".utf8_decode($valor->nombres); ?></td>
                           <td><?php echo "". utf8_decode($valor->apellidos); ?></td>
                           <!--  <td>

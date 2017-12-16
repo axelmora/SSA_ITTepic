@@ -123,21 +123,6 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
-	public function nuevo_grupo($idAplicacion)
-	{
-		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-			$depa=$this->obtenerDepartamento($this->session->userdata('departamento'));
-			//	$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
-			$datos["MateriasExistentes"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
-			$datos["Docentes"]=$this->Docentes->cargarDocentesDepartamento($depa);
-			$datos["AlumnosCopiar"]=$this->SeguimientoModelo->cargarEncuestasGrupos($idAplicacion);
-			$datos["AplicacionDatos"]=$idAplicacion;
-			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
-			$this->load->view('aplicaciones_add_grupo',$datos);
-		}else {
-			redirect(base_url().'index.php');
-		}
-	}
 	public function obtenerAlumnosSeguimiento($idseguimiento)
 	{
 		$grupo=$this->SeguimientoModelo->obtenerGrupoPorSeguimiento($idseguimiento);
@@ -145,25 +130,7 @@ class Panel_seguimiento extends CI_Controller {
 		echo json_encode($alumnos);
 		//var_dump($alumnos);
 	}
-	/*  INSERTAR MATERIA */
-	public function insertarMateria()
-	{
-		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-			$datos= array(
-				'nombre_materia' => ''.strtoupper($this->input->post('nombre_materia')),
-				'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
-			);
-			$this->Materia->insertarMateria($datos);
-			$datos['idmaterias']=$this->Materia->ultimaMateriaAgregadaDepa($this->session->userdata('departamento'));
-			$idenviar="";
-			foreach ($datos['idmaterias'] as $key => $value) {
-				$idenviar = array("idmateria"=>$value->maximo);
-			}
-			echo json_encode($idenviar);
-		}else {
-			redirect(base_url().'index.php');
-		}
-	}
+
 	public function obtenerDepartamento($departamentoid)
 	{
 		$departamentoRetorno="";
