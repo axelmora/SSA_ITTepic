@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                   <div class="col-lg-9">
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones de seguimiento en el aula de <?php  echo "".$this->session->userdata('departamentonombre');?></h3>
-                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>Panel_seguimiento/" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
 
                   </div>
                   <div class="col-lg-3">
@@ -78,19 +78,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   <i class="fa fa-bars" aria-hidden="true"></i>  OPCIONES
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-left">
-                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-users colorGrupos" aria-hidden="true"></i> GESTIONAR GRUPOS</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/listado/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-users colorGrupos" aria-hidden="true"></i> GESTIONAR GRUPOS</a>
                                   <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reportesAplicacion/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-file-pdf-o colorBorrar" aria-hidden="true"></i> REPORTES</a>
-                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionlista/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-commenting-o colorRetroAlimentacion" aria-hidden="true"></i> RETROALIMENTACIÓN INDIVIDUAL</a>
-                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacioncontinua/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-comments-o colorRetroAlimentacion" aria-hidden="true"></i> RETROALIMENTACIÓN CONTINUA</a>
-                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/generadorCatel/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-picture-o colorRetroAlimentacion" aria-hidden="true"></i> GENERAR CARTEL PROMOCIONAL</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/reportesAplicacion/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-file-pdf-o colorBorrar" aria-hidden="true"></i> REPORTES</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/retroalimentacionlista/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-commenting-o colorRetroAlimentacion" aria-hidden="true"></i> RETROALIMENTACIÓN INDIVIDUAL</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/retroalimentacioncontinua/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-comments-o colorRetroAlimentacion" aria-hidden="true"></i> RETROALIMENTACIÓN CONTINUA</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/generadorCatel/<?php echo "".$valor->idaplicaciones; ?>"><i class="fa fa-picture-o colorRetroAlimentacion" aria-hidden="true"></i> GENERAR CARTEL PROMOCIONAL</a>
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="#" onclick="eliminarAplicacion(<?php echo "".$valor->idaplicaciones; ?>)" ><i class="fa fa-trash-o colorBorrar" aria-hidden="true"></i> ELIMINAR APLICACION</a>
                                 </div>
                               </div>
                             </center>
                             <!--<div class="btn-group btn-block">
-                            <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo "".$valor->idaplicaciones; ?>"  class="btn btn-primary btn-block text-white"   >
+                            <a href="<?php echo base_url(); ?>Panel_seguimiento/listado/<?php echo "".$valor->idaplicaciones; ?>"  class="btn btn-primary btn-block text-white"   >
                             <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
                           </a>
                         </div> -->
