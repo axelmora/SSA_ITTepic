@@ -33,11 +33,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="col-lg-10">
                     <?php
                     $peridotlista="";
-                    foreach ($AplicacionesPeriodo as $key => $valorPeriodo) {
-                      $peridotlista= genePerido($valorPeriodo->periodo);
-                    }
                     ?>
-                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupos de aplicación  del periodo <?php echo "$peridotlista";  ?>
+                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupos de aplicación  del periodo <?php echo "".$AplicacionesPeriodo[0]->periodo_texto;  ?>
                     </h3>
                     <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
                     <button type="button" id="botonCopiar" class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>index.php/Seguimiento/"  role="button">

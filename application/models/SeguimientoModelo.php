@@ -60,10 +60,8 @@ class SeguimientoModelo extends CI_Model {
     $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es, materias as ma, docentes as do,
       grupos as gr
       where es.aplicaciones_idaplicaciones=$idSeguimiento AND
-      es.idencuesta_seguimiento=gr.encuestas_seguimiento_idencuesta_seguimiento
-      and es.docentes_rfc = do.rfc and es.materias_idmaterias= ma.idmaterias
-      order by es.fecha_creacion DESC
-      ");
+      es.grupos_idgrupos=gr.idgrupos
+      and gr.docentes_rfc = do.rfc and gr.materias_idmaterias= ma.idmaterias  order by es.fecha_creacion DESC    ");
       if ($query->num_rows() > 0) {
         return $query->result();
       }
