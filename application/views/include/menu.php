@@ -16,17 +16,17 @@
     <img class="img-fluid"  src="<?php echo base_url(); ?>images/logochico.png" alt="Instituto Tecnológico de Tepic" />
   </nav>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" style="font-size:30px; color:#FF8000;" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/"> SSA</a>
+    <a class="navbar-brand" style="font-size:30px; color:#FF8000;" href="<?php echo base_url(); ?>Panel_seguimiento/"> SSA</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/"><i class="fa fa-home" aria-hidden="true"></i> INICO <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?php echo base_url(); ?>Panel_seguimiento/"><i class="fa fa-home" aria-hidden="true"></i> INICO <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones"><i class="icon-clipboard" aria-hidden="true"></i>ENCUESTAS SEGUIMIENTO EN EL AULA</a>
+          <a class="nav-link" href="<?php echo base_url(); ?>Panel_seguimiento/aplicaciones"><i class="icon-clipboard" aria-hidden="true"></i>ENCUESTAS SEGUIMIENTO EN EL AULA</a>
         </li>
       </ul>
       <ul class='navbar-nav'>
@@ -35,12 +35,12 @@
             <b><i class="fa fa-user-circle-o" aria-hidden="true"></i> <?php echo "".$this->session->userdata('username');?> </b>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/C_usuarios/"><i class="fa fa-user" aria-hidden="true"></i> PERFIL</a>
+            <a class="dropdown-item" href="<?php echo base_url(); ?>C_usuarios/"><i class="fa fa-user" aria-hidden="true"></i> PERFIL</a>
             <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modalsoporte">
               <i class="fa fa-life-ring" aria-hidden="true"></i> SOLICITAR SOPORTE
             </button>
             <button class="dropdown-item" data-toggle="modal" data-target="#modalmanualdeusuario" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> MANUAL USUARIO</button>
-            <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/C_usuarios/logout" ><i class="fa fa-sign-out" aria-hidden="true"></i> SALIR</a>
+            <a class="dropdown-item" href="<?php echo base_url(); ?>C_usuarios/logout" ><i class="fa fa-sign-out" aria-hidden="true"></i> SALIR</a>
           </div>
         </li>
       </ul>
@@ -61,7 +61,7 @@
         <div class="card menus">
           <div class="card-body">
             <div id="panelformulario">
-              <form id="mesayudaform" method="post"  > <!--action="<?php echo base_url(); ?>index.php/Mesa_ayuda/insertarSolicitud" -->
+              <form id="mesayudaform" method="post"  > <!--action="<?php echo base_url(); ?>Mesa_ayuda/insertarSolicitud" -->
                 <div class="form-group">
                   <label for="asunto"><i class="fa fa-file-text" aria-hidden="true"></i>  ASUNTO:</label>
                   <input type="text" class="form-control" name="asunto" id="asunto"  size="10" maxlength="100" placeholder="Ingrese el asunto del problema." required>
@@ -70,7 +70,7 @@
                   <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> DESCRIPCION DEL PROBLEMA:</label>
                   <textarea placeholder="Descripción del problema suscitado. " class="form-control" maxlength="1000" name="descipcion" id="descipcion" maxlength="100" required ></textarea>
                 </div>
-                <input type="text" name="url" hidden value="<?php echo base_url('index.php/'.uri_string()); ?>">
+                <input type="text" name="url" hidden value="<?php echo base_url(''.uri_string()); ?>">
                 <center><button type="submit" class="btn btn-naranja "><i class="fa fa-share-square" aria-hidden="true"></i>  ENVIAR SOLICITUD</button></center>
                 <div class="red-text"><center><?php echo validation_errors(); ?></center></div>
               </form>
@@ -85,7 +85,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/soporte_tecnico" role="button"><i class="fa fa-ticket" aria-hidden="true"></i> VER RESPUESTAS</a>
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>Panel_seguimiento/soporte_tecnico" role="button"><i class="fa fa-ticket" aria-hidden="true"></i> VER RESPUESTAS</a>
         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-window-close" aria-hidden="true"></i>  Cerrar</button>
       </div>
     </div>
