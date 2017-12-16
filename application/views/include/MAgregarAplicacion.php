@@ -12,6 +12,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="contrasenaapp">Elegir periodo:</label>
+            <input type="text" name="periodo_texto" id="periodo_texto" hidden value="">
             <select  class="form-control" id="periodo" name="periodo" required>
               <?php
               if($Periodos){
