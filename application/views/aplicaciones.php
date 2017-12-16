@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         }
                         ?>
                         <tr>
-                          <td><?php echo "".genePerido($valor->periodo); ?></td>
+                          <td><?php echo "".($valor->periodos_escolares_idperiodos) ?></td>
                           <td> <?php echo "".$NumeroEncuestas?></td>
                           <td><?php echo "".$valor->fecha_creacion; ?></td>
                           <td>
@@ -190,6 +190,18 @@ function genePeridoActual($peridot)
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.validate.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa-validador.js"></script>
+<script type="text/javascript">
+$( document ).ready(function() {
+  $('#periodo').on('change', function() {
+    if($('#periodo').prop('selectedIndex') !=0){
+        $('#panel_advertenciaperiodo').show();
+    }else {
+        $('#panel_advertenciaperiodo').hide();
+    }
+  })
+});
+
+</script>
 <?php
 if (isset($ErrorContra)) {
   ?>

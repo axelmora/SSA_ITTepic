@@ -19,23 +19,21 @@
                 foreach ($Periodos as $key => $value) {
                   if($poss==0){
                     ?>
-                      <option selected value="<?php echo $value->idperiodos; ?>"><?php echo $value->identificacion_larga ." - ". $value->idperiodos; ?></option>
+                    <option selected value="<?php echo $value->idperiodos; ?>"><?php echo $value->identificacion_larga ." - ". $value->idperiodos; ?></option>
                     <?php
                   }else {
                     ?>
-                      <option  value="<?php echo $value->idperiodos; ?>"><?php echo $value->identificacion_larga ." - ". $value->idperiodos; ?></option>
+                    <option  value="<?php echo $value->idperiodos; ?>"><?php echo $value->identificacion_larga ." - ". $value->idperiodos; ?></option>
                     <?php
                   }
-
-                 $poss++;
+                  $poss++;
                 }
               }else {
                 ?>
-                  <option selected value="NINGUNO">ERROR SIN PERIODOS </option>
+                <option selected value="NINGUNO">ERROR SIN PERIODOS </option>
                 <?php
               }
-               ?>
-
+              ?>
             </select>
           </div>
           <div class="form-group">
@@ -43,6 +41,14 @@
             <select  class="form-control" id="plantilla" name="plantilla" required >
               <option selected value="1">ITTEPIC-AC-PO-004-07</option>
             </select>
+          </div>
+          <div class="card bg-danger text-white animated fadeInUp" id="panel_advertenciaperiodo" style="display:none">
+            <div class="card-body">
+              <center>
+                <i class="fa fa-exclamation-circle tamanoiconos animated tada infinite" aria-hidden="true"></i> <br> <br>
+              <b>Atención</b> se seleccionó un periodo diferente al actual.
+              </center>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -60,22 +66,3 @@
   </div>
 </form>
 <!-- Modal Agregar Aplicacion Fin -->
-<!-- Modal ERROR -->
-<div class="modal fade " id="modalError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Error</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p><?php echo "$ErrorContra"; ?></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
-      </div>
-    </div>
-  </div>
-</div>

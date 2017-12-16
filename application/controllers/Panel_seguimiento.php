@@ -46,56 +46,18 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function generarAplicacion()
 	{
-		$Contras=$this->SeguimientoModelo->verificarAplicacionContasena($this->session->userdata('periodosemestre'),$this->session->userdata('departamento'));
-		$Error=false;
-		$Contra="";
-		foreach ($Contras as $key => $value) {
-			if($this->input->post('contrasenaapp')==$value->contrasena){
-				$Error=true;
-			}
-		}
-		if($Error)
-		{
-			$datos["ErrorContra"]="Ya existe una aplicacion con la misma contraseña.";
-			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'));
-			$datos["AplicacionesPerido"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'),$this->session->userdata('periodo'));
-			//$datos["Cantidad_Encuestas"]="";
-			if($datos["Aplicaciones"]!=false)
-			{
-				$valorescontados;
-				foreach ($datos["Aplicaciones"] as $key => $value) {
-					$valor=$this->SeguimientoModelo->contarEncuestas($value->idaplicaciones);
-					foreach ($valor as $key => $nuermos) {
-						$valorescontados[]=$nuermos->numero;
-					}
-				}
-				$datos["Cantidad_Encuestas"]=$valorescontados;
-			}
-			if ($this->session->userdata('tipo')=='1') {
-				$this->load->view('aplicaciones',$datos);
-			}else {
-				if ($this->session->userdata('tipo')=='2') {
-					$this->load->view('aplicaciones',$datos);
-				}
-				else {
-					redirect(base_url().'index.php');
-				}
-			}
-		}else {
-			$Contra=$this->input->post('contrasenaapp');
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos= array(
-				'contrasena' => ''.$Contra,
 				'plantilla_encuestas_idplantilla_encuestas' => ''.$this->input->post('plantilla'),
 				'fecha_creacion' => ''.date('Y-m-d H:i:s'),
-				'periodo'=> ''.$this->session->userdata('periodosemestre'),
+				'periodos_escolares_idperiodos'=> ''.$this->input->post('periodo'),
 				'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
 			);
 			$this->SeguimientoModelo->crearAplicacion($datos);
-			if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-				redirect(base_url().'index.php/Panel_seguimiento/aplicaciones');
-			}else {
-				redirect(base_url().'index.php');
-			}
+			redirect(base_url().'index.php/Panel_seguimiento/aplicaciones');
+		}
+		else {
+			redirect(base_url().'index.php');
 		}
 	}
 	public function listado($idAplicacion)
@@ -275,7 +237,7 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function retroalimentacionseguimiento($idaplicacion)
 	{
-			if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idaplicacion);
 			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
 			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);

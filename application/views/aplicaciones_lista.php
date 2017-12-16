@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="col-lg-2">
                       <center>
-                    <!--    <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/nuevo_grupo/<?php echo $AplicacionData;?>"  class="btn btn-success" ><i class="fa fa-plus-circle" aria-hidden="true" ></i> AGREGAR GRUPO</a> -->
+                        <!--    <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/nuevo_grupo/<?php echo $AplicacionData;?>"  class="btn btn-success" ><i class="fa fa-plus-circle" aria-hidden="true" ></i> AGREGAR GRUPO</a> -->
                       </center>
                     </div>
                   </div>
@@ -148,7 +148,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       return $peridotTexto;
     }
     ?>
-
     <?php $this->load->view('include/MeliminarEncuesta'); ?>
     <?php $this->load->view('include/footer'); ?>
   </body>
@@ -163,10 +162,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>js/clipboard.js"></script>
   <script type="text/javascript">
-    var botonCopiar = new Clipboard('.btncopiar');
-    botonCopiar.on('success', function(e) {
-      $('#botonCopiar').tooltip('show');
-    });
+  var botonCopiar = new Clipboard('.btncopiar');
+  botonCopiar.on('success', function(e) {
+    $('#botonCopiar').tooltip('show');
+  });
   </script>
   <script type="text/javascript">var urlsistema = '<?php echo base_url()?>';</script>
   <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
