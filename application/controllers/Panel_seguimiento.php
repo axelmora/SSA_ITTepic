@@ -7,6 +7,7 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->model('SeguimientoModelo');
 		$this->load->model('Materia');
 		$this->load->model('Docentes');
+		$this->load->model('PeriodoModelo');
 		$this->load->model('Alumnos');
 		$this->load->model('Departamentos');
 		$this->load->model('Mesa_AyudaModel');
@@ -26,6 +27,7 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarAplicaciones($this->session->userdata('departamento'));
+			$datos["Periodos"]=$this->PeriodoModelo->cargarPeriodos();
 			if($datos["Aplicaciones"]!=false)
 			{
 				$valorescontados;
@@ -273,35 +275,7 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function retroalimentacionseguimiento($idaplicacion)
 	{
-		// $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
-		// // echo "".	$datos["EstructuaEncuesta"]->Seguimiento->"1"->tipo;
-		// //echo "".$json["Seguimiento"]["1"][0] ;
-		// //print_r($json);
-		// foreach ($json as $key => $value) {
-		// 	foreach ($value as $key => $value2) {
-		// 		echo "TIPO:   ".$value2->tipo." <br> ".$value2->pregunta." <br>";
-		// 		if($value2->tipo=="tabla")
-		// 		{
-		// 			foreach ($value2->subpreguntas as $key => $value3) {
-		// 				echo "__".$value3->pregunta."   ".$value3->name."  <br>  ";
-		// 				if($value3->tipo=="radio")
-		// 				{
-		// 					foreach ($value3->respuesta as $key => $value4) {
-		// 						echo "R:".$value4->texto." ";
-		// 					}
-		// 				}
-		// 				echo "<br>";
-		// 			}
-		// 		}else {
-		// 			if($value2->tipo=="radio"){
-		// 				foreach ($value2->respuesta as $key => $value3) {
-		// 					echo "R____:".$value3->texto."                  _";
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
-		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idaplicacion);
 			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
 			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
@@ -317,7 +291,6 @@ class Panel_seguimiento extends CI_Controller {
 		}else {
 			redirect(base_url().'index.php');
 		}
-		//echo "".$json->preguntas[0]->tipo." <br> ".$json->preguntas[0]->pregunta;
 	}
 	public function guardaretroAlimentacion($idretro)
 	{

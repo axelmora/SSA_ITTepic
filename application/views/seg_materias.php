@@ -48,8 +48,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <table id="tablaMaterias" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                     <thead>
                       <tr>
-                        <th><i class="fa fa-hashtag" aria-hidden="true"></i>  NOMBRE MATERIA</th>
-                        <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
+                        <th><i class="fa fa-hashtag" aria-hidden="true"></i>  CODGIO </th>
+                        <th><i class="fa fa-bars" aria-hidden="true"></i>  NOMBRE MATERIA</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -57,14 +57,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       foreach ($MATERIAS as $key => $valor) {
                         ?>
                         <tr>
+                          <td><?php echo "".$valor->idmaterias; ?></td>
                           <td><?php echo "".$valor->nombre_materia; ?></td>
-                          <td>
-                            <center>
-                          <!--    <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo "".$valor->idmaterias; ?>"  class="btn btn-primary  text-white"   >
-                                <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
-                              </a> -->
-                            </center>
-                          </td>
                         </tr>
                         <?php
                       }

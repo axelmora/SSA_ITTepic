@@ -49,9 +49,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <table id="tablaAlumnosVer" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                     <thead>
                       <tr>
+                        <th><i class="fa fa-hashtag" aria-hidden="true"></i> NUMERO DE CONTROL</th>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i> NOMBRE</th>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i> CARRERA</th>
-                      <!--  <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>-->
                       </tr>
                     </thead>
                     <tbody>
@@ -59,15 +59,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       foreach ($AlumnosCargados as $key => $valor) {
                         ?>
                         <tr>
+                          <td><?php echo "".($valor->numero_control); ?></td>
                           <td><?php echo "".($valor->nombre); ?></td>
                           <td><?php echo "".($valor->carrera); ?> </td>
-                        <!--  <td>
-                            <center>
-                              <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo "".$valor->numero_control; ?>"  class="btn btn-primary  text-white"   >
-                                <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
-                              </a>
-                            </center>
-                          </td> -->
                         </tr>
                         <?php
                       }
