@@ -140,7 +140,7 @@ class SeguimientoModelo extends CI_Model {
       public function contadorAlumnosGrupo($idencuesta_seguimiento)
       {
         $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("SELECT count(idgrupo_alumnos) as total FROM  grupos as gr, grupo_alumnos as ga where ga.grupos_idgrupos=gr.idgrupos and gr.encuestas_seguimiento_idencuesta_seguimiento=$idencuesta_seguimiento ");
+        $query=$DBcon->query("SELECT count(ga.alumnos_numero_control) as total FROM  grupos as gr, seleccion_materias as ga where ga.grupos_idgrupos=gr.idgrupos ");
         if ($query->num_rows() > 0) {
           return $query->result();
         } else {

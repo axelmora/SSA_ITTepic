@@ -88,7 +88,7 @@ class Panel_seguimiento extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
 			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
-			/*$datos["AplicacionData"]=$idAplicacion;
+			$datos["AplicacionData"]=$idAplicacion;
 			$NumeroTotal;
 			$ActualContestados;
 			if($datos["Aplicaciones"])
@@ -102,7 +102,7 @@ class Panel_seguimiento extends CI_Controller {
 				}
 				$datos["totalAlumnos"]=$NumeroTotal;
 				$datos["totalContestados"]=$ActualContestados;
-			}*/
+			}
 			$this->load->view('aplicaciones_lista',$datos);
 		}else {
 			redirect(base_url().'');
