@@ -343,28 +343,6 @@ public function getIDGruposSeguimiento($idencuesta_seguimiento)
 public function borrarEncuestaSeguimiento($idencuesta_seguimiento)
 {
   $DB2 = $this->load->database('default', TRUE);
-  if($this->verificarExistenciaAlumnos($idencuesta_seguimiento))
-  {
-    if ($this->verificarExistenciaRespuestas($idencuesta_seguimiento))
-    {
-      $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
-      $DB2->delete('resultados_seguimiento');
-      $tempIDGRUPO=$this->getIDGruposSeguimiento($idencuesta_seguimiento);
-      $DB2->where('grupos_idgrupos', $tempIDGRUPO[0]->idgrupos );
-      $DB2->delete('grupo_alumnos');
-      $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
-      $DB2->delete('grupos');
-    }else {
-      $tempIDGRUPO=$this->getIDGruposSeguimiento($idencuesta_seguimiento);
-      $DB2->where('grupos_idgrupos', $tempIDGRUPO[0]->idgrupos );
-      $DB2->delete('grupo_alumnos');
-      $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
-      $DB2->delete('grupos');
-    }
-  }else {
-    $DB2->where('encuestas_seguimiento_idencuesta_seguimiento', $idencuesta_seguimiento );
-    $DB2->delete('grupos');
-  }
   $DB2->where('idencuesta_seguimiento', $idencuesta_seguimiento );
   $DB2->delete('encuestas_seguimiento');
 }
@@ -494,12 +472,14 @@ public function getAlumnosEncuesta($grupo)
     return false;
   }
 }
-public function obtenerContraseñaApp($idAplicacion)
+
+public function obtenerIdAplicacion()
 {
-  $DBcon = $this->load->database('default', TRUE);
-  $query=$DBcon->query("SELECT contrasena FROM aplicaciones where idaplicaciones=$idAplicacion;");
-  if ($query->num_rows() > 0)
-  {
+  $DB2 = $this->load->database('default', TRUE);
+  $DB2->select('MAX(idaplicaciones) as maximo');
+  $DB2->from('aplicaciones');
+  $query = $DB2->get();
+  if ($query->num_rows() > 0) {
     return $query->result();
   } else {
     return false;

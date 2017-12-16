@@ -55,6 +55,28 @@ class Panel_seguimiento extends CI_Controller {
 				'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
 			);
 			$this->SeguimientoModelo->crearAplicacion($datos);
+			$depaTEMP=$this->Departamentos->obtenerCarrerasDepartamento($this->session->userdata('departamento'));
+			$carrera="";
+			$poosi=0;
+			foreach ($depaTEMP as $key => $value) {
+				if($poosi<count($depaTEMP)-1){
+					$carrera.=$value->carreras_id_carrera.",";
+				}else {
+					$carrera.=$value->carreras_id_carrera;
+				}
+				$poosi++;
+			}
+			$idaplicacion=$this->SeguimientoModelo->obtenerIdAplicacion();
+			$materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
+			foreach ($materias_del_periodo as $key => $value) {
+				$grupo= array(
+					'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+					'grupos_idgrupos'=> ''.$value->idgrupos,
+					'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
+				);
+			//	var_dump($grupo);
+				$this->SeguimientoModelo->crearSeguimiento($grupo);
+			}
 			redirect(base_url().'Panel_seguimiento/aplicaciones');
 		}
 		else {
@@ -80,8 +102,6 @@ class Panel_seguimiento extends CI_Controller {
 				}
 				$datos["totalAlumnos"]=$NumeroTotal;
 				$datos["totalContestados"]=$ActualContestados;
-			}else {
-
 			}
 			$this->load->view('aplicaciones_lista',$datos);
 		}else {
@@ -370,8 +390,18 @@ class Panel_seguimiento extends CI_Controller {
 	public function materias()
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-			//$carreras=$this->Departamentos->obtenerCarrerasDepartamento($departamentoid);
-			$datos["MATERIAS"]=$this->Materia->cargarMateriasCarrera("'ITI'");
+			$depaTEMP=$this->Departamentos->obtenerCarrerasDepartamento($this->session->userdata('departamento'));
+			$carrera="";
+			$poosi=0;
+			foreach ($depaTEMP as $key => $value) {
+				if($poosi<count($depaTEMP)-1){
+					$carrera.=$value->carreras_id_carrera.",";
+				}else {
+					$carrera.=$value->carreras_id_carrera;
+				}
+				$poosi++;
+			}
+			$datos["MATERIAS"]=$this->Materia->cargarMateriasCarrera($carrera);
 			$this->load->view('seg_materias',$datos);
 		}else {
 			redirect(base_url().'');
