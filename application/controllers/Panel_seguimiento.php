@@ -434,7 +434,8 @@ class Panel_seguimiento extends CI_Controller {
 	public function materias()
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-			$datos["MATERIAS"]=$this->Materia->cargarMateriasDepartamento($this->session->userdata('departamento'));
+			//$carreras=$this->Departamentos->obtenerCarrerasDepartamento($departamentoid);
+			$datos["MATERIAS"]=$this->Materia->cargarMateriasCarrera("'ITI'");
 			$this->load->view('seg_materias',$datos);
 		}else {
 			redirect(base_url().'index.php');

@@ -50,7 +50,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i> RFC</th>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i> NOMBRE</th>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i> APELLIDOS</th>
-                        <!--  <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>-->
                       </tr>
                     </thead>
                     <tbody>
@@ -61,42 +60,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td><?php echo "".utf8_decode($valor->rfc); ?></td>
                           <td><?php echo "".utf8_decode($valor->nombres); ?></td>
                           <td><?php echo "". utf8_decode($valor->apellidos); ?></td>
-                          <!--  <td>
-                          <center>
-                          <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo "".$valor->rfc; ?>"  class="btn btn-primary  text-white"   >
-                          <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
-                        </a>
+                        </tr>
+                        <?php
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                  <?php
+                }
+                else {
+                  ?>
+                  <div class="card bg-danger text-white animated fadeInUp">
+                    <div class="card-body">
+                      <center>
+                        <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
+                        Actualmente no se cuentan con materias registradas en este departamento.
                       </center>
-                    </td> -->
-                  </tr>
+                    </div>
+                  </div>
                   <?php
                 }
                 ?>
-              </tbody>
-            </table>
-            <?php
-          }
-          else {
-            ?>
-            <div class="card bg-danger text-white animated fadeInUp">
-              <div class="card-body">
-                <center>
-                  <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-                  Actualmente no se cuentan con materias registradas en este departamento.
-                </center>
               </div>
             </div>
-            <?php
-          }
-          ?>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
-<?php $this->load->view('include/footer'); ?>  <a href="javascript:" id="top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+  <?php $this->load->view('include/footer'); ?>  <a href="javascript:" id="top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
