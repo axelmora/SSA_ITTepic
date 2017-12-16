@@ -13,14 +13,14 @@ class C_Inicio extends CI_Controller {
 		$datos["CORREO"]=$sistemaproduccion[0]->correo_sistema;
 		if ($sistemaproduccion[0]->produccion==1) {
 			if ($this->session->userdata('tipo')=='1') {
-				redirect(base_url().'index.php/panel_administracion/');
+				redirect(base_url().'Panel_administracion/');
 			}else {
 				if ($this->session->userdata('tipo')=='2') {
-					redirect(base_url().'index.php/Panel_seguimiento/');
+					redirect(base_url().'Panel_seguimiento/');
 				}
 				else {
 					if ($this->session->userdata('tipo')=='3') {
-						redirect(base_url().'index.php/Panel_Administrativo/');
+						redirect(base_url().'Panel_Administrativo/');
 					}else {
 						$this->load->view('inicio',$datos);
 					}
@@ -29,7 +29,7 @@ class C_Inicio extends CI_Controller {
 		}
 		else {
 			if ($this->session->userdata('tipo')=='1') {
-				redirect(base_url().'index.php/panel_administracion/');
+				redirect(base_url().'panel_administracion/');
 			}else {
 				$datos["mensajesistema"]="
 				<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>

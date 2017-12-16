@@ -20,7 +20,7 @@ class Panel_seguimiento extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$this->load->view('ssainicio');
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function aplicaciones()
@@ -41,7 +41,7 @@ class Panel_seguimiento extends CI_Controller {
 			}
 			$this->load->view('aplicaciones',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function generarAplicacion()
@@ -55,10 +55,10 @@ class Panel_seguimiento extends CI_Controller {
 				'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
 			);
 			$this->SeguimientoModelo->crearAplicacion($datos);
-			redirect(base_url().'index.php/Panel_seguimiento/aplicaciones');
+			redirect(base_url().'Panel_seguimiento/aplicaciones');
 		}
 		else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function listado($idAplicacion)
@@ -85,7 +85,7 @@ class Panel_seguimiento extends CI_Controller {
 			}
 			$this->load->view('aplicaciones_lista',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function obtenerAlumnosSeguimiento($idseguimiento)
@@ -146,7 +146,7 @@ class Panel_seguimiento extends CI_Controller {
 			$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras($idenviar);
 			return $AlumosEnviar;
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function insertarSeguimientoGrupo($idAplicacion)
@@ -182,9 +182,9 @@ class Panel_seguimiento extends CI_Controller {
 			}
 			$this->SeguimientoModelo->insertarGrupos($GrupoAlumnosNumeros);
 			/*CREACION GRUPO-ALUMNOS FIN*/
-			redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$UltimoID.'');
+			redirect(base_url().'Panel_seguimiento/gestionarGrupo/'.$UltimoID.'');
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function gestionarGrupo($idGrupo)
@@ -210,7 +210,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idGrupo);
 			$this->load->view('aplicaciones_grupos',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function agregarAlumnosGrupo($idGrupo)
@@ -222,7 +222,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
 			$this->load->view('aplicaciones_add_grupo_alumnos',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function retroalimentacionlista($idAplicacion)
@@ -233,7 +233,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["AplicacionData"]=$idAplicacion;
 			$this->load->view('aplicaciones_lista_retro',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function retroalimentacionseguimiento($idaplicacion)
@@ -252,7 +252,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
 			$this->load->view('aplicaciones_retro',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function guardaretroAlimentacion($idretro)
@@ -262,9 +262,9 @@ class Panel_seguimiento extends CI_Controller {
 			$retro=$this->input->post('retroalimentacion');
 			$fecha=date('Y-m-d H:i:s');
 			$this->SeguimientoModelo->actualizarRetro($idretro,$retro,$fecha);
-			redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idVolver);
+			redirect(base_url().'Panel_seguimiento/retroalimentacionlista/'.$idVolver);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function retroalimentacionseguimientocon($idaplicacion)
@@ -284,7 +284,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
 			$this->load->view('aplicaciones_retro_m',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function guardaretroAlimentacionContinua($idretro)
@@ -294,9 +294,9 @@ class Panel_seguimiento extends CI_Controller {
 			$retro=$this->input->post('retroalimentacion');
 			$fecha=date('Y-m-d H:i:s');
 			$this->SeguimientoModelo->actualizarRetro($idretro,$retro,$fecha);
-			redirect(base_url().'index.php/Panel_seguimiento/retroalimentacioncontinua/'.$idVolver);
+			redirect(base_url().'Panel_seguimiento/retroalimentacioncontinua/'.$idVolver);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function retroalimentacioncontinua($idaplicacion)
@@ -330,13 +330,13 @@ class Panel_seguimiento extends CI_Controller {
 				{
 					$this->retroalimentacionseguimientocon($idfinales[0]);
 				}else {
-					redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idaplicacion);
+					redirect(base_url().'Panel_seguimiento/retroalimentacionlista/'.$idaplicacion);
 				}
 			}else {
-				redirect(base_url().'index.php/Panel_seguimiento/retroalimentacionlista/'.$idaplicacion);
+				redirect(base_url().'Panel_seguimiento/retroalimentacionlista/'.$idaplicacion);
 			}
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function manual_usuario($value='')
@@ -345,7 +345,7 @@ class Panel_seguimiento extends CI_Controller {
 			$this->load->view('manual_usuariovista');
 		}
 		else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function docentes()
@@ -355,7 +355,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["DOCENTES"]=$this->Docentes->cargarDocentesDepartamento($depa);
 			$this->load->view('seg_docentes',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function alumnos()
@@ -364,7 +364,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
 			$this->load->view('seg_alumnos',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function materias()
@@ -374,7 +374,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["MATERIAS"]=$this->Materia->cargarMateriasCarrera("'ITI'");
 			$this->load->view('seg_materias',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	/* Elimar grupo inicio*/
@@ -384,7 +384,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos=$this->SeguimientoModelo->obtenerDocenteMateria($idEncuesta);
 			echo json_encode($datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function eliminarEncuestaDatosAplicacion($idEncuesta)
@@ -393,7 +393,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idEncuesta);
 			echo json_encode($datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function eliminarEncuestaGrupo()
@@ -402,9 +402,9 @@ class Panel_seguimiento extends CI_Controller {
 			$idVolver=$this->input->post('idAplicacionPostEliminar');
 			$idEliminarEncur=$this->input->post('idEliminarEncu');
 			$this->SeguimientoModelo->borrarEncuestaSeguimiento($idEliminarEncur);
-			redirect(base_url().'index.php/Panel_seguimiento/listado/'.$idVolver);
+			redirect(base_url().'Panel_seguimiento/listado/'.$idVolver);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function eliminarEncuestaSeguimientoCompleta()
@@ -412,9 +412,9 @@ class Panel_seguimiento extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$idAplicaciones=$this->input->post('idAplicacionesBorrar');
 			$this->SeguimientoModelo->borrarAplicacionSeguimiento($idAplicaciones);
-			redirect(base_url().'index.php/Panel_seguimiento/aplicaciones/');
+			redirect(base_url().'Panel_seguimiento/aplicaciones/');
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function resulados($idSeguimiento)
@@ -444,7 +444,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
 			$this->load->view('aplicaciones_resultados',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	/* Elimar grupo fin*/
@@ -471,7 +471,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["DOCENTES"]=$this->SeguimientoModelo->docentesReportes($idAplicaciones);
 			$this->load->view('aplicaciones_reportes',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function reporteGeneradorAplicacion($idAplicacion)
@@ -580,7 +580,7 @@ class Panel_seguimiento extends CI_Controller {
 			$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_general.pdf");
 			$pdf->Output($nombre_archivo, 'I');
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	function reporteDocenteGenerador($rfcdoncete,$idAplicaciones) {
@@ -690,7 +690,7 @@ class Panel_seguimiento extends CI_Controller {
 			$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_docente.pdf");
 			$pdf->Output($nombre_archivo, 'I');
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function reporteIndividual($idencuesta_seguimiento)
@@ -786,7 +786,7 @@ class Panel_seguimiento extends CI_Controller {
 			$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_individual.pdf");
 			$pdf->Output($nombre_archivo, 'I');
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	function borrarAlumnosNumeroControl()
@@ -797,9 +797,9 @@ class Panel_seguimiento extends CI_Controller {
 			$idgrupo=$this->SeguimientoModelo->getGrupoPorEncuesta($idencuesta);
 			$this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
 			$this->SeguimientoModelo->deleteAlumnoGrupo($numero_control,$idgrupo[0]->idgrupos);
-			redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idencuesta);
+			redirect(base_url().'Panel_seguimiento/gestionarGrupo/'.$idencuesta);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function reactivaralumno()
@@ -808,9 +808,9 @@ class Panel_seguimiento extends CI_Controller {
 			$numero_control=$this->input->post('numero_Control_reactivar');
 			$idencuesta=$this->input->post('idGrupoEnviar');
 			$resultados=$this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
-			redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idencuesta);
+			redirect(base_url().'Panel_seguimiento/gestionarGrupo/'.$idencuesta);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function datosAlumno($numero_control)
@@ -819,7 +819,7 @@ class Panel_seguimiento extends CI_Controller {
 			$resultados=$this->Alumnos->getAlumno($numero_control);
 			echo json_encode($resultados);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function addAlumnos($idseguimiento)
@@ -840,9 +840,9 @@ class Panel_seguimiento extends CI_Controller {
 					}
 				}
 			}
-			redirect(base_url().'index.php/Panel_seguimiento/gestionarGrupo/'.$idseguimiento);
+			redirect(base_url().'Panel_seguimiento/gestionarGrupo/'.$idseguimiento);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function soporte_tecnico()
@@ -851,7 +851,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["MENSAJESENVIADOS"]=$this->Mesa_AyudaModel->cargarSolicitudesDeSoporte($this->session->userdata('idusuarios'));
 			$this->load->view('mesa_ayuda_usuario',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function soporte_respuesta($idsoporte)
@@ -861,16 +861,16 @@ class Panel_seguimiento extends CI_Controller {
 			$datos['respuestas'] = $this->Mesa_AyudaModel->mostrarMensjesAunsto($idsoporte);
 			$this->load->view('soporte_individual',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function borrarMensajeprincipal($mensaje)
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
 			$this->Mesa_AyudaModel->borarMensajeSoporte($mensaje);
-			redirect(base_url().'index.php/Panel_seguimiento/soporte_tecnico');
+			redirect(base_url().'Panel_seguimiento/soporte_tecnico');
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function cambiarEstadoMensaje()
@@ -880,7 +880,7 @@ class Panel_seguimiento extends CI_Controller {
 			$nuevoestado = $this->input->post('estado');
 			$this->Mesa_AyudaModel->cambioEstado($idmensaje,$nuevoestado);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function respuesta($idmensajeprincipal)
@@ -889,9 +889,9 @@ class Panel_seguimiento extends CI_Controller {
 			$respus = $this->input->post('respuestamesaje');
 			$iduser=$this->session->userdata('idusuarios');
 			$this->Mesa_AyudaModel->insertarRespuesta($idmensajeprincipal,$respus,$iduser);
-			redirect(base_url().'index.php/Panel_seguimiento/soporte_respuesta/'.$idmensajeprincipal);
+			redirect(base_url().'Panel_seguimiento/soporte_respuesta/'.$idmensajeprincipal);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function borrarRespuesta($mensaje)
@@ -899,9 +899,9 @@ class Panel_seguimiento extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
 			$idmensajeprincipal = $this->input->post('idmensajeprincipal_b');
 			$this->Mesa_AyudaModel->borarMensajeRespuesta($mensaje);
-			redirect(base_url().'index.php/Panel_seguimiento/soporte_respuesta/'.$idmensajeprincipal);
+			redirect(base_url().'Panel_seguimiento/soporte_respuesta/'.$idmensajeprincipal);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function gestion_del_curso()
@@ -909,7 +909,7 @@ class Panel_seguimiento extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
 			$this->load->view('procedimiento_gestion_del_curso');
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	public function obtenerAlumnosSelecionados()
@@ -919,7 +919,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos=$this->Alumnos->cargarAlumnosNumeroeControl($numeros_control);
 			echo json_encode($datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	function genePerido($periodo)
@@ -948,20 +948,18 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idAplicacion);
-			$tempseguimiento=$this->SeguimientoModelo->obtenerContraseñaApp($idAplicacion);
 			$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
 			$iddepartamento=$tempdepartamento[0]->iddepartamento_academico;;
 			$datosenviar = array(	array('name'=> ''.$departamentoacademico,'font-size'=>'58','color'=>'negro'),
 			array('name'=> 'Ya se encuentra disponible la encuesta de seguimiento en el aula','font-size'=>'35','color'=>'negro'),
 			array('name'=> 'con la siguiente contraseña: ','font-size'=>'35','color'=>'negro'),
-			array('name'=> ''.$tempseguimiento[0]->contrasena,'font-size'=>'50','color'=>'red'),
 			array('name'=> 'Solo accede a la siguiente direccion web: ','font-size'=>'35','color'=>'negro'),
 			array('name'=> base_url().'Seguimiento/ ','font-size'=>'35','color'=>'azul'));
 			$filename = $this->generar_imagen($datosenviar,$iddepartamento);
 			$datos["cartel"]=$filename;
 			$this->load->view('generar_imagen',$datos);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	function generar_imagen($user,$iddepartamento){
@@ -999,7 +997,7 @@ class Panel_seguimiento extends CI_Controller {
 			imagejpeg($im, $file, $quality);
 			return $ruta;
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 	function centrar_texto($string, $font_size){
@@ -1009,7 +1007,7 @@ class Panel_seguimiento extends CI_Controller {
 			$dimensions = imagettfbbox($font_size, 0, $fontname, $string);
 			return ceil(($image_width - $dimensions[4]) / 2);
 		}else {
-			redirect(base_url().'index.php');
+			redirect(base_url().'');
 		}
 	}
 }
