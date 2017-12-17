@@ -234,7 +234,7 @@ class SeguimientoModelo extends CI_Model {
         $DBcon = $this->load->database('default', TRUE);
         $query=$DBcon->query("SELECT ma.nombre_materia,d.nombres,d.apellidos FROM  grupos as gr, docentes as d, materias as ma ".
         " where  gr.materias_idmaterias=ma.idmaterias".
-        " and gr.docentes_rfc=d.rfc;"
+        " and gr.docentes_rfc=d.rfc and gr.idgrupos='$idaplicaciones';"
       );
       if ($query->num_rows() > 0)
       {
