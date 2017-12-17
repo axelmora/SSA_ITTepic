@@ -114,9 +114,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="dropdown-menu">
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteIndividual/<?php echo  $idseguimiento_encuesta."/".$IDGRUPO; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> REPORTE INDIVIDUAL</a>
-                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/resulados/<?php echo $IDGRUPO; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/resulados/<?php echo $idseguimiento_encuesta."/".$IDGRUPO; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
                                   <!-- <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS GRAFICOS</a> -->
-                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $IDGRUPO; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
+                                  <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $idseguimiento_encuesta."/".$IDGRUPO; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
                                   <div class="dropdown-divider"></div>
                                 </div>
                               </div>
@@ -164,16 +164,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <i class="fa fa-bars" aria-hidden="true"></i>  OPCIONES
                                   </button>
                                   <div class="dropdown-menu">
-                                    <button type="button" data-toggle="modal" onclick="reactivarEncuesta('<?php echo $valor->numero_control ?>',<?php echo $IDGRUPO ?>)" data-target="#modalReActivarAlumno"  class="dropdown-item"><i class="fa fa-check-square-o text-warning" aria-hidden="true"></i> REACTIVAR ENCUESTA</button>
+                                    <button type="button" data-toggle="modal" onclick="reactivarEncuesta('<?php echo $valor->numero_control ?>','<?php echo $IDGRUPO ?>')" data-target="#modalReActivarAlumno"  class="dropdown-item"><i class="fa fa-check-square-o text-warning" aria-hidden="true"></i> REACTIVAR ENCUESTA</button>
                                     <div class="dropdown-divider"></div>
-                                    <button type="button" data-toggle="modal" onclick="borrarAlumnoEncuesta('<?php echo $valor->numero_control ?>',<?php echo $IDGRUPO ?>)" data-target="#modalEliminarAlumno" class="dropdown-item"><i class="fa fa-ban text-danger" aria-hidden="true"></i> ELIMINAR ALUMNO DE ESTA ENCUESTA</button>
                                   </div>
                                 </div>
-                                <!--    <div class="btn-group btn-block">
-                                <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo "".$valor->idgrupos; ?>"  class="btn btn-primary  btn-sm btn-block text-white"   >
-                                <i class="fa fa-bars" aria-hidden="true"></i> GESTIONAR
-                              </a>
-                            </div> -->
                           </td>
                         </tr>
                         <?php
