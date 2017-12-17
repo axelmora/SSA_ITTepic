@@ -126,9 +126,9 @@ class SeguimientoModelo extends CI_Model {
     public function cargarGrupoId($idrupo)
     {
       $DBcon = $this->load->database('default', TRUE);
-      $query=$DBcon->query("SELECT * FROM  grupos as gr, grupo_alumnos as ga, alumnos as al, carreras as ca where
-        gr.idgrupos=$idrupo and gr.idgrupos=ga.grupos_idgrupos and
-        ga.alumnos_numero_control=al.numero_control and
+      $query=$DBcon->query("SELECT * FROM  grupos as gr, seleccion_materias as sm, alumnos as al, carreras as ca where
+        gr.idgrupos='$idrupo' and gr.idgrupos=sm.grupos_idgrupos and
+        sm.alumnos_numero_control=al.numero_control and
         al.carreras_id_carrera=ca.id_carrera;
         ");
         if ($query->num_rows() > 0) {
