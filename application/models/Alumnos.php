@@ -4,11 +4,11 @@ class Alumnos extends CI_Model {
   {
     parent::__construct();
   }
-  public function verificarAlumno($NUMERO_CONTROL)
+  public function verificarAlumno($NUMERO_CONTROL,$NIP)
   {
     $DBcon = $this->load->database('default', TRUE);
     $query=$DBcon->query("SELECT * FROM alumnos as al, carreras as ca where
-      al.numero_control='$NUMERO_CONTROL' and al.carreras_id_carrera=ca.id_carrera;");
+      al.numero_control='$NUMERO_CONTROL' and al.nip=$NIP and al.carreras_id_carrera=ca.id_carrera;");
       if ($query->num_rows() > 0) {
         return $query->result();
       } else {

@@ -185,7 +185,7 @@ class SeguimientoModelo extends CI_Model {
         public function verificarAplicacion($Contra,$Periodo,$Departamento)
         {
           $DBcon = $this->load->database('default', TRUE);
-          $query=$DBcon->query("SELECT * FROM  aplicaciones  where periodo=$Periodo and contrasena='$Contra' and departamento_academico_iddepartamento_academico=$Departamento order by fecha_creacion desc; ");
+          $query=$DBcon->query("SELECT * FROM  aplicaciones  where periodos_escolares_idperiodos='$Periodo'  and departamento_academico_iddepartamento_academico=$Departamento order by fecha_creacion desc; ");
           if ($query->num_rows() > 0)
           {
             return $query->result();

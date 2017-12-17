@@ -83,7 +83,8 @@ class Seguimiento extends CI_Controller {
 		if ($sistemaproduccion[0]->produccion==1) {
 			/* VERIFICAR ALUMNOS */
 			$NUMERO_CONTROL=$this->input->post('numero_control');
-			$ALUMNOVERIFICADO = $this->Alumnos->verificarAlumno($NUMERO_CONTROL);
+			$ALUMNOVERIFICADO = $this->Alumnos->verificarAlumno($NUMERO_CONTROL,$this->input->post('contra_aplicacion'));
+
 			$NOMBREALUM="";
 			if($ALUMNOVERIFICADO)
 			{
@@ -92,12 +93,13 @@ class Seguimiento extends CI_Controller {
 					$idcarreras=$value->id_carrera;
 					$NOMBREALUM=$value->nombre;
 				}
+
 				/* OBTENER DEPARTAMENTO ALUMNO*/
 				$IDDEPARTAMENTO=$this->obtenerDepartamentoPorCarrera($idcarreras);
 				$PERIODOACTUAL=$this-> generarPeriodo();
-				$contra_aplicacion=$this->input->post('contra_aplicacion');
+
 				/* VERIFICAR SI EXISTE APLICACION EL PERIODO Y DEPARTAMENTO*/
-				$APLICACIONVERIFICADA = $this->SeguimientoModelo->verificarAplicacion($contra_aplicacion,$PERIODOACTUAL,$IDDEPARTAMENTO);
+				$APLICACIONVERIFICADA = $this->SeguimientoModelo->verificarAplicacion($PERIODOACTUAL,$IDDEPARTAMENTO);
 				if($APLICACIONVERIFICADA){
 					$idaplicaciones="";
 					$idplantilla="";
