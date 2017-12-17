@@ -85,9 +85,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <a class="dropdown-item" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteIndividual/<?php echo $valor->idencuesta_seguimiento."/".$valor->idgrupos; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> REPORTE INDIVIDUAL</a>
                                     <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/resulados/<?php echo "".$valor->idgrupos; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
                                     <!-- <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $valor->idgrupos; ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS GRAFICOS</a> -->
-                                    <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $valor->idgrupos; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
-                                    <div class="dropdown-divider"></div>
-                                    <button type="button" class="dropdown-item " data-toggle="modal" data-target="#modalEliminar" onclick="eliminarEncuestaSeguimiento(<?php echo $valor->idgrupos; ?>)" ><i class="fa fa-trash text-danger" aria-hidden="true"></i> BORRAR ENCUESTA</button>
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $valor->idencuesta_seguimiento."/".$valor->idgrupos; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
+                                    <!-- <div class="dropdown-divider"></div>
+                                    <button type="button" class="dropdown-item " data-toggle="modal" data-target="#modalEliminar" onclick="eliminarEncuestaSeguimiento(<?php echo $valor->idgrupos; ?>)" ><i class="fa fa-trash text-danger" aria-hidden="true"></i> BORRAR ENCUESTA</button> -->
                                   </div>
                                 </div>
                               </center>

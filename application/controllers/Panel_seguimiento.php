@@ -498,7 +498,7 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["APLICACIONESCONSULTADAS"]=$this->SeguimientoModelo->reportesAplicacionesGeneral($idAplicacion);
 			$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
 			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idAplicacion);
-			$peridoencuesta=$this->genePerido($tempperiodo[0]->periodo);
+			$peridoencuesta=$tempperiodo[0]->periodo_texto;
 			$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
 			$this->load->model('GeneradorEncuestas');
 			$EncuestasIMPRIMIR;
@@ -506,7 +506,7 @@ class Panel_seguimiento extends CI_Controller {
 				foreach ($datos["APLICACIONESCONSULTADAS"] as $key => $value) {
 					$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
 					$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
-					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
+					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->grupos_idgrupos);
 					$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
 					$DOCENTE="";
 					$MATERIA="";

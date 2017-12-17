@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       foreach ($APLICACIONES as $key => $valor) {
                         ?>
                         <tr>
-                          <td><b><?php echo "Periodo ".genePerido($valor->periodo); ?></b></td>
+                          <td><b><?php echo "Periodo ".($valor->periodo_texto); ?></b></td>
                           <td>
                             <center>
                               <a class="btn btn-primary" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteGeneradorAplicacion/<?php echo $valor->idaplicaciones; ?>" role="button"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> GENERAR REPORTE</a>
