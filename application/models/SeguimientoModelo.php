@@ -232,9 +232,9 @@ class SeguimientoModelo extends CI_Model {
       public function obtenerDocenteMateria($idaplicaciones)
       {
         $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
-        " where es.idencuesta_seguimiento=$idaplicaciones and es.materias_idmaterias=ma.idmaterias".
-        " and es.docentes_rfc=d.rfc;"
+        $query=$DBcon->query("SELECT ma.nombre_materia,d.nombres,d.apellidos FROM  grupos as gr, docentes as d, materias as ma ".
+        " where  gr.materias_idmaterias=ma.idmaterias".
+        " and gr.docentes_rfc=d.rfc;"
       );
       if ($query->num_rows() > 0)
       {
@@ -243,6 +243,22 @@ class SeguimientoModelo extends CI_Model {
         return false;
       }
     }
+    /*
+    public function obtenerDocenteMateria($idaplicaciones)
+    {
+      $DBcon = $this->load->database('default', TRUE);
+      $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
+      " where es.idencuesta_seguimiento=$idaplicaciones and es.materias_idmaterias=ma.idmaterias".
+      " and es.docentes_rfc=d.rfc;"
+    );
+    if ($query->num_rows() > 0)
+    {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
+    */
     public function insertarRespuestas($datos)
     {
       $DB2 = $this->load->database('default', TRUE);
