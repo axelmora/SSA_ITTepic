@@ -98,7 +98,6 @@ class Panel_seguimiento extends CI_Controller {
 					$NumeroTotal[]=$tempTotal[0]->total;
 					$tempContestados=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
 					$ActualContestados[]=$tempContestados[0]->total;
-
 				}
 				$datos["totalAlumnos"]=$NumeroTotal;
 				$datos["totalContestados"]=$ActualContestados;
