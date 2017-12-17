@@ -214,7 +214,6 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idGrupo);
 			$ALUMNOSCONTESTADOS;
 			if($datos["ALUMNOSGRUPO"] ){
-				//$idEncuesta=$datos["ALUMNOSGRUPO"][0]->encuestas_seguimiento_idencuesta_seguimiento;
 				foreach ($datos["ALUMNOSGRUPO"] as $key => $alumnos) {
 					if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->alumnos_numero_control,$idseguimiento_encuesta))
 					{
@@ -233,18 +232,7 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'');
 		}
 	}
-	public function agregarAlumnosGrupo($idGrupo)
-	{
-		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-			$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idGrupo);
-			$datos["IDGRUPO"]=$idGrupo;
-			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idGrupo);
-			$datos["AlumnosCargados"]=$this->obtenerAlumnosPorDepartamento($this->session->userdata('departamento'));
-			$this->load->view('aplicaciones_add_grupo_alumnos',$datos);
-		}else {
-			redirect(base_url().'');
-		}
-	}
+
 	public function retroalimentacionlista($idAplicacion)
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
@@ -723,21 +711,19 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'');
 		}
 	}
-	public function reporteIndividual($idencuesta_seguimiento)
+	public function reporteIndividual($idencuesta_seguimiento,$idgrupo)
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			/*    CARGAR DATOS      */
 			$this->load->model('GeneradorEncuestas');
-
 			$idseguimientotemp=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idencuesta_seguimiento);
 			$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idseguimientotemp[0]->aplicaciones_idaplicaciones);
 			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idseguimientotemp[0]->aplicaciones_idaplicaciones);
-			$peridoencuesta=$this->genePerido($tempperiodo[0]->periodo);
+			$peridoencuesta=$tempperiodo[0]->periodo_texto;
 			$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
-
 			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
 			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
-			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idgrupo);
 			$DOCENTE="";
 			$MATERIA="";
 			if(isset($datos["DATOSMATERIA"])){
