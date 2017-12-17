@@ -74,7 +74,7 @@ class Panel_seguimiento extends CI_Controller {
 					'grupos_idgrupos'=> ''.$value->idgrupos,
 					'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
 				);
-			//	var_dump($grupo);
+				//	var_dump($grupo);
 				$this->SeguimientoModelo->crearSeguimiento($grupo);
 			}
 			redirect(base_url().'Panel_seguimiento/aplicaciones');
@@ -224,6 +224,7 @@ class Panel_seguimiento extends CI_Controller {
 				$datos["APLICADOS"]=$ALUMNOSCONTESTADOS;
 			}
 			$datos["idEncuesta"]=$idseguimiento;
+			$datos["idseguimiento_encuesta"]=$idseguimiento_encuesta;
 			$datos["IDGRUPO"]=$idGrupo;
 			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idGrupo);
 			$this->load->view('aplicaciones_grupos',$datos);
