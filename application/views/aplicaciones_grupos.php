@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   $MATERIA="";
   if(isset($DATOSMATERIA)){
     foreach ($DATOSMATERIA as $key => $value) {
-      $DOCENTE="".utf8_decode($value->nombres." ".$value->apellidos);
+      $DOCENTE="".utf8_decode($value->nombre_docente);
       $MATERIA="".$value->nombre_materia ;
     }
   }else {
@@ -136,7 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <tr>
                             <th><i class="fa fa-hashtag" aria-hidden="true"></i> NUMERO DE CONTROL</th>
                             <th><i class="fa fa-graduation-cap" aria-hidden="true"></i> NOMBRE</th>
-                            <th><i class="fa fa-users" aria-hidden="true"></i> CARRERA</th>
+                            <!-- <th><i class="fa fa-users" aria-hidden="true"></i> CARRERA</th> -->
                             <th><i class="fa fa-check-circle-o" aria-hidden="true"></i> CONTESTADO</th>
                             <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
                           </tr>
@@ -154,9 +154,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             }
                             ?>
                             <tr>
-                              <td><?php echo "".$valor->numero_control; ?></td>
-                              <td><?php echo "".$valor->nombre ?></td>
-                              <td><?php echo "".$valor->carrera; ?></td>
+                              <td><?php echo "".$valor->no_de_control; ?></td>
+                              <td><?php echo "".$valor->nombre_alumno ?></td>
+                            <!--  <td><?php echo "".$valor->nombre_alumno; ?></td>-->
                               <td><?php echo "".$contestado; ?> </td>
                               <td>
                                 <div class="btn-group">

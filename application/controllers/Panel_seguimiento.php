@@ -203,52 +203,52 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'');
 		}
 	}
-	public function insertarSeguimientoGrupo($idAplicacion)
+	// public function insertarSeguimientoGrupo($idAplicacion)
+	// {
+	// 	if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+	// 		/*CREACION SEGUIMIENTO*/
+	// 		$Seguimiento= array(
+	// 			'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+	// 			'aplicaciones_idaplicaciones' => ''.$idAplicacion,
+	// 			'materias_idmaterias' => ''.$this->input->post('idmateria'),
+	// 			'docentes_rfc' => ''.$this->input->post('rfcdocente')
+	// 		);
+	// 		$this->SeguimientoModelo->crearSeguimiento($Seguimiento);
+	// 		$idSeguimientoCreado=$this->SeguimientoModelo->obtenerIdSeguimiento();
+	// 		$UltimoID="";
+	// 		foreach ($idSeguimientoCreado as $key => $id) {
+	// 			$UltimoID=$id->maximo;
+	// 		}
+	// 		/*CREACION GRUPO*/
+	// 		$GrupoData= array("encuestas_seguimiento_idencuesta_seguimiento"=>$UltimoID);
+	// 		$this->SeguimientoModelo->crearGrupo($GrupoData);
+	// 		$idGrupóCreado=$this->SeguimientoModelo->obtenerIdGrupo();
+	// 		$UltimoIDg="";
+	// 		foreach ($idSeguimientoCreado as $key => $id) {
+	// 			$UltimoIDg=$id->maximo;
+	// 		}
+	// 		/*CREACION GRUPO*/
+	// 		/*CREACION GRUPO-ALUMNOS*/
+	// 		$NumerosDeControl = explode(',', $this->input->post('numero_control_alumnos'));
+	// 		$GrupoAlumnosNumeros =array();
+	// 		for ($i=0; $i < count($NumerosDeControl) ; $i++) {
+	// 			$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoIDg);
+	// 		}
+	// 		$this->SeguimientoModelo->insertarGrupos($GrupoAlumnosNumeros);
+	// 		/*CREACION GRUPO-ALUMNOS FIN*/
+	// 		redirect(base_url().'Panel_seguimiento/gestionarGrupo/'.$UltimoID.'');
+	// 	}else {
+	// 		redirect(base_url().'');
+	// 	}
+	// }
+	public function gestionarGrupo($idseguimiento,$idseguimiento_encuesta)
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-			/*CREACION SEGUIMIENTO*/
-			$Seguimiento= array(
-				'fecha_creacion' => ''.date('Y-m-d H:i:s'),
-				'aplicaciones_idaplicaciones' => ''.$idAplicacion,
-				'materias_idmaterias' => ''.$this->input->post('idmateria'),
-				'docentes_rfc' => ''.$this->input->post('rfcdocente')
-			);
-			$this->SeguimientoModelo->crearSeguimiento($Seguimiento);
-			$idSeguimientoCreado=$this->SeguimientoModelo->obtenerIdSeguimiento();
-			$UltimoID="";
-			foreach ($idSeguimientoCreado as $key => $id) {
-				$UltimoID=$id->maximo;
-			}
-			/*CREACION GRUPO*/
-			$GrupoData= array("encuestas_seguimiento_idencuesta_seguimiento"=>$UltimoID);
-			$this->SeguimientoModelo->crearGrupo($GrupoData);
-			$idGrupóCreado=$this->SeguimientoModelo->obtenerIdGrupo();
-			$UltimoIDg="";
-			foreach ($idSeguimientoCreado as $key => $id) {
-				$UltimoIDg=$id->maximo;
-			}
-			/*CREACION GRUPO*/
-			/*CREACION GRUPO-ALUMNOS*/
-			$NumerosDeControl = explode(',', $this->input->post('numero_control_alumnos'));
-			$GrupoAlumnosNumeros =array();
-			for ($i=0; $i < count($NumerosDeControl) ; $i++) {
-				$GrupoAlumnosNumeros[]=array("alumnos_numero_control"=>$NumerosDeControl[$i],"grupos_idgrupos"=>$UltimoIDg);
-			}
-			$this->SeguimientoModelo->insertarGrupos($GrupoAlumnosNumeros);
-			/*CREACION GRUPO-ALUMNOS FIN*/
-			redirect(base_url().'Panel_seguimiento/gestionarGrupo/'.$UltimoID.'');
-		}else {
-			redirect(base_url().'');
-		}
-	}
-	public function gestionarGrupo($idseguimiento,$idseguimiento_encuesta,$idGrupo)
-	{
-		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-			$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idGrupo);
+		    $datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idseguimiento_encuesta);
 			$ALUMNOSCONTESTADOS;
 			if($datos["ALUMNOSGRUPO"] ){
 				foreach ($datos["ALUMNOSGRUPO"] as $key => $alumnos) {
-					if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->alumnos_numero_control,$idseguimiento_encuesta))
+					if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->no_de_control,$idseguimiento_encuesta))
 					{
 						$ALUMNOSCONTESTADOS[]=true;
 					}else {
@@ -258,9 +258,9 @@ class Panel_seguimiento extends CI_Controller {
 				$datos["APLICADOS"]=$ALUMNOSCONTESTADOS;
 			}
 			$datos["idEncuesta"]=$idseguimiento;
-			$datos["idseguimiento_encuesta"]=$idseguimiento_encuesta;
-			$datos["IDGRUPO"]=$idGrupo;
-			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idGrupo);
+			$datos["idseguimiento_encuesta"]=$idseguimiento_encuesta;//*/
+			$datos["IDGRUPO"]=$idseguimiento_encuesta;
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idseguimiento_encuesta);
 			$this->load->view('aplicaciones_grupos',$datos);
 		}else {
 			redirect(base_url().'');
