@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php
                     $peridotlista="";
                     foreach ($AplicacionesPeriodo as $key => $valorPeriodo) {
-                      $peridotlista= genePerido($valorPeriodo->periodo);
+                      $peridotlista= ($valorPeriodo->periodo_texto);
                     }
                     ?>
                     <h3><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  Reportes de la aplicación de <?php echo "$peridotlista"; ?>
@@ -82,11 +82,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 ?>
                                 <tr>
                                   <td><?php echo "".$valor->nombre_materia; ?></td>
-                                  <td><?php echo "".utf8_decode($valor->nombres)." ".utf8_decode($valor->apellidos); ?></td>
+                                  <td><?php echo "".utf8_decode($valor->nombre_docente); ?></td>
                                   <td><?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></td>
                                   <td>
                                     <center>
-                                      <a class="btn btn-primary" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteIndividual/<?php echo $valor->idgrupos; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> GENERAR REPORTE</a>
+                                      <a class="btn btn-primary" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteIndividual/<?php echo $valor->idencuesta_seguimiento; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> GENERAR REPORTE</a>
                                     </center>
                                   </td>
                                 </tr>

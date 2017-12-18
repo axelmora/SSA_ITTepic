@@ -281,7 +281,7 @@ class Panel_seguimiento extends CI_Controller {
 	public function retroalimentacionseguimiento($idaplicacion)
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idaplicacion);
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateriaEncuesta($idaplicacion);
 			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
 			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
 			$this->load->model('GeneradorEncuestas');
@@ -505,6 +505,7 @@ class Panel_seguimiento extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicaciones);
 			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicaciones);
+			var_dump($datos["Aplicaciones"]);
 			$datos["AplicacionData"]=$idAplicaciones;
 			$NumeroTotal;
 			$ActualContestados;
@@ -520,7 +521,7 @@ class Panel_seguimiento extends CI_Controller {
 				$datos["totalContestados"]=$ActualContestados;
 			}else {
 			}
-			$datos["DOCENTES"]=$this->SeguimientoModelo->docentesReportes($idAplicaciones);
+			//$datos["DOCENTES"]=$this->SeguimientoModelo->docentesReportes($idAplicaciones);
 			$this->load->view('aplicaciones_reportes',$datos);
 		}else {
 			redirect(base_url().'');

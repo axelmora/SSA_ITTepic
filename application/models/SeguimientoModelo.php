@@ -231,6 +231,18 @@ class SeguimientoModelo extends CI_Model {
         return false;
       }
     }
+    public function obtenerDocenteMateriaEncuesta($idaplicaciones)
+    {
+      $DBcon = $this->load->database('default', TRUE);
+      $query=$DBcon->query("SELECT  nombre_docente, nombre_materia from encuestas_seguimiento where idencuesta_seguimiento=$idaplicaciones;"
+    );
+    if ($query->num_rows() > 0)
+    {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
     /*
     public function obtenerDocenteMateria($idaplicaciones)
     {
@@ -274,7 +286,7 @@ class SeguimientoModelo extends CI_Model {
   public function resultadosEncuesta($idseguimiento)
   {
     $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT respuestas from resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idseguimiento"
+    $query=$DBcon->query("SELECT respuestas from resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idseguimiento and respuestas!='';" 
   );
   if ($query->num_rows() > 0)
   {

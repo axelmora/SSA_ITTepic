@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   $DOCENTE="";
                   $MATERIA="";
                   foreach ($DATOSMATERIA as $key => $value) {
-                    $DOCENTE="".$value->nombres." ".$value->apellidos;
+                    $DOCENTE="".$value->nombre_docente;
                     $MATERIA="".$value->nombre_materia ;
                   }
                   ?>
