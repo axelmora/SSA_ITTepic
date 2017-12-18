@@ -11,6 +11,7 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->model('Alumnos');
 		$this->load->model('Departamentos');
 		$this->load->model('Mesa_AyudaModel');
+		$this->load->model('Grupos');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 		$this->load->database('default');
@@ -81,6 +82,7 @@ class Panel_seguimiento extends CI_Controller {
 					foreach ($docentes_datos as $key => $value2) {
 						$nombre_docente=$value2->nombre_docente;
 					}
+
 					$grupo= array(
 						'fecha_creacion' => ''.date('Y-m-d H:i:s'),
 						'grupos_idgrupos'=> ''.$value->idgrupos,
@@ -91,7 +93,8 @@ class Panel_seguimiento extends CI_Controller {
 						'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
 					);
 					var_dump($grupo);
-						$this->SeguimientoModelo->crearSeguimiento($grupo);
+					$this->SeguimientoModelo->crearSeguimiento($grupo);
+					$alumnos=$this->SeguimientoModelo->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias);
 				}
 			}
 			//	redirect(base_url().'Panel_seguimiento/aplicaciones');
