@@ -67,17 +67,34 @@ class Panel_seguimiento extends CI_Controller {
 				$poosi++;
 			}
 			$idaplicacion=$this->SeguimientoModelo->obtenerIdAplicacion();
+			//var_dump($idaplicacion);
 			$materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
 			foreach ($materias_del_periodo as $key => $value) {
-				$grupo= array(
-					'fecha_creacion' => ''.date('Y-m-d H:i:s'),
-					'grupos_idgrupos'=> ''.$value->idgrupos,
-					'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
-				);
-				//	var_dump($grupo);
-				$this->SeguimientoModelo->crearSeguimiento($grupo);
+				if($this->Materia->comprobar_materia_carrera($carrera,$value->materias_idmaterias)){
+					$nombre_materia="";
+					$nombre_docente="";
+					$materias_datos=$this->Materia->cargarNombreMateria($value->materias_idmaterias);
+					foreach ($materias_datos as $key => $value2) {
+						$nombre_materia=$value2->nombre_materia;
+					}
+					$docentes_datos=$this->Docentes->obtenerDocenteRFC($value->docentes_rfc);
+					foreach ($docentes_datos as $key => $value2) {
+						$nombre_docente=$value2->nombre_docente;
+					}
+					$grupo= array(
+						'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+						'grupos_idgrupos'=> ''.$value->idgrupos,
+						'nombre_materia'=> ''.$nombre_materia,
+						'idmateria'=> ''.$value->materias_idmaterias,
+						'rfc_docente'=> ''.$value->docentes_rfc,
+						'nombre_docente'=> ''.$nombre_docente,
+						'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
+					);
+					var_dump($grupo);
+						$this->SeguimientoModelo->crearSeguimiento($grupo);
+				}
 			}
-			redirect(base_url().'Panel_seguimiento/aplicaciones');
+			//	redirect(base_url().'Panel_seguimiento/aplicaciones');
 		}
 		else {
 			redirect(base_url().'');

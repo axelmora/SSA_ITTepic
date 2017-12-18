@@ -14,4 +14,14 @@ class Docentes extends CI_Model {
         return false;
     }
   }
+  public function obtenerDocenteRFC($rfc)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $query=$DB2->query("SELECT CONCAT(nombres,' ',apellidos) as nombre_docente FROM docentes where rfc='$rfc'");
+    if ($query->num_rows() > 0) {
+        return $query->result();
+    } else {
+        return false;
+    }
+  }
 }

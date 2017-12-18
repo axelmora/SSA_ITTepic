@@ -182,7 +182,7 @@ class SeguimientoModelo extends CI_Model {
             return false;
           }
         }
-        public function verificarAplicacion($Contra,$Periodo,$Departamento)
+        public function verificarAplicacion($Periodo,$Departamento)
         {
           $DBcon = $this->load->database('default', TRUE);
           $query=$DBcon->query("SELECT * FROM  aplicaciones  where periodos_escolares_idperiodos='$Periodo'  and departamento_academico_iddepartamento_academico=$Departamento order by fecha_creacion desc; ");
