@@ -75,7 +75,7 @@ class Seguimiento extends CI_Controller {
 		$progresoactual++;
 		$this->session->set_userdata('idencuestas',$NUEVOS_ID);
 		$this->session->set_userdata('progresoactual',$progresoactual);
-redirect(base_url().'index.php/Seguimiento/contestar/');
+    redirect(base_url().'index.php/Seguimiento/contestar/');
 	}
 	public function verificarAlumnoEncuesta()
 	{

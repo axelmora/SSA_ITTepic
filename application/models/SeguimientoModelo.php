@@ -248,29 +248,29 @@ class SeguimientoModelo extends CI_Model {
         return false;
       }
     }
-      public function obtenerDocenteMateriaEncuesta($idaplicaciones)
-      {
-        $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("SELECT  nombre_docente, nombre_materia from encuestas_seguimiento where idencuesta_seguimiento=$idaplicaciones;"
-      );
-      if ($query->num_rows() > 0)
-      {
-        return $query->result();
-      } else {
-        return false;
-      }
-    }
-    /*
-    public function obtenerDocenteMateria($idaplicaciones)
+    public function obtenerDocenteMateriaEncuesta($idaplicaciones)
     {
-    $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
-    " where es.idencuesta_seguimiento=$idaplicaciones and es.materias_idmaterias=ma.idmaterias".
-    " and es.docentes_rfc=d.rfc;"
-  );
-  if ($query->num_rows() > 0)
+      $DBcon = $this->load->database('default', TRUE);
+      $query=$DBcon->query("SELECT  nombre_docente, nombre_materia from encuestas_seguimiento where idencuesta_seguimiento=$idaplicaciones;"
+    );
+    if ($query->num_rows() > 0)
+    {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
+  /*
+  public function obtenerDocenteMateria($idaplicaciones)
   {
-  return $query->result();
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
+  " where es.idencuesta_seguimiento=$idaplicaciones and es.materias_idmaterias=ma.idmaterias".
+  " and es.docentes_rfc=d.rfc;"
+);
+if ($query->num_rows() > 0)
+{
+return $query->result();
 } else {
 return false;
 }
@@ -284,7 +284,8 @@ public function insertarRespuestas($datos)
 public function actualizarRespuesta($datos,$idSeguimiento,$numeroControl)
 {
   $DB2 = $this->load->database('default', TRUE);
-  $DB2->where("encuestas_seguimiento_idencuesta_seguimiento",$idSeguimiento,$numeroControl);
+  $DB2->where("no_de_control",$numeroControl);
+  $DB2->where("encuestas_seguimiento_idencuesta_seguimiento",$idSeguimiento);
   $DB2->update('resultados_seguimiento',$datos);
 }
 public function clonarAlumnoEncuesta($datos)
