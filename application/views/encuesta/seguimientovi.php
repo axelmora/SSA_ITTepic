@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               $idencuesta_seguimiento="";
               if($DATOSMATERIA){
                 foreach ($DATOSMATERIA as $key => $value) {
-                  $DOCENTE="".utf8_decode($value->nombres." ".$value->apellidos);
+                  $DOCENTE="".utf8_decode($value->nombre_docente);
                   $MATERIA="".$value->nombre_materia ;
                   $idencuesta_seguimiento="".$value->idencuesta_seguimiento;
                 }

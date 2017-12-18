@@ -67,15 +67,15 @@ class Seguimiento extends CI_Controller {
 			'fecha_contestado' =>''.date('Y-m-d H:i:s'),
 			'respuestas' => json_encode($RESULTADO),
 			'estado'=>1,
-			'no_de_control'=>$this->session->userdata('numero_control'),
-			'encuestas_seguimiento_idencuesta_seguimiento'=>$idencuesta_seguimiento
+			//'no_de_control'=>$this->session->userdata('numero_control'),
+			//'encuestas_seguimiento_idencuesta_seguimiento'=>$idencuesta_seguimiento
 		);
-		$this->SeguimientoModelo->insertarRespuestas($DATOS_RESULTADOS);
+		$this->SeguimientoModelo->actualizarRespuesta($DATOS_RESULTADOS,$idencuesta_seguimiento,$this->session->userdata('numero_control'));
 		$progresoactual=$this->session->userdata('progresoactual');
 		$progresoactual++;
 		$this->session->set_userdata('idencuestas',$NUEVOS_ID);
 		$this->session->set_userdata('progresoactual',$progresoactual);
-		redirect(base_url().'index.php/Seguimiento/contestar/');
+redirect(base_url().'index.php/Seguimiento/contestar/');
 	}
 	public function verificarAlumnoEncuesta()
 	{

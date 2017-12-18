@@ -225,9 +225,7 @@ class SeguimientoModelo extends CI_Model {
         public function obtenerDocenteMateria($idaplicaciones)
         {
           $DBcon = $this->load->database('default', TRUE);
-          $query=$DBcon->query("SELECT ma.nombre_materia,d.nombres,d.apellidos FROM  grupos as gr, docentes as d, materias as ma ".
-          " where  gr.materias_idmaterias=ma.idmaterias".
-          " and gr.docentes_rfc=d.rfc and gr.idgrupos='$idaplicaciones';"
+          $query=$DBcon->query("SELECT * from  encuestas_seguimiento  where idencuesta_seguimiento ='$idaplicaciones';"
         );
         if ($query->num_rows() > 0)
         {
@@ -236,6 +234,20 @@ class SeguimientoModelo extends CI_Model {
           return false;
         }
       }
+      public function obtenerDocenteMateriaOLD($idaplicaciones)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT ma.nombre_materia,d.nombres,d.apellidos FROM  grupos as gr, docentes as d, materias as ma ".
+        " where  gr.materias_idmaterias=ma.idmaterias".
+        " and gr.docentes_rfc=d.rfc and gr.idgrupos='$idaplicaciones';"
+      );
+      if ($query->num_rows() > 0)
+      {
+        return $query->result();
+      } else {
+        return false;
+      }
+    }
       public function obtenerDocenteMateriaEncuesta($idaplicaciones)
       {
         $DBcon = $this->load->database('default', TRUE);
@@ -268,6 +280,12 @@ public function insertarRespuestas($datos)
 {
   $DB2 = $this->load->database('default', TRUE);
   $DB2->insert('resultados_seguimiento',$datos);
+}
+public function actualizarRespuesta($datos,$idSeguimiento,$numeroControl)
+{
+  $DB2 = $this->load->database('default', TRUE);
+  $DB2->where("encuestas_seguimiento_idencuesta_seguimiento",$idSeguimiento,$numeroControl);
+  $DB2->update('resultados_seguimiento',$datos);
 }
 public function clonarAlumnoEncuesta($datos)
 {
