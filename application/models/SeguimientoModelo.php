@@ -57,11 +57,8 @@ class SeguimientoModelo extends CI_Model {
   public function cargarEncuestasSeguimiento($idSeguimiento)
   {
     $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es, materias as ma, docentes as do,
-      grupos as gr
-      where es.aplicaciones_idaplicaciones=$idSeguimiento AND
-      es.grupos_idgrupos=gr.idgrupos
-      and gr.docentes_rfc = do.rfc and gr.materias_idmaterias= ma.idmaterias  order by es.fecha_creacion DESC    ");
+    $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es 
+      where es.aplicaciones_idaplicaciones=$idSeguimiento  order by es.fecha_creacion DESC    ");
       if ($query->num_rows() > 0) {
         return $query->result();
       }

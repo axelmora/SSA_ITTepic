@@ -12,7 +12,7 @@ $(document).ready(function(){
     "language": {
       "url": urlsistema+"js/datatables/aplicaciones.json"
     },
-    "order": [[ 0, "desc" ]]
+    "order": [[ 4, "desc" ]]
   });
   $('#tablaAdministrativos').DataTable({
     responsive: true,
