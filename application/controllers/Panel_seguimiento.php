@@ -68,7 +68,7 @@ class Panel_seguimiento extends CI_Controller {
 				$poosi++;
 			}
 			$idaplicacion=$this->SeguimientoModelo->obtenerIdAplicacion();
-			//var_dump($idaplicacion);
+			var_dump($idaplicacion);
 			$materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
 			foreach ($materias_del_periodo as $key => $value) {
 				if($this->Materia->comprobar_materia_carrera($carrera,$value->materias_idmaterias)){
@@ -83,7 +83,7 @@ class Panel_seguimiento extends CI_Controller {
 						$nombre_docente=$value2->nombre_docente;
 					}
 
-					$grupo= array(
+					$grupodatos= array(
 						'fecha_creacion' => ''.date('Y-m-d H:i:s'),
 						'grupos_idgrupos'=> ''.$value->idgrupos,
 						'nombre_materia'=> ''.$nombre_materia,
@@ -92,12 +92,26 @@ class Panel_seguimiento extends CI_Controller {
 						'nombre_docente'=> ''.$nombre_docente,
 						'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
 					);
-					var_dump($grupo);
-					$this->SeguimientoModelo->crearSeguimiento($grupo);
-					$alumnos=$this->SeguimientoModelo->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias);
+					//	var_dump($grupodatos);
+					$this->SeguimientoModelo->crearSeguimiento($grupodatos);
+					$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
+					$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'));
+					if($alumnos){
+						echo "ALUMNOS : <br>";
+						foreach ($alumnos as $key => $valuealumnos) {
+							$alumno_encuesta= array(
+								'nombre_alumno'=>$valuealumnos->nombre,
+								'no_de_control'=>$valuealumnos->numero_control,
+								'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
+							);
+								$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
+							//			var_dump($alumno_encuesta);
+						}
+						echo "-------------------------------------";
+					}
 				}
 			}
-			//	redirect(base_url().'Panel_seguimiento/aplicaciones');
+			redirect(base_url().'Panel_seguimiento/aplicaciones');
 		}
 		else {
 			redirect(base_url().'');
@@ -114,7 +128,7 @@ class Panel_seguimiento extends CI_Controller {
 			if($datos["Aplicaciones"])
 			{
 				foreach ($datos["Aplicaciones"] as $key => $value) {
-					$tempTotal=$this->SeguimientoModelo->contadorAlumnosGrupo($value->idencuesta_seguimiento);
+					$tempTotal=$this->Grupos->contadorAlumnosGrupo($value->idencuesta_seguimiento);
 					$NumeroTotal[]=$tempTotal[0]->total;
 					$tempContestados=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
 					$ActualContestados[]=$tempContestados[0]->total;
@@ -497,7 +511,7 @@ class Panel_seguimiento extends CI_Controller {
 			if($datos["Aplicaciones"])
 			{
 				foreach ($datos["Aplicaciones"] as $key => $value) {
-					$tempTotal=$this->SeguimientoModelo->contadorAlumnosGrupo($value->idencuesta_seguimiento);
+					$tempTotal=$this->Grupos->contadorAlumnosGrupo($value->idencuesta_seguimiento);
 					$NumeroTotal[]=$tempTotal[0]->total;
 					$tempContestados=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
 					$ActualContestados[]=$tempContestados[0]->total;

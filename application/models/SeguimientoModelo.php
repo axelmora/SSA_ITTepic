@@ -57,7 +57,7 @@ class SeguimientoModelo extends CI_Model {
   public function cargarEncuestasSeguimiento($idSeguimiento)
   {
     $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es 
+    $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es
       where es.aplicaciones_idaplicaciones=$idSeguimiento  order by es.fecha_creacion DESC    ");
       if ($query->num_rows() > 0) {
         return $query->result();
@@ -134,16 +134,7 @@ class SeguimientoModelo extends CI_Model {
           return false;
         }
       }
-      public function contadorAlumnosGrupo($idencuesta_seguimiento)
-      {
-        $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("SELECT count(ga.alumnos_numero_control) as total FROM  grupos as gr, seleccion_materias as ga, encuestas_seguimiento as es where ga.grupos_idgrupos=gr.idgrupos and es.idencuesta_seguimiento=$idencuesta_seguimiento and es.grupos_idgrupos=gr.idgrupos ");
-        if ($query->num_rows() > 0) {
-          return $query->result();
-        } else {
-          return  0;
-        }
-      }
+
       public function verificarContestadoAlumno($numeroControl,$idEncuesta)
       {
         $DBcon = $this->load->database('default', TRUE);
@@ -157,7 +148,7 @@ class SeguimientoModelo extends CI_Model {
       public function encuestaTotalContestados($idencuesta)
       {
         $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("SELECT count(idresultado_seguimiento) as total FROM  resultados_seguimiento  where encuestas_seguimiento_idencuesta_seguimiento=$idencuesta ");
+        $query=$DBcon->query("SELECT count(idresultado_seguimiento) as total FROM  resultados_seguimiento  where encuestas_seguimiento_idencuesta_seguimiento=$idencuesta and respuestas!=''; ");
         if ($query->num_rows() > 0) {
           return $query->result();
         } else {
@@ -257,6 +248,11 @@ class SeguimientoModelo extends CI_Model {
   }
     */
     public function insertarRespuestas($datos)
+    {
+      $DB2 = $this->load->database('default', TRUE);
+      $DB2->insert('resultados_seguimiento',$datos);
+    }
+    public function clonarAlumnoEncuesta($datos)
     {
       $DB2 = $this->load->database('default', TRUE);
       $DB2->insert('resultados_seguimiento',$datos);
