@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <?php
                   if ($Aplicaciones) {
                     ?>
-                    <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                    <table id="tablaaplicaciones2" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th><i class="fa fa-book " aria-hidden="true"></i> GRUPO</th>

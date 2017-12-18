@@ -371,11 +371,18 @@ public function borrarAplicacionSeguimiento($idaplicaciones)
   if($tempID)
   {
     foreach ($tempID as $key => $value) {
+      $this->borrarResultadosEncuesta($value->idencuesta_seguimiento);
       $this->borrarEncuestaSeguimiento($value->idencuesta_seguimiento);
     }
   }
   $DBcon->where('idaplicaciones', $idaplicaciones );
   $DBcon->delete('aplicaciones');
+}
+public function borrarResultadosEncuesta($idaplicaciones)
+{
+    $DBcon = $this->load->database('default', TRUE);
+  $DBcon->where('encuestas_seguimiento_idencuesta_seguimiento', $idaplicaciones );
+  $DBcon->delete('resultados_seguimiento');
 }
 public function docentesReportes($idAplicacion)
 {

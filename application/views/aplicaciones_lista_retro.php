@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php
                     $peridotlista="";
                     foreach ($AplicacionesPeriodo as $key => $valorPeriodo) {
-                      $peridotlista= genePerido($valorPeriodo->periodo);
+                      $peridotlista= ($valorPeriodo->periodo_texto);
                     }
                     ?>
                     <h3>
@@ -74,11 +74,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         ?>
                         <tr>
                           <td><?php echo "".$valor->nombre_materia; ?></td>
-                          <td><?php echo "".utf8_decode($valor->nombres)." ".utf8_decode($valor->apellidos); ?></td>
+                          <td><?php echo "".utf8_decode($valor->nombre_docente); ?></td>
                           <td><?php echo "".$retro; ?></td>
                           <td>
                             <div class="btn-group btn-block">
-                              <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo "".$valor->idgrupos; ?>"  class="btn btn-primary btn-block text-white"   >
+                              <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo "".$valor->idencuesta_seguimiento; ?>"  class="btn btn-primary btn-block text-white"   >
                                 <i class="fa fa-commenting-o" aria-hidden="true"></i> RETROALIMENTACIÓN INDIVIDUAL
                               </a>
                             </div>
