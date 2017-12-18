@@ -36,15 +36,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     ?>
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupos de aplicación  del periodo <?php echo "".$AplicacionesPeriodo[0]->periodo_texto;  ?>
                     </h3>
-                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
-                    <button type="button" id="botonCopiar" class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>index.php/Seguimiento/"  role="button">
+                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+                    <button type="button" id="botonCopiar" class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>Seguimiento/"  role="button">
                       <i class="fa  fa-share-square-o" aria-hidden="true" ></i>
                       OBTENER ENLACE ENCUESTA</button>
 
                     </div>
                     <div class="col-lg-2">
                       <center>
-                        <!--    <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/nuevo_grupo/<?php echo $AplicacionData;?>"  class="btn btn-success" ><i class="fa fa-plus-circle" aria-hidden="true" ></i> AGREGAR GRUPO</a> -->
+                        <!--    <a href="<?php echo base_url(); ?>Panel_seguimiento/nuevo_grupo/<?php echo $AplicacionData;?>"  class="btn btn-success" ><i class="fa fa-plus-circle" aria-hidden="true" ></i> AGREGAR GRUPO</a> -->
                       </center>
                     </div>
                   </div>
@@ -82,12 +82,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
                                   </button>
                                   <div class="dropdown-menu">
-                                    <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo $idaplicacion."/".$valor->idencuesta_seguimiento; ?>"  class="dropdown-item" ><i class="fa fa-object-group" aria-hidden="true"></i> GESTIONAR</a>
+                                    <a href="<?php echo base_url(); ?>Panel_seguimiento/gestionarGrupo/<?php echo $idaplicacion."/".$valor->idencuesta_seguimiento; ?>"  class="dropdown-item" ><i class="fa fa-object-group" aria-hidden="true"></i> GESTIONAR</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteIndividual/<?php echo $valor->idencuesta_seguimiento; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> REPORTE INDIVIDUAL</a>
-                                    <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/resulados/<?php echo ""; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
-                                    <!-- <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $valor->idgrupos; ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS GRAFICOS</a> -->
-                                    <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $valor->idencuesta_seguimiento; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
+                                    <a class="dropdown-item" target="_blank" href="<?php echo base_url(); ?>Panel_seguimiento/reporteIndividual/<?php echo $valor->idencuesta_seguimiento; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> REPORTE INDIVIDUAL</a>
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/resulados/<?php echo ""; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
+                                    <!-- <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/retroalimentacionseguimiento/<?php echo $valor->idgrupos; ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS GRAFICOS</a> -->
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/retroalimentacionseguimiento/<?php echo $valor->idencuesta_seguimiento; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
                                     <!-- <div class="dropdown-divider"></div>
                                     <button type="button" class="dropdown-item " data-toggle="modal" data-target="#modalEliminar" onclick="eliminarEncuestaSeguimiento(<?php echo $valor->idgrupos; ?>)" ><i class="fa fa-trash text-danger" aria-hidden="true"></i> BORRAR ENCUESTA</button> -->
                                   </div>

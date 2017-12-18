@@ -763,7 +763,7 @@ class Panel_seguimiento extends CI_Controller {
 			$MATERIA="";
 			if(isset($datos["DATOSMATERIA"])){
 				foreach ($datos["DATOSMATERIA"] as $key => $value) {
-					$DOCENTE="".utf8_decode($value->nombres." ".$value->apellidos);
+					$DOCENTE="".utf8_decode($value->nombre_docente);
 					$MATERIA="".$value->nombre_materia ;
 				}
 			}else {

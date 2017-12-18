@@ -164,7 +164,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <i class="fa fa-bars" aria-hidden="true"></i>  OPCIONES
                                   </button>
                                   <div class="dropdown-menu">
-                                    <button type="button" data-toggle="modal" onclick="reactivarEncuesta('<?php echo $valor->numero_control ?>','<?php echo $IDGRUPO ?>')" data-target="#modalReActivarAlumno"  class="dropdown-item"><i class="fa fa-check-square-o text-warning" aria-hidden="true"></i> REACTIVAR ENCUESTA</button>
+                                    <button type="button" data-toggle="modal" onclick="reactivarEncuesta('<?php echo $valor->no_de_control ?>','<?php echo $IDGRUPO ?>')" data-target="#modalReActivarAlumno"  class="dropdown-item"><i class="fa fa-check-square-o text-warning" aria-hidden="true"></i> REACTIVAR ENCUESTA</button>
                                     <div class="dropdown-divider"></div>
                                   </div>
                                 </div>
