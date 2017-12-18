@@ -286,7 +286,7 @@ class SeguimientoModelo extends CI_Model {
   public function resultadosEncuesta($idseguimiento)
   {
     $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT respuestas from resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idseguimiento and respuestas!='';" 
+    $query=$DBcon->query("SELECT respuestas from resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idseguimiento and respuestas!='';"
   );
   if ($query->num_rows() > 0)
   {
@@ -399,7 +399,7 @@ public function borrarResultadosEncuesta($idaplicaciones)
 public function docentesReportes($idAplicacion)
 {
   $DBcon = $this->load->database('default', TRUE);
-  $query=$DBcon->query("SELECT DISTINCT es.docentes_rfc,d.rfc,d.nombres,d.apellidos,es.aplicaciones_idaplicaciones FROM encuestas_seguimiento as es,docentes as d where es.aplicaciones_idaplicaciones=$idAplicacion and d.rfc=es.docentes_rfc;");
+  $query=$DBcon->query("SELECT DISTINCT es.rfc_docente as rfc,es.aplicaciones_idaplicaciones, es.nombre_docente from encuestas_seguimiento as es,aplicaciones as ap where ap.idaplicaciones=$idAplicacion and es.aplicaciones_idaplicaciones=ap.idaplicaciones;");
   if ($query->num_rows() > 0)
   {
     return $query->result();
