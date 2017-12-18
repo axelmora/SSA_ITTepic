@@ -103,64 +103,64 @@ class Seguimiento extends CI_Controller {
 				 	/* VERIFICAR SI EXISTE APLICACION EL PERIODO Y DEPARTAMENTO*/
 				$APLICACIONVERIFICADA = $this->SeguimientoModelo->verificarAplicacion($PERIODOACTUAL,$IDDEPARTAMENTO);
 				var_dump($APLICACIONVERIFICADA);
-				// 	if($APLICACIONVERIFICADA){
-				// 		$idaplicaciones="";
-				// 		$idplantilla="";
-				// 		foreach ($APLICACIONVERIFICADA as $key => $value) {
-				// 			$idaplicaciones=$value->idaplicaciones;
-				// 			$idplantilla=$value->plantilla_encuestas_idplantilla_encuestas;
-				// 		}
-				// 		$ENCUESTAS= $this->SeguimientoModelo->obtenerEncuestas($idaplicaciones,$NUMERO_CONTROL);
-				// 		if($ENCUESTAS){
-				// 			$PROGRESOENCUESTAS=0;
-				// 			//	echo "$IDDEPARTAMENTO $PERIODOACTUAL $idaplicaciones  $idplantilla ";
-				// 			//echo "EXISTE <br>";
-				// 			$ID_ENCUESTAS="";
-				// 			$TAMANO=count($ENCUESTAS); // OBTENER EL TAMAÑO
-				// 			$POSENCUESTAS=0; //
-				// 			/* CONCATENAR ID ENCUESTAS*/
-				// 			foreach ($ENCUESTAS as $key => $value) {
-				// 				//$this->consolaLOG("".$value->idencuesta_seguimiento."");
-				// 				/* VERIFICAR SI YA FUE CONTESTADA */
-				// 				if(!$this->SeguimientoModelo->verificarEncuestaContestada($value->idencuesta_seguimiento,$NUMERO_CONTROL)){
-				// 					if($POSENCUESTAS<$TAMANO-1)
-				// 					{
-				// 						$ID_ENCUESTAS.=$value->idencuesta_seguimiento.",";
-				// 					}else {
-				// 						$ID_ENCUESTAS.=$value->idencuesta_seguimiento;
-				// 					}
-				// 					$PROGRESOENCUESTAS++;
-				// 					$POSENCUESTAS++;
-				// 				}else {
-				// 				}
-				// 			}
-				// 			$POSENCUESTAS=0;
-				// 			//$this->consolaLOG("ID ENCUESTAS: ".$ID_ENCUESTAS);
-				// 			$DATOS_ALUMNOS = array(
-				// 				'is_logued_in' => true,
-				// 				'numero_control' => $NUMERO_CONTROL,
-				// 				'nombre_alumno' => $NOMBREALUM,
-				// 				'alumno'=>true,
-				// 				'idencuestas'=>$ID_ENCUESTAS,
-				// 				'progresolimite'=>$PROGRESOENCUESTAS,
-				// 				'progresoactual'=>0,
-				// 				'idplantilla'=>$idplantilla
-				// 			);
-				// 			$this->session->set_userdata($DATOS_ALUMNOS);
-				// 			if($idplantilla==1) //PLANTILLA NORMAL
-				// 			{
-				// 				redirect(base_url().'index.php/Seguimiento/contestar/');
-				// 			}else { // PLANTILLA EDITADAS
-				// 			}
-				// 		}else{
-				// 			$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuesta hasta el momento");
-				// 			$this->load->view('encuesta/inicio',$datos);
-				// 		}
-				// 		/* OBTENER LAS APLICACIONES CORE*/
-				// 	}else {
-				// 		$datos["ErrorInicio"]=$this->mensajeError(" Error con la contraseña de la aplicacion y/o la aplicacion no existe.");
-				// 		$this->load->view('encuesta/inicio',$datos);
-				// 	}
+					if($APLICACIONVERIFICADA){
+						$idaplicaciones="";
+						$idplantilla="";
+						foreach ($APLICACIONVERIFICADA as $key => $value) {
+							$idaplicaciones=$value->idaplicaciones;
+							$idplantilla=$value->plantilla_encuestas_idplantilla_encuestas;
+						}
+						$ENCUESTAS= $this->SeguimientoModelo->obtenerEncuestas($idaplicaciones,$NUMERO_CONTROL);
+						if($ENCUESTAS){
+							$PROGRESOENCUESTAS=0;
+							//	echo "$IDDEPARTAMENTO $PERIODOACTUAL $idaplicaciones  $idplantilla ";
+							//echo "EXISTE <br>";
+							$ID_ENCUESTAS="";
+							$TAMANO=count($ENCUESTAS); // OBTENER EL TAMAÑO
+							$POSENCUESTAS=0; //
+							/* CONCATENAR ID ENCUESTAS*/
+							foreach ($ENCUESTAS as $key => $value) {
+								//$this->consolaLOG("".$value->idencuesta_seguimiento."");
+								/* VERIFICAR SI YA FUE CONTESTADA */
+								if(!$this->SeguimientoModelo->verificarEncuestaContestada($value->idencuesta_seguimiento,$NUMERO_CONTROL)){
+									if($POSENCUESTAS<$TAMANO-1)
+									{
+										$ID_ENCUESTAS.=$value->idencuesta_seguimiento.",";
+									}else {
+										$ID_ENCUESTAS.=$value->idencuesta_seguimiento;
+									}
+									$PROGRESOENCUESTAS++;
+									$POSENCUESTAS++;
+								}else {
+								}
+							}
+							$POSENCUESTAS=0;
+							//$this->consolaLOG("ID ENCUESTAS: ".$ID_ENCUESTAS);
+							$DATOS_ALUMNOS = array(
+								'is_logued_in' => true,
+								'numero_control' => $NUMERO_CONTROL,
+								'nombre_alumno' => $NOMBREALUM,
+								'alumno'=>true,
+								'idencuestas'=>$ID_ENCUESTAS,
+								'progresolimite'=>$PROGRESOENCUESTAS,
+								'progresoactual'=>0,
+								'idplantilla'=>$idplantilla
+							);
+							$this->session->set_userdata($DATOS_ALUMNOS);
+							if($idplantilla==1) //PLANTILLA NORMAL
+							{
+								redirect(base_url().'index.php/Seguimiento/contestar/');
+							}else { // PLANTILLA EDITADAS
+							}
+						}else{
+							$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuesta hasta el momento");
+							$this->load->view('encuesta/inicio',$datos);
+						}
+						/* OBTENER LAS APLICACIONES CORE*/
+					}else {
+						$datos["ErrorInicio"]=$this->mensajeError(" Error con la contraseña de la aplicacion y/o la aplicacion no existe.");
+						$this->load->view('encuesta/inicio',$datos);
+					}
 			}else {
 				$datos["ErrorInicio"]=$this->mensajeError("Error al ingresar el numero de control.");
 				$this->load->view('encuesta/inicio',$datos);

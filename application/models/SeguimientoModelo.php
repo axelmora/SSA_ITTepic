@@ -195,9 +195,39 @@ class SeguimientoModelo extends CI_Model {
         public function obtenerEncuestas($idaplicaciones,$numero_control)
         {
           $DBcon = $this->load->database('default', TRUE);
-          $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es, grupos as gr,grupo_alumnos as ga where es.aplicaciones_idaplicaciones=$idaplicaciones "
-          ."and es.idencuesta_seguimiento=gr.encuestas_seguimiento_idencuesta_seguimiento and ".
-          "gr.idgrupos=ga.grupos_idgrupos and ga.alumnos_numero_control=$numero_control"
+          /*OLD CONSULTA*/
+          //   $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es, grupos as gr,grupo_alumnos as ga where es.aplicaciones_idaplicaciones=$idaplicaciones "
+          //   ."and es.idencuesta_seguimiento=gr.encuestas_seguimiento_idencuesta_seguimiento and ".
+          //   "gr.idgrupos=ga.grupos_idgrupos and ga.alumnos_numero_control=$numero_control"
+          // );
+          $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es, resultados_seguimiento as rs
+            where es.aplicaciones_idaplicaciones=$idaplicaciones and es.idencuesta_seguimiento=
+            rs.encuestas_seguimiento_idencuesta_seguimiento and   rs.no_de_control='$numero_control' and rs.respuestas is null;"
+          );
+          if ($query->num_rows() > 0)
+          {
+            return $query->result();
+          } else {
+            return false;
+          }
+        }
+        public function verificarEncuestaContestada($idaplicaciones,$numero_control)
+        {
+          $DBcon = $this->load->database('default', TRUE);
+          $query=$DBcon->query("SELECT * FROM resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idaplicaciones and no_de_control=$numero_control and respuestas !='';" );
+          if ($query->num_rows() > 0)
+          {
+            return true;
+          } else {
+            return false;
+          }
+        }
+        public function obtenerDocenteMateria($idaplicaciones)
+        {
+          $DBcon = $this->load->database('default', TRUE);
+          $query=$DBcon->query("SELECT ma.nombre_materia,d.nombres,d.apellidos FROM  grupos as gr, docentes as d, materias as ma ".
+          " where  gr.materias_idmaterias=ma.idmaterias".
+          " and gr.docentes_rfc=d.rfc and gr.idgrupos='$idaplicaciones';"
         );
         if ($query->num_rows() > 0)
         {
@@ -206,23 +236,10 @@ class SeguimientoModelo extends CI_Model {
           return false;
         }
       }
-      public function verificarEncuestaContestada($idaplicaciones,$numero_control)
+      public function obtenerDocenteMateriaEncuesta($idaplicaciones)
       {
         $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("SELECT * FROM resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idaplicaciones and no_de_control=$numero_control" );
-        if ($query->num_rows() > 0)
-        {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      public function obtenerDocenteMateria($idaplicaciones)
-      {
-        $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("SELECT ma.nombre_materia,d.nombres,d.apellidos FROM  grupos as gr, docentes as d, materias as ma ".
-        " where  gr.materias_idmaterias=ma.idmaterias".
-        " and gr.docentes_rfc=d.rfc and gr.idgrupos='$idaplicaciones';"
+        $query=$DBcon->query("SELECT  nombre_docente, nombre_materia from encuestas_seguimiento where idencuesta_seguimiento=$idaplicaciones;"
       );
       if ($query->num_rows() > 0)
       {
@@ -231,69 +248,57 @@ class SeguimientoModelo extends CI_Model {
         return false;
       }
     }
-    public function obtenerDocenteMateriaEncuesta($idaplicaciones)
-    {
-      $DBcon = $this->load->database('default', TRUE);
-      $query=$DBcon->query("SELECT  nombre_docente, nombre_materia from encuestas_seguimiento where idencuesta_seguimiento=$idaplicaciones;"
-    );
-    if ($query->num_rows() > 0)
-    {
-      return $query->result();
-    } else {
-      return false;
-    }
-  }
     /*
     public function obtenerDocenteMateria($idaplicaciones)
     {
-      $DBcon = $this->load->database('default', TRUE);
-      $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
-      " where es.idencuesta_seguimiento=$idaplicaciones and es.materias_idmaterias=ma.idmaterias".
-      " and es.docentes_rfc=d.rfc;"
-    );
-    if ($query->num_rows() > 0)
-    {
-      return $query->result();
-    } else {
-      return false;
-    }
-  }
-    */
-    public function insertarRespuestas($datos)
-    {
-      $DB2 = $this->load->database('default', TRUE);
-      $DB2->insert('resultados_seguimiento',$datos);
-    }
-    public function clonarAlumnoEncuesta($datos)
-    {
-      $DB2 = $this->load->database('default', TRUE);
-      $DB2->insert('resultados_seguimiento',$datos);
-    }
-    public function cargarEncuestasGrupos($idAplicacion)
-    {
-      $DBcon = $this->load->database('default', TRUE);
-      $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
-      " where es.aplicaciones_idaplicaciones=$idAplicacion and es.materias_idmaterias=ma.idmaterias".
-      " and es.docentes_rfc=d.rfc;"
-    );
-    if ($query->num_rows() > 0)
-    {
-      return $query->result();
-    } else {
-      return false;
-    }
-  }
-  public function resultadosEncuesta($idseguimiento)
-  {
     $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT respuestas from resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idseguimiento and respuestas!='';"
+    $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
+    " where es.idencuesta_seguimiento=$idaplicaciones and es.materias_idmaterias=ma.idmaterias".
+    " and es.docentes_rfc=d.rfc;"
   );
   if ($query->num_rows() > 0)
   {
-    return $query->result();
-  } else {
-    return false;
-  }
+  return $query->result();
+} else {
+return false;
+}
+}
+*/
+public function insertarRespuestas($datos)
+{
+  $DB2 = $this->load->database('default', TRUE);
+  $DB2->insert('resultados_seguimiento',$datos);
+}
+public function clonarAlumnoEncuesta($datos)
+{
+  $DB2 = $this->load->database('default', TRUE);
+  $DB2->insert('resultados_seguimiento',$datos);
+}
+public function cargarEncuestasGrupos($idAplicacion)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT es.idencuesta_seguimiento,ma.nombre_materia,d.nombres,d.apellidos FROM  encuestas_seguimiento as es, docentes as d, materias as ma ".
+  " where es.aplicaciones_idaplicaciones=$idAplicacion and es.materias_idmaterias=ma.idmaterias".
+  " and es.docentes_rfc=d.rfc;"
+);
+if ($query->num_rows() > 0)
+{
+  return $query->result();
+} else {
+  return false;
+}
+}
+public function resultadosEncuesta($idseguimiento)
+{
+  $DBcon = $this->load->database('default', TRUE);
+  $query=$DBcon->query("SELECT respuestas from resultados_seguimiento where encuestas_seguimiento_idencuesta_seguimiento=$idseguimiento and respuestas!='';"
+);
+if ($query->num_rows() > 0)
+{
+  return $query->result();
+} else {
+  return false;
+}
 }
 public function actualizarRetro($id,$retro,$fecha)
 {
@@ -392,7 +397,7 @@ public function borrarAplicacionSeguimiento($idaplicaciones)
 }
 public function borrarResultadosEncuesta($idaplicaciones)
 {
-    $DBcon = $this->load->database('default', TRUE);
+  $DBcon = $this->load->database('default', TRUE);
   $DBcon->where('encuestas_seguimiento_idencuesta_seguimiento', $idaplicaciones );
   $DBcon->delete('resultados_seguimiento');
 }
