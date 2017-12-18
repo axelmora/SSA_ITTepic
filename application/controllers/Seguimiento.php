@@ -101,16 +101,23 @@ class Seguimiento extends CI_Controller {
 				$PERIODOACTUAL=$this->PeriodoModelo->obtenerPeriodoActual();
 				$PERIODOACTUAL=$PERIODOACTUAL[0]->idperiodos;
 				 	/* VERIFICAR SI EXISTE APLICACION EL PERIODO Y DEPARTAMENTO*/
-				$APLICACIONVERIFICADA = $this->SeguimientoModelo->verificarAplicacion($PERIODOACTUAL,$IDDEPARTAMENTO);
-				var_dump($APLICACIONVERIFICADA);
+				  $APLICACIONVERIFICADA = $this->SeguimientoModelo->verificarAplicacion($PERIODOACTUAL,$IDDEPARTAMENTO);
+			  	//var_dump($APLICACIONVERIFICADA);
 					if($APLICACIONVERIFICADA){
 						$idaplicaciones="";
 						$idplantilla="";
 						foreach ($APLICACIONVERIFICADA as $key => $value) {
-							$idaplicaciones=$value->idaplicaciones;
-							$idplantilla=$value->plantilla_encuestas_idplantilla_encuestas;
+							if($this->SeguimientoModelo->obtenerEncuestas($value->idaplicaciones,$NUMERO_CONTROL)){
+								$idaplicaciones=$value->idaplicaciones;
+								$idplantilla=$value->plantilla_encuestas_idplantilla_encuestas;
+							}
 						}
-						$ENCUESTAS= $this->SeguimientoModelo->obtenerEncuestas($idaplicaciones,$NUMERO_CONTROL);
+						if($idaplicaciones!=""){
+							$ENCUESTAS= $this->SeguimientoModelo->obtenerEncuestas($idaplicaciones,$NUMERO_CONTROL);
+						}else {
+							$ENCUESTAS=false;
+						}
+				//		var_dump($ENCUESTAS);
 						if($ENCUESTAS){
 							$PROGRESOENCUESTAS=0;
 							//	echo "$IDDEPARTAMENTO $PERIODOACTUAL $idaplicaciones  $idplantilla ";
@@ -149,7 +156,7 @@ class Seguimiento extends CI_Controller {
 							$this->session->set_userdata($DATOS_ALUMNOS);
 							if($idplantilla==1) //PLANTILLA NORMAL
 							{
-								redirect(base_url().'index.php/Seguimiento/contestar/');
+							redirect(base_url().'index.php/Seguimiento/contestar/');
 							}else { // PLANTILLA EDITADAS
 							}
 						}else{
