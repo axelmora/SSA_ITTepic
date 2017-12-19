@@ -17,7 +17,19 @@ class Departamentos extends CI_Model {
   public function cargarDepartamentosID($iddepartamento_academico)
   {
     $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT * FROM departamento_academico where iddepartamento_academico=$iddepartamento_academico");
+    $query=$DBcon->query("SELECT * FROM departamento_academico as da 
+       where da.iddepartamento_academico=$iddepartamento_academico  ");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
+  public function cargarDepartamentosIDCarreras($iddepartamento_academico)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM departamento_carreras as dc
+       where $iddepartamento_academico=dc.departamento_academico_iddepartamento_academico");
     if ($query->num_rows() > 0) {
       return $query->result();
     } else {
