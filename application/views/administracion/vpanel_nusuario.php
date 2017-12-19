@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="alert alert-danger" role="alert"> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
 
                           <?php
-                            echo "$error_mismo_usario";
+                          echo "$error_mismo_usario";
                           ?>
                         </div>
                         <?php
@@ -70,12 +70,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         {
                           $pos=0;
                           foreach ($DEPARTAMENTOS as $key => $value) {
+
                             if($pos==1)
                             {
                               echo '<option selected value="'.$value->iddepartamento_academico.'">'.$value->nombre_departamento.'</option>';
                             }
                             else {
-                              echo '<option value="'.$value->iddepartamento_academico.'">'.$value->nombre_departamento.'</option>';
+                              if($value->iddepartamento_academico!=14){
+                                echo '<option value="'.$value->iddepartamento_academico.'">'.$value->nombre_departamento.'</option>';
+                              }
                             }
                             $pos++;
                           }
