@@ -46,22 +46,18 @@ class Departamentos extends CI_Model {
           return false;
         }
       }
-      public function cargarCarrerasQueNoSondelDepartamento($iddepartamento_academico)
-      {
-        $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("SELECT * FROM departamento_carreras as dc, carreras as ca
-          where $iddepartamento_academico!=dc.departamento_academico_iddepartamento_academico and ca.id_carrera=dc.carreras_id_carrera order by codigo asc");
-          if ($query->num_rows() > 0) {
-            return $query->result();
-          } else {
-            return false;
-          }
-      }
       public function insertarDepartamento($nombre_departamento)
       {
         $DB2 = $this->load->database('default', TRUE);
         $DB2->set('nombre_departamento', $nombre_departamento );
         $DB2->insert('departamento_academico');
+      }
+      public function actualizarDepartamento($iddepa,$nombre_departamento)
+      {
+        $DB2 = $this->load->database('default', TRUE);
+        $DB2->set('nombre_departamento', $nombre_departamento );
+        $DB2->where('iddepartamento_academico', $iddepa );
+        $DB2->update('departamento_academico');
       }
       public function obtenerIDdepartamento()
       {

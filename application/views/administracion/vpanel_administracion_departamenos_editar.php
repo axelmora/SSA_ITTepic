@@ -27,22 +27,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="card menus">
 				<div class="card-body">
 					<div class="row" >
-						<div class="col-lg-6">
-							<h3><i class="fa fa-users" aria-hidden="true"></i> Agregar nuevo departamento academico</h3>
+						<div class="col-lg-10">
+							<h3><i class="fa fa-users" aria-hidden="true"></i> Editar el departamento academico de <?php   echo $DEPARTAMENTOS[0]->nombre_departamento; ?></h3>
 							<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/departamentos" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-2">
 						</div>
 					</div>
 					<div class="container">
-						<form id="formularioDepartamento" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/add_departamento">
+						<form id="formularioDepartamento" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/editar_departamento_formulario/<?php   echo $DEPARTAMENTOS[0]->iddepartamento_academico; ?>">
 							<?php
 							if ($DEPARTAMENTOS) {
 								foreach ($DEPARTAMENTOS as $filas => $valores) {
 									?>
 									<div class="form-group">
 										<label for="nombre_departamento">Nombre del departamento academico:</label>
-										<input value="<?php echo $valores->nombre_departamento; ?> " required type="text" class="form-control" id="nombre_departamento" name="nombre_departamento" aria-describedby="emailHelp" placeholder="Ingresar el nombre del departamento academico.">
+										<input value="<?php echo $valores->nombre_departamento;?>" required type="text" class="form-control" id="nombre_departamento" name="nombre_departamento" aria-describedby="emailHelp" placeholder="Ingresar el nombre del departamento academico.">
 									</div>
 									<div class="row" >
 										<div class="col-lg-3">
@@ -51,19 +51,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 										<div class="col-lg-9">
 											<div id="dynamicInput"></div>
+											<?php
+											$idcarreras="";
+											$poscosa=0;
+											if($DEPARTAMENTOS_CARRERAS){
+												foreach ($DEPARTAMENTOS_CARRERAS as $key => $value2) {
+													if($poscosa<count($DEPARTAMENTOS_CARRERAS)-1){
+														$idcarreras.=$value2->id_carrera.",";
+													}else {
+														$idcarreras.=$value2->id_carrera;
+													}
+													$poscosa++;
+												}
+											}
+											?>
+											<input hidden type="text" name="" id="tempcarreras" value="<?php echo $idcarreras ?>">
 											<div class="form-group">
-												<select multiple class="form-control" id="carreras" required name="carreras[]">
+												<select multiple class="form-control" id="carrerasselecionar" required name="carreras[]">
 													<?php
 													if(isset($CARRERAS))
 													{
-														$idcarreras;
-														foreach ($DEPARTAMENTOS_CARRERAS as $key => $value2) {
-															$idcarreras[]=$value2->id_carrera;
-															?>
-															<option selected value="<?php echo $value2->id_carrera; ?>" ><?php echo $value2->codigo."-".$value2->carrera ; ?></option>
-															<?php
-														}
-														$yaseimprimio=true;
 														foreach ($CARRERAS as $key => $value) {
 															?>
 															<option value="<?php echo $value->id_carrera; ?>" ><?php echo $value->codigo."-".$value->carrera ; ?></option>
@@ -106,6 +113,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>
 
 $(document).ready(function() {
+	if($("#tempcarreras").val()!=""){
+		var data=$("#tempcarreras").val();
+		var dataarray=data.split(",");
+		$("#carrerasselecionar").val(dataarray);
+		$("#carrerasselecionar").multiselect("refresh");
+	}
 	$('#tablausuarios').DataTable({
 		"language": {
 			"url": "<?php echo base_url(); ?>js/datatables/departamentos.json"

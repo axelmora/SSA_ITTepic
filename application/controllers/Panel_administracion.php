@@ -157,11 +157,22 @@ class Panel_administracion extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1') {
 			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentosID($iddepartamento_academico);
 			$datos['DEPARTAMENTOS_CARRERAS'] = $this->Departamentos->cargarDepartamentosIDCarreras($iddepartamento_academico);
-			$datos['CARRERAS'] = $this->Departamentos->cargarCarrerasQueNoSondelDepartamento($iddepartamento_academico);
+			$datos['CARRERAS'] = $this->Departamentos->cargarCarreras();
 			$this->load->view('administracion/vpanel_administracion_departamenos_editar',$datos);
 		}else {
 			redirect(base_url().'index.php');
 		}
+	}
+	public function editar_departamento_formulario($iddepartamento_academico)
+	{
+		$nombre_departamento = $this->input->post('nombre_departamento');
+		$carreras = $this->input->post('carreras');
+		$this->Departamentos->actualizarDepartamento($iddepartamento_academico,$nombre_departamento);
+		/*$idMaximo=$this->Departamentos->obtenerIDdepartamento();
+		for ($i=0; $i <count($carreras) ; $i++) {
+			$this->Departamentos->insRelacionDepaCarrera($idMaximo[0]->maximo,$carreras[$i]);
+		}*/
+		redirect(base_url().'index.php/panel_administracion/departamentos');
 	}
 	public function add_departamento()
 	{
