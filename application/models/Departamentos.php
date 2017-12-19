@@ -101,9 +101,29 @@ class Departamentos extends CI_Model {
           return false;
         }
       }
+      public function cargarUsuariosDepa($iddepa)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("select * from usuarios where departamento_academico_iddepartamento_academico=$iddepa;");
+        if ($query->num_rows() > 0)
+        {
+          return $query->result();
+        } else {
+          return false;
+        }
+      }
+      public function reasignarUsuarios($iddepa)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $DBcon->set('estado',0);
+        $DBcon->set('departamento_academico_iddepartamento_academico',14);
+        $DBcon->where('departamento_academico_iddepartamento_academico', $iddepa );
+        $DBcon->update('usuarios');
+      }
       public function eliminarDepartamento($iddepa)
       {
         $DB2 = $this->load->database('default', TRUE);
+
         $DB2->where('departamento_academico_iddepartamento_academico', $iddepa );
         $DB2->delete('departamento_carreras');
         $DB2->where('iddepartamento_academico', $iddepa );

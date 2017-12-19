@@ -173,6 +173,10 @@ class Panel_administracion extends CI_Controller {
 					 $this->Departamentos->borrarAplicacionSeguimiento($value->idaplicaciones);
 				}
 			}
+			$usuariosdepa=$this->Departamentos->cargarUsuariosDepa($iddepartamento_academico);
+			if($usuariosdepa){
+							$this->Departamentos->reasignarUsuarios($iddepartamento_academico);
+			}
 			$this->Departamentos->eliminarDepartamento($iddepartamento_academico);
 			redirect(base_url().'index.php/panel_administracion/departamentos');
 		}else {
