@@ -72,7 +72,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<?php
 															}else {
 																?>
-																<a class="dropdown-item" href="#"><i class="fa fa-trash colorBorrar" aria-hidden="true"></i> ELIMINAR</a>
+																<a onclick="eliminarDepartamento(<?php echo $valores->iddepartamento_academico;?>,'<?php echo$valores->nombre_departamento ?>');" href="#" class="dropdown-item" class="btn btn-primary" >
+																	<i class="fa fa-trash colorBorrar" aria-hidden="true"></i> ELIMINAR
+																</a>
 																<?php
 															}
 															?>
@@ -95,6 +97,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
+	<form class="" action="<?php echo base_url(); ?>index.php/panel_administracion/eliminarDepartamento" method="post">
+		<div class="modal fade" id="modalBorrarDepartamento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id=""><div id="depatex"></div> ?</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="number" id="iddepartamento_academico" name="iddepartamento_academico" value="" hidden required />
+						<div class="card text-white bg-danger ">
+							<div class="card-body">
+								<h4 class="card-title"><i class="fa fa-exclamation-triangle animated tada infinite" aria-hidden="true"></i> Atención</h4>
+								<p class="card-text"><b>Al borrar este departamento  se perderán la siguiente información.</b></p>
+								<ul>
+									<li>Resultados de todas la encuesta seguimiento en el aula.</li>
+									<li>Todos los grupos de alumnos para esta aplicación.</li>
+									<li>Todos los reportes de avance.</li>
+								</ul>
+								<p class="card-text"><center><b>Una vez eliminada <i class="fa fa-eraser" aria-hidden="true"></i> la informacion del departamento  es imposible recuperar <i class="fa fa-undo" aria-hidden="true"></i> las encuestas.</b></center></p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> NO</button>
+						<button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> SI </button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
@@ -106,6 +141,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
 <script>
+function eliminarDepartamento(id,nombre) {
+	$('#iddepartamento_academico').val(''+id);
+	$('#depatex').html('¿Desea eliminar el departamento de '+nombre);
+	$('#modalBorrarDepartamento').modal('show');
+}
 $(document).ready(function() {
 	$('#tablausuarios').DataTable({
 		"language": {

@@ -46,11 +46,68 @@ class Departamentos extends CI_Model {
           return false;
         }
       }
+
+      public function cargarAplicacionesporDepartamento($id)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT idaplicaciones from aplicaciones where departamento_academico_iddepartamento_academico=$id");
+        if ($query->num_rows() > 0) {
+          return $query->result();
+        } else {
+          return false;
+        }
+      }
+
       public function insertarDepartamento($nombre_departamento)
       {
         $DB2 = $this->load->database('default', TRUE);
         $DB2->set('nombre_departamento', $nombre_departamento );
         $DB2->insert('departamento_academico');
+      }
+      public function borrarAplicacionSeguimiento($idaplicaciones)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $tempID=$this->getIDSeguimientoEnElAula($idaplicaciones);
+        if($tempID)
+        {
+          foreach ($tempID as $key => $value) {
+            $this->borrarResultadosEncuesta($value->idencuesta_seguimiento);
+            $this->borrarEncuestaSeguimiento($value->idencuesta_seguimiento);
+          }
+        }
+        $DBcon->where('idaplicaciones', $idaplicaciones );
+        $DBcon->delete('aplicaciones');
+      }
+      public function borrarEncuestaSeguimiento($idencuesta_seguimiento)
+      {
+        $DB2 = $this->load->database('default', TRUE);
+        $DB2->where('idencuesta_seguimiento', $idencuesta_seguimiento );
+        $DB2->delete('encuestas_seguimiento');
+      }
+      public function borrarResultadosEncuesta($idaplicaciones)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $DBcon->where('encuestas_seguimiento_idencuesta_seguimiento', $idaplicaciones );
+        $DBcon->delete('resultados_seguimiento');
+      }
+      public function getIDSeguimientoEnElAula($idaplicaciones)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT idencuesta_seguimiento from encuestas_seguimiento where aplicaciones_idaplicaciones=$idaplicaciones");
+        if ($query->num_rows() > 0)
+        {
+          return $query->result();
+        } else {
+          return false;
+        }
+      }
+      public function eliminarDepartamento($iddepa)
+      {
+        $DB2 = $this->load->database('default', TRUE);
+        $DB2->where('departamento_academico_iddepartamento_academico', $iddepa );
+        $DB2->delete('departamento_carreras');
+        $DB2->where('iddepartamento_academico', $iddepa );
+        $DB2->delete('departamento_academico');
       }
       public function actualizarDepartamento($iddepa,$nombre_departamento)
       {
