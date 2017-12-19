@@ -46,7 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<?php
 							if ($DEPARTAMENTOS) {
 								foreach ($DEPARTAMENTOS as $filas => $valores) {
-									if($valores->iddepartamento_academico !=1 ){
+									if($valores->iddepartamento_academico !=1  ){
+										if($valores->iddepartamento_academico !=14){
 										?>
 										<tr>
 											<td colspan=""><?php echo $valores->nombre_departamento; ?> </td>
@@ -86,6 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<?php
 									}
 								}
+									}
 							}else {
 							}
 							?>

@@ -73,7 +73,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <?php
                   if($DEPARTAMENTOS)
                   {
-                    //  $pos=0;
                     foreach ($DEPARTAMENTOS as $key => $value) {
                       if($value->iddepartamento_academico==$usuarioEditar[0]->departamento_academico_iddepartamento_academico)
                       {
@@ -89,7 +88,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         }
 
                       }
-                      //    $pos++;
                     }
                   }
                   ?>
