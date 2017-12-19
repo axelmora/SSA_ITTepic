@@ -157,7 +157,7 @@ class Panel_administracion extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1') {
 			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentosID($iddepartamento_academico);
 			$datos['DEPARTAMENTOS_CARRERAS'] = $this->Departamentos->cargarDepartamentosIDCarreras($iddepartamento_academico);
-			$datos['CARRERAS'] = $this->Departamentos->cargarCarreras();
+			$datos['CARRERAS'] = $this->Departamentos->cargarCarrerasQueNoSondelDepartamento($iddepartamento_academico);
 			$this->load->view('administracion/vpanel_administracion_departamenos_editar',$datos);
 		}else {
 			redirect(base_url().'index.php');

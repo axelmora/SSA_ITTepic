@@ -56,18 +56,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<?php
 													if(isset($CARRERAS))
 													{
+														$idcarreras;
+														foreach ($DEPARTAMENTOS_CARRERAS as $key => $value2) {
+															$idcarreras[]=$value2->id_carrera;
+															?>
+															<option selected value="<?php echo $value2->id_carrera; ?>" ><?php echo $value2->codigo."-".$value2->carrera ; ?></option>
+															<?php
+														}
+														$yaseimprimio=true;
 														foreach ($CARRERAS as $key => $value) {
-															if($valores->carreras_id_carrera==$value->id_carrera){
-																?>
-																<option selected value="<?php echo $value->id_carrera; ?>" ><?php echo $value->codigo."-".$value->carrera ; ?></option>
-																<?php
-															}else {
-
-																?>
-																<option value="<?php echo $value->id_carrera; ?>" ><?php echo $value->codigo."-".$value->carrera ; ?></option>
-																<?php
-
-															}
+															?>
+															<option value="<?php echo $value->id_carrera; ?>" ><?php echo $value->codigo."-".$value->carrera ; ?></option>
+															<?php
 														}
 													}
 													?>
