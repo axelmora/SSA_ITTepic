@@ -170,12 +170,12 @@ class Panel_administracion extends CI_Controller {
 			$idedepartametnos=$this->Departamentos->cargarAplicacionesporDepartamento($iddepartamento_academico);
 			if($idedepartametnos){
 				foreach ($idedepartametnos as $key => $value) {
-					 $this->Departamentos->borrarAplicacionSeguimiento($value->idaplicaciones);
+					$this->Departamentos->borrarAplicacionSeguimiento($value->idaplicaciones);
 				}
 			}
 			$usuariosdepa=$this->Departamentos->cargarUsuariosDepa($iddepartamento_academico);
 			if($usuariosdepa){
-							$this->Departamentos->reasignarUsuarios($iddepartamento_academico);
+				$this->Departamentos->reasignarUsuarios($iddepartamento_academico);
 			}
 			$this->Departamentos->eliminarDepartamento($iddepartamento_academico);
 			redirect(base_url().'index.php/panel_administracion/departamentos');
@@ -309,6 +309,14 @@ public function info_servidor()
 {
 	if ($this->session->userdata('tipo')=='1') {
 		$this->load->view('administracion/vpanel_info');
+	}else {
+		redirect(base_url().'index.php');
+	}
+}
+public function encabezado()
+{
+	if ($this->session->userdata('tipo')=='1') {
+		$this->load->view('administracion/vpanel_encabezado');
 	}else {
 		redirect(base_url().'index.php');
 	}

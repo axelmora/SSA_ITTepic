@@ -62,13 +62,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												?>
 											</div>
 											<div class="col-md-1">
-											 <button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> GUARDAR CORREO</button>
+												<button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> GUARDAR CORREO</button>
 											</div>
 										</div>
 									</form>
 								</p>
 								<p>Información php  <a href="<?php echo base_url();?>panel_administracion/info_servidor" class="btn btn-naranja "><i class="fa fa-server" aria-hidden="true"></i>  PHP</a>
-</p>
+								</p>
+								<p>  <a class="btn btn-naranja"  href="<?php echo base_url();?>panel_administracion/encabezado">EDITAR ENCABEZADO ENCUESTA</a>	 </p>
 							</div>
 						</div>
 					</div>
