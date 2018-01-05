@@ -7,6 +7,7 @@ class Panel_administracion extends CI_Controller {
 		$this->load->model('Usuarios');
 		$this->load->model('Mesa_AyudaModel');
 		$this->load->model('Departamentos');
+		$this->load->model('Plantilla');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 	}
@@ -316,7 +317,18 @@ public function info_servidor()
 public function encabezado()
 {
 	if ($this->session->userdata('tipo')=='1') {
-		$this->load->view('administracion/vpanel_encabezado');
+		$datos['encabezado'] = $this->Plantilla->cargarPlantilla();
+		$this->load->view('administracion/vpanel_encabezado',$datos);
+	}else {
+		redirect(base_url().'index.php');
+	}
+}
+public function encabezado_actualizar()
+{
+	if ($this->session->userdata('tipo')=='1') {
+		$nuevoencabezado = $this->input->post('encabezado');
+		 $this->Plantilla->actualizarEncabezado($nuevoencabezado);
+		 redirect(base_url().'index.php/panel_administracion/encabezado');
 	}else {
 		redirect(base_url().'index.php');
 	}

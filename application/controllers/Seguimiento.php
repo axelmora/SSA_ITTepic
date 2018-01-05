@@ -11,6 +11,7 @@ class Seguimiento extends CI_Controller {
 		$this->load->model('PeriodoModelo');
 		/*MODELO SEGUIMIENTO*/
 		$this->load->model('SeguimientoModelo');
+		$this->load->model('Plantilla');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 	}
@@ -34,6 +35,7 @@ class Seguimiento extends CI_Controller {
 				if($IDencuEnviar[0]!="")
 				{
 					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($IDencuEnviar[0]);
+					$datos['encabezado'] = $this->Plantilla->cargarPlantillaID(1);
 					$this->load->view('encuesta/seguimientovi',$datos);
 				}else {
 					redirect(base_url().'index.php/Seguimiento/completado');

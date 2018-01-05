@@ -29,24 +29,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="row" >
             <div class="col-lg-4">
               <h3><i class="fa fa-users" aria-hidden="true"></i>  Editar encabezado encuesta seguimiento</h3>
-              <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/lista_usuarios" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+              <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/sistemainfo" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
               <div class="row" >
                 <div class="col-lg-12">
-                  <form id="formularionNuevoUsuario" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/agrearUsuario" >
+                  <form id="formEncabezado" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/encabezado_actualizar" >
                     <textarea name="encabezado" rows="8" cols="80">
-                      <?php echo '
-                      <center><h4 class="textoNegritas">Instituto Tecnológico de Tepic</h4>
-                                        <p class="subtitulo">Seguimiento en aula</p>
-                                        <p class="subtitulo2">Código: ITTEPIC-AC-PO-004-07   Revisión: 1</p>
-                                        <p class="subtitulo2">Referencia a la norma ISO9001:2008  7.1, 7.2.1, 7.5.1, 8.1, 8.2.4</p>
-                                      </center>
-                      '; ?>
+                      <?php echo ''.$encabezado[0]->encabezado; ?>
                     </textarea>
-                    <button type="submit" class="btn btn-primary">ACTUALIZAR INFORMACION</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> ACTUALIZAR INFORMACION</button>
                   </form>
                 </div>
               </div>
