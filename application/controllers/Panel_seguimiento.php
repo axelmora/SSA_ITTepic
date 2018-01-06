@@ -61,9 +61,9 @@ class Panel_seguimiento extends CI_Controller {
 			$poosi=0;
 			foreach ($depaTEMP as $key => $value) {
 				if($poosi<count($depaTEMP)-1){
-					$carrera.=$value->carreras_id_carrera.",";
+					$carrera.="'".$value->carreras_id_carrera."',";
 				}else {
-					$carrera.=$value->carreras_id_carrera;
+					$carrera.="'".$value->carreras_id_carrera."'";
 				}
 				$poosi++;
 			}
@@ -191,9 +191,9 @@ class Panel_seguimiento extends CI_Controller {
 			$pos=0;
 			foreach ($carreras as $key => $value) {
 				if($pos<$tamano-1){
-					$idenviar.="".$value->carreras_id_carrera.",";
+					$idenviar.="'".$value->carreras_id_carrera."',";
 				}else {
-					$idenviar.="".$value->carreras_id_carrera;
+					$idenviar.="'".$value->carreras_id_carrera."'";
 				}
 				$pos++;
 			}
@@ -417,9 +417,9 @@ class Panel_seguimiento extends CI_Controller {
 			$poosi=0;
 			foreach ($depaTEMP as $key => $value) {
 				if($poosi<count($depaTEMP)-1){
-					$carrera.=$value->carreras_id_carrera.",";
+					$carrera.="'".$value->carreras_id_carrera."',";
 				}else {
-					$carrera.=$value->carreras_id_carrera;
+					$carrera.="'".$value->carreras_id_carrera."'";
 				}
 				$poosi++;
 			}
