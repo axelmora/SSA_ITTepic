@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   $MATERIA="";
   if(isset($DATOSMATERIA)){
     foreach ($DATOSMATERIA as $key => $value) {
-      $DOCENTE="".$value->nombres." ".$value->apellidos;
+      $DOCENTE="".utf8_decode($value->nombre_docente);
       $MATERIA="".$value->nombre_materia ;
     }
   }else {

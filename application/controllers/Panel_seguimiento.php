@@ -469,13 +469,14 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'');
 		}
 	}
-	public function resulados($idSeguimiento)
+	public function resultados($idSeguimiento)
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos["ALUMNOSGRUPO"]=$this->SeguimientoModelo->cargarGrupoId($idSeguimiento);
+		//	var_dump($datos["ALUMNOSGRUPO"]);
 			$ALUMNOSCONTESTADOS;
 			foreach ($datos["ALUMNOSGRUPO"] as $key => $alumnos) {
-				if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->alumnos_numero_control,$idSeguimiento))
+				if($this->SeguimientoModelo->verificarContestadoAlumno($alumnos->no_de_control,$idSeguimiento))
 				{
 					$ALUMNOSCONTESTADOS[]=true;
 				}else {
@@ -494,6 +495,7 @@ class Panel_seguimiento extends CI_Controller {
 				$datos["ExistenResultados"]=true;
 			}
 			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
+			//var_dump($datos["DATOSMATERIA"]);
 			$this->load->view('aplicaciones_resultados',$datos);
 		}else {
 			redirect(base_url().'');
