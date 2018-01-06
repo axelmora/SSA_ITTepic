@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="row">
               <div class="col-md-2">
                 <center>
-                  <img  class="img-fluid" src="<?php echo base_url(); ?>images/escudo_itt_grande.png" height="150" width="150">
+                <!--  <img  class="img-fluid" src="<?php echo base_url(); ?>images/escudo_itt_grande.png" height="150" width="150"> -->
                 </center>
               </div>
               <div class="col-md-8" >

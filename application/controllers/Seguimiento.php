@@ -96,7 +96,7 @@ class Seguimiento extends CI_Controller {
 					$NOMBREALUM=$value->nombre;
 				}
 				/* OBTENER DEPARTAMENTO ALUMNO*/
-				$IDDEPARTAMENTO=$this->obtenerDepartamentoPorCarrera($idcarreras);
+				$IDDEPARTAMENTO=$this->obtenerDepartamentoPorCarrera("'".$idcarreras."'");
 				/*GENERAR PERIODO AUTOMATICO*/
 				//$PERIODOACTUAL=$this-> generarPeriodo();
 				/*OBTENER PERIODO SII*/
