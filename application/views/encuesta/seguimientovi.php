@@ -48,6 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <?php
                 }
               }
+              echo " ".($progreso+1)." de  $limite";
               $DOCENTE="";
               $MATERIA="";
               $idencuesta_seguimiento="";
@@ -70,6 +71,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="card-header">
             <div class="row">
               <div class="col-md-2">
+                <center>
+                  <img  class="img-fluid" src="<?php echo base_url(); ?>images/escudo_itt_grande.png" height="150" width="150">
+                </center>
               </div>
               <div class="col-md-8" >
                 <?php echo ''.$encabezado[0]->encabezado; ?>

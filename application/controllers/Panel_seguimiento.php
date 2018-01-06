@@ -856,10 +856,11 @@ class Panel_seguimiento extends CI_Controller {
 	public function reactivaralumno()
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$idapp=$this->input->post('idapliacion');
 			$numero_control=$this->input->post('numero_Control_reactivar');
 			$idencuesta=$this->input->post('idGrupoEnviar');
 			$resultados=$this->SeguimientoModelo->deleteEncuestaAlumno($numero_control,$idencuesta);
-			redirect(base_url().'Panel_seguimiento/gestionarGrupo/'.$idencuesta);
+			redirect(base_url().'Panel_seguimiento/gestionarGrupo/'.$idapp."/".$idencuesta);
 		}else {
 			redirect(base_url().'');
 		}

@@ -279,6 +279,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </button>
           </div>
           <div class="modal-body">
+            <input type="text" hidden name="idapliacion" value="<?php echo $idEncuesta; ?>">
             <input type="text" hidden name="idGrupoEnviar" value="<?php echo $IDGRUPO; ?>">
             <input type="text" hidden name="numero_Control_reactivar" id="tablaReactivarAlumnos" value="">
             <table class="table table-bordered table-sm">
