@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												{
 													foreach ($CARRERAS as $key => $value) {
 														 ?>
-														 	<option value="<?php echo $value->id_carrera; ?>" ><?php echo $value->codigo."-".$value->carrera ; ?></option>
+														 	<option value="<?php echo $value->id_carrera; ?>" ><?php echo $value->id_carrera."-".$value->carrera ; ?></option>
 														 <?php
 													}
 												}
