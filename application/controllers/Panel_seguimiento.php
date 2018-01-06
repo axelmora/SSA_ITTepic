@@ -748,7 +748,7 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'');
 		}
 	}
-	public function reporteIndividual($idencuesta_seguimiento,$idgrupo)
+	public function reporteIndividual($idencuesta_seguimiento)
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			/*    CARGAR DATOS      */
@@ -760,7 +760,7 @@ class Panel_seguimiento extends CI_Controller {
 			$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
 			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
 			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
-			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idgrupo);
+			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
 			$DOCENTE="";
 			$MATERIA="";
 			if(isset($datos["DATOSMATERIA"])){
