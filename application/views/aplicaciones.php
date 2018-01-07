@@ -196,14 +196,18 @@ $( document ).ready(function() {
 
   $('#periodo').on('change', function() {
     if($('#periodo').prop('selectedIndex') !=0){
-        $('#panel_advertenciaperiodo').show();
+      $('#panel_advertenciaperiodo').show();
     }else {
-        $('#panel_advertenciaperiodo').hide();
+      $('#panel_advertenciaperiodo').hide();
     }
-      $('#periodo_texto').val(  $("#periodo option:selected").text());
+    $('#periodo_texto').val(  $("#periodo option:selected").text());
   })
 });
-
+$("#agregarAplicacionForm").submit(function () {
+  $("#botonenviargrupos").prop("disabled", true);
+  $("#botonenviargrupos").html("<i class='fa fa-circle-o-notch fa-spin'></i> PROCESANDO...");
+  return true;
+});
 </script>
 <?php
 if (isset($ErrorContra)) {
