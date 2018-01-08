@@ -82,7 +82,6 @@ class Panel_seguimiento extends CI_Controller {
 					foreach ($docentes_datos as $key => $value2) {
 						$nombre_docente=$value2->nombre_docente;
 					}
-
 					$grupodatos= array(
 						'fecha_creacion' => ''.date('Y-m-d H:i:s'),
 						'grupos_idgrupos'=> ''.$value->idgrupos,
@@ -93,25 +92,29 @@ class Panel_seguimiento extends CI_Controller {
 						'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
 					);
 					//	var_dump($grupodatos);
-					$this->SeguimientoModelo->crearSeguimiento($grupodatos);
-					$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
-					$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'));
-					if($alumnos){
-						echo "ALUMNOS : <br>";
-						foreach ($alumnos as $key => $valuealumnos) {
-							$alumno_encuesta= array(
-								'nombre_alumno'=>$valuealumnos->nombre,
-								'no_de_control'=>$valuealumnos->numero_control,
-								'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
-							);
-								$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
-							//			var_dump($alumno_encuesta);
+					if($this->Grupos->verificarGrupoCarrera($value->idgrupos,$this->input->post('periodo'),$value->materias_idmaterias,$carrera)){
+						$this->SeguimientoModelo->crearSeguimiento($grupodatos);
+						$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
+						$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'),$carrera);
+						echo "$value->idgrupos  $value->materias_idmaterias   ";
+						var_dump($alumnos);
+						if($alumnos){
+							echo "ALUMNOS : <br>";
+							foreach ($alumnos as $key => $valuealumnos) {
+								$alumno_encuesta= array(
+									'nombre_alumno'=>$valuealumnos->nombre,
+									'no_de_control'=>$valuealumnos->numero_control,
+									'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
+								);
+									$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
+								//			var_dump($alumno_encuesta);
+							}
+							echo "-------------------------------------";
 						}
-						echo "-------------------------------------";
 					}
 				}
 			}
-			redirect(base_url().'Panel_seguimiento/aplicaciones');
+			//redirect(base_url().'Panel_seguimiento/aplicaciones');
 		}
 		else {
 			redirect(base_url().'');
