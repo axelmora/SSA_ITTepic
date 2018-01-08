@@ -199,4 +199,15 @@ class Departamentos extends CI_Model {
           return false;
         }
       }
+      public function exclusivoCarrera($iddepartamento)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT * from materia_exclusiva where departamento_academico_iddepartamento_academico=$iddepartamento
+        ");
+        if ($query->num_rows() > 0) {
+          return $query->result();
+        } else {
+          return false;
+        }
+      }
     }
