@@ -203,7 +203,7 @@ class Panel_administracion extends CI_Controller {
 	{
 		$nombre_departamento = $this->input->post('nombre_departamento');
 		$carreras = $this->input->post('carreras');
-		$this->Departamentos->insertarDepartamento($nombre_departamento);
+		$this->Departamentos->insertarDepartamento($nombre_departamento,2);
 		$idMaximo=$this->Departamentos->obtenerIDdepartamento();
 		for ($i=0; $i <count($carreras) ; $i++) {
 			$this->Departamentos->insRelacionDepaCarrera($idMaximo[0]->maximo,$carreras[$i]);
