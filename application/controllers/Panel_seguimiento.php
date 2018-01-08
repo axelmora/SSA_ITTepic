@@ -698,7 +698,9 @@ class Panel_seguimiento extends CI_Controller {
 			$idAplicacionesGenerar=$this->SeguimientoModelo->reporteDocentePDFMaterias($rfcdoncete,$idAplicaciones);
 			$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacionesGenerar[0]->aplicaciones_idaplicaciones);
 			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idAplicacionesGenerar[0]->aplicaciones_idaplicaciones);
-			$peridoencuesta=$this->genePerido($tempperiodo[0]->periodo);
+
+
+			$peridoencuesta=$this->$tempperiodo[0]->periodo_texto;
 			$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
 			$this->load->model('GeneradorEncuestas');
 			$EncuestasIMPRIMIR;
@@ -712,7 +714,7 @@ class Panel_seguimiento extends CI_Controller {
 					$MATERIA="";
 					if(isset($datos["DATOSMATERIA"])){
 						foreach ($datos["DATOSMATERIA"] as $key => $value) {
-							$DOCENTE="".$value->nombres." ".$value->apellidos;
+							$DOCENTE="".$value->nombre_docente;
 							$MATERIA="".$value->nombre_materia ;
 						}
 					}else {

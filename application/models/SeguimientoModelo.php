@@ -442,7 +442,7 @@ public function docentesReportes($idAplicacion)
 public function reporteDocentePDFMaterias($rfcdoncete,$idAplicaciones)
 {
   $DBcon = $this->load->database('default', TRUE);
-  $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es,docentes as d where es.aplicaciones_idaplicaciones=$idAplicaciones and d.rfc=es.docentes_rfc and  '$rfcdoncete'=es.docentes_rfc;");
+  $query=$DBcon->query("SELECT * FROM encuestas_seguimiento as es,docentes as d where es.aplicaciones_idaplicaciones=$idAplicaciones and d.rfc=es.rfc_docente and  '$rfcdoncete'=es.rfc_docente;");
   if ($query->num_rows() > 0)
   {
     return $query->result();
