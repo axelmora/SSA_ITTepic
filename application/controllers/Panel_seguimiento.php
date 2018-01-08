@@ -594,16 +594,19 @@ class Panel_seguimiento extends CI_Controller {
 			$this->load->model('GeneradorEncuestas');
 			$EncuestasIMPRIMIR;
 			if($datos["APLICACIONESCONSULTADAS"]){
+				//var_dump($datos["APLICACIONESCONSULTADAS"]);
 				foreach ($datos["APLICACIONESCONSULTADAS"] as $key => $value) {
 					$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
 					$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
-					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->grupos_idgrupos);
+					//echo "".$value->grupos_idgrupos;
+					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
 					$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
 					$DOCENTE="";
 					$MATERIA="";
-					if(isset($datos["DATOSMATERIA"])){
+				//	var_dump($datos["DATOSMATERIA"]);
+					if($datos["DATOSMATERIA"]){
 						foreach ($datos["DATOSMATERIA"] as $key => $value) {
-							$DOCENTE="". utf8_decode($value->nombres." ".$value->apellidos);
+							$DOCENTE="". utf8_decode($value->nombre_docente);
 							$MATERIA="".$value->nombre_materia ;
 						}
 					}else {
