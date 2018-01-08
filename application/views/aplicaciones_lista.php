@@ -1,4 +1,4 @@
- <?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html lang="en">
@@ -34,8 +34,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php
                     $peridotlista="";
                     ?>
-                    <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupos de aplicación  del periodo <?php echo "".$AplicacionesPeriodo[0]->periodo_texto;  ?>
-                    </h3>
+                    <?php
+                    if(isset($AplicacionesPeriodo[0]->periodo_texto)){
+                      ?>
+                      <h3><i class="icon-clipboard" aria-hidden="true"></i>Grupos de aplicación  del periodo <?php echo "".$AplicacionesPeriodo[0]->periodo_texto;  ?>
+                      </h3>
+                      <?php
+                    }
+                    ?>
+
                     <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>Panel_seguimiento/aplicaciones" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
                     <button type="button" id="botonCopiar" class="btn btn-success btncopiar"  data-toggle="tooltip" data-placement="top" title="ENLACE COPIADO" data-clipboard-text="<?php echo base_url(); ?>Seguimiento/"  role="button">
                       <i class="fa  fa-share-square-o" aria-hidden="true" ></i>
