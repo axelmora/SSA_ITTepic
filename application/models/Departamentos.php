@@ -153,6 +153,12 @@ class Departamentos extends CI_Model {
         $DB2->set('carreras_id_carrera', $idcarrera );
         $DB2->insert('departamento_carreras');
       }
+      public function borrarRelacionCarrerasDepartamento($iddepa)
+      {
+        $DB2 = $this->load->database('default', TRUE);
+        $DB2->where('departamento_academico_iddepartamento_academico', $iddepa );
+        $DB2->delete('departamento_carreras');
+      }
       public function cargarCarrerasDepartamento($iddepartamento_academico)
       {
         $DBcon = $this->load->database('default', TRUE);

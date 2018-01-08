@@ -97,7 +97,7 @@ class Panel_seguimiento extends CI_Controller {
 						$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
 						$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'),$carrera);
 						echo "$value->idgrupos  $value->materias_idmaterias   ";
-						var_dump($alumnos);
+					//	var_dump($alumnos);
 						if($alumnos){
 							echo "ALUMNOS : <br>";
 							foreach ($alumnos as $key => $valuealumnos) {
@@ -114,7 +114,7 @@ class Panel_seguimiento extends CI_Controller {
 					}
 				}
 			}
-			//redirect(base_url().'Panel_seguimiento/aplicaciones');
+			redirect(base_url().'Panel_seguimiento/aplicaciones');
 		}
 		else {
 			redirect(base_url().'');
