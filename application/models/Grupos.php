@@ -10,7 +10,7 @@ class Grupos extends CI_Model {
     $query=$DB2->query("select * from seleccion_materias as sm, alumnos as al where
      sm.materias_idmaterias='$idmateria' and sm.periodos_escolares_idperiodos='$periodo'
      and sm.grupos_idgrupos='$idgrupo' and sm.alumnos_numero_control=al.numero_control
-    and al.carreras_id_carrera in (".$carrera.") 
+    and al.carreras_id_carrera in (".$carrera.")
       ;");
     if ($query->num_rows() > 0) {
       return $query->result();

@@ -189,11 +189,27 @@ class Panel_administracion extends CI_Controller {
 		$nombre_departamento = $this->input->post('nombre_departamento');
 		$carreras = $this->input->post('carreras');
 		$this->Departamentos->actualizarDepartamento($iddepartamento_academico,$nombre_departamento);
+		$actuales=$this->Departamentos->cargarDepartamentosIDCarreras($iddepartamento_academico);
+		 var_dump($actuales);
+		$carreras = $this->input->post('carreras');
+		var_dump($carreras);
+		foreach ($actuales as $key => $value) {
+			for ($i=0; $i < count($carreras); $i++) {
+				 if($carreras[$i]==$value->id_carrera){
+					 	echo "EXISTE <BR>";
+						break;
+				 }else {
+					 echo " NO EXISTE <BR>";
+				 }
+			}
+			echo "".$value->id_carrera."  ";
+		}
+
 		/*$idMaximo=$this->Departamentos->obtenerIDdepartamento();
 		for ($i=0; $i <count($carreras) ; $i++) {
 		$this->Departamentos->insRelacionDepaCarrera($idMaximo[0]->maximo,$carreras[$i]);
 	}*/
-	redirect(base_url().'index.php/panel_administracion/departamentos');
+//	redirect(base_url().'index.php/panel_administracion/departamentos');
 }
 public function add_departamento()
 {
