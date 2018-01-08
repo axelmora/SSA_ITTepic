@@ -696,11 +696,11 @@ class Panel_seguimiento extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			/*    CARGAR DATOS      */
 			$idAplicacionesGenerar=$this->SeguimientoModelo->reporteDocentePDFMaterias($rfcdoncete,$idAplicaciones);
-			$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacionesGenerar[0]->aplicaciones_idaplicaciones);
+			//$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacionesGenerar[0]->aplicaciones_idaplicaciones);
 			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idAplicacionesGenerar[0]->aplicaciones_idaplicaciones);
 
-
-			$peridoencuesta=$this->$tempperiodo[0]->periodo_texto;
+	    $tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicaciones);
+			$peridoencuesta=$tempperiodo[0]->periodo_texto;
 			$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
 			$this->load->model('GeneradorEncuestas');
 			$EncuestasIMPRIMIR;
