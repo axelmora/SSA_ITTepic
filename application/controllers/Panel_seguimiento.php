@@ -118,10 +118,10 @@ class Panel_seguimiento extends CI_Controller {
 				}
 			}
 			else {
-			  echo "EXCLUSIVAS";
+			//  echo "EXCLUSIVAS";
 				//var_dump($exclusivos);
 				$materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
-				var_dump($materias_del_periodo);
+			//	var_dump($materias_del_periodo);
 				foreach ($exclusivos as $key => $materias_exclusivas) {
 					foreach ($materias_del_periodo as $key => $materias__periodo) {
 						if($materias_exclusivas->materias_idmaterias==$materias__periodo->materias_idmaterias){
@@ -165,7 +165,7 @@ class Panel_seguimiento extends CI_Controller {
 					}
 				}
 			}
-			//redirect(base_url().'Panel_seguimiento/aplicaciones');
+			redirect(base_url().'Panel_seguimiento/aplicaciones');
 		}
 		else {
 			redirect(base_url().'');

@@ -182,7 +182,7 @@ class Departamentos extends CI_Model {
       public function obtenerDepartamentoPorCarrera($idcarreras)
       {
         $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("SELECT * FROM departamento_carreras where carreras_id_carrera=$idcarreras");
+        $query=$DBcon->query("SELECT * FROM departamento_carreras as dc,departamento_academico as da where dc.carreras_id_carrera=$idcarreras and da.tipo=2 and da.iddepartamento_academico=dc.departamento_academico_iddepartamento_academico");
         if ($query->num_rows() > 0) {
           return $query->result();
         } else {

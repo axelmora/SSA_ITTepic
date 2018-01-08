@@ -86,7 +86,7 @@ class Seguimiento extends CI_Controller {
 			/* VERIFICAR ALUMNOS */
 			$NUMERO_CONTROL=$this->input->post('numero_control');
 			$ALUMNOVERIFICADO = $this->Alumnos->verificarAlumno($NUMERO_CONTROL,$this->input->post('contra_aplicacion'));
-
+			var_dump($ALUMNOVERIFICADO);
 			$NOMBREALUM="";
 			if($ALUMNOVERIFICADO)
 			{
@@ -97,6 +97,7 @@ class Seguimiento extends CI_Controller {
 				}
 				/* OBTENER DEPARTAMENTO ALUMNO*/
 				$IDDEPARTAMENTO=$this->obtenerDepartamentoPorCarrera("'".$idcarreras."'");
+					var_dump($IDDEPARTAMENTO);
 				/*GENERAR PERIODO AUTOMATICO*/
 				//$PERIODOACTUAL=$this-> generarPeriodo();
 				/*OBTENER PERIODO SII*/
