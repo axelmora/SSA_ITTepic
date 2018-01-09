@@ -148,7 +148,8 @@ class Panel_seguimiento extends CI_Controller {
 							$this->SeguimientoModelo->crearSeguimiento($grupodatos);
 							$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
 							//var_dump($grupodatos);
-							$alumnos=$this->Grupos->obtenerAlumnosGrupo_MateriaExcluvivo($materias__periodo->idgrupos,$materias__periodo->materias_idmaterias,$this->input->post('periodo'));
+							$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($materias__periodo->idgrupos,$materias__periodo->materias_idmaterias,$this->input->post('periodo'),$carrera);
+							//$alumnos=$this->Grupos->obtenerAlumnosGrupo_MateriaExcluvivo($materias__periodo->idgrupos,$materias__periodo->materias_idmaterias,$this->input->post('periodo'));
 							//echo "$materias__periodo->idgrupos  $materias__periodo->materias_idmaterias   ";
 							if($alumnos){
 								//echo "ALUMNOS : <br>";
@@ -1109,7 +1110,7 @@ class Panel_seguimiento extends CI_Controller {
 			$iddepartamento=$tempdepartamento[0]->iddepartamento_academico;;
 			$datosenviar = array(	array('name'=> ''.$departamentoacademico,'font-size'=>'58','color'=>'negro'),
 			array('name'=> 'Ya se encuentra disponible la encuesta de seguimiento en el aula','font-size'=>'35','color'=>'negro'),
-			array('name'=> 'con la siguiente contraseña: ','font-size'=>'35','color'=>'negro'),
+			array('name'=> '','font-size'=>'35','color'=>'negro'),
 			array('name'=> 'Solo accede a la siguiente direccion web: ','font-size'=>'35','color'=>'negro'),
 			array('name'=> base_url().'Seguimiento/ ','font-size'=>'35','color'=>'azul'));
 			$filename = $this->generar_imagen($datosenviar,$iddepartamento);
