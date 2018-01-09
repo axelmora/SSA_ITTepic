@@ -68,7 +68,7 @@ class Panel_seguimiento extends CI_Controller {
 				$poosi++;
 			}
 			$idaplicacion=$this->SeguimientoModelo->obtenerIdAplicacion();
-			var_dump($idaplicacion);
+		//	var_dump($idaplicacion);
 			$exclusivos=$this->Departamentos->exclusivoCarrera($this->session->userdata('departamento'));
 			if(!$exclusivos){
 				$materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
