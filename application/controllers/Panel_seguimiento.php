@@ -467,17 +467,18 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$depaTEMP=$this->Departamentos->obtenerCarrerasDepartamento($this->session->userdata('departamento'));
-			$carrera="";
-			$poosi=0;
-			foreach ($depaTEMP as $key => $value) {
-				if($poosi<count($depaTEMP)-1){
-					$carrera.="'".$value->carreras_id_carrera."',";
-				}else {
-					$carrera.="'".$value->carreras_id_carrera."'";
-				}
-				$poosi++;
-			}
-			$datos["MATERIAS"]=$this->Materia->cargarMateriasCarrera($carrera);
+			// 			$carrera="";
+			// 			$poosi=0;
+			// 			foreach ($depaTEMP as $key => $value) {
+			// 			if($poosi<count($depaTEMP)-1){
+			// 			$carrera.="'".$value->carreras_id_carrera."',";
+			// 		}else {
+			// 		$carrera.="'".$value->carreras_id_carrera."'";
+			// 	}
+			// 	$poosi++;
+			// }
+			// $datos["MATERIAS"]=$this->Materia->cargarMateriasCarrera($carrera);
+			$datos["MATERIAS"]=$this->Materia->cargarMateriasExclusivaDepartamento($this->session->userdata('departamento'));
 			$this->load->view('seg_materias',$datos);
 		}else {
 			redirect(base_url().'');
@@ -495,8 +496,19 @@ class Panel_seguimiento extends CI_Controller {
 	public function asignar_materias()
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-			$idEliminarEncur=$this->input->post('numero_control_alumnos');
-			echo "$idEliminarEncur";
+			$materias=$this->input->post('numero_control_alumnos');
+			$materiasarreglo = explode(',', $materias);
+			for ($i=0; $i < count($materiasarreglo); $i++) {
+				$MateriaRelacion= array(
+					'departamento_academico_iddepartamento_academico' => ''.$this->session->userdata('departamento'),
+					'materias_idmaterias' => ''.$materiasarreglo[$i],
+				);
+				//	var_dump($MateriaRelacion);
+				if(!$this->Materia->verificarExclusiva($this->session->userdata('departamento'),$materiasarreglo[$i])){
+							$this->Materia->agregarMateriaDepartamento($MateriaRelacion);
+				}
+			}
+			redirect(base_url().'Panel_seguimiento/materias');
 			//	$datos["MATERIAS"]=$this->Materia->cargarMateriasSII();
 			//	$this->load->view('seg_materias_sii',$datos);
 		}else {

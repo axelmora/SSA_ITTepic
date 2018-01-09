@@ -14,6 +14,31 @@ class Materia extends CI_Model {
       return false;
     }
   }
+  public function agregarMateriaDepartamento($datos)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->insert('materia_exclusiva',$datos);
+  }
+  public function cargarMateriasExclusivaDepartamento($iddepa)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $query=$DB2->query("SELECT * FROM materias as m, materia_exclusiva as mx where mx.departamento_academico_iddepartamento_academico=$iddepa and mx.materias_idmaterias=m.idmaterias");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
+  public function verificarExclusiva($iddepa,$idmateria)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $query=$DB2->query("SELECT * FROM materias as m, materia_exclusiva as mx where mx.departamento_academico_iddepartamento_academico=$iddepa and mx.materias_idmaterias='$idmateria'");
+    if ($query->num_rows() > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   public function cargarMateriasCarrera($carreras_id_carrera)
   {
     $DB2 = $this->load->database('default', TRUE);

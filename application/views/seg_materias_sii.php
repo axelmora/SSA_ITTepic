@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </center>
                   </div>
                 </div>
-                <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
                 <br>
                 <br>
                 <form id="formulariomaterias_exlusivas" class="" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/asignar_materias" method="post">
