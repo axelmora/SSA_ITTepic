@@ -7,6 +7,13 @@ Version 1.0.0
 -------------------------------------------------------------------------------------------------------------------- */
 /* TABLA APLICACIONES*/
 $(document).ready(function(){
+  $('#tablaaplicacionesreportes').DataTable({
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/aplicaciones.json"
+    },
+    "order": [[ 3, "desc" ]]
+  });
   $('#tablaaplicaciones').DataTable({
     responsive: true,
     "language": {

@@ -64,6 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <thead>
                         <tr>
                           <th><i class="fa fa-book " aria-hidden="true"></i> GRUPO</th>
+                          <th><i class="fa fa-book " aria-hidden="true"></i></th>
                           <th><i class="fa fa-book " aria-hidden="true"></i> MATERIA</th>
                           <th><i class="fa fa-user-circle-o" aria-hidden="true"></i> DOCENTE</th>
                           <th><i class="fa fa-graduation-cap" aria-hidden="true"></i> ALUMNOS</th>
@@ -78,9 +79,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           ?>
                           <tr>
                             <td><?php echo "".$valor->grupos_idgrupos; ?></td>
+                              <td><?php echo "".$valor->idmateria; ?></td>
                             <td><?php echo "".$valor->nombre_materia; ?></td>
                             <td><?php echo "".utf8_decode($valor->nombre_docente); ?></td>
-                            <td><?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></td>
+                            <td><center><span class="badge badge-pill badge-primary"><?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></span></center></td>
                             <td><?php echo "".$valor->fecha_creacion; ?></td>
                             <td>
                               <center>

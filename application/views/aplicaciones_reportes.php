@@ -66,9 +66,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php
                         if ($Aplicaciones) {
                           ?>
-                          <table id="tablaaplicaciones" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                          <table id="tablaaplicacionesreportes" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                             <thead>
                               <tr>
+                                <th><i class="fa fa-book " aria-hidden="true"></i> </th>
                                 <th><i class="fa fa-book " aria-hidden="true"></i> MATERIA</th>
                                 <th><i class="fa fa-user-circle-o" aria-hidden="true"></i> DOCENTE</th>
                                 <th><i class="fa fa-graduation-cap" aria-hidden="true"></i> ALUMNOS</th>
@@ -81,6 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               foreach ($Aplicaciones as $key => $valor) {
                                 ?>
                                 <tr>
+                                  <td><?php echo "".$valor->idmateria; ?></td>
                                   <td><?php echo "".$valor->nombre_materia; ?></td>
                                   <td><?php echo "".utf8_decode($valor->nombre_docente); ?></td>
                                   <td><?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></td>
