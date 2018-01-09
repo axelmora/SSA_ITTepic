@@ -98,10 +98,10 @@ class Panel_seguimiento extends CI_Controller {
 							$this->SeguimientoModelo->crearSeguimiento($grupodatos);
 							$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
 							$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'),$carrera);
-						//	echo "$value->idgrupos  $value->materias_idmaterias   ";
+							//	echo "$value->idgrupos  $value->materias_idmaterias   ";
 							//	var_dump($alumnos);
 							if($alumnos){
-						//		echo "ALUMNOS : <br>";
+								//		echo "ALUMNOS : <br>";
 								foreach ($alumnos as $key => $valuealumnos) {
 									$alumno_encuesta= array(
 										'nombre_alumno'=>$valuealumnos->nombre,
@@ -111,17 +111,17 @@ class Panel_seguimiento extends CI_Controller {
 									$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
 									//			var_dump($alumno_encuesta);
 								}
-				//				echo "-------------------------------------";
+								//				echo "-------------------------------------";
 							}
 						}
 					}
 				}
 			}
 			else {
-			//  echo "EXCLUSIVAS";
+				//  echo "EXCLUSIVAS";
 				//var_dump($exclusivos);
 				$materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
-			//	var_dump($materias_del_periodo);
+				//	var_dump($materias_del_periodo);
 				foreach ($exclusivos as $key => $materias_exclusivas) {
 					foreach ($materias_del_periodo as $key => $materias__periodo) {
 						if($materias_exclusivas->materias_idmaterias==$materias__periodo->materias_idmaterias){
@@ -492,6 +492,17 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'');
 		}
 	}
+	public function asignar_materias()
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$idEliminarEncur=$this->input->post('numero_control_alumnos');
+			echo "$idEliminarEncur";
+			//	$datos["MATERIAS"]=$this->Materia->cargarMateriasSII();
+			//	$this->load->view('seg_materias_sii',$datos);
+		}else {
+			redirect(base_url().'');
+		}
+	}
 	/* Elimar grupo inicio*/
 	public function eliminarEncuestaDatos($idEncuesta)
 	{
@@ -612,7 +623,7 @@ class Panel_seguimiento extends CI_Controller {
 					$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
 					$DOCENTE="";
 					$MATERIA="";
-				//	var_dump($datos["DATOSMATERIA"]);
+					//	var_dump($datos["DATOSMATERIA"]);
 					if($datos["DATOSMATERIA"]){
 						foreach ($datos["DATOSMATERIA"] as $key => $value) {
 							$DOCENTE="". utf8_decode($value->nombre_docente);
@@ -711,7 +722,7 @@ class Panel_seguimiento extends CI_Controller {
 			//$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacionesGenerar[0]->aplicaciones_idaplicaciones);
 			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idAplicacionesGenerar[0]->aplicaciones_idaplicaciones);
 
-	    $tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicaciones);
+			$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicaciones);
 			$peridoencuesta=$tempperiodo[0]->periodo_texto;
 			$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
 			$this->load->model('GeneradorEncuestas');

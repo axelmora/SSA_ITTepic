@@ -41,49 +41,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                 </div>
                 <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
-                <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Elegir materias para el departamento." href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-table" aria-hidden="true"></i> ELEGIR MATERIAS PARA EL DEPARTAMENTO.</a>
                 <br>
                 <br>
-                <?php
-                if ($MATERIAS) {
-                  ?>
-                  <table id="materias_sii" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
-                    <thead>
-                      <tr>
-                        <th><i class="fa fa-hashtag" aria-hidden="true"></i>  ELEGIR </th>
-                        <th><i class="fa fa-hashtag" aria-hidden="true"></i>  CODGIO </th>
-                        <th><i class="fa fa-bars" aria-hidden="true"></i>  NOMBRE MATERIA</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      foreach ($MATERIAS as $key => $valor) {
-                        ?>
+                <form id="formulariomaterias_exlusivas" class="" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/asignar_materias" method="post">
+                    <input type="text"   value="" id="numero_control_alumnos" name="numero_control_alumnos" />
+                  <center> <button type="submit" class="btn btn-primary"s name="button"> <i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIAS ELEGIDAS </button> </center>
+                  <?php
+                  if ($MATERIAS) {
+                    ?>
+                    <table id="materias_sii" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                      <thead>
                         <tr>
-                          <td></td>
-                          <td><?php echo "".$valor->idmaterias; ?></td>
-                          <td><?php echo "".$valor->nombre_materia; ?></td>
+                          <th><i class="fa fa-hashtag" aria-hidden="true"></i>  ELEGIR </th>
+                          <th><i class="fa fa-hashtag" aria-hidden="true"></i>  CODGIO </th>
+                          <th><i class="fa fa-bars" aria-hidden="true"></i>  NOMBRE MATERIA</th>
                         </tr>
+                      </thead>
+                      <tbody>
                         <?php
-                      }
-                      ?>
-                    </tbody>
-                  </table>
-                  <?php
-                }
-                else {
-                  ?>
-                  <div class="card bg-danger text-white animated fadeInUp">
-                    <div class="card-body">
-                      <center>
-                        <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-                        Actualmente no se cuentan con materias registradas en este departamento.
-                      </center>
+                        foreach ($MATERIAS as $key => $valor) {
+                          ?>
+                          <tr>
+                            <td><?php echo "".$valor->idmaterias; ?></td>
+                            <td><?php echo "".$valor->idmaterias; ?></td>
+                            <td><?php echo "".$valor->nombre_materia; ?></td>
+                          </tr>
+                          <?php
+                        }
+                        ?>
+                      </tbody>
+                    </table>
+                    <?php
+                  }
+                  else {
+                    ?>
+                    <div class="card bg-danger text-white animated fadeInUp">
+                      <div class="card-body">
+                        <center>
+                          <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
+                          Actualmente no se cuentan con materias registradas en este departamento.
+                        </center>
+                      </div>
                     </div>
-                  </div>
-                  <?php
-                }
-                ?>
+                    <?php
+                  }
+                  ?>
+                </form>
               </div>
             </div>
           </div>

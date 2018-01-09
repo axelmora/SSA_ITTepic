@@ -134,6 +134,27 @@ $(document).ready(function(){
     "order": [[2, "asc" ]]
   });
 
+  $('#formularioAlumnos').on('submit', function(e){
+    var form = this;
+    var rows_selected = tablealumnos.column(0).checkboxes.selected();
+    $.each(rows_selected, function(index, rowId){
+      $(form).append(
+        $('<input>')
+        .attr('type', 'hidden')
+        .attr('name', 'id[]')
+        .val(rowId)
+      );
+    });
+    $('#modalAlumnos').modal('hide')
+    $('#numero_control_alumnos').val(rows_selected.join(","));
+    if ($('#numero_control_alumnos').val()!="") {
+      $("#panelAlumnosSelecionados").show();
+    }
+    else {
+      $("#panelAlumnosSelecionados").hide();
+    }
+    e.preventDefault();
+  });
 
   var tablamaterias = $('#materias_sii').DataTable({
     responsive: true,
@@ -160,11 +181,9 @@ $(document).ready(function(){
     },
     "order": [[2, "asc" ]]
   });
-
-
-  $('#formularioAlumnos').on('submit', function(e){
+  $('#formulariomaterias_exlusivas').on('submit', function(e){
     var form = this;
-    var rows_selected = tablealumnos.column(0).checkboxes.selected();
+    var rows_selected = tablamaterias.column(0).checkboxes.selected();
     $.each(rows_selected, function(index, rowId){
       $(form).append(
         $('<input>')
@@ -175,13 +194,19 @@ $(document).ready(function(){
     });
     $('#modalAlumnos').modal('hide')
     $('#numero_control_alumnos').val(rows_selected.join(","));
-    if ($('#numero_control_alumnos').val()!="") {
-      $("#panelAlumnosSelecionados").show();
+    var temp=$('#numero_control_alumnos').val();
+    if(temp.length>0  ){
+      var r = confirm("SE AGREGARAN LAS MATERIAS AL DEPARTAMENTO");
+      if (r == true) {
+      } else {
+          $('#numero_control_alumnos').val("");
+          e.preventDefault();
+      }
+    }else {
+        e.preventDefault();
+          $('#numero_control_alumnos').val("");
+        alert("NO SE SELECIONARON MATERIAS");
     }
-    else {
-      $("#panelAlumnosSelecionados").hide();
-    }
-    e.preventDefault();
   });
   /*TABLA ALUMNOS FIN*/
 });
