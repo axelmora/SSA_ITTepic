@@ -483,6 +483,15 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'');
 		}
 	}
+	public function materias_elegir()
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["MATERIAS"]=$this->Materia->cargarMateriasSII();
+			$this->load->view('seg_materias_sii',$datos);
+		}else {
+			redirect(base_url().'');
+		}
+	}
 	/* Elimar grupo inicio*/
 	public function eliminarEncuestaDatos($idEncuesta)
 	{

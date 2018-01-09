@@ -4,6 +4,16 @@ class Materia extends CI_Model {
   {
     parent::__construct();
   }
+  public function cargarMateriasSII()
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $query=$DB2->query("SELECT * FROM materias");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
   public function cargarMateriasCarrera($carreras_id_carrera)
   {
     $DB2 = $this->load->database('default', TRUE);

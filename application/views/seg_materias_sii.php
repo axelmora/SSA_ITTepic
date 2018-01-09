@@ -19,6 +19,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link href="<?php echo base_url(); ?>css/fontello.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/responsive.bootstrap4.min.css" type="text/css" rel="stylesheet" />
+  <link href="<?php echo base_url(); ?>css/dataTables.checkboxes.css" type="text/css" rel="stylesheet" />
+  <link href="<?php echo base_url(); ?>css/awesome-bootstrap-checkbox2.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
   <?php $this->load->view('include/menu'); ?>
@@ -39,15 +41,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                 </div>
                 <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
-                <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Elegir materias para el departamento." href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_elegir" role="button"><i class="fa fa-table" aria-hidden="true"></i> ELEGIR MATERIAS PARA EL DEPARTAMENTO.</a>
+                <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Elegir materias para el departamento." href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-table" aria-hidden="true"></i> ELEGIR MATERIAS PARA EL DEPARTAMENTO.</a>
                 <br>
                 <br>
                 <?php
                 if ($MATERIAS) {
                   ?>
-                  <table id="tablaMaterias" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                  <table id="materias_sii" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                     <thead>
                       <tr>
+                        <th><i class="fa fa-hashtag" aria-hidden="true"></i>  ELEGIR </th>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i>  CODGIO </th>
                         <th><i class="fa fa-bars" aria-hidden="true"></i>  NOMBRE MATERIA</th>
                       </tr>
@@ -57,6 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       foreach ($MATERIAS as $key => $valor) {
                         ?>
                         <tr>
+                          <td></td>
                           <td><?php echo "".$valor->idmaterias; ?></td>
                           <td><?php echo "".$valor->nombre_materia; ?></td>
                         </tr>
@@ -73,10 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="card-body">
                       <center>
                         <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-
-                        <p>Actualmente no se cuentan con materias registradas en este departamento.</p>
-                        <p> <h3>Por lo tanto la creación de encuestas de seguimiento en el aula serán automáticas.</h3> </p>
-                        <p>Si elige materias para el departamento solo se crearan encuestas de seguimiento en el aula de las materias elegidas.</p>
+                        Actualmente no se cuentan con materias registradas en este departamento.
                       </center>
                     </div>
                   </div>
@@ -103,5 +104,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
 <script type="text/javascript">var urlsistema = '<?php echo base_url()?>';</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.checkboxes.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 </html>

@@ -134,6 +134,34 @@ $(document).ready(function(){
     "order": [[2, "asc" ]]
   });
 
+
+  var tablamaterias = $('#materias_sii').DataTable({
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/Alumnos.json"
+    },
+    "columnDefs": [
+      {
+        "targets": 0,
+        "checkboxes": {
+          "selectRow": true,
+          'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'
+        },
+        "render": function(data, type, row, meta){
+          if(type === 'display'){
+            data = '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+          }
+          return data;
+        }
+      }
+    ],
+    "select": {
+      "style": "multi"
+    },
+    "order": [[2, "asc" ]]
+  });
+
+
   $('#formularioAlumnos').on('submit', function(e){
     var form = this;
     var rows_selected = tablealumnos.column(0).checkboxes.selected();
