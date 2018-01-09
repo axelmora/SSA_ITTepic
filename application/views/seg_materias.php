@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <tr>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i>  CODGIO </th>
                         <th><i class="fa fa-bars" aria-hidden="true"></i>  NOMBRE MATERIA</th>
+                        <th><i class="fa fa-bars" aria-hidden="true"></i>  OPCIONES</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -59,6 +60,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <tr>
                           <td><?php echo "".$valor->idmaterias; ?></td>
                           <td><?php echo "".$valor->nombre_materia; ?></td>
+                          <td><center><a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="REMOVER MATERIA" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_remover/<?php echo $valor->idmaterias; ?>" role="button"><i class="fa fa-trash" aria-hidden="true"></i> REMOVER MATERIA DEL DEPARTAMENTO </a></center></td>
+
                         </tr>
                         <?php
                       }

@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <br>
                 <br>
                 <form id="formulariomaterias_exlusivas" class="" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/asignar_materias" method="post">
-                    <input type="text"   value="" id="numero_control_alumnos" name="numero_control_alumnos" />
+                  <input type="text" hidden  value="" id="numero_control_alumnos" name="numero_control_alumnos" />
                   <center> <button type="submit" class="btn btn-primary"s name="button"> <i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIAS ELEGIDAS </button> </center>
                   <?php
                   if ($MATERIAS) {
@@ -55,6 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <th><i class="fa fa-hashtag" aria-hidden="true"></i>  ELEGIR </th>
                           <th><i class="fa fa-hashtag" aria-hidden="true"></i>  CODGIO </th>
                           <th><i class="fa fa-bars" aria-hidden="true"></i>  NOMBRE MATERIA</th>
+
                         </tr>
                       </thead>
                       <tbody>

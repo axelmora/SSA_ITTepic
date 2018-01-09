@@ -19,6 +19,13 @@ class Materia extends CI_Model {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->insert('materia_exclusiva',$datos);
   }
+  public function removerMateriaDepartamento($iddepartamento,$idmateria)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->where('departamento_academico_iddepartamento_academico',$iddepartamento);
+    $DB2->where('materias_idmaterias',$idmateria);
+    $DB2->delete('materia_exclusiva');
+  }
   public function cargarMateriasExclusivaDepartamento($iddepa)
   {
     $DB2 = $this->load->database('default', TRUE);

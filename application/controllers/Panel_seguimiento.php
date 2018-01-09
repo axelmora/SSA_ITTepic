@@ -505,7 +505,7 @@ class Panel_seguimiento extends CI_Controller {
 				);
 				//	var_dump($MateriaRelacion);
 				if(!$this->Materia->verificarExclusiva($this->session->userdata('departamento'),$materiasarreglo[$i])){
-							$this->Materia->agregarMateriaDepartamento($MateriaRelacion);
+					$this->Materia->agregarMateriaDepartamento($MateriaRelacion);
 				}
 			}
 			redirect(base_url().'Panel_seguimiento/materias');
@@ -515,6 +515,18 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'');
 		}
 	}
+	public function materias_remover($materias)
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+
+			$this->Materia->removerMateriaDepartamento($this->session->userdata('departamento'),$materias);
+			redirect(base_url().'Panel_seguimiento/materias');
+		}
+		else {
+			redirect(base_url().'');
+		}
+	}
+
 	/* Elimar grupo inicio*/
 	public function eliminarEncuestaDatos($idEncuesta)
 	{
