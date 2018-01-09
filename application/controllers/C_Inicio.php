@@ -10,7 +10,9 @@ class C_Inicio extends CI_Controller {
 	public function index()
 	{
 		$sistemaproduccion = $this->Sistema->obtenerproduccion();
-		$datos["CORREO"]=$sistemaproduccion[0]->correo_sistema;
+		if($sistemaproduccion){
+			$datos["CORREO"]=$sistemaproduccion[0]->correo_sistema;
+		}
 		if ($sistemaproduccion[0]->produccion==1) {
 			if ($this->session->userdata('tipo')=='1') {
 				redirect(base_url().'Panel_administracion/');
