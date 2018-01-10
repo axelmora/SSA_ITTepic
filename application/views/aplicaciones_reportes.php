@@ -66,13 +66,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php
                         if ($Aplicaciones) {
                           ?>
-                          <table id="tablaaplicacionesreportes" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                          <table id="tablaaplicacionesreportes" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                             <thead>
                               <tr>
                                 <th><i class="fa fa-book " aria-hidden="true"></i> </th>
                                 <th><i class="fa fa-book " aria-hidden="true"></i> MATERIA</th>
                                 <th><i class="fa fa-user-circle-o" aria-hidden="true"></i> DOCENTE</th>
                                 <th><i class="fa fa-graduation-cap" aria-hidden="true"></i> ALUMNOS</th>
+                                <th><i class="fa fa-user-circle-o" aria-hidden="true"></i> GRUPO</th>
                                 <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
                               </tr>
                             </thead>
@@ -82,10 +83,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               foreach ($Aplicaciones as $key => $valor) {
                                 ?>
                                 <tr>
-                                  <td><?php echo "".$valor->idmateria; ?></td>
+                                  <td class="centro_tabla"><?php echo "".$valor->idmateria; ?></td>
                                   <td><?php echo "".$valor->nombre_materia; ?></td>
                                   <td><?php echo "".utf8_decode($valor->nombre_docente); ?></td>
-                                  <td><?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></td>
+                                  <td>
+                                    <center><span class="badge badge-pill badge-primary">  <?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></span></center>
+                                  </td>
+                                  <td class="centro_tabla"><?php echo "".$valor->grupos_idgrupos; ?></td>
                                   <td>
                                     <center>
                                       <a class="btn btn-primary" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteIndividual/<?php echo $valor->idencuesta_seguimiento; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> GENERAR REPORTE</a>
@@ -126,6 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <table id="tablaDocentes" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                             <thead>
                               <tr>
+                                <th><i class="fa fa-hashtag" aria-hidden="true"></i> RFC DOCENTE</th>
                                 <th><i class="fa fa-hashtag" aria-hidden="true"></i> NOMBRE DOCENTE</th>
                                 <th><i class="fa fa-bars" aria-hidden="true"></i> OPCIONES</th>
                               </tr>
@@ -135,6 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               foreach ($DOCENTES as $key => $valor) {
                                 ?>
                                 <tr>
+                                  <td><?php echo "".$valor->rfc; ?></td>
                                   <td><?php echo "".utf8_decode($valor->nombre_docente); ?></td>
                                   <td>
                                     <center>

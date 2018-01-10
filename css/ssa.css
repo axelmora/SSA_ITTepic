@@ -470,3 +470,7 @@ canvas {
     height: 100%;
   }
 }
+.centro_tabla{
+  text-align: center;
+  vertical-align: middle;
+}
