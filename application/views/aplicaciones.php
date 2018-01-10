@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         }
                         ?>
                         <tr>
-                          <td><?php echo "".($valor->periodo_texto) ?></td>
+                          <td><b><?php echo "".($valor->periodo_texto) ?></b></td>
                           <td> <?php echo "".$NumeroEncuestas?></td>
                           <td><?php echo "".$valor->fecha_creacion; ?></td>
                           <td>
