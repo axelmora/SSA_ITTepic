@@ -244,15 +244,19 @@ class Panel_seguimiento extends CI_Controller {
 			$carreras=$this->Departamentos->obtenerCarrerasDepartamento($departamentoid);
 			$tamano=count($carreras);
 			$pos=0;
-			foreach ($carreras as $key => $value) {
-				if($pos<$tamano-1){
-					$idenviar.="'".$value->carreras_id_carrera."',";
-				}else {
-					$idenviar.="'".$value->carreras_id_carrera."'";
+			if($carreras){
+				foreach ($carreras as $key => $value) {
+					if($pos<$tamano-1){
+						$idenviar.="'".$value->carreras_id_carrera."',";
+					}else {
+						$idenviar.="'".$value->carreras_id_carrera."'";
+					}
+					$pos++;
 				}
-				$pos++;
+				$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras($idenviar);
+			}else {
+				$AlumosEnviar=false;
 			}
-			$AlumosEnviar=$this->Alumnos->cargarAlumnosDosCarreras($idenviar);
 			return $AlumosEnviar;
 		}else {
 			redirect(base_url().'');

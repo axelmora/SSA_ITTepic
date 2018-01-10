@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="card-body">
                       <center>
                         <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-                        Actualmente no se cuentan con materias registradas en este departamento.
+                        Actualmente no se cuentan con docentes en este departamento.
                       </center>
                     </div>
                   </div>
