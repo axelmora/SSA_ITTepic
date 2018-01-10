@@ -71,51 +71,53 @@ class Panel_seguimiento extends CI_Controller {
 		//	var_dump($idaplicacion);
 			$exclusivos=$this->Departamentos->exclusivoCarrera($this->session->userdata('departamento'));
 			if(!$exclusivos){
-				$materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
-				foreach ($materias_del_periodo as $key => $value) {
-					if($this->Materia->comprobar_materia_carrera($carrera,$value->materias_idmaterias)){
-						$nombre_materia="";
-						$nombre_docente="";
-						$materias_datos=$this->Materia->cargarNombreMateria($value->materias_idmaterias);
-						foreach ($materias_datos as $key => $value2) {
-							$nombre_materia=$value2->nombre_materia;
-						}
-						$docentes_datos=$this->Docentes->obtenerDocenteRFC($value->docentes_rfc);
-						foreach ($docentes_datos as $key => $value2) {
-							$nombre_docente=$value2->nombre_docente;
-						}
-						$grupodatos= array(
-							'fecha_creacion' => ''.date('Y-m-d H:i:s'),
-							'grupos_idgrupos'=> ''.$value->idgrupos,
-							'nombre_materia'=> ''.$nombre_materia,
-							'idmateria'=> ''.$value->materias_idmaterias,
-							'rfc_docente'=> ''.$value->docentes_rfc,
-							'nombre_docente'=> ''.$nombre_docente,
-							'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
-						);
-						//	var_dump($grupodatos);
-						if($this->Grupos->verificarGrupoCarrera($value->idgrupos,$this->input->post('periodo'),$value->materias_idmaterias,$carrera)){
-							$this->SeguimientoModelo->crearSeguimiento($grupodatos);
-							$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
-							$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'),$carrera);
-							//	echo "$value->idgrupos  $value->materias_idmaterias   ";
-							//	var_dump($alumnos);
-							if($alumnos){
-								//		echo "ALUMNOS : <br>";
-								foreach ($alumnos as $key => $valuealumnos) {
-									$alumno_encuesta= array(
-										'nombre_alumno'=>$valuealumnos->nombre,
-										'no_de_control'=>$valuealumnos->numero_control,
-										'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
-									);
-									$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
-									//			var_dump($alumno_encuesta);
-								}
-								//				echo "-------------------------------------";
-							}
-						}
-					}
-				}
+				// /*MEDIANTE LA TABLA MATERIAS CARRERA*/
+				// $materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
+				// foreach ($materias_del_periodo as $key => $value) {
+				// 	if($this->Materia->comprobar_materia_carrera($carrera,$value->materias_idmaterias)){
+				// 		$nombre_materia="";
+				// 		$nombre_docente="";
+				// 		$materias_datos=$this->Materia->cargarNombreMateria($value->materias_idmaterias);
+				// 		foreach ($materias_datos as $key => $value2) {
+				// 			$nombre_materia=$value2->nombre_materia;
+				// 		}
+				// 		$docentes_datos=$this->Docentes->obtenerDocenteRFC($value->docentes_rfc);
+				// 		foreach ($docentes_datos as $key => $value2) {
+				// 			$nombre_docente=$value2->nombre_docente;
+				// 		}
+				// 		$grupodatos= array(
+				// 			'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+				// 			'grupos_idgrupos'=> ''.$value->idgrupos,
+				// 			'nombre_materia'=> ''.$nombre_materia,
+				// 			'idmateria'=> ''.$value->materias_idmaterias,
+				// 			'rfc_docente'=> ''.$value->docentes_rfc,
+				// 			'nombre_docente'=> ''.$nombre_docente,
+				// 			'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
+				// 		);
+				// 		//	var_dump($grupodatos);
+				// 		if($this->Grupos->verificarGrupoCarrera($value->idgrupos,$this->input->post('periodo'),$value->materias_idmaterias,$carrera)){
+				// 			$this->SeguimientoModelo->crearSeguimiento($grupodatos);
+				// 			$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
+				// 			$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'),$carrera);
+				// 			//	echo "$value->idgrupos  $value->materias_idmaterias   ";
+				// 			//	var_dump($alumnos);
+				// 			if($alumnos){
+				// 				//		echo "ALUMNOS : <br>";
+				// 				foreach ($alumnos as $key => $valuealumnos) {
+				// 					$alumno_encuesta= array(
+				// 						'nombre_alumno'=>$valuealumnos->nombre,
+				// 						'no_de_control'=>$valuealumnos->numero_control,
+				// 						'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
+				// 					);
+				// 					$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
+				// 					//			var_dump($alumno_encuesta);
+				// 				}
+				// 				//				echo "-------------------------------------";
+				// 			}
+				// 		}
+				// 	}
+				// }
+
 			}
 			else {
 				//  echo "EXCLUSIVAS";
