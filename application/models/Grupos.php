@@ -56,4 +56,36 @@ class Grupos extends CI_Model {
       return  0;
     }
   }
+  /*METODO 2*/
+  public function m2CargarGrupos($peridot){
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * from grupos where periodos_escolares_idperiodos='$peridot'");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return  0;
+    }
+  }
+  public function m2VerificarGrupo($idgrupo,$Carreras){
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * from seleccion_materias where grupos_idgrupos='$idgrupo' ");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return  0;
+    }
+  }
+  public function m2VerificarAlumnosGrupo($idgrupo,$Carreras,$Periodo,$Materia){
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("
+    select * from alumnos as al, seleccion_materias as sm where
+     sm.grupos_idgrupos='$idgrupo' and sm.alumnos_numero_control=al.numero_control and
+     sm.materias_idmaterias='$Materia' and sm.periodos_escolares_idperiodos='$Periodo' and al.carreras_id_carrera in ($Carreras);
+    ");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return  0;
+    }
+  }
 }

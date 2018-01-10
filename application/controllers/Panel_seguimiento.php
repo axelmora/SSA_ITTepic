@@ -48,6 +48,23 @@ class Panel_seguimiento extends CI_Controller {
 	public function generarAplicacion()
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+
+			$depaTEMP=$this->Departamentos->obtenerCarrerasDepartamento($this->session->userdata('departamento'));
+			$carrera="";
+			$poosi=0;
+			if($depaTEMP){
+				foreach ($depaTEMP as $key => $value) {
+					if($poosi<count($depaTEMP)-1){
+						$carrera.="'".$value->carreras_id_carrera."',";
+					}else {
+						$carrera.="'".$value->carreras_id_carrera."'";
+					}
+					$poosi++;
+				}
+			}else {
+				$carrera="'NADA'";
+			}
+
 			$datos= array(
 				'plantilla_encuestas_idplantilla_encuestas' => ''.$this->input->post('plantilla'),
 				'fecha_creacion' => ''.date('Y-m-d H:i:s'),
@@ -55,20 +72,10 @@ class Panel_seguimiento extends CI_Controller {
 				'periodo_texto'=> ''.$this->input->post('periodo_texto'),
 				'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
 			);
+
 			$this->SeguimientoModelo->crearAplicacion($datos);
-			$depaTEMP=$this->Departamentos->obtenerCarrerasDepartamento($this->session->userdata('departamento'));
-			$carrera="";
-			$poosi=0;
-			foreach ($depaTEMP as $key => $value) {
-				if($poosi<count($depaTEMP)-1){
-					$carrera.="'".$value->carreras_id_carrera."',";
-				}else {
-					$carrera.="'".$value->carreras_id_carrera."'";
-				}
-				$poosi++;
-			}
 			$idaplicacion=$this->SeguimientoModelo->obtenerIdAplicacion();
-		//	var_dump($idaplicacion);
+			//	var_dump($idaplicacion);
 			$exclusivos=$this->Departamentos->exclusivoCarrera($this->session->userdata('departamento'));
 			if(!$exclusivos){
 				// /*MEDIANTE LA TABLA MATERIAS CARRERA*/
@@ -117,7 +124,49 @@ class Panel_seguimiento extends CI_Controller {
 				// 		}
 				// 	}
 				// }
-
+				/* ------------------------------------------------------------ */
+				/*METODO 2*/
+				$materias_periodo=$this->Grupos->m2CargarGrupos($this->input->post('periodo'));
+				//var_dump($materias_periodo);
+				foreach ($materias_periodo as $key => $value) {
+					$alumnos=$this->Grupos->m2VerificarAlumnosGrupo($value->idgrupos,$carrera,$this->input->post('periodo'),$value->materias_idmaterias);
+					if($alumnos){
+						echo "SI $value->idgrupos <BR>";
+						$nombre_materia="";
+						$nombre_docente="";
+						$materias_datos=$this->Materia->cargarNombreMateria($value->materias_idmaterias);
+						foreach ($materias_datos as $key => $value2) {
+							$nombre_materia=$value2->nombre_materia;
+						}
+						$docentes_datos=$this->Docentes->obtenerDocenteRFC($value->docentes_rfc);
+						foreach ($docentes_datos as $key => $value2) {
+							$nombre_docente=$value2->nombre_docente;
+						}
+						$grupodatos= array(
+							'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+							'grupos_idgrupos'=> ''.$value->idgrupos,
+							'nombre_materia'=> ''.$nombre_materia,
+							'idmateria'=> ''.$value->materias_idmaterias,
+							'rfc_docente'=> ''.$value->docentes_rfc,
+							'nombre_docente'=> ''.$nombre_docente,
+							'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
+						);
+						$this->SeguimientoModelo->crearSeguimiento($grupodatos);
+						$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
+						$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'),$carrera);
+						if($alumnos){
+							foreach ($alumnos as $key => $valuealumnos) {
+								$alumno_encuesta= array(
+									'nombre_alumno'=>$valuealumnos->nombre,
+									'no_de_control'=>$valuealumnos->numero_control,
+									'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
+								);
+								$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
+							}
+						}
+					}else {
+					}
+				}
 			}
 			else {
 				//  echo "EXCLUSIVAS";
@@ -168,7 +217,7 @@ class Panel_seguimiento extends CI_Controller {
 					}
 				}
 			}
-			redirect(base_url().'Panel_seguimiento/aplicaciones');
+				redirect(base_url().'Panel_seguimiento/aplicaciones');
 		}
 		else {
 			redirect(base_url().'');
