@@ -44,9 +44,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <br>
                 <br>
                 <form id="formulariomaterias_exlusivas" class="" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/asignar_materias" method="post">
-                  <input type="text" hidden  value="" id="numero_control_alumnos" name="numero_control_alumnos" />
-                  <center> <button type="submit" class="btn btn-primary"s name="button"> <i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIAS ELEGIDAS </button> </center>
                   <?php
+                  if ($MATERIAS) {
+                    ?>
+                    <input type="text" hidden  value="" id="numero_control_alumnos" name="numero_control_alumnos" />
+                    <center> <button type="submit" class="btn btn-primary"s name="button"> <i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIAS ELEGIDAS </button> </center>
+                    <?php
+                  }
                   if ($MATERIAS) {
                     ?>
                     <table id="materias_sii" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
