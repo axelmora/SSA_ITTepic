@@ -246,9 +246,8 @@ class Seguimiento extends CI_Controller {
 								redirect(base_url().'index.php/Seguimiento/contestar/');
 							}
 							else {
-								echo "   string";
-							//	$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuesta hasta el momento");
-							//	$this->load->view('encuesta/inicio',$datos);
+								$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuesta hasta el momento");
+								$this->load->view('encuesta/inicio',$datos);
 							}
 						}else {
 							$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuesta hasta el momento");
