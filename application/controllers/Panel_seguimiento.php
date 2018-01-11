@@ -217,7 +217,7 @@ class Panel_seguimiento extends CI_Controller {
 					}
 				}
 			}
-				redirect(base_url().'Panel_seguimiento/aplicaciones');
+			redirect(base_url().'Panel_seguimiento/aplicaciones');
 		}
 		else {
 			redirect(base_url().'');
@@ -665,26 +665,45 @@ class Panel_seguimiento extends CI_Controller {
 					$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
 					$DOCENTE="";
 					$MATERIA="";
+					$TXTGRUPO="";
+					$TXTIDMATERIA="" ;
 					//	var_dump($datos["DATOSMATERIA"]);
 					if($datos["DATOSMATERIA"]){
 						foreach ($datos["DATOSMATERIA"] as $key => $value) {
 							$DOCENTE="". utf8_decode($value->nombre_docente);
 							$MATERIA="".$value->nombre_materia ;
+							$TXTGRUPO="".$value->grupos_idgrupos ;
+							$TXTIDMATERIA="".$value->idmateria ;
 						}
 					}else {
 						$DOCENTE="ERROR";
 						$MATERIA="ERROR";
+						$TXTGRUPO="ERROR";
+						$TXTIDMATERIA="ERROR" ;
 					}
-					$temphtml= "<table  class='' width='100%' cellspacing='0' >
+					$temphtml= "
+					<table  class='' width='100%' cellspacing='0' >
 					<thead>
 					<tr>
-					<th> MATERIA</th>
+					<th> NOMBRE MATERIA</th>
 					<th> DOCENTE</th>
 					</tr>
 					</thead>
 					<tr>
 					<td>  $MATERIA</td>
 					<td>  $DOCENTE</td>
+					</tr>
+					</table>
+					<table  class='' width='100%' cellspacing='0' >
+					<thead>
+					<tr>
+					<th> GRUPO</th>
+					<th> MATERIA</th>
+					</tr>
+					</thead>
+					<tr>
+					<td>  $TXTGRUPO</td>
+					<td>  $TXTIDMATERIA</td>
 					</tr>
 					</table>
 					";
@@ -777,19 +796,25 @@ class Panel_seguimiento extends CI_Controller {
 					$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
 					$DOCENTE="";
 					$MATERIA="";
+					$TXTGRUPO="";
+					$TXTIDMATERIA="";
 					if(isset($datos["DATOSMATERIA"])){
 						foreach ($datos["DATOSMATERIA"] as $key => $value) {
 							$DOCENTE="".$value->nombre_docente;
-							$MATERIA="".$value->nombre_materia ;
+							$MATERIA="".$value->nombre_materia;
+							$TXTGRUPO="".$value->grupos_idgrupos;
+							$TXTIDMATERIA="".$value->idmateria;
 						}
 					}else {
 						$DOCENTE="ERROR";
 						$MATERIA="ERROR";
+						$TXTGRUPO="ERROR";
+						$TXTIDMATERIA="ERROR";
 					}
-					$temphtml= "    <table  class='' cellspacing='0' >
+					$temphtml= "<table  class='' cellspacing='0' >
 					<thead>
 					<tr>
-					<th> MATERIA</th>
+					<th> NOMBRE MATERIA</th>
 					<th> DOCENTE</th>
 					</tr>
 					</thead>
@@ -798,7 +823,18 @@ class Panel_seguimiento extends CI_Controller {
 					<td>  $DOCENTE</td>
 					</tr>
 					</table>
-
+					<table  class='' cellspacing='0' >
+					<thead>
+					<tr>
+					<th> GRUPO</th>
+					<th> MATERIA</th>
+					</tr>
+					</thead>
+					<tr>
+					<td>  $TXTGRUPO</td>
+					<td>  $TXTIDMATERIA</td>
+					</tr>
+					</table>
 					";
 					$temphtml.= $datos["EncuestasResultados"];
 					if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
@@ -875,90 +911,113 @@ class Panel_seguimiento extends CI_Controller {
 			/*    CARGAR DATOS      */
 			$this->load->model('GeneradorEncuestas');
 			$idseguimientotemp=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idencuesta_seguimiento);
-			$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idseguimientotemp[0]->aplicaciones_idaplicaciones);
-			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idseguimientotemp[0]->aplicaciones_idaplicaciones);
-			$peridoencuesta=$tempperiodo[0]->periodo_texto;
-			$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
-			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
-			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
-			$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
-			$DOCENTE="";
-			$MATERIA="";
-			if(isset($datos["DATOSMATERIA"])){
-				foreach ($datos["DATOSMATERIA"] as $key => $value) {
-					$DOCENTE="".utf8_decode($value->nombre_docente);
-					$MATERIA="".$value->nombre_materia ;
+			if($idseguimientotemp){
+				$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idseguimientotemp[0]->aplicaciones_idaplicaciones);
+				$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idseguimientotemp[0]->aplicaciones_idaplicaciones);
+				$peridoencuesta=$tempperiodo[0]->periodo_texto;
+				$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
+				$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
+				$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+				$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
+				$DOCENTE="";
+				$MATERIA="";
+				$TXTGRUPO="";
+				$TXTIDMATERIA="";
+				if(isset($datos["DATOSMATERIA"])){
+					foreach ($datos["DATOSMATERIA"] as $key => $value) {
+						$DOCENTE="".utf8_decode($value->nombre_docente);
+						$MATERIA="".$value->nombre_materia ;
+						$TXTGRUPO="".$value->grupos_idgrupos ;
+						$TXTIDMATERIA="".$value->idmateria ;
+					}
+				}else {
+					$DOCENTE="ERROR";
+					$MATERIA="ERROR";
+					$TXTGRUPO="ERROR";
+					$TXTIDMATERIA="ERROR";
 				}
+				$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idencuesta_seguimiento);
+				/*    CARGAR DATOS      */
+				$this->load->library('Pdf');
+				$resolution = array(216, 279);
+				$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
+				$pdf->SetAuthor('Fernando Manuel Avila Cataño');
+				$pdf->SetTitle('Instituto Tecnologico de Tepic - Seguimiento en el aula');
+				$pdf->SetSubject('Seguimiento en el aula reporte');
+				$pdf->SetKeywords('Reporte, individual, ');
+				$image_file = 'cabecera.png';
+				$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 058', PDF_HEADER_STRING, array(0,0,0), array(255,255,255));
+				$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+				$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+				$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP-15, PDF_MARGIN_RIGHT);
+				$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+				$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM-10);
+				$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+				$pdf->setFontSubsetting(true);
+				$pdf->SetFont('helvetica', '', 9);
+				$pdf->SetPrintHeader(true);
+				$pdf->SetPrintFooter(true);
+				$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
+				$resolution = array(279, 216);
+				$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
+				$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
+				$html = '';
+				$html.='
+				<table style="height: 53px;" width="100%"  border="0">
+				<tbody>
+				<tr>
+				<td style="text-align: center; border:none; width: 100%;"><h2><strong>Departamento de '.$departamentoacademico.'</strong></h2></td>
+				</tr>
+				<tr>
+				<td style="text-align: center; border:none; width: 100%;">Periodo de '.$peridoencuesta.'</td>
+				</tr>
+				<tr>
+				<td style="text-align: center; border:none; width: 100%;"> </td>
+				</tr>
+				</tbody>
+				</table>';
+				$html .= "<style type=text/css>";
+				$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
+				$html .= "td{background-color: #FFF; color: #000; border: 1px solid black} .gp{ width: 30px} ";
+				$html .= "</style>";
+				$html .= "
+				<table  class='' cellspacing='0' >
+				<thead>
+				<tr>
+				<th> NOMBRE MATERIA</th>
+				<th> DOCENTE</th>
+				</tr>
+				</thead>
+				<tr>
+				<td>  $MATERIA</td>
+				<td>  $DOCENTE</td>
+				</tr>
+				</table>
+				<table  class='' cellspacing='0' >
+				<thead>
+				<tr>
+				<th> GRUPO</th>
+				<th> MATERIA</th>
+				</tr>
+				</thead>
+				<tr>
+				<td>  $TXTGRUPO</td>
+				<td>  $TXTIDMATERIA</td>
+				</tr>
+				</table>
+				";
+				$html.= $datos["EncuestasResultados"];
+				if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
+					$html.= "\n";
+					$html.= "<b>Retroalimentación</b>";
+					$html.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
+				}
+				$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+				$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_individual.pdf");
+				$pdf->Output($nombre_archivo, 'I');
 			}else {
-				$DOCENTE="ERROR";
-				$MATERIA="ERROR";
+					redirect(base_url().'');
 			}
-			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idencuesta_seguimiento);
-			/*    CARGAR DATOS      */
-			$this->load->library('Pdf');
-			$resolution = array(216, 279);
-			$pdf = new Pdf('P', 'mm', $resolution, true, 'UTF-8', false);
-			$pdf->SetAuthor('Fernando Manuel Avila Cataño');
-			$pdf->SetTitle('Instituto Tecnologico de Tepic - Seguimiento en el aula');
-			$pdf->SetSubject('Seguimiento en el aula reporte');
-			$pdf->SetKeywords('Reporte, individual, ');
-			$image_file = 'cabecera.png';
-			$pdf->SetHeaderData($image_file, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 058', PDF_HEADER_STRING, array(0,0,0), array(255,255,255));
-			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP-15, PDF_MARGIN_RIGHT);
-			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM-10);
-			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-			$pdf->setFontSubsetting(true);
-			$pdf->SetFont('helvetica', '', 9);
-			$pdf->SetPrintHeader(true);
-			$pdf->SetPrintFooter(true);
-			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 0, 'blend_mode' => 'Normal'));
-			$resolution = array(279, 216);
-			$pdf->AddPage('P', 'mm', $resolution, true, 'UTF-8', false);
-			$pdf->setTextShadow(array('disabled' => true, 'depth_w' => 0.2, 'depth_h' => 0.2, 'color' => array(196, 196, 196), 'opacity' => 1, 'blend_mode' => 'Normal'));
-			$html = '';
-			$html.='
-			<table style="height: 53px;" width="100%"  border="0">
-			<tbody>
-			<tr>
-			<td style="text-align: center; border:none; width: 100%;"><h2><strong>Departamento de '.$departamentoacademico.'</strong></h2></td>
-			</tr>
-			<tr>
-			<td style="text-align: center; border:none; width: 100%;">Periodo de '.$peridoencuesta.'</td>
-			</tr>
-			<tr>
-			<td style="text-align: center; border:none; width: 100%;"> </td>
-			</tr>
-			</tbody>
-			</table>';
-			$html .= "<style type=text/css>";
-			$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
-			$html .= "td{background-color: #FFF; color: #000; border: 1px solid black}";
-			$html .= "</style>";
-			$html .= "    <table  class='' cellspacing='0' >
-			<thead>
-			<tr>
-			<th> MATERIA</th>
-			<th> DOCENTE</th>
-			</tr>
-			</thead>
-			<tr>
-			<td>  $MATERIA</td>
-			<td>  $DOCENTE</td>
-			</tr>
-			</table>
-			";
-			$html.= $datos["EncuestasResultados"];
-			if($datos["RetroAlimentacion"][0]->retroalimentacion!=""){
-				$html.= "\n";
-				$html.= "<b>Retroalimentación</b>";
-				$html.= "".$datos["RetroAlimentacion"][0]->retroalimentacion;
-			}
-			$pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
-			$nombre_archivo = utf8_decode("Reporte_Seguimiento_en_aula_individual.pdf");
-			$pdf->Output($nombre_archivo, 'I');
 		}else {
 			redirect(base_url().'');
 		}

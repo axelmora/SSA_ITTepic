@@ -77,10 +77,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
               <div class="col-md-8" >
                 <?php echo ''.$encabezado[0]->encabezado; ?>
-                <!--    <center><h4 class="textoNegritas">Instituto Tecnológico de Tepic</h4>
-                <p class="subtitulo">Seguimiento en aula</p>
-                <p class="subtitulo2">Código: ITTEPIC-AC-PO-004-07   Revisión: 1</p>
-                <p  class="subtitulo2">Referencia a la norma ISO9001:2008  7.1, 7.2.1, 7.5.1, 8.1, 8.2.4</p> -->
                 <hr class="separador">
               </center>
             </div>
@@ -117,7 +113,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </tbody>
               </table>
             </div>
-
             <!-- DATOS DEL ALUMNO  FIN-->
             <!-- PREGUNTA 1 -->
             <p class="textopreguntas">1.- El profesor dio a conocer la Planeación del curso, indicando:</p>
@@ -131,7 +126,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <td>&nbsp;</td>
                       <td class="textoNegritas2">Si</td>
                       <td class="textoNegritas2">No</td>
-
                     </tr>
                     <!-- 1 -->
                     <tr>
