@@ -58,7 +58,7 @@
               <button type="button" class="btn btn-danger " data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i> CANCELAR</button>
             </div>
             <div class="col-lg-6">
-              <button type="submit" id="botonenviargrupos" class="btn btn-primary carobtn"><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR NUEVA APLICACION</button>
+              <button type="submit" id="botonenviargrupos" style="margin-left: 15px;" class="btn btn-primary carobtn"><i class="fa fa-plus-circle" aria-hidden="true"></i> CREAR NUEVA APLICACION</button>
             </div>
           </div>
         </div>
