@@ -259,7 +259,6 @@ class Panel_seguimiento extends CI_Controller {
 		echo json_encode($alumnos);
 		//var_dump($alumnos);
 	}
-
 	public function obtenerDepartamento($departamentoid)
 	{
 		$departamentoRetorno="";
