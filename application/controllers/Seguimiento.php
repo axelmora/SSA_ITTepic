@@ -81,6 +81,7 @@ class Seguimiento extends CI_Controller {
 	}
 	public function verificarAlumnoEncuesta()
 	{
+		$idcarreras="";
 		$sistemaproduccion = $this->Sistema->obtenerproduccion();
 		if ($sistemaproduccion[0]->produccion==1) {
 			/* VERIFICAR ALUMNOS */
@@ -90,7 +91,6 @@ class Seguimiento extends CI_Controller {
 			$NOMBREALUM="";
 			if($ALUMNOVERIFICADO)
 			{
-				$idcarreras="";
 				foreach ($ALUMNOVERIFICADO as $key => $value) {
 					$idcarreras=$value->id_carrera;
 					$NOMBREALUM=$value->nombre;
@@ -183,7 +183,7 @@ class Seguimiento extends CI_Controller {
 								}
 							}
 						}
-						echo "$ID_ENCUESTAS";
+					//	echo "$ID_ENCUESTAS";
 						//$this->consolaLOG("ID ENCUESTAS: ".$ID_ENCUESTAS);
 						$DATOS_ALUMNOS = array(
 							'is_logued_in' => true,
@@ -198,8 +198,62 @@ class Seguimiento extends CI_Controller {
 						$this->session->set_userdata($DATOS_ALUMNOS);
 						redirect(base_url().'index.php/Seguimiento/contestar/');
 					}else{
-						$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuesta hasta el momento");
-						$this->load->view('encuesta/inicio',$datos);
+						$IDDEPARTAMENTO=$this->obtenerDepartamentoPorCarrera("'".$idcarreras."'");
+						$PERIODOACTUAL=$this->PeriodoModelo->obtenerPeriodoActual();
+						$PERIODOACTUAL=$PERIODOACTUAL[0]->idperiodos;
+						$APLICACIONVERIFICADAexterna = $this->SeguimientoModelo->verificarAplicacionExterna($PERIODOACTUAL,$IDDEPARTAMENTO);
+						if($APLICACIONVERIFICADAexterna){
+							$idaplicacionesEXT="";
+							$idplantillaEXT="";
+							$ENCUESTASext=false;
+							if($APLICACIONVERIFICADAexterna){
+								foreach ($APLICACIONVERIFICADAexterna as $key => $value) {
+									if($this->SeguimientoModelo->obtenerEncuestas($value->idaplicaciones,$NUMERO_CONTROL)){
+										$idaplicacionesEXT=$value->idaplicaciones;
+										$idplantillaEXT=$value->plantilla_encuestas_idplantilla_encuestas;
+									}
+								}
+							}
+							if($idaplicacionesEXT!=""){
+								$ENCUESTASext= $this->SeguimientoModelo->obtenerEncuestas($idaplicacionesEXT,$NUMERO_CONTROL);
+								if ($ENCUESTASext) {
+									$TAMANO2=count($ENCUESTASext);
+									foreach ($ENCUESTASext as $key => $value) {
+										if(!$this->SeguimientoModelo->verificarEncuestaContestada($value->idencuesta_seguimiento,$NUMERO_CONTROL)){
+											if($POSENCUESTAS<$TAMANO2-1)
+											{
+												$ID_ENCUESTAS.=$value->idencuesta_seguimiento.",";
+
+											}else {
+												$ID_ENCUESTAS.=$value->idencuesta_seguimiento;
+											}
+											$PROGRESOENCUESTAS++;
+											$POSENCUESTAS++;
+										}
+									}
+								}
+								$DATOS_ALUMNOS = array(
+									'is_logued_in' => true,
+									'numero_control' => $NUMERO_CONTROL,
+									'nombre_alumno' => $NOMBREALUM,
+									'alumno'=>true,
+									'idencuestas'=>$ID_ENCUESTAS,
+									'progresolimite'=>$PROGRESOENCUESTAS,
+									'progresoactual'=>0,
+									'idplantilla'=>$idplantilla
+								);
+								$this->session->set_userdata($DATOS_ALUMNOS);
+								redirect(base_url().'index.php/Seguimiento/contestar/');
+							}
+							else {
+								echo "   string";
+							//	$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuesta hasta el momento");
+							//	$this->load->view('encuesta/inicio',$datos);
+							}
+						}else {
+							$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuesta hasta el momento");
+							$this->load->view('encuesta/inicio',$datos);
+						}
 					}
 					/* OBTENER LAS APLICACIONES CORE*/
 				}else {
