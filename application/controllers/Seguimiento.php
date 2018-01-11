@@ -327,5 +327,4 @@ class Seguimiento extends CI_Controller {
 	{
 		echo "$Mensaje <br>";
 	}
-
 }
