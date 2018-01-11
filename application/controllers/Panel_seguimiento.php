@@ -227,23 +227,27 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$datos["AplicacionesPeriodo"]=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
-			$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
-			$datos["AplicacionData"]=$idAplicacion;
-			$NumeroTotal;
-			$ActualContestados;
-			if($datos["Aplicaciones"])
-			{
-				foreach ($datos["Aplicaciones"] as $key => $value) {
-					$tempTotal=$this->Grupos->contadorAlumnosGrupo($value->idencuesta_seguimiento);
-					$NumeroTotal[]=$tempTotal[0]->total;
-					$tempContestados=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
-					$ActualContestados[]=$tempContestados[0]->total;
+			if($datos["AplicacionesPeriodo"][0]->departamento_academico_iddepartamento_academico == $this->session->userdata('departamento')){
+				$datos["Aplicaciones"]=$this->SeguimientoModelo->cargarEncuestasSeguimiento($idAplicacion);
+				$datos["AplicacionData"]=$idAplicacion;
+				$NumeroTotal;
+				$ActualContestados;
+				if($datos["Aplicaciones"])
+				{
+					foreach ($datos["Aplicaciones"] as $key => $value) {
+						$tempTotal=$this->Grupos->contadorAlumnosGrupo($value->idencuesta_seguimiento);
+						$NumeroTotal[]=$tempTotal[0]->total;
+						$tempContestados=$this->SeguimientoModelo->encuestaTotalContestados($value->idencuesta_seguimiento);
+						$ActualContestados[]=$tempContestados[0]->total;
+					}
+					$datos["totalAlumnos"]=$NumeroTotal;
+					$datos["totalContestados"]=$ActualContestados;
 				}
-				$datos["totalAlumnos"]=$NumeroTotal;
-				$datos["totalContestados"]=$ActualContestados;
+				$datos["idaplicacion"]=$idAplicacion;
+				$this->load->view('aplicaciones_lista',$datos);
+			}else {
+				redirect(base_url().'Panel_seguimiento/aplicaciones');
 			}
-			$datos["idaplicacion"]=$idAplicacion;
-			$this->load->view('aplicaciones_lista',$datos);
 		}else {
 			redirect(base_url().'');
 		}

@@ -45,6 +45,7 @@ class SeguimientoModelo extends CI_Model {
   {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->select('periodo_texto');
+    $DB2->select('departamento_academico_iddepartamento_academico');
     $DB2->where('idaplicaciones',$idSeguimiento);
     $DB2->from('aplicaciones');
     $query = $DB2->get();
