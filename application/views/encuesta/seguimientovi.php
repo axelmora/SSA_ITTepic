@@ -51,12 +51,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               echo " ".($progreso+1)." de  $limite";
               $DOCENTE="";
               $MATERIA="";
+              $IDM="";
+              $IDGRUPO="";
               $idencuesta_seguimiento="";
               if($DATOSMATERIA){
                 foreach ($DATOSMATERIA as $key => $value) {
                   $DOCENTE="".utf8_decode($value->nombre_docente);
                   $MATERIA="".$value->nombre_materia ;
                   $idencuesta_seguimiento="".$value->idencuesta_seguimiento;
+                  $IDM="".$value->idmateria;
+                  $IDGRUPO="".$value->grupos_idgrupos;
                 }
               }else {
                 $DOCENTE="ERROR";
@@ -72,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="row">
               <div class="col-md-2">
                 <center>
-                <!--  <img  class="img-fluid" src="<?php echo base_url(); ?>images/escudo_itt_grande.png" height="150" width="150"> -->
+                  <!--  <img  class="img-fluid" src="<?php echo base_url(); ?>images/escudo_itt_grande.png" height="150" width="150"> -->
                 </center>
               </div>
               <div class="col-md-8" >
@@ -104,11 +108,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </tr>
                   <tr>
                     <td  class="textoNegritas"  colspan="1">Profesor:</td>
-                    <td  colspan="3"><?php echo "".$DOCENTE; ?> </td>
+                    <td  colspan="1"><?php echo "".$DOCENTE; ?> </td>
+                    <td  > <b>Grupo:</b> </td>
+                    <td  ><?php echo "".$IDGRUPO; ?> </td>
                   </tr>
                   <tr>
                     <td class="textoNegritas" colspan="1" >Materia:</td>
-                    <td  colspan="3"><?php echo "".$MATERIA; ?> </td>
+                    <td  colspan="2"><?php echo "".$MATERIA; ?> </td>
+                    <td  ><?php echo "".$IDM; ?> </td>
                   </tr>
                 </tbody>
               </table>
