@@ -145,4 +145,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tabletojson.js"></script>
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<!--
+<script type="text/javascript" src="<?php echo base_url(); ?>js/graficos/highcharts.js"></script> -->
+<script type="text/javascript">
+var arreglo;
+$( document ).ready(function() {
+
+     arreglo=  $("[id^=tabla]");
+    var graficos=  $("[id^=grafico]");
+    var tabla1 = $("#"+arreglo[3].id).tableToJSON();
+
+
+});
+function generarGrafico(divid,tabla) {
+var graficogenerado=  Highcharts.chart(''+graficos[3].id, {
+       data: {
+           table: ''+arreglo[2].id
+       },
+       chart: {
+           type: 'column'
+       },
+       title: {
+           text: ''
+       },
+       yAxis: {
+           allowDecimals: false,
+           title: {
+               text: 'Respuestas'
+           }
+       },
+       tooltip: {
+           formatter: function () {
+           /*    return '<b>' + this.series.name + '</b><br/>' +
+                   this.point.y + ' ' + this.point.name.toLowerCase(); */
+           }
+       }
+   });
+   return graficogenerado;
+}
+</script>
 </html>
