@@ -97,6 +97,13 @@ $(document).ready(function(){
     },
     "order": [[3, "asc" ],[0, "asc" ]]
   });
+  $('#tablaGrupoAlumnosGP').DataTable({
+    responsive: true,
+    "language": {
+      "url": urlsistema+"js/datatables/Alumnos.json"
+    },
+    "order": [[2, "asc" ],[0, "asc" ]]
+  });
   /*TABLA ALUMNOS*/
   $('#tablaGrupoAlumnosAgregar').DataTable({
     responsive: true,
