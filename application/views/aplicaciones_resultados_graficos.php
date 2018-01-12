@@ -155,14 +155,16 @@ $( document ).ready(function() {
 
      arreglo=  $("[id^=tabla]");
     var graficos=  $("[id^=grafico]");
-    var tabla1 = $("#"+arreglo[3].id).tableToJSON();
-
+  //  var tabla1 = $("#"+arreglo[3].id).tableToJSON();
+    for (var i = 0; i < graficos.length; i++) {
+      generarGrafico(graficos[i].id,arreglo[i].id);
+    }
 
 });
 function generarGrafico(divid,tabla) {
-var graficogenerado=  Highcharts.chart(''+graficos[3].id, {
+var graficogenerado=  Highcharts.chart(''+divid, {
        data: {
-           table: ''+arreglo[2].id
+           table: ''+tabla
        },
        chart: {
            type: 'column'
@@ -178,8 +180,8 @@ var graficogenerado=  Highcharts.chart(''+graficos[3].id, {
        },
        tooltip: {
            formatter: function () {
-           /*    return '<b>' + this.series.name + '</b><br/>' +
-                   this.point.y + ' ' + this.point.name.toLowerCase(); */
+               return '<b>' + this.series.name + '</b><br/>' +
+                   this.point.y + ' ' + this.point.name.toLowerCase(); 
            }
        }
    });
