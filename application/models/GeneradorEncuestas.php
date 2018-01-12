@@ -74,7 +74,7 @@ class GeneradorEncuestas extends CI_Model {
                   $datos_tabla;
                   $temp.=$this->GeneradorEncuestas->preguntatitulo($value3->pregunta);
                   $datos_tabla[0]="CANTIDAD";
-                  $temp.='<table style="margin-bottom:0px;" align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+                  $temp.='<table style="margin-bottom:0px;" align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
                   $temp.="<th>".$datos_tabla[0]."</th></tr></thead><tbody>";
                   $temp.=$this->GeneradorEncuestas->generarFilas2($responses,$pos,$datos_tabla,$totalAlumnosContestados);
                   $temp.="</tbody></table>";
@@ -93,14 +93,14 @@ class GeneradorEncuestas extends CI_Model {
                       $Temppos++;
                       $b=$this->GeneradorEncuestas->generarFilas3($responses,$Temppos,$datos_tabla,$totalAlumnosContestados,$i);
                       if($a!="" && $b!=0){
-                        $temp.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+                        $temp.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
                         $temp.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr><tr>";
                         $temp.="<td>".$a."</td>";
                         $temp.="<td>".$b."</td></tr>";
                         $temp.="</table>";
                       }else {
                         if($a!="" && $b>0){
-                          $temp.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+                          $temp.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
                           $temp.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr><tr>";
                           $temp.="<td>NO SE ESPECIFICO</td>";
                           $temp.="<td>".$b."</td></tr>";
@@ -129,7 +129,7 @@ class GeneradorEncuestas extends CI_Model {
             $encuestaRetro.=$this->GeneradorEncuestas->preguntaradioR($value2->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
             unset($tabla_opciones) ; */
             $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
-            $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+            $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
             $datos_tabla;
             foreach ($value2->respuesta as $key => $value3) {
               $datos_tabla[]="".$value3->valor;
@@ -145,7 +145,7 @@ class GeneradorEncuestas extends CI_Model {
             if($value2->tipo=="seleccion"){
               // echo "POS $pos SELECION $value2->pregunta<BR>";
               $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
-              $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+              $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
               $datos_tabla;
               foreach ($value2->datos as $key => $value3) {
                 $datos_tabla[]="".$value3->valor;
@@ -453,14 +453,14 @@ public function generarEncuPDF($json,$resultados)
                   $Temppos++;
                   $b=$this->GeneradorEncuestas->generarFilas3($responses,$Temppos,$datos_tabla,$totalAlumnosContestados,$i);
                   if($a!="" && $b!=0){
-                    $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+                    $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover   tablaRetro"><thead><tr>';
                     $encuestaRetro.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr><tr>";
                     $encuestaRetro.="<td>".$a."</td>";
                     $encuestaRetro.="<td>".$b."</td></tr>";
                     $encuestaRetro.="</table>";
                   }else {
                     if($a!="" && $b>0){
-                      $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover table-bordered  tablaRetro"><thead><tr>';
+                      $encuestaRetro.='<table  align="center" class="table table-responsive table-sm table-hover   tablaRetro"><thead><tr>';
                       $encuestaRetro.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr><tr>";
                       $encuestaRetro.="<td>NO SE ESPECIFICO</td>";
                       $encuestaRetro.="<td>".$b."</td></tr>";
