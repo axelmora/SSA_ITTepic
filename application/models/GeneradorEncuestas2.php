@@ -117,7 +117,7 @@ class GeneradorEncuestas2 extends CI_Model {
               //  $pos++;
             }
             $encuestaRetro.=$this->GeneradorEncuestas2->card($temp);
-            $encuestaRetro.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
+      //      $encuestaRetro.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
           }else {
             if($value2->tipo=="radio"){
               /* $tabla_opciones;
@@ -145,7 +145,7 @@ class GeneradorEncuestas2 extends CI_Model {
             if($value2->tipo=="seleccion"){
               // echo "POS $pos SELECION $value2->pregunta<BR>";
               $encuestaRetro.=$this->GeneradorEncuestas2->preguntatitulo($value2->pregunta);
-              $encuestaRetro.='<table id="tabla'.$posGraficos.'"  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
+              $encuestaRetro.='<table id="tabla'.$posGraficos.'"  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr><th></th>';
               $datos_tabla;
               foreach ($value2->datos as $key => $value3) {
                 $datos_tabla[]="".$value3->valor;
