@@ -145,10 +145,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssatables.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tabletojson.js"></script>
-<script src="https://code.highcharts.com/highcharts.src.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<!--
-<script type="text/javascript" src="<?php echo base_url(); ?>js/graficos/highcharts.js"></script> -->
+<script type="text/javascript" src="<?php echo base_url(); ?>js/graficos/highcharts.src.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/graficos/data.js"></script>
 <script type="text/javascript">
 var arreglo;
 $( document ).ready(function() {
