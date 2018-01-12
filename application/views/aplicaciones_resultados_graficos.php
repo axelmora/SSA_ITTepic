@@ -66,6 +66,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/listado/<?php echo $idEncuesta; ?>" role="button">
                     <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                   </a>
+
+                  <a class="btn btn-primary" target="_blank" data-toggle="tooltip" data-placement="top" title="IMPRIMIR GRAFICOS" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/resultadosGraficos_imprimir/<?php echo $IDCARO; ?>" role="button">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                  </a>
                 </div>
                 <div class="col-lg-8">
                   <center>

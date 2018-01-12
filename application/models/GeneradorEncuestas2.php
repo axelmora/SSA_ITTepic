@@ -160,11 +160,11 @@ class GeneradorEncuestas2 extends CI_Model {
               $pos++;
             }else {
               if($value2->tipo=="texto"){
-                $encuestaRetro.=$this->GeneradorEncuestas2->preguntatitulo($value2->pregunta);
-                $encuestaRetro.="<div class='row'>";
-                $encuestaRetro.=$this->GeneradorEncuestas2->obtenerTexto($responses,$pos);
-                $encuestaRetro.="</div'>";
-                // echo "POS $pos TEXTO $value2->pregunta<BR>";
+              //   $encuestaRetro.=$this->GeneradorEncuestas2->preguntatitulo($value2->pregunta);
+              //   $encuestaRetro.="<div class='row'>";
+              // //  $encuestaRetro.=$this->GeneradorEncuestas2->obtenerTexto($responses,$pos);
+              //   $encuestaRetro.="</div'>";
+              //   // echo "POS $pos TEXTO $value2->pregunta<BR>";
                 $pos++;
               }
             }
