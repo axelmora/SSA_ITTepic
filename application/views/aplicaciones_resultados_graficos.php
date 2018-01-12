@@ -109,11 +109,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="card">
                   <div class="card-body">
                     <div class="container">
-                      <div class="card">
-                        <div class="card-body">
-                          <?php echo "".$EncuestasResultados; ?>
-                        </div>
-                      </div>
+                     <?php echo "".$EncuestasResultados; ?>
                     </div>
                   </div>
                 </div>
@@ -181,7 +177,7 @@ var graficogenerado=  Highcharts.chart(''+divid, {
        tooltip: {
            formatter: function () {
                return '<b>' + this.series.name + '</b><br/>' +
-                   this.point.y + ' ' + this.point.name.toLowerCase(); 
+                   this.point.y + ' ' + this.point.name.toLowerCase();
            }
        }
    });

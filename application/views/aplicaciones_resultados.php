@@ -109,11 +109,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="card">
                   <div class="card-body">
                     <div class="container">
-                      <div class="card">
-                        <div class="card-body">
-                          <?php echo "".$EncuestasResultados; ?>
-                        </div>
-                      </div>
+                      <?php echo "".$EncuestasResultados; ?>
                     </div>
                   </div>
                 </div>
