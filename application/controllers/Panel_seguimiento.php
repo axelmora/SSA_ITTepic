@@ -1325,5 +1325,6 @@ class Panel_seguimiento extends CI_Controller {
 		$rutajson="file/json/seguimiento1.json";
 		$this->load->model('GeneradorEncuestas3');
 		$datos["EncuestaRetro"]=$this->GeneradorEncuestas3->generarEncu($rutajson);
+		$this->load->view('encuesta/seguimientovi_generada',$datos);
 	}
 }

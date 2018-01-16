@@ -18,18 +18,30 @@ class GeneradorEncuestas3 extends CI_Model {
             //  echo "__".$value3->pregunta."   ".$value3->name."  <br>  ";
             if($value3->tipo=="radio")
             {
+              echo "RADIO <BR>";
               foreach ($value3->respuesta as $key => $value4) {
                 //    echo "R:".$value4->texto." ";
               }
+            }else {
+              if($value3->tipo=="numero")
+              {
+                echo "numero <br>";
+              }
             }
-            //  echo "<br>";
           }
         }else {
           if($value2->tipo=="radio"){
-            $datos.='  <p class="textopreguntas">'.$value2->pregunta.'</p>';
+            $radiotemp;
             foreach ($value2->respuesta as $key => $value3) {
-              //  echo "R____:".$value3->texto."                  _";
+              $radiotemp[]=$campo_select = array(
+                'texto' => $value3->texto,
+                'valor' => $value3->valor,
+                'tipo' => $value2->tipo,
+                'name'=>$value2->name
+              );
             }
+            $datos.=$this->GeneradorEncuestas3->generarPreguntaRadio($radiotemp,$value2->name,$value2->pregunta);
+            unset($radiotemp);
           }else {
             if($value2->tipo=="seleccion"){
               $tempselect;
@@ -44,22 +56,23 @@ class GeneradorEncuestas3 extends CI_Model {
               unset($tempselect);
             }else {
               if($value2->tipo=="texto"){
-                  $datos.='
-                  <div class="row">
-                    <div class="col-md-12">
-                      <p class="textopreguntas"  style="margin-left:10px;">'.$value2->pregunta.'</p>
-                      <textarea class="form-control" name="'.$value2->name.'" rows="3" placeholder="'.$value2->placeholder.'" ></textarea>
-                    </div>
-                  </div>
-                  ';
+                $datos.='
+                <div class="row">
+                <div class="col-md-12">
+                <p class="textopreguntas"  style="margin-left:10px;">'.$value2->pregunta.'</p>
+                <textarea class="form-control" name="'.$value2->name.'" rows="3" placeholder="'.$value2->placeholder.'" ></textarea>
+                </div>
+                </div>
+                ';
               }
             }
           }
         }
+        $datos.="<br>";
       }
-     $datos.=$this->GeneradorEncuestas3->generarBotonSubmit();
+      $datos.=$this->GeneradorEncuestas3->generarBotonSubmit();
     }
-    echo "$datos";
+    return $datos;
   }
   public function card($pregunta)
   {
@@ -103,7 +116,6 @@ class GeneradorEncuestas3 extends CI_Model {
   }
   public function generarSelect($arreglo_datos,$name,$titulo)
   {
-    $opciones="";
     $datos='  <select class="form-control"  name="'.$name.'" id="'.$name.'" title="'.$titulo.'" required>';
     if(count($arreglo_datos)>0){
       for ($i=0; $i < count($arreglo_datos); $i++) {
@@ -116,16 +128,59 @@ class GeneradorEncuestas3 extends CI_Model {
     unset($arreglo_datos);
     return $datos;
   }
+  public function generarPreguntaRadio($arreglo_datos,$name,$titulo)
+  {
+    $tamaños1=array(2,4);
+    $tamaños2=array(2,2,2);
+    $tamaños3=array(1,1,1,1,1,1);
+    $datos='<div class="row">';
+    $datos.='
+    <div class="col-md-6">
+    <p class="textopreguntas">'.$titulo.'</p>
+    </div>
+    ';
+    $tamtemp;
+    $pos=1;
+    if (count($arreglo_datos)>2) {
+      $tamtemp=$tamaños2;
+    }else {
+      if (count($arreglo_datos)>3) {
+        $tamtemp=$tamaños3;
+      }else {
+        $tamtemp=$tamaños1;
+      }
+    }
+    if(count($arreglo_datos)>0){
+      for ($i=0; $i < count($arreglo_datos); $i++) {
+        $datos.='
+        <div class="col-md-'.$tamtemp[$i].'">
+        <div class="form-check abc-radio">
+        <input class="form-check-input" type="'.$arreglo_datos[$i]["tipo"].'" name="'.$arreglo_datos[$i]["name"].'" id="'.$arreglo_datos[$i]["name"].'_'.$pos.'" value="'.$arreglo_datos[$i]["valor"].'" required>
+        <label class="form-check-label" for="'.$arreglo_datos[$i]["name"].'_'.$pos.'">'.$arreglo_datos[$i]["texto"].'
+        </label>
+        </div>
+        </div>
+        ';
+        $pos++;
+      }
+    }else {
+      $datos.='<option value="0">SIN DATOS</option>';
+    }
+    $datos.="</div>";
+    unset($arreglo_datos);
+    $pos=1;
+    return $datos;
+  }
   public function generarBotonSubmit()
   {
     $datos='
     <div class="botonEnviar">
-      <br>
-      <center>
-        <button type="submit" class="btn btn-success btn-lg btn-block " ><i class="fa fa-floppy-o" aria-hidden="true"></i> CONTESTAR </button>
-      </center>
+    <br>
+    <center>
+    <button type="submit" class="btn btn-success btn-lg btn-block " ><i class="fa fa-floppy-o" aria-hidden="true"></i> CONTESTAR </button>
+    </center>
     </div>
     ';
-      return $datos;
+    return $datos;
   }
 }
