@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="card-body">
           <div class="row" >
             <div class="col-lg-4">
-              <h3><i class="fa fa-users" aria-hidden="true"></i> Nuevo usuario SSA</h3>
+              <h3><i class="fa fa-users" aria-hidden="true"></i> ESTRUCTURA ENCUESTA</h3>
               <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/lista_usuarios" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
             </div>
           </div>
@@ -37,8 +37,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="row" >
                 <div class="col-lg-12">
                   <form id="formularioEditar" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/agrearUsuario" >
-                    <textarea  name="data1" id="data1" rows="8" cols="80"><?php echo "".$FORMATO_ENCUESTA; ?></textarea>
-                    <textarea id="encuesta" name="encuesta" rows="8" cols="80"></textarea>
+                    <textarea style="width:100%;"  name="data1" id="data1" rows="12" cols="80"><?php echo "".$FORMATO_ENCUESTA; ?></textarea>
+                    <textarea  hidden id="encuesta" name="encuesta" rows="8" cols="80"></textarea>
                     <button type="submit" class="btn btn-primary">AGREGAR NUEVO USUARIO</button>
                   </form>
                 </div>
@@ -87,24 +87,7 @@ $(document).ready(function(){
 var jsonStr = $("#data1").val();
 var jsonObj = JSON.parse(jsonStr);
 var jsonPretty = JSON.stringify(jsonObj, null, '\t');
-$("#encuesta").val(jsonPretty);
-
-tinymce.init({ selector: "#encuesta", 	menubar:false,statusbar: false,
-plugins: [
-  'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-  'searchreplace wordcount visualblocks visualchars code fullscreen',
-  'insertdatetime media nonbreaking save table contextmenu directionality',
-  'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
-],
-toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
-image_advtab: true,
-templates: [
-  { title: 'La retroalimentación fue la siguiente ', content: 'La retroalimentación fue la siguiente ' },
-  { title: 'En difinitiva la retroalimentación fue la siguiente ', content: 'En difinitiva la retroalimentación fue la siguiente' }
-],
-language: 'es_MX',
-height : "325"});
+//$("#encuesta").val(jsonPretty);
 
 </script>
 </html>
