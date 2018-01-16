@@ -14,21 +14,37 @@ class GeneradorEncuestas3 extends CI_Model {
         if($value2->tipo=="tabla")
         {
           $datos.='  <p class="textopreguntas">'.$value2->pregunta.'</p>';
+          $tamanocolumans=0;
+          $tempfila;
           foreach ($value2->subpreguntas as $key => $value3) {
-            //  echo "__".$value3->pregunta."   ".$value3->name."  <br>  ";
+            //echo "__".$value3->pregunta."   ".$value3->name."  <br>  ";
             if($value3->tipo=="radio")
             {
-              echo "RADIO <BR>";
-              foreach ($value3->respuesta as $key => $value4) {
-                //    echo "R:".$value4->texto." ";
+              $radiotemptabla;
+              //echo "RADIO ___".count($value3->respuesta)."<br>";
+              if($tamanocolumans<count($value3->respuesta)){
+                $tamanocolumans=count($value3->respuesta);
               }
+              foreach ($value3->respuesta as $key => $value4) {
+                $radiotemptabla[]= array(
+                  'texto' => $value4->texto,
+                  'valor' => $value4->valor,
+                  'tipo' => $value3->tipo
+                );
+                  // echo "R:".$value4->texto." <br> ";
+              }
+              var_dump($radiotemptabla);
+              unset($radiotemptabla);
+            //  $tempfila[]= array('pregunta' => , );
             }else {
               if($value3->tipo=="numero")
               {
-                echo "numero <br>";
+                //echo "numero <br>";
               }
             }
           }
+          echo "$tamanocolumans <br>";
+
         }else {
           if($value2->tipo=="radio"){
             $radiotemp;
