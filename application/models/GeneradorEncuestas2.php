@@ -233,7 +233,7 @@ public function preguntaradioRTABLA($preguntas,$respuestas,$tabla_opciones_valor
 */
   $datos='
   <div class="textopreguntas">'.$preguntas.'</div>
-  <table id="tabla'.$posGraficos.'"  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>
+  <table hidden id="tabla'.$posGraficos.'"  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>
   <th></th>
   ';
   for($i=0;$i<count($respuestas);$i++)
