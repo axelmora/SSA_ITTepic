@@ -337,4 +337,15 @@ class Panel_administracion extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
+	public function editor_encuesta()
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			//$nuevoencabezado = $this->input->post('encabezado');
+			//$this->Plantilla->actualizarEncabezado($nuevoencabezado);
+			$datos["FORMATO_ENCUESTA"]=(file_get_contents('file/json/seguimiento1.json'));
+			$this->load->view('administracion/vpanel_editor_encuesta',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
 }
