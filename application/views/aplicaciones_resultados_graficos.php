@@ -178,8 +178,8 @@ var graficogenerado=  Highcharts.chart(''+divid, {
        },
        tooltip: {
            formatter: function () {
-               return '<b>' + this.series.name + '</b><br/>' +
-                   this.point.y + ' ' + this.point.name.toLowerCase();
+               return '<center><b>' + this.series.name + '</b></center><br/> Cantidad:' +
+                   this.point.y + '<br/>' + this.point.name.toLowerCase();
            }
        }
    });
