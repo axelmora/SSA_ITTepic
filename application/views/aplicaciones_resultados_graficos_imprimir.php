@@ -108,7 +108,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 window.onfocus=function(){ window.close();}
 var arreglo;
 $( document ).ready(function() {
-
   arreglo=  $("[id^=tabla]");
   var graficos=  $("[id^=grafico]");
   //  var tabla1 = $("#"+arreglo[3].id).tableToJSON();

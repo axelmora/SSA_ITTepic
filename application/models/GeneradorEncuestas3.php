@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class GeneradorEncuestas2 extends CI_Model {
+class GeneradorEncuestas3 extends CI_Model {
   function __construct() {
     parent::__construct();
   }
@@ -54,7 +54,7 @@ class GeneradorEncuestas2 extends CI_Model {
           if($value2->tipo=="tabla")
           {
             $temp="";
-            $encuestaRetro.=$this->GeneradorEncuestas2->preguntatitulo($value2->pregunta);
+            $encuestaRetro.=$this->GeneradorEncuestas3->preguntatitulo($value2->pregunta);
             $tabla_pregunta;
             foreach ($value2->subpreguntas as $key => $value3) {
               if($value3->tipo=="radio")
@@ -65,42 +65,39 @@ class GeneradorEncuestas2 extends CI_Model {
                   $tabla_opciones[]=$value4->texto;
                   $tabla_opciones_valor[]=$value4->valor;
                 }
-                $temp.=$this->GeneradorEncuestas2->preguntaradioR($value3->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
+                $temp.=$this->GeneradorEncuestas3->preguntaradioR($value3->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
                 unset($tabla_opciones);
                 $pos++;
               }
               else {
                 if ($value3->tipo=="numero") {
                   $datos_tabla;
-                  $temp.=$this->GeneradorEncuestas2->preguntatitulo($value3->pregunta);
+                  $temp.=$this->GeneradorEncuestas3->preguntatitulo($value3->pregunta);
                   $datos_tabla[0]="CANTIDAD";
                   $temp.='<table id="tabla'.$posGraficos.'"  style="margin-bottom:0px;" align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
                   $temp.="<th>".$datos_tabla[0]."</th></tr></thead><tbody>";
-                  $temp.=$this->GeneradorEncuestas2->generarFilas2($responses,$pos,$datos_tabla,$totalAlumnosContestados);
+                  $temp.=$this->GeneradorEncuestas3->generarFilas2($responses,$pos,$datos_tabla,$totalAlumnosContestados);
                   $temp.="</tbody></table>";
                   unset($datos_tabla) ;
-                  $temp.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
-                  $posGraficos++;
                   $pos++;
                 }else {
                   if($value3->tipo=="numeroespsificar")
                   {
-                    $temp.=$this->GeneradorEncuestas2->preguntatitulo($value3->pregunta);
+                    $temp.=$this->GeneradorEncuestas3->preguntatitulo($value3->pregunta);
                     $datos_tabla[0]="DESCRIPCION";
                     $datos_tabla[1]="CANTIDAD";
                     $Temppos=0;
                     for ($i=0; $i < $totalAlumnosContestados; $i++) {
                       $Temppos=$pos;
-                      $a=$this->GeneradorEncuestas2->generarFilas3($responses,$Temppos,$datos_tabla,$totalAlumnosContestados,$i);
+                      $a=$this->GeneradorEncuestas3->generarFilas3($responses,$Temppos,$datos_tabla,$totalAlumnosContestados,$i);
                       $Temppos++;
-                      $b=$this->GeneradorEncuestas2->generarFilas3($responses,$Temppos,$datos_tabla,$totalAlumnosContestados,$i);
+                      $b=$this->GeneradorEncuestas3->generarFilas3($responses,$Temppos,$datos_tabla,$totalAlumnosContestados,$i);
                       if($a!="" && $b!=0){
                         $temp.='<table id="tabla'.$posGraficos.'"  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
                         $temp.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr><tr>";
                         $temp.="<td>".$a."</td>";
                         $temp.="<td>".$b."</td></tr>";
                         $temp.="</table>";
-
                       }else {
                         if($a!="" && $b>0){
                           $temp.='<table id="tabla'.$posGraficos.'"   align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
@@ -108,7 +105,6 @@ class GeneradorEncuestas2 extends CI_Model {
                           $temp.="<td>NO SE ESPECIFICO</td>";
                           $temp.="<td>".$b."</td></tr>";
                           $temp.="</table>";
-
                         }
                       }
                     }
@@ -120,9 +116,8 @@ class GeneradorEncuestas2 extends CI_Model {
               }
               //  $pos++;
             }
-            $encuestaRetro.=$this->GeneradorEncuestas2->card($temp);
-
-      //      $encuestaRetro.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
+            $encuestaRetro.=$this->GeneradorEncuestas3->card($temp);
+      //      $encuestaRetro.=$this->GeneradorEncuestas3->generadorGraficos($posGraficos);
           }else {
             if($value2->tipo=="radio"){
               /* $tabla_opciones;
@@ -131,9 +126,9 @@ class GeneradorEncuestas2 extends CI_Model {
               $tabla_opciones[]=$value3->texto;
               $tabla_opciones_valor[]=$value3->valor;
             }
-            $encuestaRetro.=$this->GeneradorEncuestas2->preguntaradioR($value2->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
+            $encuestaRetro.=$this->GeneradorEncuestas3->preguntaradioR($value2->pregunta,$tabla_opciones,$tabla_opciones_valor,$responses,$pos);
             unset($tabla_opciones) ; */
-            $encuestaRetro.="<hr>".$this->GeneradorEncuestas2->preguntatitulo($value2->pregunta);
+            $encuestaRetro.="<hr>".$this->GeneradorEncuestas3->preguntatitulo($value2->pregunta);
             $encuestaRetro.='<table style="display:none" id="tabla'.$posGraficos.'"  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr><th></th>';
             $datos_tabla;
             foreach ($value2->respuesta as $key => $value3) {
@@ -141,15 +136,15 @@ class GeneradorEncuestas2 extends CI_Model {
               $encuestaRetro.="<th>".$value3->texto."</th>";
             }
             $encuestaRetro.='</tr></thead>';
-            $encuestaRetro.=$this->GeneradorEncuestas2->generarFilas($responses,$pos,$datos_tabla,$value2->pregunta);
+            $encuestaRetro.=$this->GeneradorEncuestas3->generarFilas($responses,$pos,$datos_tabla,$value2->pregunta);
             $encuestaRetro.="</table>";
-            $encuestaRetro.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
+            $encuestaRetro.=$this->GeneradorEncuestas3->generadorGraficos($posGraficos);
             unset($datos_tabla) ;
             $pos++;
           }else {
             if($value2->tipo=="seleccion"){
               // echo "POS $pos SELECION $value2->pregunta<BR>";
-              $encuestaRetro.=$this->GeneradorEncuestas2->preguntatitulo($value2->pregunta);
+              $encuestaRetro.=$this->GeneradorEncuestas3->preguntatitulo($value2->pregunta);
               $encuestaRetro.='<table id="tabla'.$posGraficos.'"  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr><th></th>';
               $datos_tabla;
               foreach ($value2->datos as $key => $value3) {
@@ -157,17 +152,17 @@ class GeneradorEncuestas2 extends CI_Model {
                 $encuestaRetro.="<th>".$value3->nombre."</th>";
               }
               $encuestaRetro.='</thead></tr>';
-              $encuestaRetro.=$this->GeneradorEncuestas2->generarFilas($responses,$pos,$datos_tabla,$value3->nombre);
+              $encuestaRetro.=$this->GeneradorEncuestas3->generarFilas($responses,$pos,$datos_tabla,$value3->nombre);
               $encuestaRetro.='';
               $encuestaRetro.="</table>";
               unset($datos_tabla) ;
-              $encuestaRetro.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
+              $encuestaRetro.=$this->GeneradorEncuestas3->generadorGraficos($posGraficos);
               $pos++;
             }else {
               if($value2->tipo=="texto"){
-              //   $encuestaRetro.=$this->GeneradorEncuestas2->preguntatitulo($value2->pregunta);
+              //   $encuestaRetro.=$this->GeneradorEncuestas3->preguntatitulo($value2->pregunta);
               //   $encuestaRetro.="<div class='row'>";
-              // //  $encuestaRetro.=$this->GeneradorEncuestas2->obtenerTexto($responses,$pos);
+              // //  $encuestaRetro.=$this->GeneradorEncuestas3->obtenerTexto($responses,$pos);
               //   $encuestaRetro.="</div'>";
               //   // echo "POS $pos TEXTO $value2->pregunta<BR>";
                 $pos++;
@@ -213,7 +208,7 @@ public function preguntaradioR($preguntas,$respuestas,$tabla_opciones_valor,$res
     <i>'.$respuestas[$i].':</i>
     </div>
     <div class="col-md-2">
-    '.$this->GeneradorEncuestas2->contarResultado($responses,$pos,$tabla_opciones_valor[$i]).'
+    '.$this->GeneradorEncuestas3->contarResultado($responses,$pos,$tabla_opciones_valor[$i]).'
     </div>
     </div>
     </div>';
