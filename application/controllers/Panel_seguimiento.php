@@ -1320,4 +1320,10 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'');
 		}
 	}
+	public function test_encuesta()
+	{
+		$rutajson="file/json/seguimiento1.json";
+		$this->load->model('GeneradorEncuestas3');
+		$datos["EncuestaRetro"]=$this->GeneradorEncuestas3->generarEncu($rutajson);
+	}
 }

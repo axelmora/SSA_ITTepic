@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>SSA - Agregar usuario</title>
+  <title>SSA - ESTRUCTURA ENCUESTA</title>
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="description" content="">
@@ -29,17 +29,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="row" >
             <div class="col-lg-4">
               <h3><i class="fa fa-users" aria-hidden="true"></i> ESTRUCTURA ENCUESTA</h3>
-              <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/lista_usuarios" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+              <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/sistemainfo" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
               <div class="row" >
                 <div class="col-lg-12">
-                  <form id="formularioEditar" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/agrearUsuario" >
+                  <form id="formularioEditar" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/act_estructura_encuesta" >
                     <textarea style="width:100%;"  name="data1" id="data1" rows="12" cols="80"><?php echo "".$FORMATO_ENCUESTA; ?></textarea>
                     <textarea  hidden id="encuesta" name="encuesta" rows="8" cols="80"></textarea>
-                    <button type="submit" class="btn btn-primary">AGREGAR NUEVO USUARIO</button>
+                  <center>  <button type="submit" class="btn btn-primary"> ACTULIZAR ESTRUCTURA</button></center>
                   </form>
                 </div>
               </div>

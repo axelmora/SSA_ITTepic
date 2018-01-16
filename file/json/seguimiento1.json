@@ -85,6 +85,7 @@
     {
       "name": "pregunta2",
       "pregunta": "2.- ¿Qué unidad estas cursando actualmente?",
+      "titulo":"Elige una unidad",
       "tipo": "seleccion",
       "datos":[
         {
@@ -136,6 +137,7 @@
     {
       "name": "pregunta3",
       "pregunta": "3.- ¿Cuál fue la última unidad evaluada?",
+      "titulo":"Elige una unidad",
       "tipo": "seleccion",
       "datos":[
         {
@@ -342,7 +344,8 @@
     {
       "name": "pregunta12",
       "pregunta": "12.-Si lo deseas puedes expresar algún comentario relativo al tema",
-      "tipo": "texto"
+      "tipo": "texto",
+      "placeholder":"Si lo deseas puedes expresar algún comentario relativo al tema"
     }
   ]
 }
