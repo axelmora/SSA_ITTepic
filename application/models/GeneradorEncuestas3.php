@@ -39,18 +39,29 @@ class GeneradorEncuestas3 extends CI_Model {
                 // echo "R:".$value4->texto." <br> ";
               }
               //  var_dump($radiotemptabla);
-              $filatemp= array('opciones' => $radiotemptabla,'pregunta' =>$value3->pregunta);
+              $filatemp= array('opciones' => $radiotemptabla,'pregunta' =>$value3->pregunta,'tipo'=>"radio");
               unset($radiotemptabla);
               //  var_dump($filatemp);
               //  $tempfila[]= array('pregunta' => , );
             }else {
               if($value3->tipo=="numero")
               {
+                $texttemptabla[]= array(
+                  'tipo' => "number",
+                  'name' => $value3->name
+                );
                 //  $filatemp= array('pregunta' =>':3');
+              }else {
+                if($value3->tipo=="numeroespsificar")
+                {
+                  echo "DOBLE :3";
+                }
               }
+              $filatemp= array('opciones' => $texttemptabla,'pregunta' =>$value3->pregunta,'tipo'=>"text");
+              unset($texttemptabla);
             }
             if($filatemp){
-                $filas[]=$filatemp;
+              $filas[]=$filatemp;
             }
           }
           //  var_dump($filas);
@@ -232,26 +243,52 @@ class GeneradorEncuestas3 extends CI_Model {
   }
   public function generarFilasTabla($filaentrada,$tamano)
   {
-
     $datos="";
     for ($i=0; $i < count($filaentrada); $i++) {
-      $datos.='<tr><td>'.$filaentrada[$i]["pregunta"].'</td>';
-      $post=1;
-      foreach ($filaentrada[$i]["opciones"] as $key => $value) {
-        $datos.='
-        <td>
-        <div class="form-check abc-radio">
-        <input class="form-check-input" type="radio" name="'.$value["name"].'" id="'.$value["name"].'_'.($post).'" value="'.$value["valor"].'"  required>
-        <label class="form-check-label radioTabla" for="'.$value["name"].'_'.($post).'"
-        </label>
-        </div>
-        </td>
-        ';
-        $post++;
+      if($filaentrada[$i]["tipo"]=="radio"){
+        $datos.='<tr><td>'.$filaentrada[$i]["pregunta"].'</td>';
+        $post=1;
+        foreach ($filaentrada[$i]["opciones"] as $key => $value) {
+          $datos.='
+          <td>
+          <div class="form-check abc-radio">
+          <input class="form-check-input" type="radio" name="'.$value["name"].'" id="'.$value["name"].'_'.($post).'" value="'.$value["valor"].'"  required>
+          <label class="form-check-label radioTabla" for="'.$value["name"].'_'.($post).'"
+          </label>
+          </div>
+          </td>
+          ';
+          $post++;
+        }
+        $post=1;
+        $datos.='</tr>';
+      }else {
+        if($filaentrada[$i]["tipo"]=="text"){
+          $datos.='<tr><td>'.$filaentrada[$i]["pregunta"].'</td>';
+          $post=1;
+          foreach ($filaentrada[$i]["opciones"] as $key => $value) {
+            $datos.='
+            <td colspan="2">
+            <div class="row">
+            <div class="col-md-2">
+            <label  class="col-form-label ">(No)</label>
+            </div>
+            <div class="col-md-10">
+            <span class="input-group col-md-12">
+            <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000" value="0" required name="pregunta10_5"/>
+            </span>
+            </div>
+            </div>
+            </td>
+            ';
+            $post++;
+          }
+          $post=1;
+          $datos.='</tr>';
+        }
       }
-      $post=1;
-      $datos.='</tr>';
     }
+    unset($filaentrada);
     return $datos;
   }
 }
