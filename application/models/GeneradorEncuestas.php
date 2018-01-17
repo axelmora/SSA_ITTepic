@@ -163,7 +163,7 @@ class GeneradorEncuestas extends CI_Model {
                 $encuestaRetro.=$this->GeneradorEncuestas->preguntatitulo($value2->pregunta);
                 $encuestaRetro.="<div class='row'>";
                 $encuestaRetro.=$this->GeneradorEncuestas->obtenerTexto($responses,$pos);
-                $encuestaRetro.="</div'>";
+                $encuestaRetro.="</div> <br>";
                 // echo "POS $pos TEXTO $value2->pregunta<BR>";
                 $pos++;
               }
