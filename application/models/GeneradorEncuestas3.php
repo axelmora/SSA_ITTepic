@@ -19,6 +19,7 @@ class GeneradorEncuestas3 extends CI_Model {
           $tempfila;
           $filas;
           $filatemp=false;
+          $texttemptabla=false;
           foreach ($value2->subpreguntas as $key => $value3) {
             //echo "__".$value3->pregunta."   ".$value3->name."  <br>  ";
             if($value3->tipo=="radio")
@@ -44,17 +45,26 @@ class GeneradorEncuestas3 extends CI_Model {
               //  var_dump($filatemp);
               //  $tempfila[]= array('pregunta' => , );
             }else {
+              $tipotam="";
               if($value3->tipo=="numero")
               {
+                $tipotam="individual";
                 $texttemptabla[]= array(
                   'tipo' => "number",
-                  'name' => $value3->name
+                  'name' => $value3->name,
+                  'tipotam' => $tipotam
                 );
                 //  $filatemp= array('pregunta' =>':3');
               }else {
                 if($value3->tipo=="numeroespsificar")
                 {
-                  echo "DOBLE :3";
+                  //  echo "DOBLE :3";
+                  $tipotam="multiple";
+                  $texttemptabla[]= array(
+                    'tipo' => "number",
+                    'name' => $value3->name,
+                    'tipotam' => $tipotam
+                  );
                 }
               }
               $filatemp= array('opciones' => $texttemptabla,'pregunta' =>$value3->pregunta,'tipo'=>"text");
@@ -266,21 +276,41 @@ class GeneradorEncuestas3 extends CI_Model {
         if($filaentrada[$i]["tipo"]=="text"){
           $datos.='<tr><td>'.$filaentrada[$i]["pregunta"].'</td>';
           $post=1;
-          foreach ($filaentrada[$i]["opciones"] as $key => $value) {
-            $datos.='
-            <td colspan="2">
-            <div class="row">
-            <div class="col-md-2">
-            <label  class="col-form-label ">(No)</label>
-            </div>
-            <div class="col-md-10">
-            <span class="input-group col-md-12">
-            <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000" value="0" required name="pregunta10_5"/>
-            </span>
-            </div>
-            </div>
-            </td>
-            ';
+          foreach ($filaentrada[$i]["opciones"] as $key => $caro) {
+            if($caro["tipotam"]=="individual"){
+              $datos.='
+              <td colspan="2">
+              <div class="row">
+              <div class="col-md-2">
+              <label  class="col-form-label ">(No)</label>
+              </div>
+              <div class="col-md-10">
+              <span class="input-group col-md-12">
+              <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000" value="0" required name="pregunta10_5"/>
+              </span>
+              </div>
+              </div>
+              </td>
+              ';
+            }else {
+              $datos.='
+              <td>
+                <input type="text" class="form-control" placeholder="Especifique..." value=" " name="pregunta10_6" />
+              </td>
+              <td>
+                <div class="row">
+                  <div class="col-md-2">
+                    <label  class="col-form-label">(No) </label>
+                  </div>
+                  <div class="col-md-10">
+                    <span class="input-group ">
+                      <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_7"/>
+                    </span>
+                  </div>
+                </div>
+              </td>
+              ';
+            }
             $post++;
           }
           $post=1;
