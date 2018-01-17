@@ -66,8 +66,6 @@ class GeneradorEncuestas3 extends CI_Model {
                       'tipotam' => $tipotam
                     );
                   }
-
-
                 }
               }
               $filatemp= array('opciones' => $texttemptabla,'pregunta' =>$value3->pregunta,'tipo'=>"text");
@@ -302,9 +300,9 @@ class GeneradorEncuestas3 extends CI_Model {
                 <td>
                   <input type="text" class="form-control" placeholder="Especifique..." value=" " name="pregunta10_6" />
                 </td>  ';
-
               }else {
                 $datos.='
+                  <td>
                   <div class="row">
                     <div class="col-md-2">
                       <label  class="col-form-label">(No) </label>
