@@ -25,7 +25,6 @@ class GeneradorEncuestas3 extends CI_Model {
             if($value3->tipo=="radio")
             {
               $radiotemptabla;
-
               //echo "RADIO ___".count($value3->respuesta)."<br>";
               if($tamanocolumans<count($value3->respuesta)){
                 $tamanocolumans=count($value3->respuesta);
@@ -286,7 +285,7 @@ class GeneradorEncuestas3 extends CI_Model {
               </div>
               <div class="col-md-10">
               <span class="input-group col-md-12">
-              <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000" value="0" required name="pregunta10_5"/>
+              <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000" value="0" required name="'.$caro["name"].'"/>
               </span>
               </div>
               </div>
