@@ -14,13 +14,17 @@ class GeneradorEncuestas3 extends CI_Model {
         if($value2->tipo=="tabla")
         {
           $datos.='  <p class="textopreguntas">'.$value2->pregunta.'</p>';
+          $datos.='<table class="table table-striped table-hover menus table-sm">';
           $tamanocolumans=0;
           $tempfila;
+          $filas;
+          $filatemp=false;
           foreach ($value2->subpreguntas as $key => $value3) {
             //echo "__".$value3->pregunta."   ".$value3->name."  <br>  ";
             if($value3->tipo=="radio")
             {
               $radiotemptabla;
+
               //echo "RADIO ___".count($value3->respuesta)."<br>";
               if($tamanocolumans<count($value3->respuesta)){
                 $tamanocolumans=count($value3->respuesta);
@@ -29,22 +33,40 @@ class GeneradorEncuestas3 extends CI_Model {
                 $radiotemptabla[]= array(
                   'texto' => $value4->texto,
                   'valor' => $value4->valor,
-                  'tipo' => $value3->tipo
+                  'tipo' => $value3->tipo,
+                  'name' => $value3->name
                 );
-                  // echo "R:".$value4->texto." <br> ";
+                // echo "R:".$value4->texto." <br> ";
               }
-              var_dump($radiotemptabla);
+              //  var_dump($radiotemptabla);
+              $filatemp= array('opciones' => $radiotemptabla,'pregunta' =>$value3->pregunta);
               unset($radiotemptabla);
-            //  $tempfila[]= array('pregunta' => , );
+              //  var_dump($filatemp);
+              //  $tempfila[]= array('pregunta' => , );
             }else {
               if($value3->tipo=="numero")
               {
-                //echo "numero <br>";
+                //  $filatemp= array('pregunta' =>':3');
               }
             }
+            if($filatemp){
+                $filas[]=$filatemp;
+            }
           }
-          echo "$tamanocolumans <br>";
-
+          //  var_dump($filas);
+          //  echo "$tamanocolumans <br>";
+          $tamencabezado=count($value2->encabezado);
+          $tempencabezado;
+          foreach ($value2->encabezado as $key => $valores) {
+            $tempencabezado[]=$valores->titulo;
+          }
+          $datos.=$this->GeneradorEncuestas3->generarEncabezadoEncuesta($tempencabezado);
+          $datos.=' <tbody>';
+          $datos.=$this->GeneradorEncuestas3->generarFilasTabla($filas,$tamencabezado);
+          $datos.='</tbody></table>';
+          unset($tempencabezado);
+          unset($filas);
+          unset($filatemp);
         }else {
           if($value2->tipo=="radio"){
             $radiotemp;
@@ -197,6 +219,39 @@ class GeneradorEncuestas3 extends CI_Model {
     </center>
     </div>
     ';
+    return $datos;
+  }
+  public function generarEncabezadoEncuesta($encabezado)
+  {
+    $datos='<thead><tr>';
+    for ($i=0; $i < count($encabezado); $i++) {
+      $datos.='  <td class="textoNegritas2">'.$encabezado[$i].'</td>';
+    }
+    $datos.='</tr></thead>';
+    return $datos;
+  }
+  public function generarFilasTabla($filaentrada,$tamano)
+  {
+
+    $datos="";
+    for ($i=0; $i < count($filaentrada); $i++) {
+      $datos.='<tr><td>'.$filaentrada[$i]["pregunta"].'</td>';
+      $post=1;
+      foreach ($filaentrada[$i]["opciones"] as $key => $value) {
+        $datos.='
+        <td>
+        <div class="form-check abc-radio">
+        <input class="form-check-input" type="radio" name="'.$value["name"].'" id="'.$value["name"].'_'.($post).'" value="'.$value["valor"].'"  required>
+        <label class="form-check-label radioTabla" for="'.$value["name"].'_'.($post).'"
+        </label>
+        </div>
+        </td>
+        ';
+        $post++;
+      }
+      $post=1;
+      $datos.='</tr>';
+    }
     return $datos;
   }
 }

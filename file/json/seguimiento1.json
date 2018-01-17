@@ -4,6 +4,17 @@
     {
       "tipo": "tabla",
       "pregunta": "1.- El profesor dio a conocer la Planeación del curso, indicando:",
+      "encabezado": {
+        "1": {
+          "titulo": " "
+        },
+        "2": {
+          "titulo": "Si"
+        },
+        "3": {
+          "titulo": "No"
+        }
+      },
       "subpreguntas": {
         "1": {
           "name": "pregunta1_1",
@@ -285,6 +296,14 @@
       "name": "pregunta10",
       "pregunta": "10.- De la siguiente lista seleccione y cuantifique las prácticas que ha realizado",
       "tipo": "tabla",
+      "encabezado": {
+        "1": {
+          "titulo": "Lista"
+        },
+        "2": {
+          "titulo": "Cantidad"
+        }
+      },
       "subpreguntas":[
         {
           "name": "pregunta10_1",
