@@ -247,7 +247,7 @@ class GeneradorEncuestas3 extends CI_Model {
   {
     $datos='<thead><tr>';
     for ($i=0; $i < count($encabezado); $i++) {
-      $datos.='  <td class="textoNegritas2">'.$encabezado[$i].'</td>';
+      $datos.='  <th class="textoNegritas2">'.$encabezado[$i].'</th>';
     }
     $datos.='</tr></thead>';
     return $datos;
