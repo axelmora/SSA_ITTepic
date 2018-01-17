@@ -36,7 +36,13 @@ class Seguimiento extends CI_Controller {
 				{
 					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($IDencuEnviar[0]);
 					$datos['encabezado'] = $this->Plantilla->cargarPlantillaID(1);
-					$this->load->view('encuesta/seguimientovi',$datos);
+					/* GENERADA MEDIANTE JSON */
+					$rutajson="file/json/seguimiento1.json";
+					$this->load->model('GeneradorEncuestas3');
+					$datos["EncuestaRetro"]=$this->GeneradorEncuestas3->generarEncu($rutajson);
+					/* GENERADA MEDIANTE JSON */
+					$this->load->view('encuesta/seguimientovi_generada',$datos);
+					//		$this->load->view('encuesta/seguimientovi',$datos);
 				}else {
 					redirect(base_url().'index.php/Seguimiento/completado');
 				}
@@ -183,7 +189,7 @@ class Seguimiento extends CI_Controller {
 								}
 							}
 						}
-					//	echo "$ID_ENCUESTAS";
+						//	echo "$ID_ENCUESTAS";
 						//$this->consolaLOG("ID ENCUESTAS: ".$ID_ENCUESTAS);
 						$DATOS_ALUMNOS = array(
 							'is_logued_in' => true,
