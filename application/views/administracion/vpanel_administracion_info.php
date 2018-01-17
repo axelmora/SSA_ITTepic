@@ -94,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</center>
 										</div>
 									</div>
-									<small id="emailHelp" class="form-text text-muted">Si el logo no aparece es necesario eliminar la cache del navegador.</small>
+									<small id="emailHelp" class="form-text text-muted">Si el logo no aparece sera necesario eliminar la cache del navegador.</small>
 								</form>
 								<hr>
 							</div>
