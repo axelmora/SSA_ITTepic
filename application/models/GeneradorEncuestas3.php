@@ -59,11 +59,15 @@ class GeneradorEncuestas3 extends CI_Model {
                 {
                   //  echo "DOBLE :3";
                   $tipotam="multiple";
-                  $texttemptabla[]= array(
-                    'tipo' => "number",
-                    'name' => $value3->name,
-                    'tipotam' => $tipotam
-                  );
+                  foreach ($value3->campos as $key => $caroli) {
+                    $texttemptabla[]= array(
+                      'tipo' => "number",
+                      'name' => $caroli->name,
+                      'tipotam' => $tipotam
+                    );
+                  }
+
+
                 }
               }
               $filatemp= array('opciones' => $texttemptabla,'pregunta' =>$value3->pregunta,'tipo'=>"text");
@@ -253,6 +257,7 @@ class GeneradorEncuestas3 extends CI_Model {
   public function generarFilasTabla($filaentrada,$tamano)
   {
     $datos="";
+    $posespesificar=0;
     for ($i=0; $i < count($filaentrada); $i++) {
       if($filaentrada[$i]["tipo"]=="radio"){
         $datos.='<tr><td>'.$filaentrada[$i]["pregunta"].'</td>';
@@ -292,23 +297,28 @@ class GeneradorEncuestas3 extends CI_Model {
               </td>
               ';
             }else {
-              $datos.='
-              <td>
-                <input type="text" class="form-control" placeholder="Especifique..." value=" " name="pregunta10_6" />
-              </td>
-              <td>
-                <div class="row">
-                  <div class="col-md-2">
-                    <label  class="col-form-label">(No) </label>
+              if($posespesificar==0){
+                $datos.='
+                <td>
+                  <input type="text" class="form-control" placeholder="Especifique..." value=" " name="pregunta10_6" />
+                </td>  ';
+
+              }else {
+                $datos.='
+                  <div class="row">
+                    <div class="col-md-2">
+                      <label  class="col-form-label">(No) </label>
+                    </div>
+                    <div class="col-md-10">
+                      <span class="input-group ">
+                        <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_7" />
+                      </span>
+                    </div>
                   </div>
-                  <div class="col-md-10">
-                    <span class="input-group ">
-                      <input type="number" class="form-control" placeholder="Cantidad" min="0" max="1000"  value="0"  required name="pregunta10_7"/>
-                    </span>
-                  </div>
-                </div>
-              </td>
-              ';
+                </td>
+                ';
+              }
+              $posespesificar++;
             }
             $post++;
           }

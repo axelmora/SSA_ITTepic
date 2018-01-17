@@ -336,10 +336,12 @@
           "tipo": "numeroespsificar",
           "campos": [
             {
-              "tipo": "texto"
+              "tipo": "texto",
+              "name": "pregunta10_6"
             },
             {
-              "tipo": "numero"
+              "tipo": "numero",
+              "name": "pregunta10_7"
             }
           ]
         }
