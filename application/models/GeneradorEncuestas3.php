@@ -61,7 +61,7 @@ class GeneradorEncuestas3 extends CI_Model {
             $tempencabezado[]=$valores->titulo;
           }
           $datos.=$this->GeneradorEncuestas3->generarEncabezadoEncuesta($tempencabezado);
-          $datos.=' <tbody>';
+          $datos.='<tbody>';
           $datos.=$this->GeneradorEncuestas3->generarFilasTabla($filas,$tamencabezado);
           $datos.='</tbody></table>';
           unset($tempencabezado);
