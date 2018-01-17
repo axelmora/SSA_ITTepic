@@ -14,7 +14,7 @@ class GeneradorEncuestas3 extends CI_Model {
         if($value2->tipo=="tabla")
         {
           $datos.='<p class="textopreguntas">'.$value2->pregunta.'</p>';
-          $datos.='<table class="table table-striped table-hover menus table-sm">';
+          $datos.='<table class="table table-striped table-hover table-sm menus">';
           $tamanocolumans=0;
           $tempfila;
           $filas;
