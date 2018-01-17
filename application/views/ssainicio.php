@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-12">
 			<a href="<?php echo base_url(); ?>Panel_seguimiento/aplicaciones" class="linkmenu">
-				<div class="card menus animenu caro">
+				<div class="card sombramenu animenu caro">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-lg-12">
@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-4">
 			<a href="<?php echo base_url(); ?>Panel_seguimiento/alumnos" class="linkmenu">
-				<div class="card menus animenu caro">
+				<div class="card sombramenu animenu caro">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-lg-12">
@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		<div class="col-lg-4">
 			<a href="<?php echo base_url(); ?>Panel_seguimiento/materias" class="linkmenu">
-				<div class="card menus animenu caro">
+				<div class="card sombramenu animenu caro">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-lg-12">
@@ -91,7 +91,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		<div class="col-lg-4">
 			<a href="<?php echo base_url(); ?>Panel_seguimiento/docentes" class="linkmenu">
-				<div class="card menus animenu caro">
+				<div class="card sombramenu animenu caro">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-lg-12">
@@ -112,7 +112,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-4">
 			<a href="<?php echo base_url(); ?>Panel_seguimiento/manual_usuario" class="linkmenu">
-				<div class="card menus animenu caro">
+				<div class="card sombramenu animenu caro">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-lg-12">
@@ -130,7 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		<div class="col-lg-4">
 			<a href="<?php echo base_url(); ?>Panel_seguimiento/gestion_del_curso" class="linkmenu">
-				<div class="card menus animenu caro">
+				<div class="card sombramenu animenu caro">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-lg-12">
@@ -148,7 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		<div class="col-lg-4">
 			<a href="<?php echo base_url(); ?>C_usuarios/logout" class="linkmenu">
-				<div class="card menus animenu caro">
+				<div class="card sombramenu animenu caro">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-lg-12">

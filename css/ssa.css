@@ -474,3 +474,8 @@ canvas {
   text-align: center;
   vertical-align: middle;
 }
+.sombramenu{
+  -webkit-box-shadow: 6px 7px 7px 0px rgba(0,0,0,0.24);
+-moz-box-shadow: 6px 7px 7px 0px rgba(0,0,0,0.24);
+box-shadow: 6px 7px 7px 0px rgba(0,0,0,0.24);
+}
