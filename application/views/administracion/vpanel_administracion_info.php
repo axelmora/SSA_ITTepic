@@ -67,11 +67,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 									</form>
 								</p>
-								<p>Información php  <a href="<?php echo base_url();?>panel_administracion/info_servidor" class="btn btn-naranja "><i class="fa fa-server" aria-hidden="true"></i>  PHP</a>
+								<p> <b> Información php:</b>  <a href="<?php echo base_url();?>panel_administracion/info_servidor" class="btn btn-naranja "><i class="fa fa-server" aria-hidden="true"></i>  PHP</a>
 								</p>
+								<hr>
+								<p><center><b>ENCUESTA ESTRUCTURA</b></center></p>
 								<p>  <a class="btn btn-naranja"  href="<?php echo base_url();?>panel_administracion/encabezado">EDITAR ENCABEZADO ENCUESTA</a>	 </p>
 								<p>  <a class="btn btn-naranja"  href="<?php echo base_url();?>panel_administracion/editor_encuesta">EDITAR ENCUESTA</a>	 </p>
-
+								<br>
+								<form method="post" action="<?php echo base_url();?>panel_administracion/subir_logo_tec" enctype="multipart/form-data">
+									<?php
+									if (isset($error_foto)) {
+											echo $error_foto;
+									}
+									?>
+									<div class="row">
+										<div class="col-md-8">
+											<div class="form-group">
+												<label for="exampleFormControlFile1">LOGO TECNOLOGICO</label>
+												<input type="file" name="logotec" class="form-control-file" id="logotec">
+												<button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> SUBIR LOGO TECNOLOGICO</button>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<center>
+												<img  class="img-fluid" src="<?php echo base_url(); ?>images/escudo_itt_grande.png" height="150" width="150">
+											</center>
+										</div>
+									</div>
+								</form>
+								<hr>
 							</div>
 						</div>
 					</div>

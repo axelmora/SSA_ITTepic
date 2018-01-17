@@ -348,4 +348,34 @@ class Panel_administracion extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
+	public function subir_logo_tec()
+	{
+		$path_to_file = './images/escudo_itt_grande.png';
+		if(unlink($path_to_file)) {
+			$config['upload_path'] = './images/';//this is the folder where the image is uploaded
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size'] = '10000';
+			$config['max_width']  = '10000';
+			$config['max_height']  = '10000';
+			$config['file_name'] = 'escudo_itt_grande.png';//rename file here
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+			if (!$this->upload->do_upload('logotec'))
+			{
+				$datos['produccion']= $this->Sistema->obtenerproduccion();
+				$datos["error_foto"]=$this->upload->display_errors();
+				$this->load->view('administracion/vpanel_administracion_info', $datos);
+			}
+			else
+			{
+				//   $data = array('upload_data' => $this->upload->data());
+				//   $this->load->view('upload_success', $data);
+				//   $file = $data['upload_data']['full_path'];
+				redirect(base_url().'index.php');
+			}
+		}
+		else {
+		redirect(base_url().'index.php');
+		}
+	}
 }
