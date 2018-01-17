@@ -93,6 +93,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <form role="form"  method="post" id="formularioencuestaprincipal" action="<?php echo base_url(); ?>index.php/Seguimiento/enviarEncuesta/<?php echo "".$idencuesta_seguimiento; ?>" >
           <div class="card-body menus ">
+            <!-- DATOS DEL ALUMNO -->
+            <div class="table-responsive">
+              <table class="table table-striped table-hover menus table-sm">
+                <tbody>
+                  <tr>
+                    <td class="textoNegritas" colspan="4" ><center> <i class="fa fa-info" aria-hidden="true"></i> DATOS GENERALES </center></td>
+                  </tr>
+                  <tr>
+                    <td class="textoNegritas" >Alumno:</td>
+                    <td><?php echo "".$this->session->userdata('nombre_alumno'); ?></td>
+                    <td class="textoNegritas" >Numero de Control:</td>
+                    <td><?php echo "".$this->session->userdata('numero_control'); ?></td>
+                  </tr>
+                  <tr>
+                    <td  class="textoNegritas"  colspan="1">Profesor:</td>
+                    <td  colspan="1"><?php echo "".$DOCENTE; ?> </td>
+                    <td  > <b>Grupo:</b> </td>
+                    <td  ><?php echo "".$IDGRUPO; ?> </td>
+                  </tr>
+                  <tr>
+                    <td class="textoNegritas" colspan="1" >Materia:</td>
+                    <td  colspan="2"><?php echo "".$MATERIA; ?> </td>
+                    <td  ><?php echo "".$IDM; ?> </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- DATOS DEL ALUMNO  FIN-->
             <?php echo "$EncuestaRetro"; ?>
           </div>
         </form>
