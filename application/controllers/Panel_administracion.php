@@ -375,7 +375,15 @@ class Panel_administracion extends CI_Controller {
 			}
 		}
 		else {
-		redirect(base_url().'index.php');
+			redirect(base_url().'index.php');
 		}
+	}
+	public function visualizar_encuesta()
+	{
+		$rutajson="file/json/seguimiento1.json";
+		$this->load->model('GeneradorEncuestas3');
+		$datos["EncuestaRetro"]=$this->GeneradorEncuestas3->generarEncu($rutajson);
+		$datos['encabezado'] = $this->Plantilla->cargarPlantillaID(1);
+		$this->load->view('encuesta/seguimientovi_generada_visualizar',$datos);
 	}
 }

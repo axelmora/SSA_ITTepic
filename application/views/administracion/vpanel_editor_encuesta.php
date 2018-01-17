@@ -30,6 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="col-lg-4">
               <h3><i class="fa fa-users" aria-hidden="true"></i> ESTRUCTURA ENCUESTA</h3>
               <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/sistemainfo" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+              <a class="btn btn-primary" href="<?php echo base_url(); ?>panel_administracion/visualizar_encuesta" role="button"><i class="fa fa-eye" aria-hidden="true"></i> VISUALIZAR ENCUESTA</a>
             </div>
           </div>
           <div class="card">
