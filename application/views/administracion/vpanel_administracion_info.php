@@ -83,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="row">
 										<div class="col-md-8">
 											<div class="form-group">
-												<label for="exampleFormControlFile1">LOGO TECNOLOGICO</label>
+												<label for="exampleFormControlFile1"><b>LOGO TECNOLOGICO</b></label>
 												<input type="file" name="logotec" class="form-control-file" id="logotec">
 												<button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> SUBIR LOGO TECNOLOGICO</button>
 											</div>
@@ -94,6 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</center>
 										</div>
 									</div>
+									<small id="emailHelp" class="form-text text-muted">Si el logo no aparece es necesario eliminar la cache del navegador.</small>
 								</form>
 								<hr>
 							</div>

@@ -371,7 +371,7 @@ class Panel_administracion extends CI_Controller {
 				//   $data = array('upload_data' => $this->upload->data());
 				//   $this->load->view('upload_success', $data);
 				//   $file = $data['upload_data']['full_path'];
-				redirect(base_url().'index.php');
+				redirect(base_url().'index.php/panel_administracion/sistemainfo');
 			}
 		}
 		else {
