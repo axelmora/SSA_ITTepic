@@ -81,6 +81,7 @@ class Panel_seguimiento extends CI_Controller {
 				// /*MEDIANTE LA TABLA MATERIAS CARRERA*/
 				// $materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
 				// foreach ($materias_del_periodo as $key => $value) {
+				// if($this->Materia->comprobarNoCarrera($this->session->userdata('departamento'),$value->materias_idmaterias)){ //materias no
 				// 	if($this->Materia->comprobar_materia_carrera($carrera,$value->materias_idmaterias)){
 				// 		$nombre_materia="";
 				// 		$nombre_docente="";
