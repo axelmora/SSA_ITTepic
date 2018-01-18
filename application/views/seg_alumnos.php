@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <tr>
                           <td><?php echo "".($valor->numero_control); ?></td>
                           <td><?php echo "".($valor->nombre); ?></td>
-                          <td><?php echo "".utf8_decode($valor->carrera); ?> </td>
+                          <td><?php echo "".($valor->carrera); ?> </td>
                         </tr>
                         <?php
                       }

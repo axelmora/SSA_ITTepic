@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-12">
-			<a href="<?php echo base_url(); ?>index.php/index.php/index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
+			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/aplicaciones" class="linkmenu">
 				<div class="card sombramenu animenu caro">
 					<div class="card-body">
 						<div class="row">

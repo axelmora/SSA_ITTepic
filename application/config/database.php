@@ -11,8 +11,11 @@ $db['default'] = array(
 	/*'username' => 'ssadb',
 	'password' => 'SeguimientoenelAula', */
 	/*Datos MariaDB*/
-	'username' => 'ssa',
-	'password' => 'ceaf5bc8757',
+	// 'username' => 'ssa',
+	// 'password' => 'ceaf5bc8757',
+	// 'database' => 'ssadb',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'ssadb',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

@@ -76,7 +76,7 @@ class Panel_seguimiento extends CI_Controller {
 			$this->SeguimientoModelo->crearAplicacion($datos);
 			$idaplicacion=$this->SeguimientoModelo->obtenerIdAplicacion();
 			//	var_dump($idaplicacion);
-			$exclusivos=$this->Departamentos->exclusivoCarrera($this->session->userdata('departamento'));
+			//$exclusivos=$this->Departamentos->exclusivoCarrera($this->session->userdata('departamento'));
 			//	if(!$exclusivos){
 			/*MEDIANTE LA TABLA MATERIAS CARRERA*/
 			$materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
