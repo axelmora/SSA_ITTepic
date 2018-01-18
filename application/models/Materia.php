@@ -98,4 +98,17 @@ class Materia extends CI_Model {
       return false;
     }
   }
+  public function comprobarNoCarrera($carerras,$idmaterias)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $query=$DB2->query("
+    select * from materias_carrera where materias_idmaterias='$idmaterias' and carreras_id_carrera in ($carerras);
+    ");
+    if ($query->num_rows() > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
