@@ -27,7 +27,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="card menus">
 				<div class="card-body">
 					<h3><i class="fa fa-question-circle" aria-hidden="true"></i> Mesa de ayuda</h3>	<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
-
 					<?php
 					if ($asuntos) { ?>
 						<table id="tablausuarios" class="table table-striped table-bordered table-sm dt-responsive" cellspacing="0" width="100%">

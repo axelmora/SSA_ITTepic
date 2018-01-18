@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="card sombrapanel">
 					<div class="card-body">
 						<center><h4><i class="fa fa-graduation-cap" aria-hidden="true"></i> Manual de tecnico</h4><a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
-</center>
+						</center>
 					</div>
 				</div>
 			</div>
@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</center>
 		</div>
 	</div>
-		<?php $this->load->view('include/manual_usuario'); ?>
+	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
 </body>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>

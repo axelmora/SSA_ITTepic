@@ -386,4 +386,31 @@ class Panel_administracion extends CI_Controller {
 		$datos['encabezado'] = $this->Plantilla->cargarPlantillaID(1);
 		$this->load->view('encuesta/seguimientovi_generada_visualizar',$datos);
 	}
+	public function subir_manual()
+	{
+		$path_to_file = './file/manual/Manual_Usuario_SSA.pdf';
+		if(unlink($path_to_file)) {
+			$config['upload_path'] = './file/manual/';//this is the folder where the image is uploaded
+			$config['allowed_types'] = 'pdf';
+			$config['max_size'] = '10000';
+			$config['max_width']  = '10000';
+			$config['max_height']  = '10000';
+			$config['file_name'] = 'Manual_Usuario_SSA.pdf';//rename file here
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+			if (!$this->upload->do_upload('manual'))
+			{
+				$datos['produccion']= $this->Sistema->obtenerproduccion();
+				$datos["error_manual"]=$this->upload->display_errors();
+				$this->load->view('administracion/vpanel_administracion_info', $datos);
+			}
+			else
+			{
+				//   $data = array('upload_data' => $this->upload->data());
+				//   $this->load->view('upload_success', $data);
+				//   $file = $data['upload_data']['full_path'];
+				redirect(base_url().'index.php/panel_administracion/sistemainfo');
+			}
+		}
+	}
 }

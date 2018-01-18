@@ -71,10 +71,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</p>
 								<hr>
 								<p><center><b>ENCUESTA ESTRUCTURA</b></center></p>
-								<p>  <a class="btn btn-naranja"  href="<?php echo base_url();?>panel_administracion/encabezado">EDITAR ENCABEZADO ENCUESTA</a>	 </p>
-								<p>  <a class="btn btn-naranja"  href="<?php echo base_url();?>panel_administracion/editor_encuesta">EDITAR ENCUESTA</a>	 </p>
+								<p>  <a class="btn btn-naranja"  href="<?php echo base_url();?>index.php/panel_administracion/encabezado">EDITAR ENCABEZADO ENCUESTA</a>	 </p>
+								<p>  <a class="btn btn-naranja"  href="<?php echo base_url();?>index.php/panel_administracion/editor_encuesta">EDITAR ENCUESTA</a>	 </p>
 								<br>
-								<form method="post" action="<?php echo base_url();?>panel_administracion/subir_logo_tec" enctype="multipart/form-data">
+								<form method="post" action="<?php echo base_url();?>index.php/panel_administracion/subir_logo_tec" enctype="multipart/form-data">
 									<?php
 									if (isset($error_foto)) {
 											echo $error_foto;
@@ -95,6 +95,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 									</div>
 									<small id="emailHelp" class="form-text text-muted">Si el logo no aparece sera necesario eliminar la cache del navegador.</small>
+								</form>
+								<br>
+								<form method="post" action="<?php echo base_url();?>index.php/panel_administracion/subir_manual" enctype="multipart/form-data">
+									<?php
+									if (isset($error_manual)) {
+											echo $error_manual;
+									}
+									?>
+									<div class="row">
+										<div class="col-md-8">
+											<div class="form-group">
+												<label for="exampleFormControlFile1"><b>MANUALES</b></label>
+												<input type="file" name="manual" class="form-control-file" id="manual">
+												<button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> SUBIR MANUAL</button>
+											</div>
+										</div>
+										<div class="col-md-4">
+										</div>
+									</div>
 								</form>
 								<hr>
 							</div>

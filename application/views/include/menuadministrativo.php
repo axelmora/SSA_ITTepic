@@ -16,17 +16,17 @@
     <img class="img-fluid"  src="<?php echo base_url(); ?>images/logochico.png" alt="Instituto Tecnológico de Tepic" />
   </nav>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" style="font-size:30px; color:#FF8000;" href="<?php echo base_url(); ?>Panel_seguimiento/"> SSA</a>
+    <a class="navbar-brand" style="font-size:30px; color:#FF8000;" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/"> SSA</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url(); ?>index.php"><i class="fa fa-home" aria-hidden="true"></i> INICO <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?php echo base_url(); ?>index.php/index.php"><i class="fa fa-home" aria-hidden="true"></i> INICO <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo base_url(); ?>Panel_Administrativo/reportes"><i class="icon-clipboard" aria-hidden="true"></i>  REPORTES POR DEPARTAMENTO ACADEMICO</a>
+          <a class="nav-link" href="<?php echo base_url(); ?>index.php/Panel_Administrativo/reportes"><i class="icon-clipboard" aria-hidden="true"></i>  REPORTES POR DEPARTAMENTO ACADEMICO</a>
         </li>
       </ul>
       <ul class='navbar-nav'>
@@ -35,9 +35,9 @@
             <b><i class="fa fa-user-circle-o" aria-hidden="true"></i> <?php echo "".$this->session->userdata('username');?> </b>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="<?php echo base_url(); ?>C_usuarios/"><i class="fa fa-user" aria-hidden="true"></i> PERFIL</a>
+            <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/C_usuarios/"><i class="fa fa-user" aria-hidden="true"></i> PERFIL</a>
             <button class="dropdown-item" data-toggle="modal" data-target="#modalmanualdeusuario" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> MANUAL USUARIO</button>
-            <a class="dropdown-item" href="<?php echo base_url(); ?>C_usuarios/logout" ><i class="fa fa-sign-out" aria-hidden="true"></i> SALIR</a>
+            <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/C_usuarios/logout" ><i class="fa fa-sign-out" aria-hidden="true"></i> SALIR</a>
           </div>
         </li>
       </ul>
@@ -45,7 +45,7 @@
   </nav>
 </div>
 <!-- Modal Manual de usuario -->
-<script src="<?php echo base_url(); ?>js/pdfobject.js"></script>
+<script src="<?php echo base_url(); ?>index.php/js/pdfobject.js"></script>
 <div class="modal fade" id="modalmanualdeusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content h-100">
@@ -60,7 +60,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-window-close" aria-hidden="true"></i> CERRAR</button>
-        <a href="<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf" class="btn btn-primary" download> <i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a>
+        <a href="<?php echo base_url(); ?>index.php/file/manual/Manual_Usuario_SSA.pdf" class="btn btn-primary" download> <i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a>
       </div>
     </div>
   </div>

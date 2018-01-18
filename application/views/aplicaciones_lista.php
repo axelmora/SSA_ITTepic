@@ -91,12 +91,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
                                   </button>
                                   <div class="dropdown-menu">
-                                    <a href="<?php echo base_url(); ?>Panel_seguimiento/gestionarGrupo/<?php echo $idaplicacion."/".$valor->idencuesta_seguimiento; ?>"  class="dropdown-item" ><i class="fa fa-object-group" aria-hidden="true"></i> GESTIONAR</a>
+                                    <a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/gestionarGrupo/<?php echo $idaplicacion."/".$valor->idencuesta_seguimiento; ?>"  class="dropdown-item" ><i class="fa fa-object-group" aria-hidden="true"></i> GESTIONAR</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" target="_blank" href="<?php echo base_url(); ?>Panel_seguimiento/reporteIndividual/<?php echo $valor->idencuesta_seguimiento; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> REPORTE INDIVIDUAL</a>
-                                    <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/resultados/<?php echo $valor->idencuesta_seguimiento; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
+                                    <a class="dropdown-item" target="_blank" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/reporteIndividual/<?php echo $valor->idencuesta_seguimiento; ?>" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> REPORTE INDIVIDUAL</a>
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/resultados/<?php echo $valor->idencuesta_seguimiento; ?>"><i class="fa fa-area-chart" aria-hidden="true"></i> RESULTADOS</a>
                                     <!-- <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/retroalimentacionseguimiento/<?php echo $valor->idgrupos; ?>"><i class="fa fa-bar-chart" aria-hidden="true"></i> RESULTADOS GRAFICOS</a> -->
-                                    <a class="dropdown-item" href="<?php echo base_url(); ?>Panel_seguimiento/retroalimentacionseguimiento/<?php echo $valor->idencuesta_seguimiento; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
+                                    <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionseguimiento/<?php echo $valor->idencuesta_seguimiento; ?>"><i class="fa fa-commenting" aria-hidden="true"></i> RETROALIMENTACION</a>
                                     <!-- <div class="dropdown-divider"></div>
                                     <button type="button" class="dropdown-item " data-toggle="modal" data-target="#modalEliminar" onclick="eliminarEncuestaSeguimiento(<?php echo $valor->idgrupos; ?>)" ><i class="fa fa-trash text-danger" aria-hidden="true"></i> BORRAR ENCUESTA</button> -->
                                   </div>

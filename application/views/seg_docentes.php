@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <tr>
                           <td><?php echo "".utf8_decode($valor->rfc); ?></td>
                           <td><?php echo "".utf8_decode($valor->nombres); ?></td>
-                          <td><?php echo "". utf8_decode($valor->apellidos); ?></td>
+                          <td><?php echo "".utf8_decode($valor->apellidos); ?></td>
                         </tr>
                         <?php
                       }
