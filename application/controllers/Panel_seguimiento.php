@@ -167,6 +167,7 @@ class Panel_seguimiento extends CI_Controller {
 					}else {
 					}
 				}
+				/*-------------------------------------FIN METODO 2-------------------------------------------------------*/
 			}
 			else {
 				//  echo "EXCLUSIVAS";
