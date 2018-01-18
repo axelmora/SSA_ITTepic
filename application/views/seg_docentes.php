@@ -57,9 +57,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       foreach ($DOCENTES as $key => $valor) {
                         ?>
                         <tr>
-                          <td><?php echo "".utf8_decode($valor->rfc); ?></td>
-                          <td><?php echo "".utf8_decode($valor->nombres); ?></td>
-                          <td><?php echo "".utf8_decode($valor->apellidos); ?></td>
+                          <td><?php echo "".($valor->rfc); ?></td>
+                          <td><?php echo "".($valor->nombres); ?></td>
+                          <td><?php echo "".($valor->apellidos); ?></td>
                         </tr>
                         <?php
                       }
