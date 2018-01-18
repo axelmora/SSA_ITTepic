@@ -102,7 +102,7 @@ class Materia extends CI_Model {
   {
     $DB2 = $this->load->database('default', TRUE);
     $query=$DB2->query("
-    select * from materia_exclusiva where materias_idmaterias='$idmaterias' and departamento_academico_iddepartamento_academico=$depa);
+    select * from materia_exclusiva where materias_idmaterias='$idmaterias' and departamento_academico_iddepartamento_academico=$depa;
     ");
     if ($query->num_rows() > 0) {
       return false;
