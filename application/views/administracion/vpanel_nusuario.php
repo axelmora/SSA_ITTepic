@@ -45,7 +45,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       if(isset($error_mismo_usario)){
                         ?>
                         <div class="alert alert-danger" role="alert"> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-
                           <?php
                           echo "$error_mismo_usario";
                           ?>

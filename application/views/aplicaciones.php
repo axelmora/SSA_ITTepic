@@ -32,8 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                   <div class="col-lg-9">
                     <h3><i class="icon-clipboard" aria-hidden="true"></i>Aplicaciones de seguimiento en el aula de <?php  echo "".$this->session->userdata('departamentonombre');?></h3>
-                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>Panel_seguimiento/" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
-
+                    <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
                   </div>
                   <div class="col-lg-3">
                     <center>
