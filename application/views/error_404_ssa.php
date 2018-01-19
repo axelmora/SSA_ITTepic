@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>ERROR 404 Not Found</title>
+	<title>404 Not Found</title>
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<meta name="description" content="">
@@ -30,11 +30,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="clip"><div class="shadow"><span class="digit firstDigit"></span></div></div>
 					<div class="msg">UPs!<span class="triangle"></span></div>
 				</div>
-				<h2 class="h1">Lo siento, 404 Not Found</h2>
+				<h2 class="h1">Lo sentimos, 404 Not Found</h2><br>
+				<hr><br>
+				<h1 class="h1">¿Realizaras la encuesta?</h1>
+				<a href="<?php echo base_url(); ?>index.php/Seguimiento" class="btn btn-naranja hvr-pulse-grow  "><i class="fa fa-refresh" aria-hidden="true"></i> DA CLIC AQUI PARA REALIZAR LA ENCUESTA DE SEGUIMINETO EN EL AULA</a>
+				<br><br><br><hr><br>
+
 				<center>
 					<img  class="img-fluid" src="<?php echo base_url(); ?>images/escudo_itt_grande.png" height="150" width="150"> <br><br>
 					<a href="<?php echo base_url(); ?>index.php" class="btn btn-naranja hvr-pulse-grow "><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> VOLVER AL INICIO</a>
 				</center>
+
 			</div>
 		</div>
 	</div>

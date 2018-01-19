@@ -15,14 +15,14 @@ class C_Inicio extends CI_Controller {
 		}
 		if ($sistemaproduccion[0]->produccion==1) {
 			if ($this->session->userdata('tipo')=='1') {
-				redirect(base_url().'Panel_administracion/');
+				redirect(base_url().'index.php/Panel_administracion/');
 			}else {
 				if ($this->session->userdata('tipo')=='2') {
-					redirect(base_url().'Panel_seguimiento/');
+					redirect(base_url().'index.php/Panel_seguimiento/');
 				}
 				else {
 					if ($this->session->userdata('tipo')=='3') {
-						redirect(base_url().'Panel_Administrativo/');
+						redirect(base_url().'index.php/Panel_Administrativo/');
 					}else {
 						$this->load->view('inicio',$datos);
 					}
