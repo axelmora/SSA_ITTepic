@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                 </div>
                 <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
-                <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Elegir materias para ignorar." href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_elegir" role="button"><i class="fa fa-table" aria-hidden="true"></i> ELEGIR MATERIAS PARA IGNORAR.</a>
+                <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Elegir materias para ignorar." href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_elegir" role="button"><i class="fa fa-table" aria-hidden="true"></i> EXCLUIR MATERIA.</a>
                 <br>
                 <br>
                 <?php

@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="container">
     <div class="row">
       <div class="col-md-1"> <br><br><br>
-        <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver al menu" href="<?php echo base_url(); ?>panel_administracion/editor_encuesta" role="button">
+        <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver al menu" href="<?php echo base_url(); ?>index.php/panel_administracion/editor_encuesta" role="button">
           <i class="fa fa-undo" aria-hidden="true"></i>
         </a>
       </div>
