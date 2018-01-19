@@ -742,8 +742,8 @@ class Panel_seguimiento extends CI_Controller {
 						//	var_dump($datos["DATOSMATERIA"]);
 						if($datos["DATOSMATERIA"]){
 							foreach ($datos["DATOSMATERIA"] as $key => $value) {
-								$DOCENTE="". utf8_decode($value->nombre_docente);
-								$MATERIA="".$value->nombre_materia ;
+								$DOCENTE="".mb_convert_encoding($value->nombre_docente, 'Windows-1252');
+					      $MATERIA="".mb_convert_encoding($value->nombre_materia, 'Windows-1252');
 								$TXTGRUPO="".$value->grupos_idgrupos ;
 								$TXTIDMATERIA="".$value->idmateria ;
 							}
@@ -876,8 +876,8 @@ class Panel_seguimiento extends CI_Controller {
 						$TXTIDMATERIA="";
 						if(isset($datos["DATOSMATERIA"])){
 							foreach ($datos["DATOSMATERIA"] as $key => $value) {
-								$DOCENTE="".$value->nombre_docente;
-								$MATERIA="".$value->nombre_materia;
+								$DOCENTE="".mb_convert_encoding($value->nombre_docente, 'Windows-1252');
+					      $MATERIA="".mb_convert_encoding($value->nombre_materia, 'Windows-1252');
 								$TXTGRUPO="".$value->grupos_idgrupos;
 								$TXTIDMATERIA="".$value->idmateria;
 							}
@@ -1004,8 +1004,8 @@ class Panel_seguimiento extends CI_Controller {
 				$TXTIDMATERIA="";
 				if(isset($datos["DATOSMATERIA"])){
 					foreach ($datos["DATOSMATERIA"] as $key => $value) {
-						$DOCENTE="".utf8_decode($value->nombre_docente);
-						$MATERIA="".$value->nombre_materia ;
+						$DOCENTE="".mb_convert_encoding($value->nombre_docente, 'Windows-1252');
+			      $MATERIA="".mb_convert_encoding($value->nombre_materia, 'Windows-1252');
 						$TXTGRUPO="".$value->grupos_idgrupos ;
 						$TXTIDMATERIA="".$value->idmateria ;
 					}
