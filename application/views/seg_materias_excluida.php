@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                 </div>
                 <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
-                <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Elegir materias para ignorar." href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_elegir" role="button"><i class="fa fa-table" aria-hidden="true"></i>ELEGIR EXCLUIR MATERIA.</a>
+                <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Elegir materias para ignorar." href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_elegir" role="button"><i class="fa fa-ban" aria-hidden="true"></i> ELEGIR MATERIAS A EXCLUIR.</a>
                 <br>
                 <br>
                 <?php
@@ -78,6 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="card-body">
                       <center>
                         <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
+                        <h3>Sin materias excluidas.</h3>
                         <!-- <p>Actualmente no se cuentan con materias registradas en este departamento.</p>
                         <p> <h3>Por lo tanto la creación de encuestas de seguimiento en el aula serán automáticas.</h3> </p>
                         <p>Si elige materias para el departamento solo se crearan encuestas de seguimiento en el aula de las materias elegidas.</p> -->
