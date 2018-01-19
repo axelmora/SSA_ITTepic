@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </center>
                   </div>
                 </div>
-                <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
                 <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Elegir materias para ignorar." href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_elegir" role="button"><i class="fa fa-table" aria-hidden="true"></i>ELEGIR EXCLUIR MATERIA.</a>
                 <br>
                 <br>
@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <td><?php echo "".$valor->idmaterias; ?></td>
                           <td><?php echo "".mb_convert_encoding($valor->nombre_materia, 'Windows-1252'); ?></td>
                           <td><?php echo "".mb_convert_encoding($valor->carrera, 'Windows-1252') ?></td>
-                           <td><center><a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="REMOVER MATERIA" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_remover/<?php echo $valor->idmaterias; ?>" role="button"><i class="fa fa-trash" aria-hidden="true"></i> DEJAR DE EXCLUIR </a></center></td> 
+                           <td><center><a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="REMOVER MATERIA" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_remover/<?php echo $valor->idmaterias; ?>" role="button"><i class="fa fa-trash" aria-hidden="true"></i> DEJAR DE EXCLUIR </a></center></td>
                         </tr>
                         <?php
                       }
