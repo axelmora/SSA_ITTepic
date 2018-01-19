@@ -59,6 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <th><i class="fa fa-hashtag" aria-hidden="true"></i>  ELEGIR </th>
                           <th><i class="fa fa-hashtag" aria-hidden="true"></i>  CODGIO </th>
                           <th><i class="fa fa-bars" aria-hidden="true"></i>  NOMBRE MATERIA</th>
+                          <th><i class="fa fa-bars" aria-hidden="true"></i>  CARRERA</th>
 
                         </tr>
                       </thead>
@@ -69,7 +70,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <tr>
                             <td><?php echo "".$valor->idmaterias; ?></td>
                             <td><?php echo "".$valor->idmaterias; ?></td>
-                            <td><?php echo "".$valor->nombre_materia; ?></td>
+                            <td><?php echo "".mb_convert_encoding($valor->nombre_materia, 'Windows-1252'); ?></td>
+                            <td><?php echo "".mb_convert_encoding($valor->carrera, 'Windows-1252') ?></td>
                           </tr>
                           <?php
                         }
