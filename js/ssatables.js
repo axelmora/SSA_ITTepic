@@ -170,10 +170,11 @@ $(document).ready(function(){
     e.preventDefault();
   });
 
+
   var tablamaterias = $('#materias_sii').DataTable({
     responsive: true,
     "language": {
-      "url": urlsistema+"js/datatables/Alumnos.json"
+      "url": urlsistema+"js/datatables/materias.json"
     },
     "columnDefs": [
       {

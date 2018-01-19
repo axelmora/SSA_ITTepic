@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="col-lg-12">
                 <div class="row">
                   <div class="col-lg-10">
-                    <h4><i class="icon-clipboard" aria-hidden="true"></i>Materias del departamento de <?php echo "".$this->session->userdata('departamentonombre'); ?> </h4>
+                    <h4><i class="icon-clipboard" aria-hidden="true"></i>Materias excluidas del departamento de <?php echo "".$this->session->userdata('departamentonombre'); ?> </h4>
                   </div>
                   <div class="col-lg-2">
                     <center>

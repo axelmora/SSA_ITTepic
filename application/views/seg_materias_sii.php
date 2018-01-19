@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="col-lg-12">
                 <div class="row">
                   <div class="col-lg-10">
-                    <h4><i class="icon-clipboard" aria-hidden="true"></i>Materias del departamento de <?php echo "".$this->session->userdata('departamentonombre'); ?> </h4>
+                    <h4><i class="icon-clipboard" aria-hidden="true"></i>Seleccionar materias a excluir para el departamento de <?php echo "".$this->session->userdata('departamentonombre'); ?> </h4>
                   </div>
                   <div class="col-lg-2">
                     <center>
@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   if ($MATERIAS) {
                     ?>
                     <input type="text" hidden  value="" id="numero_control_alumnos" name="numero_control_alumnos" />
-                    <center> <button type="submit" class="btn btn-primary"s name="button"> <i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIAS ELEGIDAS </button> </center>
+                    <center> <button type="submit" class="btn btn-danger" name="button"> <i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR MATERIAS ELEGIDAS </button> </center>
                     <?php
                   }
                   if ($MATERIAS) {
@@ -60,7 +60,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <th><i class="fa fa-hashtag" aria-hidden="true"></i>  CODGIO </th>
                           <th><i class="fa fa-bars" aria-hidden="true"></i>  NOMBRE MATERIA</th>
                           <th><i class="fa fa-bars" aria-hidden="true"></i>  CARRERA</th>
-
                         </tr>
                       </thead>
                       <tbody>
