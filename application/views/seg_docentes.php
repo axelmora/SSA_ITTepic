@@ -58,8 +58,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         ?>
                         <tr>
                           <td><?php echo "".($valor->rfc); ?></td>
-                          <td><?php echo "".($valor->nombres); ?></td>
-                          <td><?php echo "".($valor->apellidos); ?></td>
+                          <td><?php echo "".mb_convert_encoding($valor->nombres, 'Windows-1252'); ?></td>
+                          <td><?php echo "".mb_convert_encoding($valor->apellidos, 'Windows-1252'); ?></td>
                         </tr>
                         <?php
                       }

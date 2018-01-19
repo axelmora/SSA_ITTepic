@@ -491,18 +491,18 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			$depaTEMP=$this->Departamentos->obtenerCarrerasDepartamento($this->session->userdata('departamento'));
-			// 			$carrera="";
-			// 			$poosi=0;
-			// 			foreach ($depaTEMP as $key => $value) {
-			// 			if($poosi<count($depaTEMP)-1){
-			// 			$carrera.="'".$value->carreras_id_carrera."',";
-			// 		}else {
-			// 		$carrera.="'".$value->carreras_id_carrera."'";
-			// 	}
-			// 	$poosi++;
-			// }
-			// $datos["MATERIAS"]=$this->Materia->cargarMateriasCarrera($carrera);
-			$datos["MATERIAS"]=$this->Materia->cargarMateriasExclusivaDepartamento($this->session->userdata('departamento'));
+			$carrera="";
+			$poosi=0;
+			foreach ($depaTEMP as $key => $value) {
+				if($poosi<count($depaTEMP)-1){
+					$carrera.="'".$value->carreras_id_carrera."',";
+				}else {
+					$carrera.="'".$value->carreras_id_carrera."'";
+				}
+				$poosi++;
+			}
+			$datos["MATERIAS"]=$this->Materia->cargarMateriasCarrera($carrera);
+			//$datos["MATERIAS"]=$this->Materia->cargarMateriasExclusivaDepartamento($this->session->userdata('departamento'));
 			$this->load->view('seg_materias',$datos);
 		}else {
 			redirect(base_url().'index.php');

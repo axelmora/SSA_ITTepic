@@ -84,8 +84,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 ?>
                                 <tr>
                                   <td class="centro_tabla"><?php echo "".$valor->idmateria; ?></td>
-                                  <td><?php echo "".$valor->nombre_materia; ?></td>
-                                  <td><?php echo "".utf8_decode($valor->nombre_docente); ?></td>
+                                  <td><?php echo "".mb_convert_encoding($valor->nombre_materia,'Windows-1252'); ?></td>
+                                  <td><?php echo "".mb_convert_encoding($valor->nombre_docente,'Windows-1252'); ?></td>
                                   <td>
                                     <center><span class="badge badge-pill badge-primary">  <?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></span></center>
                                   </td>
@@ -141,7 +141,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 ?>
                                 <tr>
                                   <td><?php echo "".$valor->rfc; ?></td>
-                                  <td><?php echo "".utf8_decode($valor->nombre_docente); ?></td>
+                                  <td><?php echo "".mb_convert_encoding($valor->nombre_docente,'Windows-1252'); ?></td>
                                   <td>
                                     <center>
                                       <center>

@@ -12,6 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <meta name="theme-color" content="#FFFFFF">
   <meta name="msapplication-navbutton-color" content="#FFFFFF">
   <meta name="apple-mobile-web-app-status-bar-style" content="white">
+
   <link href="<?php echo base_url(); ?>css/bootstrap.min.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/font-awesome.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/animate.css" type="text/css" rel="stylesheet" />
@@ -39,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                 </div>
                 <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
-                <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Elegir materias para el departamento." href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_elegir" role="button"><i class="fa fa-table" aria-hidden="true"></i> ELEGIR MATERIAS PARA EL DEPARTAMENTO.</a>
+                <a class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Elegir materias para ignorar." href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_elegir" role="button"><i class="fa fa-table" aria-hidden="true"></i> ELEGIR MATERIAS PARA IGNORAR.</a>
                 <br>
                 <br>
                 <?php
@@ -50,7 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <tr>
                         <th><i class="fa fa-hashtag" aria-hidden="true"></i>  CODGIO </th>
                         <th><i class="fa fa-bars" aria-hidden="true"></i>  NOMBRE MATERIA</th>
-                        <th><i class="fa fa-bars" aria-hidden="true"></i>  OPCIONES</th>
+                        <th><i class="fa fa-bars" aria-hidden="true"></i>  CARRERA</th>
+                        <!-- <th><i class="fa fa-bars" aria-hidden="true"></i>  OPCIONES</th> -->
                       </tr>
                     </thead>
                     <tbody>
@@ -59,9 +61,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         ?>
                         <tr>
                           <td><?php echo "".$valor->idmaterias; ?></td>
-                          <td><?php echo "".$valor->nombre_materia; ?></td>
-                          <td><center><a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="REMOVER MATERIA" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_remover/<?php echo $valor->idmaterias; ?>" role="button"><i class="fa fa-trash" aria-hidden="true"></i> REMOVER MATERIA DEL DEPARTAMENTO </a></center></td>
-
+                          <td><?php echo "".mb_convert_encoding($valor->nombre_materia, 'Windows-1252'); ?></td>
+                          <td><?php echo "".mb_convert_encoding($valor->carrera, 'Windows-1252') ?></td>
+                          <!-- <td><center><a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="REMOVER MATERIA" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/materias_remover/<?php echo $valor->idmaterias; ?>" role="button"><i class="fa fa-trash" aria-hidden="true"></i> REMOVER MATERIA DEL DEPARTAMENTO </a></center></td> -->
                         </tr>
                         <?php
                       }
@@ -76,10 +78,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="card-body">
                       <center>
                         <i class='fa fa-exclamation-circle tamanoiconos animated tada infinite' aria-hidden='true'></i> <br> <br>
-
-                        <p>Actualmente no se cuentan con materias registradas en este departamento.</p>
+                        <!-- <p>Actualmente no se cuentan con materias registradas en este departamento.</p>
                         <p> <h3>Por lo tanto la creación de encuestas de seguimiento en el aula serán automáticas.</h3> </p>
-                        <p>Si elige materias para el departamento solo se crearan encuestas de seguimiento en el aula de las materias elegidas.</p>
+                        <p>Si elige materias para el departamento solo se crearan encuestas de seguimiento en el aula de las materias elegidas.</p> -->
                       </center>
                     </div>
                   </div>

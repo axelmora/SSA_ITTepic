@@ -44,8 +44,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   $DOCENTE="";
                   $MATERIA="";
                   foreach ($DATOSMATERIA as $key => $value) {
-                    $DOCENTE="".$value->nombre_docente;
-                    $MATERIA="".$value->nombre_materia ;
+                    // $DOCENTE="".$value->nombre_docente;
+                    // $MATERIA="".$value->nombre_materia ;
+                    $DOCENTE="".mb_convert_encoding($value->nombre_docente, 'Windows-1252');
+                    $MATERIA="".mb_convert_encoding($value->nombre_materia, 'Windows-1252');
                   }
                   ?>
                   <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionlista/<?php echo "".$idcampo; ?>" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
@@ -64,7 +66,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="row">
                 <div class="col-lg-5 col-md-5">
                   <form method="post" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/guardaretroAlimentacion/<?php echo $idRetroAlimntacion; ?>">
-
                     <input type="number"name="id" value="<?php echo $id; ?>" hidden required >
                     <textarea name="retroalimentacion" required><?php echo "$retro"; ?> </textarea>
                     <br>
@@ -87,7 +88,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php
                       }
                       ?>
-
                     </center>
                   </form>
                 </div>

@@ -49,7 +49,12 @@ class Materia extends CI_Model {
   public function cargarMateriasCarrera($carreras_id_carrera)
   {
     $DB2 = $this->load->database('default', TRUE);
-    $query=$DB2->query("SELECT * FROM materias_carrera as mc ,materias as m WHERE mc.carreras_id_carrera IN ($carreras_id_carrera) and mc.materias_idmaterias = m.idmaterias;");
+    $query=$DB2->query("
+    SELECT * FROM materias_carrera as mc ,materias as m, carreras as ca
+     WHERE mc.carreras_id_carrera IN ($carreras_id_carrera) and mc.materias_idmaterias
+     = m.idmaterias and ca.id_carrera=mc.carreras_id_carrera;
+
+    ");
     if ($query->num_rows() > 0) {
       return $query->result();
     } else {

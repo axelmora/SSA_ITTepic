@@ -45,7 +45,7 @@
   </nav>
 </div>
 <!-- Modal Manual de usuario -->
-<script src="<?php echo base_url(); ?>index.php/js/pdfobject.js"></script>
+<script src="<?php echo base_url(); ?>js/pdfobject.js"></script>
 <div class="modal fade" id="modalmanualdeusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content h-100">

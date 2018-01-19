@@ -3,7 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
   <title>SSA-ALUMNOS</title>
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/tec.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -60,8 +62,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         ?>
                         <tr>
                           <td><?php echo "".($valor->numero_control); ?></td>
-                          <td><?php echo "".($valor->nombre); ?></td>
-                          <td><?php echo "".($valor->carrera); ?> </td>
+                          <!-- <td><?php echo "".$valor->nombre ?></td>
+                          <td><?php echo "".$valor->carrera; ?> </td> -->
+                          <td><?php echo "".mb_convert_encoding($valor->nombre, 'Windows-1252'); ?></td>
+                          <td><?php echo "".mb_convert_encoding($valor->carrera, 'Windows-1252'); ?> </td>
                         </tr>
                         <?php
                       }

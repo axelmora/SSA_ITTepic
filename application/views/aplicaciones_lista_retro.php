@@ -73,8 +73,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         }
                         ?>
                         <tr>
-                          <td><?php echo "".$valor->nombre_materia; ?></td>
-                          <td><?php echo "".utf8_decode($valor->nombre_docente); ?></td>
+                          <td><?php echo "".mb_convert_encoding($valor->nombre_materia, 'Windows-1252'); ?></td>
+                          <td><?php echo "".mb_convert_encoding($valor->nombre_docente, 'Windows-1252'); ?></td>
                           <td><?php echo "".$retro; ?></td>
                           <td>
                             <div class="btn-group btn-block">

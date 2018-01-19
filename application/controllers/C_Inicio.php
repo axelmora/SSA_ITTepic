@@ -31,7 +31,7 @@ class C_Inicio extends CI_Controller {
 		}
 		else {
 			if ($this->session->userdata('tipo')=='1') {
-				redirect(base_url().'panel_administracion/');
+				redirect(base_url().'index.php/panel_administracion/');
 			}else {
 				$datos["mensajesistema"]="
 				<div class='alert alert-danger sombrapaneles alertasistema animated bounceInLeft' role='alert'>

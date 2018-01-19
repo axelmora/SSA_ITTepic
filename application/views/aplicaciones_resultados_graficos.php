@@ -25,8 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   $MATERIA="";
   if(isset($DATOSMATERIA)){
     foreach ($DATOSMATERIA as $key => $value) {
-      $DOCENTE="".utf8_decode($value->nombre_docente);
-      $MATERIA="".$value->nombre_materia ;
+      $DOCENTE="".mb_convert_encoding($value->nombre_docente, 'Windows-1252');
+      $MATERIA="".mb_convert_encoding($value->nombre_materia, 'Windows-1252') ;
     }
   }else {
     $DOCENTE="ERROR";
