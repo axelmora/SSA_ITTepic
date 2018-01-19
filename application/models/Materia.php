@@ -67,7 +67,8 @@ class Materia extends CI_Model {
     $query=$DB2->query("
     SELECT * FROM materia_exclusiva as me ,materias as m, carreras as ca, materias_carrera as mc
      WHERE  mc.materias_idmaterias
-     = m.idmaterias and ca.id_carrera=mc.carreras_id_carrera and me.departamento_academico_iddepartamento_academico=$idepa;
+     = m.idmaterias and ca.id_carrera=mc.carreras_id_carrera and me.materias_idmaterias
+     = m.idmaterias and  me.departamento_academico_iddepartamento_academico=$idepa;
     ");
     if ($query->num_rows() > 0) {
       return $query->result();
