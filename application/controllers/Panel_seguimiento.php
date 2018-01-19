@@ -517,6 +517,15 @@ class Panel_seguimiento extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
+	public function materias_excluidas()
+	{
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$datos["MATERIAS"]=$this->Materia->cargarMateriasCarreraeXCLUIDAS($this->session->userdata('departamento'));
+			$this->load->view('seg_materias_excluida',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
 	public function asignar_materias()
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
