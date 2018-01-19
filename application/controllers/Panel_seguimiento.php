@@ -511,7 +511,18 @@ class Panel_seguimiento extends CI_Controller {
 	public function materias_elegir()
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-			$datos["MATERIAS"]=$this->Materia->cargarMateriasSII();
+			$depaTEMP=$this->Departamentos->obtenerCarrerasDepartamento($this->session->userdata('departamento'));
+			$carrera="";
+			$poosi=0;
+			foreach ($depaTEMP as $key => $value) {
+				if($poosi<count($depaTEMP)-1){
+					$carrera.="'".$value->carreras_id_carrera."',";
+				}else {
+					$carrera.="'".$value->carreras_id_carrera."'";
+				}
+				$poosi++;
+			}
+			$datos["MATERIAS"]=$this->Materia->cargarMateriasCarrera($carrera);
 			$this->load->view('seg_materias_sii',$datos);
 		}else {
 			redirect(base_url().'index.php');
