@@ -552,7 +552,7 @@ class Panel_seguimiento extends CI_Controller {
 					$this->Materia->agregarMateriaDepartamento($MateriaRelacion);
 				}
 			}
-			redirect(base_url().'Panel_seguimiento/materias');
+			redirect(base_url().'Panel_seguimiento/materias_excluidas');
 			//	$datos["MATERIAS"]=$this->Materia->cargarMateriasSII();
 			//	$this->load->view('seg_materias_sii',$datos);
 		}else {
@@ -562,9 +562,8 @@ class Panel_seguimiento extends CI_Controller {
 	public function materias_remover($materias)
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
-
 			$this->Materia->removerMateriaDepartamento($this->session->userdata('departamento'),$materias);
-			redirect(base_url().'Panel_seguimiento/materias');
+			redirect(base_url().'Panel_seguimiento/materias_excluidas');
 		}
 		else {
 			redirect(base_url().'index.php');
