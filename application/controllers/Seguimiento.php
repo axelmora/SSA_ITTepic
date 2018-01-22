@@ -109,7 +109,7 @@ class Seguimiento extends CI_Controller {
 				/*OBTENER PERIODO SII*/
 				$PERIODOACTUAL=$this->PeriodoModelo->obtenerPeriodoActual();
 				$PERIODOACTUAL=$PERIODOACTUAL[0]->idperiodos;
-			//	$PERIODOACTUAL="20101";
+				//$PERIODOACTUAL="20101";
 				/* VERIFICAR SI EXISTE APLICACION EL PERIODO Y DEPARTAMENTO*/
 				$APLICACIONVERIFICADA = $this->SeguimientoModelo->verificarAplicacion($PERIODOACTUAL,$IDDEPARTAMENTO);
 				$APLICACIONVERIFICADAexterna = $this->SeguimientoModelo->verificarAplicacionExterna($PERIODOACTUAL,$IDDEPARTAMENTO);
