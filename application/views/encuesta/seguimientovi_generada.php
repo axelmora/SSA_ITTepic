@@ -102,7 +102,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </tr>
                   <tr>
                     <td class="textoNegritas" >Alumno:</td>
-                    <td><?php echo "".$this->session->userdata('nombre_alumno'); ?></td>
+                    <td><?php echo "".mb_convert_encoding($this->session->userdata('nombre_alumno'), 'Windows-1252'); ?></td>
                     <td class="textoNegritas" >Numero de Control:</td>
                     <td><?php echo "".$this->session->userdata('numero_control'); ?></td>
                   </tr>
