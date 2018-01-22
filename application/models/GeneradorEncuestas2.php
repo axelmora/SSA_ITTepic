@@ -89,7 +89,7 @@ class GeneradorEncuestas2 extends CI_Model {
                   if($value3->tipo=="numeroespsificar")
                   {
                     $temp.=$this->GeneradorEncuestas2->preguntatitulo($value3->pregunta);
-                    $datos_tabla[0]="DESCRIPCION";
+                    $datos_tabla[0]="";
                     $datos_tabla[1]="CANTIDAD";
                     $Temppos=0;
                     for ($i=0; $i < $totalAlumnosContestados; $i++) {
@@ -98,23 +98,23 @@ class GeneradorEncuestas2 extends CI_Model {
                       $Temppos++;
                       $b=$this->GeneradorEncuestas2->generarFilas3($responses,$Temppos,$datos_tabla,$totalAlumnosContestados,$i);
                       if($a!="" && $b!=0){
-                        $temp.='<table id="tabla'.$posGraficos.'"  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
-                        $temp.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr><tr>";
+                        $temp.='<table  style="display:none" id="tabla'.$posGraficos.'"  align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
+                        $temp.="<th>".$a."</th><th>".$datos_tabla[1]."</th></tr><tr>";
                         $temp.="<td>".$a."</td>";
                         $temp.="<td>".$b."</td></tr>";
                         $temp.="</table>";
                       }else {
                         if($a!="" && $b>0){
-                          $temp.='<table id="tabla'.$posGraficos.'"   align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
-                          $temp.="<th>".$datos_tabla[0]."</th><th>".$datos_tabla[1]."</th></tr><tr>";
+                          $temp.='<table style="display:none" id="tabla'.$posGraficos.'"   align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
+                          $temp.="<th>NO SE ESPECIFICO</th><th>".$datos_tabla[1]."</th></tr><tr>";
                           $temp.="<td>NO SE ESPECIFICO</td>";
                           $temp.="<td>".$b."</td></tr>";
                           $temp.="</table>";
-
                         }
                       }
                     }
                     $pos=$Temppos+1;
+                    $temp.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
                     unset($datos_tabla);
                   }
                 }
