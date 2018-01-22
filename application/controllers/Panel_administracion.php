@@ -337,80 +337,137 @@ class Panel_administracion extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
-	public function editor_encuesta()
+	public function subir_logo_tec()
 	{
 		if ($this->session->userdata('tipo')=='1') {
-			//$nuevoencabezado = $this->input->post('encabezado');
-			//$this->Plantilla->actualizarEncabezado($nuevoencabezado);
-			$datos["FORMATO_ENCUESTA"]=(file_get_contents('file/json/seguimiento1.json'));
-			$this->load->view('administracion/vpanel_editor_encuesta',$datos);
+			$path_to_file = './images/escudo_itt_grande.png';
+			if(unlink($path_to_file)) {
+				$config['upload_path'] = './images/';//this is the folder where the image is uploaded
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size'] = '10000';
+				$config['max_width']  = '10000';
+				$config['max_height']  = '10000';
+				$config['file_name'] = 'escudo_itt_grande.png';//rename file here
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+				if (!$this->upload->do_upload('logotec'))
+				{
+					$datos['produccion']= $this->Sistema->obtenerproduccion();
+					$datos["error_foto"]=$this->upload->display_errors();
+					$this->load->view('administracion/vpanel_administracion_info', $datos);
+				}
+				else
+				{
+					//   $data = array('upload_data' => $this->upload->data());
+					//   $this->load->view('upload_success', $data);
+					//   $file = $data['upload_data']['full_path'];
+					redirect(base_url().'index.php/panel_administracion/sistemainfo');
+				}
+			}
+			else {
+				redirect(base_url().'index.php');
+			}
 		}else {
 			redirect(base_url().'index.php');
 		}
 	}
-	public function subir_logo_tec()
+
+	public function subir_manual()
 	{
-		$path_to_file = './images/escudo_itt_grande.png';
-		if(unlink($path_to_file)) {
-			$config['upload_path'] = './images/';//this is the folder where the image is uploaded
-			$config['allowed_types'] = 'gif|jpg|png';
-			$config['max_size'] = '10000';
-			$config['max_width']  = '10000';
-			$config['max_height']  = '10000';
-			$config['file_name'] = 'escudo_itt_grande.png';//rename file here
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if (!$this->upload->do_upload('logotec'))
-			{
-				$datos['produccion']= $this->Sistema->obtenerproduccion();
-				$datos["error_foto"]=$this->upload->display_errors();
-				$this->load->view('administracion/vpanel_administracion_info', $datos);
+		if ($this->session->userdata('tipo')=='1') {
+			$path_to_file = './file/manual/Manual_Usuario_SSA.pdf';
+			if(unlink($path_to_file)) {
+				$config['upload_path'] = './file/manual/';
+				$config['allowed_types'] = 'pdf';
+				$config['max_size'] = '10000';
+				$config['max_width']  = '10000';
+				$config['max_height']  = '10000';
+				$config['file_name'] = 'Manual_Usuario_SSA.pdf';
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+				if (!$this->upload->do_upload('manual'))
+				{
+					$datos['produccion']= $this->Sistema->obtenerproduccion();
+					$datos["error_manual"]=$this->upload->display_errors();
+					$this->load->view('administracion/vpanel_administracion_info', $datos);
+				}
+				else
+				{
+					redirect(base_url().'index.php/panel_administracion/sistemainfo');
+				}
 			}
-			else
-			{
-				//   $data = array('upload_data' => $this->upload->data());
-				//   $this->load->view('upload_success', $data);
-				//   $file = $data['upload_data']['full_path'];
-				redirect(base_url().'index.php/panel_administracion/sistemainfo');
-			}
-		}
-		else {
+		}else {
 			redirect(base_url().'index.php');
 		}
 	}
-	public function visualizar_encuesta()
-	{
-		$rutajson="file/json/seguimiento1.json";
-		$this->load->model('GeneradorEncuestas3');
-		$datos["EncuestaRetro"]=$this->GeneradorEncuestas3->generarEncu($rutajson);
-		$datos['encabezado'] = $this->Plantilla->cargarPlantillaID(1);
-		$this->load->view('encuesta/seguimientovi_generada_visualizar',$datos);
+	public function plantillas_seguimiento() {
+		if ($this->session->userdata('tipo')=='1') {
+			$datos["PLANTILLAS"]=$this->Plantilla->cargarPlantilla();
+			$this->load->view('administracion/vpanel_administracion_plantillas',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
-	public function subir_manual()
+	public function visualizar_encuesta($id)
 	{
-		$path_to_file = './file/manual/Manual_Usuario_SSA.pdf';
-		if(unlink($path_to_file)) {
-			$config['upload_path'] = './file/manual/';//this is the folder where the image is uploaded
-			$config['allowed_types'] = 'pdf';
-			$config['max_size'] = '10000';
-			$config['max_width']  = '10000';
-			$config['max_height']  = '10000';
-			$config['file_name'] = 'Manual_Usuario_SSA.pdf';//rename file here
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if (!$this->upload->do_upload('manual'))
-			{
-				$datos['produccion']= $this->Sistema->obtenerproduccion();
-				$datos["error_manual"]=$this->upload->display_errors();
-				$this->load->view('administracion/vpanel_administracion_info', $datos);
+		if ($this->session->userdata('tipo')=='1') {
+			$plantilla=$this->Plantilla->cargarPlantillaID($id);
+			$rutajson="";
+			foreach ($plantilla as $key => $value) {
+				$rutajson=$value->estructura;
 			}
-			else
-			{
-				//   $data = array('upload_data' => $this->upload->data());
-				//   $this->load->view('upload_success', $data);
-				//   $file = $data['upload_data']['full_path'];
-				redirect(base_url().'index.php/panel_administracion/sistemainfo');
+			$this->load->model('GeneradorEncuestas3');
+			$datos["EncuestaRetro"]=$this->GeneradorEncuestas3->generarEncu($rutajson);
+			$datos['encabezado'] = $this->Plantilla->cargarPlantillaID($id);
+			$datos['boton'] = "LISTA";
+			$this->load->view('encuesta/seguimientovi_generada_visualizar',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function nueva_plantilla()
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$this->load->view('administracion/vpanel_editor_encuesta_agregar');
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function visualizar_encuesta_edicion($id)
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$plantilla=$this->Plantilla->cargarPlantillaID($id);
+			$rutajson="";
+			foreach ($plantilla as $key => $value) {
+				$rutajson=$value->estructura;
+				$datos["IDPLANTILLA"]=$value->idplantilla_encuestas;
 			}
+			$this->load->model('GeneradorEncuestas3');
+			$datos["EncuestaRetro"]=$this->GeneradorEncuestas3->generarEncu($rutajson);
+			$datos['encabezado'] = $this->Plantilla->cargarPlantillaID($id);
+			$datos['boton'] = "";
+			$this->load->view('encuesta/seguimientovi_generada_visualizar',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function editor_encuesta($id)
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$plantilla=$this->Plantilla->cargarPlantillaID($id);
+			$rutajson="";
+			if ($plantilla) {
+				foreach ($plantilla as $key => $value) {
+					$rutajson=$value->estructura;
+					$datos["IDPLANTILLA"]=$value->idplantilla_encuestas;
+				}
+				$datos["FORMATO_ENCUESTA"]=(file_get_contents($rutajson));
+			}else {
+				$datos["FORMATO_ENCUESTA"]="ERROR";
+			}
+			$this->load->view('administracion/vpanel_editor_encuesta',$datos);
+		}else {
+			redirect(base_url().'index.php');
 		}
 	}
 }

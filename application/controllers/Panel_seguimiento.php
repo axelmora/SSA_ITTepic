@@ -165,41 +165,48 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function obtenerAlumnosSeguimiento($idseguimiento)
 	{
-		$grupo=$this->SeguimientoModelo->obtenerGrupoPorSeguimiento($idseguimiento);
-		$alumnos=$this->SeguimientoModelo->getAlumnosEncuesta($grupo[0]->idgrupos);
-		echo json_encode($alumnos);
-		//var_dump($alumnos);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$grupo=$this->SeguimientoModelo->obtenerGrupoPorSeguimiento($idseguimiento);
+			$alumnos=$this->SeguimientoModelo->getAlumnosEncuesta($grupo[0]->idgrupos);
+			echo json_encode($alumnos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function obtenerDepartamento($departamentoid)
 	{
-		$departamentoRetorno="";
-		switch ($departamentoid) {
-			case '2':
-			$departamentoRetorno="DEPARTAMENTO DE CIENCIAS DE LA TIERRA";
-			break;
-			case '3':
-			$departamentoRetorno="DEPARTAMENTO DE SISTEMAS Y COMPUTACION";
-			break;
-			case '4':
-			$departamentoRetorno="DEPARTAMENTO DE QUIMICA Y BIOQUIMICA";
-			break;
-			case '5':
-			$departamentoRetorno="DEPTO. DE INGENIERIA INDUSTRIAL";
-			break;
-			case '6':
-			$departamentoRetorno="DEPARTAMENTO DE INGENIERIA ELECTRICA Y ELECTRONICA";
-			break;
-			case '7':
-			$departamentoRetorno="DEPARTAMENTO DE INGENIERIAS";
-			break;
-			case '8':
-			$departamentoRetorno="DEPARTAMENTO DE CIENCIAS ECONOMICO ADMINISTRATIVAS";
-			break;
-			default:
-			$departamentoRetorno="DEPARTAMENTO DE SISTEMAS Y COMPUTACION";
-			break;
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$departamentoRetorno="";
+			switch ($departamentoid) {
+				case '2':
+				$departamentoRetorno="DEPARTAMENTO DE CIENCIAS DE LA TIERRA";
+				break;
+				case '3':
+				$departamentoRetorno="DEPARTAMENTO DE SISTEMAS Y COMPUTACION";
+				break;
+				case '4':
+				$departamentoRetorno="DEPARTAMENTO DE QUIMICA Y BIOQUIMICA";
+				break;
+				case '5':
+				$departamentoRetorno="DEPTO. DE INGENIERIA INDUSTRIAL";
+				break;
+				case '6':
+				$departamentoRetorno="DEPARTAMENTO DE INGENIERIA ELECTRICA Y ELECTRONICA";
+				break;
+				case '7':
+				$departamentoRetorno="DEPARTAMENTO DE INGENIERIAS";
+				break;
+				case '8':
+				$departamentoRetorno="DEPARTAMENTO DE CIENCIAS ECONOMICO ADMINISTRATIVAS";
+				break;
+				default:
+				$departamentoRetorno="DEPARTAMENTO DE SISTEMAS Y COMPUTACION";
+				break;
+			}
+			return $departamentoRetorno;
+		}else {
+			redirect(base_url().'index.php');
 		}
-		return $departamentoRetorno;
 	}
 	public function obtenerAlumnosPorDepartamento($departamentoid)
 	{
@@ -1252,9 +1259,13 @@ class Panel_seguimiento extends CI_Controller {
 	}
 	public function test_encuesta()
 	{
-		$rutajson="file/json/seguimiento1.json";
-		$this->load->model('GeneradorEncuestas3');
-		$datos["EncuestaRetro"]=$this->GeneradorEncuestas3->generarEncu($rutajson);
-		$this->load->view('encuesta/seguimientovi_generada',$datos);
+		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			$rutajson="file/json/seguimiento1.json";
+			$this->load->model('GeneradorEncuestas3');
+			$datos["EncuestaRetro"]=$this->GeneradorEncuestas3->generarEncu($rutajson);
+			$this->load->view('encuesta/seguimientovi_generada',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 }

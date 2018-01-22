@@ -18,20 +18,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link href="<?php echo base_url(); ?>css/fontello.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/awesome-bootstrap-checkbox.css" type="text/css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>css/ssa.css" type="text/css" rel="stylesheet" />
-  <!--
-  Autor: Fernando Manuel Avila Cataño
-  Correo:feranimaciones@gmail.com
-  DEDICADO A MI NOVIA
-  ANA CAROLINA MONDRAGON RANGEL :) POR TODO SU APOYO EN LA REALIZACION DE ESTE PROYECTO-->
 </head>
 <body style="padding-bottom: 4%;">
 
   <div class="container">
     <div class="row">
       <div class="col-md-1"> <br><br><br>
-        <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver al menu" href="<?php echo base_url(); ?>index.php/panel_administracion/editor_encuesta" role="button">
-          <i class="fa fa-undo" aria-hidden="true"></i>
-        </a>
+        <?php
+        if ($boton=="LISTA") {
+          ?>
+          <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver al menu" href="<?php echo base_url(); ?>index.php/panel_administracion/plantillas_seguimiento" role="button">
+            <i class="fa fa-undo" aria-hidden="true"></i>
+          </a>
+          <?php
+        }else {
+          ?>
+          <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver al menu" href="<?php echo base_url(); ?>index.php/panel_administracion/editor_encuesta/<?php  echo $IDPLANTILLA; ?>" role="button">
+            <i class="fa fa-undo" aria-hidden="true"></i>
+          </a>
+          <?php
+        }
+        ?>
       </div>
       <div class="col-md-10">
         <div class="card">

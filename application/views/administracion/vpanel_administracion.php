@@ -126,6 +126,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-6">
+			<a href="<?php echo base_url(); ?>index.php/panel_administracion/plantillas_seguimiento" class="linkmenu">
+				<div class="card menus animenu caro">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div>
+									<i class="fa fa-file-text fa-5x coloriconosmenu" aria-hidden="true"></i>
+									<p class="textotitulo">EDITOR FORMATO ENCUESTA</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="col-lg-6">
 			<a href="<?php echo base_url(); ?>index.php/C_usuarios/logout" class="linkmenu">
 				<div class="card menus animenu caro">
 					<div class="card-body">
