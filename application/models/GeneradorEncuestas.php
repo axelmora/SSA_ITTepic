@@ -47,7 +47,7 @@ class GeneradorEncuestas extends CI_Model {
       $encuestaRetro="";
       $posGraficos=0;
       $totalAlumnosContestados=count($responses);
-      $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
+      $json=json_decode(file_get_contents($json));
       foreach ($json as $key => $value) {
         $pos=0;
         foreach ($value as $key => $value2) {
@@ -377,7 +377,7 @@ public function generadorGraficos($posGrafico)
 {
   return '<div id="grafico'.$posGrafico.'"></div>';
 }
-public function generarEncuPDF($json,$resultados)
+public function generarEncuPDF($json,$resultados,$ruta)
 {
   if ($resultados) {
     $responses;
@@ -392,7 +392,7 @@ public function generarEncuPDF($json,$resultados)
     $totalAlumnosContestados=count($responses);
     $encuestaRetro="";
     $posGraficos=0;
-    $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
+    $json=json_decode(file_get_contents($ruta));
     foreach ($json as $key => $value) {
       $pos=0;
       foreach ($value as $key => $value2) {

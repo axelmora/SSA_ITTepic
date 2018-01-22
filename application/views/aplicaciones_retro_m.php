@@ -44,8 +44,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   $DOCENTE="";
                   $MATERIA="";
                   foreach ($DATOSMATERIA as $key => $value) {
-                    $DOCENTE="".$value->nombre_docente;
-                    $MATERIA="".$value->nombre_materia ;
+                    $DOCENTE="".mb_convert_encoding($value->nombre_docente, 'Windows-1252');
+                    $MATERIA="".mb_convert_encoding($value->nombre_materia, 'Windows-1252');
                   }
                   ?>
                   <a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/retroalimentacionlista/<?php echo "".$idcampo; ?>" role="button"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>

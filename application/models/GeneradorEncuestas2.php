@@ -47,7 +47,7 @@ class GeneradorEncuestas2 extends CI_Model {
       $encuestaRetro="";
       $posGraficos=0;
       $totalAlumnosContestados=count($responses);
-      $json=json_decode(file_get_contents('file/json/seguimiento1.json'));
+      $json=json_decode(file_get_contents($json));
       foreach ($json as $key => $value) {
         $pos=0;
         foreach ($value as $key => $value2) {

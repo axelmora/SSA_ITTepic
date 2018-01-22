@@ -280,13 +280,20 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
 			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
 			$this->load->model('GeneradorEncuestas');
+			/*plantilla*/
+			$idseguimientoxD=$datos["idSegui"];
+			$idplantilla=$this->SeguimientoModelo->obtenerPlantillaporIDAplicaciones($idseguimientoxD[0]->aplicaciones_idaplicaciones);
+			$rutajson = $this->Plantilla->cargarPlantillaID($idplantilla[0]->plantilla_encuestas_idplantilla_encuestas);
+			$rutajson=$rutajson[0]->estructura;
+			/*----*/
+
 			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idaplicacion);
 			$datos["idRetroAlimntacion"]=$idaplicacion;
 			if(!$resultados)
 			{
 				$datos["ExistenResultados"]=true;
 			}
-			$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
+			$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro($rutajson,$resultados);
 			$this->load->view('aplicaciones_retro',$datos);
 		}else {
 			redirect(base_url().'index.php');
@@ -311,6 +318,14 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idaplicacion);
 			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
 
+			/*plantilla*/
+		$idseguimientoxD=$datos["idSegui"];
+		$idplantilla=$this->SeguimientoModelo->obtenerPlantillaporIDAplicaciones($idseguimientoxD[0]->aplicaciones_idaplicaciones);
+		$rutajson = $this->Plantilla->cargarPlantillaID($idplantilla[0]->plantilla_encuestas_idplantilla_encuestas);
+		$rutajson=$rutajson[0]->estructura;
+		/*----*/
+
+
 			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idaplicacion);
 			$datos["idRetroAlimntacion"]=$idaplicacion;
 			if(!$resultados)
@@ -318,7 +333,7 @@ class Panel_seguimiento extends CI_Controller {
 				$datos["ExistenResultados"]=true;
 			}
 			$this->load->model('GeneradorEncuestas');
-			$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
+			$datos["EncuestaRetro"]=$this->GeneradorEncuestas->generarEncuRetro($rutajson,$resultados);
 			$this->load->view('aplicaciones_retro_m',$datos);
 		}else {
 			redirect(base_url().'index.php');
@@ -546,13 +561,20 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idSeguimiento);
 			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idSeguimiento);
 			$this->load->model('GeneradorEncuestas');
+			/*plantilla*/
+			$idseguimientoxD=$datos["idSegui"];
+			$idplantilla=$this->SeguimientoModelo->obtenerPlantillaporIDAplicaciones($idseguimientoxD[0]->aplicaciones_idaplicaciones);
+			$rutajson = $this->Plantilla->cargarPlantillaID($idplantilla[0]->plantilla_encuestas_idplantilla_encuestas);
+			$rutajson=$rutajson[0]->estructura;
+			/*----*/
+
 			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idSeguimiento);
 			$datos["idEncuesta"]=$datos["idSegui"][0]->aplicaciones_idaplicaciones;
 			if(!$resultados)
 			{
 				$datos["ExistenResultados"]=true;
 			}
-			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuRetro("",$resultados);
+			$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuRetro($rutajson,$resultados);
 			//var_dump($datos["DATOSMATERIA"]);
 			$this->load->view('aplicaciones_resultados',$datos);
 		}else {
@@ -579,13 +601,17 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idSeguimiento);
 			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idSeguimiento);
 			$this->load->model('GeneradorEncuestas2');
+			$idseguimientoxD=$datos["idSegui"];
+			$idplantilla=$this->SeguimientoModelo->obtenerPlantillaporIDAplicaciones($idseguimientoxD[0]->aplicaciones_idaplicaciones);
+			$rutajson = $this->Plantilla->cargarPlantillaID($idplantilla[0]->plantilla_encuestas_idplantilla_encuestas);
+			$rutajson=$rutajson[0]->estructura;
 			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idSeguimiento);
 			$datos["idEncuesta"]=$datos["idSegui"][0]->aplicaciones_idaplicaciones;
 			if(!$resultados)
 			{
 				$datos["ExistenResultados"]=true;
 			}
-			$datos["EncuestasResultados"]=$this->GeneradorEncuestas2->generarEncuRetro("",$resultados);
+			$datos["EncuestasResultados"]=$this->GeneradorEncuestas2->generarEncuRetro($rutajson,$resultados);
 			//var_dump($datos["DATOSMATERIA"]);
 			$this->load->view('aplicaciones_resultados_graficos',$datos);
 		}else {
@@ -611,13 +637,18 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($idSeguimiento);
 			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idSeguimiento);
 			$this->load->model('GeneradorEncuestas2');
+			$idseguimientoxD=$datos["idSegui"];
+			$idplantilla=$this->SeguimientoModelo->obtenerPlantillaporIDAplicaciones($idseguimientoxD[0]->aplicaciones_idaplicaciones);
+			$rutajson = $this->Plantilla->cargarPlantillaID($idplantilla[0]->plantilla_encuestas_idplantilla_encuestas);
+			$rutajson=$rutajson[0]->estructura;
+
 			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idSeguimiento);
 			$datos["idEncuesta"]=$datos["idSegui"][0]->aplicaciones_idaplicaciones;
 			if(!$resultados)
 			{
 				$datos["ExistenResultados"]=true;
 			}
-			$datos["EncuestasResultados"]=$this->GeneradorEncuestas2->generarEncuRetro("",$resultados);
+			$datos["EncuestasResultados"]=$this->GeneradorEncuestas2->generarEncuRetro($rutajson,$resultados);
 			//var_dump($datos["DATOSMATERIA"]);
 			$this->load->view('aplicaciones_resultados_graficos_imprimir',$datos);
 		}else {
@@ -667,7 +698,13 @@ class Panel_seguimiento extends CI_Controller {
 					//var_dump($datos["APLICACIONESCONSULTADAS"]);
 					foreach ($datos["APLICACIONESCONSULTADAS"] as $key => $value) {
 						$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
-						$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+						/*PLANTILLAS */
+						$idplantilla=$this->SeguimientoModelo->obtenerPlantillaporIDAplicaciones($idAplicacion);
+						$rutajson = $this->Plantilla->cargarPlantillaID($idplantilla[0]->plantilla_encuestas_idplantilla_encuestas);
+						$rutajson=$rutajson[0]->estructura;
+						$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados,$rutajson);
+						//$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+						/*PLANTILLAS */
 						//echo "".$value->grupos_idgrupos;
 						$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
 						$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
@@ -803,7 +840,14 @@ class Panel_seguimiento extends CI_Controller {
 				if($idAplicacionesGenerar){
 					foreach ($idAplicacionesGenerar as $key => $value) {
 						$resultados=$this->SeguimientoModelo->resultadosEncuesta($value->idencuesta_seguimiento);
-						$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+
+						/*PLANTILLAS */
+						$idplantilla=$this->SeguimientoModelo->obtenerPlantillaporIDAplicaciones($idAplicacionesGenerar[0]->aplicaciones_idaplicaciones);
+						$rutajson = $this->Plantilla->cargarPlantillaID($idplantilla[0]->plantilla_encuestas_idplantilla_encuestas);
+						$rutajson=$rutajson[0]->estructura;
+						$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados,$rutajson);
+						/*PLANTILLAS */
+						//	$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
 						$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($value->idencuesta_seguimiento);
 						$datos["RetroAlimentacion"]=$this->SeguimientoModelo->cargarRetroAlimentacionID($value->idencuesta_seguimiento);
 						$DOCENTE="";
@@ -932,7 +976,12 @@ class Panel_seguimiento extends CI_Controller {
 				$peridoencuesta=$tempperiodo[0]->periodo_texto;
 				$departamentoacademico=$tempdepartamento[0]->nombre_departamento;
 				$resultados=$this->SeguimientoModelo->resultadosEncuesta($idencuesta_seguimiento);
-				$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados);
+				/*PLANTILLAS */
+				$idplantilla=$this->SeguimientoModelo->obtenerPlantillaporIDAplicaciones($idseguimientotemp[0]->aplicaciones_idaplicaciones);
+				$rutajson = $this->Plantilla->cargarPlantillaID($idplantilla[0]->plantilla_encuestas_idplantilla_encuestas);
+				$rutajson=$rutajson[0]->estructura;
+				$datos["EncuestasResultados"]=$this->GeneradorEncuestas->generarEncuPDF("",$resultados,$rutajson);
+				/*PLANTILLAS */
 				$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($idencuesta_seguimiento);
 				$DOCENTE="";
 				$MATERIA="";

@@ -557,4 +557,19 @@ public function obtenerIdAplicacion()
     return false;
   }
 }
+
+public function obtenerPlantillaporIDAplicaciones($id)
+{
+  $DB2 = $this->load->database('default', TRUE);
+  $DB2->select('plantilla_encuestas_idplantilla_encuestas');
+  $DB2->where('idaplicaciones',$id);
+  $DB2->from('aplicaciones');
+  $query = $DB2->get();
+  if ($query->num_rows() > 0) {
+    return $query->result();
+  } else {
+    return false;
+  }
+}
+
 }
