@@ -460,12 +460,82 @@ class Panel_administracion extends CI_Controller {
 				foreach ($plantilla as $key => $value) {
 					$rutajson=$value->estructura;
 					$datos["IDPLANTILLA"]=$value->idplantilla_encuestas;
+					$datos["encabezado"]=$value->encabezado;
+					$datos["nombre"]=$value->nombre;
 				}
 				$datos["FORMATO_ENCUESTA"]=(file_get_contents($rutajson));
 			}else {
 				$datos["FORMATO_ENCUESTA"]="ERROR";
 			}
 			$this->load->view('administracion/vpanel_editor_encuesta',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function agregar_nueva_plantilla()
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$maximo=$this->Plantilla->cargarPlantillaMaximo();
+			$nplantilla = $this->input->post('nplantilla');
+			$encabezado = $this->input->post('encabezado');
+			$data1 = $this->input->post('data1');
+			$ruta='file/json/seguimiento'.($maximo[0]->maximo+1).'.json';
+			//	$data1 = json_encode($data1, JSON_PRETTY_PRINT);
+			file_put_contents('file/json/seguimiento'.($maximo[0]->maximo+1).'.json',$data1);
+			$informacionenviar= array(
+				'nombre' =>''.$nplantilla,
+				'estructura' => $ruta,
+				'encabezado'=>$encabezado,
+				'fecha_creacion'=>''.date('Y-m-d H:i:s'),
+				'fecha_modificacion'=>''.date('Y-m-d H:i:s')
+			);
+			$this->Plantilla->addplantilla($informacionenviar);
+			redirect(base_url().'index.php/panel_administracion/plantillas_seguimiento');
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function actualizarplantilla($idplantilla)
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$nplantilla = $this->input->post('nplantilla');
+			$encabezado = $this->input->post('encabezado');
+			$data1 = $this->input->post('data1');
+			$ruta='file/json/seguimiento'.$idplantilla.'.json';
+			file_put_contents('file/json/seguimiento'.$idplantilla.'.json',$data1);
+			$informacionenviar= array(
+				'nombre' =>''.$nplantilla,
+				'encabezado'=>$encabezado,
+				'fecha_modificacion'=>''.date('Y-m-d H:i:s')
+			);
+			$this->Plantilla->updateplantilla($informacionenviar,$idplantilla);
+			redirect(base_url().'index.php/panel_administracion/plantillas_seguimiento');
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function eliminar_plantilla()
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$idplantilla = $this->input->post('idplantilla');
+			$ruta = $this->input->post('ruta');
+			if(unlink($ruta)) {
+				echo 'deleted successfully';
+			}
+			else {
+				echo 'errors occured';
+			}
+			$this->Plantilla->borrar_plantilla($idplantilla);
+			redirect(base_url().'index.php/panel_administracion/plantillas_seguimiento');
+		}else {
+			redirect(base_url().'index.php');
+		}
+	}
+	public function datosPlantilla($id)
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$datosUser=$this->Plantilla->cargarPlantillaID($id);
+			echo json_encode($datosUser);
 		}else {
 			redirect(base_url().'index.php');
 		}

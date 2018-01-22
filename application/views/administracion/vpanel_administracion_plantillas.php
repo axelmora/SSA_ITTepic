@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<a href="<?php echo base_url(); ?>index.php/panel_administracion/nueva_plantilla" class="btn btn-success"><i class="fa fa-plus-circle" aria-hidden="true"></i>  AGREGAR NUEVA PLANTILLA</a>
 						</div>
 					</div>
-					<table id="tablausuarios" class="table table-striped table-bordered  table-sm dt-responsive " cellspacing="0" width="100%">
+					<table id="tabla_plantillas" class="table table-striped table-bordered  table-sm dt-responsive " cellspacing="0" width="100%">
 						<thead>
 							<tr>
 								<th>NOMBRE PLANTILLA</th>
@@ -91,111 +91,88 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
-<!-- modal eliminar -->
-<form class="" action="<?php echo base_url(); ?>index.php/Panel_administracion/eliminar_plantilla/" method="post">
-	<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">
-						<center><i class="fa fa-trash text-danger" aria-hidden="true"></i>¿Desea  eliminar a este usuario?    </center> </h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<input type="number" id="idusuarios" name="idusuarios" value="" required hidden>
-						<table class="table table-bordered table-sm">
-							<caption>Datos de la cuenta a eliminar.</caption>
-							<thead>
-								<tr>
-									<th scope="col">NOMBRE COMPLETO</th>
-									<th scope="col">NOMBRE DE USUARIO</th>
-									<th scope="col">ULTIMA CONEXION</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><div id="A1"></div></td>
-									<td><div id="A2"></div></td>
-									<td><div id="A3"></div></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> CANCELAR</button>
-						<button type="submit" class="btn btn-danger"><i class="fa fa-trash " aria-hidden="true"></i> ELIMINAR </button>
+	<!-- modal eliminar -->
+	<form class="" action="<?php echo base_url(); ?>index.php/Panel_administracion/eliminar_plantilla/" method="post">
+		<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">
+							<center><i class="fa fa-trash text-danger" aria-hidden="true"></i>¿Desea  eliminar esta plantilla?   </center> </h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<input type="number" id="idplantilla" name="idplantilla" value="" required hidden>
+							<input type="text" id="ruta" name="ruta" value="" required hidden>
+							<table class="table table-bordered table-sm">
+								<caption>Datos de la estructura a eliminar.</caption>
+								<thead>
+									<tr>
+										<th scope="col">NOMBRE PLANTILLA</th>
+										<th scope="col">FECHA DE CREACION</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><div id="A1"></div></td>
+										<td><div id="A2"></div></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> CANCELAR</button>
+							<button type="submit" class="btn btn-danger"><i class="fa fa-trash " aria-hidden="true"></i> ELIMINAR </button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</form>
-	<!-- modal eliminar  fin -->
-	<?php $this->load->view('include/manual_usuario'); ?>
-	<?php $this->load->view('include/footer'); ?>
-</body>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
-<script>
-function cambiarEstado(id,estado)
-{
-	var parametros2 = {
-		"idusuarios" :id,
-		"estado" :estado
-	};
-	$(document).ready(function() {
+		</form>
+		<!-- modal eliminar  fin -->
+		<?php $this->load->view('include/manual_usuario'); ?>
+		<?php $this->load->view('include/footer'); ?>
+	</body>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.bootstrap4.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
+	<script>
+	function eliminarusuario(id)
+	{
 		$.ajax({
-			data:  parametros2,
-			url:   '<?php echo base_url(); ?>index.php/C_usuarios/cambiarEstado',
-			type:  'post',
-			success:  function (response) {
+			type: 'GET',
+			url: '<?php echo base_url(); ?>index.php/panel_administracion/datosPlantilla/'+id,
+			data: { get_param: 'value' },
+			dataType: 'json',
+			success: function (data) {
+				$.each(data, function(index, elemento) {
+					$("#A1").html(elemento.nombre);
+					$("#A2").html(elemento.fecha_creacion);
+					$("#idplantilla").val(elemento.idplantilla_encuestas);
+					$("#ruta").val(elemento.estructura);
+				});
 			}
 		});
-	});
-}
-function eliminarusuario(id)
-{
-	$.ajax({
-		type: 'GET',
-		url: '<?php echo base_url(); ?>index.php/C_usuarios/datosUsuario/'+id,
-		data: { get_param: 'value' },
-		dataType: 'json',
-		success: function (data) {
-			$.each(data, function(index, elemento) {
-				$("#A1").html(elemento.nombre_usuario);
-				$("#A2").html(elemento.usuario);
-				if (!elemento.ult_conexion) {
-					$("#A3").html("SIN CONEXION");
-				}else {
-					$("#A3").html(elemento.ult_conexion);
-				}
-				$("#idusuarios").val(elemento.idusuarios);
-
-			});
-		}
-	});
-}
-$(document).ready(function() {
-	$('#tablausuarios').DataTable({
+	}
+	$('#tabla_plantillas').DataTable({
+		responsive: true,
 		"language": {
-			"url": "<?php echo base_url(); ?>js/datatables/usuarios.json"
+			"url": "<?php echo base_url(); ?>js/datatables/plantillas.json"
 		},
-		"order": [[ 3, "desc" ]]
+		"order": [[2, "desc" ]]
 	});
-} );
-$(document).ready(function(){
-	var opciones = {
-		fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
-	};
-	PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
-});
+	$(document).ready(function(){
+		var opciones = {
+			fallbackLink: '<p>El navegador no soporta este manual  <center><a href="[url]"  class="btn btn-primary" download><i class="fa fa-download" aria-hidden="true"></i> DESCARGAR MANUAL</a></center></p>'
+		};
+		PDFObject.embed("<?php echo base_url(); ?>file/manual/Manual_Usuario_SSA.pdf","#manualdeusuariover", opciones);
+	});
 </script>
 </html>

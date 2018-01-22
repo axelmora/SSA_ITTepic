@@ -37,10 +37,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="card-body">
               <div class="row" >
                 <div class="col-lg-12">
-                  <form id="formularioEditar" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/act_estructura_encuesta" >
-                    <textarea style="width:100%;"  name="data1" id="data1" rows="12" cols="80"><?php echo "".$FORMATO_ENCUESTA; ?></textarea>
+                  <form id="formularioEditar" method="post" action="<?php echo base_url(); ?>index.php/panel_administracion/actualizarplantilla/<?php  echo $IDPLANTILLA;?>" >
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Nombre de la plantilla:</label>
+                      <input required type="text" class="form-control" name="nplantilla" id="nplantilla" aria-describedby="nplantilla" value="<?php echo $nombre;?>" placeholder="Nombre de la plantilla">
+                    </div>
+                    <label for="exampleInputEmail1">Estructura plantilla:</label>
+                    <textarea required style="width:100%;"  name="data1" id="data1" rows="12" cols="80"><?php echo "".$FORMATO_ENCUESTA; ?></textarea>
                     <textarea  hidden id="encuesta" name="encuesta" rows="8" cols="80"></textarea>
-                  <center>  <button type="submit" class="btn btn-primary"> ACTULIZAR ESTRUCTURA</button></center>
+                    <label for="exampleInputEmail1">Encabezado:</label>
+                    <textarea   id="encabezado" name="encabezado" rows="8" cols="80"><?php echo "$encabezado"; ?></textarea>
+                    <center>  <button type="submit" class="btn btn-primary"> ACTULIZAR ESTRUCTURA</button></center>
                   </form>
                 </div>
               </div>
@@ -83,6 +90,18 @@ $(document).ready(function(){
 });
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tinymce/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'#encabezado', 	menubar:false,statusbar: false,
+plugins: [
+  'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+  'searchreplace wordcount visualblocks visualchars code fullscreen',
+  'insertdatetime media nonbreaking save table contextmenu directionality',
+  'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+],
+toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+image_advtab: true,
+language: 'es_MX',
+height : "325"});</script>
 <script>
 
 var jsonStr = $("#data1").val();

@@ -70,10 +70,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<p> <b> Información php:</b>  <a href="<?php echo base_url();?>index.php/panel_administracion/info_servidor" class="btn btn-naranja "><i class="fa fa-server" aria-hidden="true"></i>  PHP</a>
 								</p>
 								<hr>
-								<p><center><b>ENCUESTA ESTRUCTURA</b></center></p>
+								<!-- <p><center><b>ENCUESTA ESTRUCTURA</b></center></p>
 								<p>  <a class="btn btn-naranja"  href="<?php echo base_url();?>index.php/panel_administracion/encabezado">EDITAR ENCABEZADO ENCUESTA</a>	 </p>
 								<p>  <a class="btn btn-naranja"  href="<?php echo base_url();?>index.php/panel_administracion/editor_encuesta">EDITAR ENCUESTA</a>	 </p>
-								<br>
+								<br> -->
 								<form method="post" action="<?php echo base_url();?>index.php/panel_administracion/subir_logo_tec" enctype="multipart/form-data">
 									<?php
 									if (isset($error_foto)) {

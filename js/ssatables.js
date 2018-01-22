@@ -113,6 +113,7 @@ $(document).ready(function(){
     "order": [[0, "asc" ]]
   });
 
+
   /* TABLA ALUMNOS COPIAR */
   $('#tablaCopiarAlumnos').DataTable({
     responsive: true,

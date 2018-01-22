@@ -54,11 +54,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               ?>
               <div class="form-group">
                 <label for="userid"><i class="fa fa-user" aria-hidden="true"></i> NUMERO DE CONTROL:</label>
-                <input type="text" class="form-control" name="numero_control" id="numero_control"   placeholder="Ingresar usuario" required>
+                <input type="text" class="form-control" name="numero_control" id="numero_control"   placeholder="Ingresar numero de control" required>
               </div>
               <div class="form-group">
                 <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> NIP</label>
-                <input type="password" class="form-control" name="contra_aplicacion" id="contra_aplicacion" placeholder="Nip" required>
+                <input type="password" class="form-control" name="contra_aplicacion" id="contra_aplicacion" placeholder="Ingresar NIP" required>
               </div>
               <center><button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> ACCESO</button></center>
               <div class="red-text"><center><?php echo validation_errors(); ?></center></div>
