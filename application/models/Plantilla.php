@@ -14,6 +14,16 @@ class Plantilla extends CI_Model {
         return false;
     }
   }
+  public function cargarPlantillaOrdenadas()
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * from plantilla_encuestas order by fecha_creacion desc");
+    if ($query->num_rows() > 0) {
+        return $query->result();
+    } else {
+        return false;
+    }
+  }
   public function cargarPlantillaMaximo()
   {
     $DBcon = $this->load->database('default', TRUE);

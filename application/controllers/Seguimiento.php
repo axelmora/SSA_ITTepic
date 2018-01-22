@@ -35,9 +35,10 @@ class Seguimiento extends CI_Controller {
 				if($IDencuEnviar[0]!="")
 				{
 					$datos["DATOSMATERIA"]=$this->SeguimientoModelo->obtenerDocenteMateria($IDencuEnviar[0]);
-					$datos['encabezado'] = $this->Plantilla->cargarPlantillaID(1);
+					$datos['encabezado'] = $this->Plantilla->cargarPlantillaID($this->session->userdata('idplantilla'));
+					$rutajson = $this->Plantilla->cargarPlantillaID($this->session->userdata('idplantilla'));
 					/* GENERADA MEDIANTE JSON */
-					$rutajson="file/json/seguimiento1.json";
+					$rutajson=$rutajson[0]->estructura;
 					$this->load->model('GeneradorEncuestas3');
 					$datos["EncuestaRetro"]=$this->GeneradorEncuestas3->generarEncu($rutajson);
 					/* GENERADA MEDIANTE JSON */

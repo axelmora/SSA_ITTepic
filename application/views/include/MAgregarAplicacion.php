@@ -40,14 +40,24 @@
           <div class="form-group">
             <label for="plantilla">Seleccionar plantilla</label>
             <select  class="form-control" id="plantilla" name="plantilla" required >
-              <option selected value="1">ITTEPIC-AC-PO-004-07</option>
+              <?php
+              $pos=0;
+              foreach ($Plantillas as $key => $value) {
+                if ($pos==0) {
+                  echo '<option selected value="'.$value->idplantilla_encuestas.'">'.$value->nombre.'</option>';
+                }else {
+                echo '<option value="'.$value->idplantilla_encuestas.'">'.$value->nombre.'</option>';
+                }
+                $pos++;
+              }
+              ?>
             </select>
           </div>
           <div class="card bg-danger text-white animated fadeInUp" id="panel_advertenciaperiodo" style="display:none">
             <div class="card-body">
               <center>
                 <i class="fa fa-exclamation-circle tamanoiconos animated tada infinite" aria-hidden="true"></i> <br> <br>
-              <b>Atención</b> se seleccionó un periodo diferente al actual.
+                <b>Atención</b> se seleccionó un periodo diferente al actual.
               </center>
             </div>
           </div>

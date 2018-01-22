@@ -11,6 +11,7 @@ class Panel_seguimiento extends CI_Controller {
 		$this->load->model('Alumnos');
 		$this->load->model('Departamentos');
 		$this->load->model('Mesa_AyudaModel');
+		$this->load->model('Plantilla');
 		$this->load->model('Grupos');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
@@ -40,6 +41,7 @@ class Panel_seguimiento extends CI_Controller {
 				}
 				$datos["Cantidad_Encuestas"]=$valorescontados;
 			}
+			$datos["Plantillas"]=$this->Plantilla->cargarPlantillaOrdenadas();
 			$this->load->view('aplicaciones',$datos);
 		}else {
 			redirect(base_url().'index.php');

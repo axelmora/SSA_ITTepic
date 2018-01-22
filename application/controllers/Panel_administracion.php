@@ -475,21 +475,24 @@ class Panel_administracion extends CI_Controller {
 	public function agregar_nueva_plantilla()
 	{
 		if ($this->session->userdata('tipo')=='1') {
-			$maximo=$this->Plantilla->cargarPlantillaMaximo();
 			$nplantilla = $this->input->post('nplantilla');
 			$encabezado = $this->input->post('encabezado');
-			$data1 = $this->input->post('data1');
-			$ruta='file/json/seguimiento'.($maximo[0]->maximo+1).'.json';
-			//	$data1 = json_encode($data1, JSON_PRETTY_PRINT);
-			file_put_contents('file/json/seguimiento'.($maximo[0]->maximo+1).'.json',$data1);
 			$informacionenviar= array(
 				'nombre' =>''.$nplantilla,
-				'estructura' => $ruta,
 				'encabezado'=>$encabezado,
 				'fecha_creacion'=>''.date('Y-m-d H:i:s'),
 				'fecha_modificacion'=>''.date('Y-m-d H:i:s')
 			);
 			$this->Plantilla->addplantilla($informacionenviar);
+			$maximo=$this->Plantilla->cargarPlantillaMaximo();
+			$data1 = $this->input->post('data1');
+			$ruta='file/json/seguimiento'.($maximo[0]->maximo).'.json';
+			//	$data1 = json_encode($data1, JSON_PRETTY_PRINT);
+			file_put_contents('file/json/seguimiento'.($maximo[0]->maximo).'.json',$data1);
+			$informacionenviar= array(
+				'estructura' => $ruta
+			);
+			$this->Plantilla->updateplantilla($informacionenviar,$maximo[0]->maximo);
 			redirect(base_url().'index.php/panel_administracion/plantillas_seguimiento');
 		}else {
 			redirect(base_url().'index.php');
