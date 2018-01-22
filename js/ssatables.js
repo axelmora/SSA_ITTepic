@@ -102,7 +102,7 @@ $(document).ready(function(){
     "language": {
       "url": urlsistema+"js/datatables/Alumnos.json"
     },
-    "order": [[2, "asc" ],[0, "asc" ]]
+    "order": [[3, "asc" ],[0, "asc" ]]
   });
   /*TABLA ALUMNOS*/
   $('#tablaGrupoAlumnosAgregar').DataTable({
