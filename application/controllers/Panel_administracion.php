@@ -520,10 +520,10 @@ class Panel_administracion extends CI_Controller {
 			$idplantilla = $this->input->post('idplantilla');
 			$ruta = $this->input->post('ruta');
 			if(unlink($ruta)) {
-				echo 'deleted successfully';
+				echo 'Se borro correctamente';
 			}
 			else {
-				echo 'errors occured';
+				echo 'Ocurrio un error';
 			}
 			$this->Plantilla->borrar_plantilla($idplantilla);
 			redirect(base_url().'index.php/panel_administracion/plantillas_seguimiento');
