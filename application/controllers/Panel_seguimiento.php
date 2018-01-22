@@ -36,6 +36,7 @@ class Panel_seguimiento extends CI_Controller {
 					$valor=$this->SeguimientoModelo->contarEncuestas($value->idaplicaciones);
 					foreach ($valor as $key => $nuermos) {
 						$valorescontados[]=$nuermos->numero;
+				//		echo "  ".$nuermos->numero."<BR>";
 					}
 				}
 				$datos["Cantidad_Encuestas"]=$valorescontados;

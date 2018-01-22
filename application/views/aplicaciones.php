@@ -62,8 +62,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         if($Cantidad_Encuestas[$posicionencuestas][0]==0){
                           $NumeroEncuestas='<center><span class="badge badge-pill badge-danger medalla"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> No existen encuestas creadas.</span></center>';
                         }else {
-                          $NumeroEncuestas=$Cantidad_Encuestas[$posicionencuestas][0];
-                          $NumeroEncuestas='<center><span class="badge badge-pill badge-success medalla"><i class="fa fa-hashtag" aria-hidden="true"></i> '.$Cantidad_Encuestas[$posicionencuestas][0].' </span></center>';
+                      //    $NumeroEncuestas=$Cantidad_Encuestas[$posicionencuestas];
+                          $NumeroEncuestas='<center><span class="badge badge-pill badge-success medalla"><i class="fa fa-hashtag" aria-hidden="true"></i> '.$Cantidad_Encuestas[$posicionencuestas].'</span></center>';
                         }
                         ?>
                         <tr>

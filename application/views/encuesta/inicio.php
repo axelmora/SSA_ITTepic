@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
               <div class="form-group">
                 <label for="passwordid"><i class="fa fa-unlock" aria-hidden="true"></i> NIP</label>
-                <input type="password" class="form-control" name="contra_aplicacion" id="contra_aplicacion" placeholder="Contraseña proporcionada por su departamento academico." required>
+                <input type="password" class="form-control" name="contra_aplicacion" id="contra_aplicacion" placeholder="Nip" required>
               </div>
               <center><button type="submit" class="btn btn-naranja "><i class="fa fa-sign-in" aria-hidden="true"></i> ACCESO</button></center>
               <div class="red-text"><center><?php echo validation_errors(); ?></center></div>
