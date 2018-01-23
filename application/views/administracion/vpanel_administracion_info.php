@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="col-lg-12">
 							<h3><i class="fa fa-server" aria-hidden="true"></i> Configuracion Sistema</h3> 							<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver" href="<?php echo base_url(); ?>index.php/panel_administracion/" role="button"><i class="fa fa-undo" aria-hidden="true"></i></a>
 							<p>
-								<p><b>VERSION ACTUAL:</b> 1.0.0 <p>
+								<p><b>VERSION ACTUAL:</b> 1.0.1 <p>
 									<form>
 										<label><b>ESTADO ACTUAL DEL SITEMA </b> </label>
 										<?php
