@@ -650,6 +650,11 @@ class Panel_seguimiento extends CI_Controller {
 			}
 			$datos["EncuestasResultados"]=$this->GeneradorEncuestas2->generarEncuRetro($rutajson,$resultados);
 			//var_dump($datos["DATOSMATERIA"]);
+			$html= "<style type=text/css>";
+			$html .= "th{color: #fff; font-weight: bold; background-color: #222; border: 1px solid black}";
+			$html .= "td{background-color: #FFF; color: #000; border: 1px solid black} .gp{ width: 30px} ";
+			$html .= "</style>";
+			$datos["css_nuevo"]=$html;
 			$this->load->view('aplicaciones_resultados_graficos_imprimir',$datos);
 		}else {
 			redirect(base_url().'index.php');

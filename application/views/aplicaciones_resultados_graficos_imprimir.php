@@ -52,7 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </head>
 <body>
-
+<?php
+  echo "$css_nuevo";
+ ?>
   <div class="row" style="margin-right: 0px; margin-left: 0px;">
     <div class="col-lg-12">
       <div class="row">
