@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['base_url'] = 'http://www.ssa.ittepic.edu.mx/';
+$config['base_url'] = 'http://ssa.ittepic.edu.mx/';
 date_default_timezone_set('America/Mazatlan');
 $config['index_page'] = 'index.php';
 $config['uri_protocol']	= 'REQUEST_URI';

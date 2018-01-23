@@ -7,17 +7,15 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	/*Datos MySQL*/
-	/*'username' => 'ssadb',
-	'password' => 'SeguimientoenelAula', */
 	/*Datos MariaDB*/
   //
-	// 'username' => 'ssa',
-	// 'password' => 'ceaf5bc8757',
-	// 'database' => 'ssadb',
-	'username' => 'root',
-	'password' => '',
+	'username' => 'ssa',
+	'password' => 'ceaf5bc8757',
 	'database' => 'ssadb',
+
+	// 'username' => 'root',
+	// 'password' => '',
+	// 'database' => 'ssadb',
 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
