@@ -116,7 +116,6 @@ class GeneradorEncuestas2 extends CI_Model {
                       }
                     }
                     $pos=$Temppos+1;
-
                     unset($datos_tabla);
                   }
                 }
@@ -124,7 +123,6 @@ class GeneradorEncuestas2 extends CI_Model {
               //  $pos++;
             }
             $encuestaRetro.=$this->GeneradorEncuestas2->card($temp);
-
             //      $encuestaRetro.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
           }else {
             if($value2->tipo=="radio"){
