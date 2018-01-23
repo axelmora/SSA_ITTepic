@@ -103,6 +103,7 @@ class GeneradorEncuestas2 extends CI_Model {
                         $temp.="<td>".$a."</td>";
                         $temp.="<td>".$b."</td></tr>";
                         $temp.="</table>";
+                          $temp.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
                       }else {
                         if($a!="" && $b>0){
                           $temp.='<table style="display:none" id="tabla'.$posGraficos.'"   align="center" class="table table-responsive table-sm table-hover table-bordered  "><thead><tr>';
@@ -110,11 +111,12 @@ class GeneradorEncuestas2 extends CI_Model {
                           $temp.="<td>NO SE ESPECIFICO</td>";
                           $temp.="<td>".$b."</td></tr>";
                           $temp.="</table>";
+                            $temp.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
                         }
                       }
                     }
                     $pos=$Temppos+1;
-                    $temp.=$this->GeneradorEncuestas2->generadorGraficos($posGraficos);
+
                     unset($datos_tabla);
                   }
                 }
