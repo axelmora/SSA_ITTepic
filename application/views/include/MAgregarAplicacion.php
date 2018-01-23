@@ -4,14 +4,14 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="">Crear nueva aplicacion  </h5>
+          <h5 class="modal-title" id=""><i class="fa fa-plus-square" aria-hidden="true"></i> Crear nueva aplicacion de seguimiento en el aula.  </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="contrasenaapp">Elegir periodo:</label>
+            <label for="contrasenaapp"><b>Elegir periodo:</b></label>
             <input type="text" name="periodo_texto" id="periodo_texto" hidden value="">
             <select  class="form-control" id="periodo" name="periodo" required>
               <?php
@@ -38,7 +38,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="plantilla">Seleccionar plantilla</label>
+            <label for="plantilla"><b>Seleccionar plantilla:</b></label>
             <select  class="form-control" id="plantilla" name="plantilla" required >
               <?php
               $pos=0;

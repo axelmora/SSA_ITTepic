@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						{
 							?>
 							<a class="btn btn-naranja" data-toggle="tooltip" data-placement="top" title="Volver al menu" href="<?php echo base_url(); ?>index.php/Panel_seguimiento/" role="button">
-								<i class="fa fa-undo" aria-hidden="true"></i>
+								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
 							</a>
 							<?php
 						}
@@ -58,14 +58,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<?php
 						}
 						?>
-						<button id="botonEditar" type="button" data-toggle="tooltip" data-placement="top" title="Modificar la informacion del usuario."  class="btn btn-secondary" >
-							<i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDITAR INFORMACION
+						<button id="botonEditar" type="button" data-toggle="tooltip" data-placement="top" title="Modificar la información  del usuario."  class="btn btn-secondary" >
+							<i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDITAR INFORMACIÓN
 						</button>
 						<button type="button"  class="btn btn-secondary" data-toggle="modal" data-target="#modalContraseña">
 							<i class="fa fa-key" aria-hidden="true"></i> MODIFICAR CONTRASEÑA
 						</button>
 						<a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Salir de la sesión." href="<?php echo base_url(); ?>index.php/C_usuarios/logout" role="button">
-							<i class="fa fa-undo" aria-hidden="true"></i> CERRAR SESIÓN
+							<i class="fa fa-sign-out" aria-hidden="true"></i> CERRAR SESIÓN
 						</a>
 						<br>
 						<br>
@@ -100,7 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div id="botonSubmit" style="display:none;">
 								<center>
 									<button type="submit" class="btn btn-success" >
-										<i class="fa fa-pencil" aria-hidden="true"></i>  ACTUALIZAR INFORMACION
+										<i class="fa fa-pencil" aria-hidden="true"></i>  ACTUALIZAR INFORMACIÓN
 									</button>
 								</center>
 							</div>

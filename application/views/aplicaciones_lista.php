@@ -58,10 +58,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <?php
                   if ($Aplicaciones) {
                     ?>
-                    <table id="tablaaplicaciones2" class="table table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
+                    <table id="tablaaplicaciones2" class="table table-striped  table-bordered dt-responsive " cellspacing="0" width="100%">
                       <thead>
                         <tr>
-                          <th><i class="fa fa-book " aria-hidden="true"></i> GRUPO</th>
+                          <th><i class="fa fa-users" aria-hidden="true"></i> </th>
                           <th><i class="fa fa-book " aria-hidden="true"></i></th>
                           <th><i class="fa fa-book " aria-hidden="true"></i> MATERIA</th>
                           <th><i class="fa fa-user-circle-o" aria-hidden="true"></i> DOCENTE</th>
@@ -76,11 +76,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         foreach ($Aplicaciones as $key => $valor) {
                           ?>
                           <tr>
-                            <td><?php echo "".$valor->grupos_idgrupos; ?></td>
+                            <td><center><?php echo "".$valor->grupos_idgrupos; ?></center></td>
                             <td><?php echo "".$valor->idmateria; ?></td>
                             <td><?php echo "".mb_convert_encoding($valor->nombre_materia, 'Windows-1252'); ?></td>
                             <td><?php echo "".mb_convert_encoding($valor->nombre_docente, 'Windows-1252'); ?></td>
-                            <td><center><span class="badge badge-pill badge-primary"><?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></span></center></td>
+                            <td><center><span style="font-size: 125%;" class="badge badge-pill badge-primary"><?php echo "".$totalContestados[$pos]."/".$totalAlumnos[$pos]; ?></span></center></td>
                             <td><?php echo "".$valor->fecha_creacion; ?></td>
                             <td>
                               <center>

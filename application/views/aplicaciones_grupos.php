@@ -84,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   <th><i class="fa fa-book" aria-hidden="true"></i> NOMBRE MATERIA</th>
                                   <th><i class="fa fa-user" aria-hidden="true"></i> GRUPO</th>
                                   <th><i class="fa fa-user" aria-hidden="true"></i> DOCENTE</th>
-                                  <th><i class="fa fa-bar-chart" aria-hidden="true"></i> PROGRESO EVALUACION</th>
+                                  <th><i class="fa fa-bar-chart" aria-hidden="true"></i> PROGRESO EVALUACIÓN </th>
 
                                 </tr>
                               </thead>
@@ -104,8 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                       <?php
                                     }else {?>
                                       <div class="card text-white bg-danger" >
-                                        <div class="card-body" style="    padding: 0px;">
-
+                                        <div class="card-body" style="  padding: 1px;">
                                           <p class="card-text"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                             Sin progreso en la evaluación.</p>
                                           </div>
@@ -144,7 +143,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php
                     if ($ALUMNOSGRUPO) {
                       ?>
-                      <h6>ALUMNOS EN EVALUACION</h6>
+                      <h6>ALUMNOS EN EVALUACIÓN </h6>
                       <table id="tablaGrupoAlumnosGP" class="table table-sm table-striped table-bordered dt-responsive " cellspacing="0" width="100%">
                         <thead>
                           <tr>
