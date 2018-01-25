@@ -50,23 +50,10 @@ class Panel_seguimiento extends CI_Controller {
 	public function generarAplicacion()
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
+			ini_set('memory_limit','4048M');
+			set_time_limit(3200);
 
-			$depaTEMP=$this->Departamentos->obtenerCarrerasDepartamento($this->session->userdata('departamento'));
-			$carrera="";
-			$poosi=0;
-			if($depaTEMP){
-				foreach ($depaTEMP as $key => $value) {
-					if($poosi<count($depaTEMP)-1){
-						$carrera.="'".$value->carreras_id_carrera."',";
-					}else {
-						$carrera.="'".$value->carreras_id_carrera."'";
-					}
-					$poosi++;
-				}
-			}else {
-				$carrera="'NADA'";
-			}
-			echo "$carrera <br>";
+
 			$datos= array(
 				'plantilla_encuestas_idplantilla_encuestas' => ''.$this->input->post('plantilla'),
 				'fecha_creacion' => ''.date('Y-m-d H:i:s'),
@@ -74,63 +61,132 @@ class Panel_seguimiento extends CI_Controller {
 				'periodo_texto'=> ''.$this->input->post('periodo_texto'),
 				'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
 			);
-
 			$this->SeguimientoModelo->crearAplicacion($datos);
 			$idaplicacion=$this->SeguimientoModelo->obtenerIdAplicacion();
-			//	var_dump($idaplicacion);
-			//$exclusivos=$this->Departamentos->exclusivoCarrera($this->session->userdata('departamento'));
-			//	if(!$exclusivos){
-			/*MEDIANTE LA TABLA MATERIAS CARRERA*/
-			$materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
-			if ($materias_del_periodo) {
-				foreach ($materias_del_periodo as $key => $value) {
-					if($this->Materia->comprobarNoCarrera($this->session->userdata('departamento'),$value->materias_idmaterias)){ //materias no
-						if($this->Materia->comprobar_materia_carrera($carrera,$value->materias_idmaterias)){
-							$nombre_materia="";
-							$nombre_docente="";
-							$materias_datos=$this->Materia->cargarNombreMateria($value->materias_idmaterias);
+			$dpdocente=$this->Departamentos->cargaInfoDepa($this->session->userdata('departamento'));
+			$GruposActuales=$this->Grupos->m3ObtenerGruoposPeriodo($this->input->post('periodo'));
+			if ($GruposActuales) {
+				//	var_dump($GruposActuales);
+				foreach ($GruposActuales as $key => $value) {
+					if ($this->Docentes->verificarDocenteDepartamento($value->docentes_rfc,$dpdocente[0]->docentes_departamento)) {
+						$nombre_materia="";
+						$nombre_docente="";
+						$materias_datos=$this->Materia->cargarNombreMateria($value->materias_idmaterias);
+						if ($materias_datos) {
 							foreach ($materias_datos as $key => $value2) {
 								$nombre_materia=$value2->nombre_materia;
 							}
-							$docentes_datos=$this->Docentes->obtenerDocenteRFC($value->docentes_rfc);
+						}else {
+							$nombre_materia="Pendiente por asignar";
+						}
+						$docentes_datos=$this->Docentes->obtenerDocenteRFC($value->docentes_rfc);
+						if($docentes_datos){
 							foreach ($docentes_datos as $key => $value2) {
 								$nombre_docente=$value2->nombre_docente;
 							}
-							$grupodatos= array(
-								'fecha_creacion' => ''.date('Y-m-d H:i:s'),
-								'grupos_idgrupos'=> ''.$value->idgrupos,
-								'nombre_materia'=> ''.$nombre_materia,
-								'idmateria'=> ''.$value->materias_idmaterias,
-								'rfc_docente'=> ''.$value->docentes_rfc,
-								'nombre_docente'=> ''.$nombre_docente,
-								'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
-							);
-							//	var_dump($grupodatos);
-							if($this->Grupos->verificarGrupoCarrera($value->idgrupos,$this->input->post('periodo'),$value->materias_idmaterias,$carrera)){
-								$this->SeguimientoModelo->crearSeguimiento($grupodatos);
-								$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
-								$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'),$carrera);
-								//	echo "$value->idgrupos  $value->materias_idmaterias   ";
-								//	var_dump($alumnos);
-								if($alumnos){
-									//		echo "ALUMNOS : <br>";
-									foreach ($alumnos as $key => $valuealumnos) {
-										$alumno_encuesta= array(
-											'nombre_alumno'=>$valuealumnos->nombre,
-											'no_de_control'=>$valuealumnos->numero_control,
-											'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
-										);
-										$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
-										//			var_dump($alumno_encuesta);
-									}
-									//				echo "-------------------------------------";
-								}
+						}else {
+							$nombre_docente="Pendiente por asignar";
+						}
+						$grupodatos= array(
+							'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+							'grupos_idgrupos'=> ''.$value->idgrupos,
+							'nombre_materia'=> ''.$nombre_materia,
+							'idmateria'=> ''.$value->materias_idmaterias,
+							'rfc_docente'=> ''.$value->docentes_rfc,
+							'nombre_docente'=> ''.$nombre_docente,
+							'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
+						);
+						$this->SeguimientoModelo->crearSeguimiento($grupodatos);
+						$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
+						$alumnos=$this->Grupos->v3obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'));
+						if($alumnos){
+							foreach ($alumnos as $key => $valuealumnos) {
+								$alumno_encuesta= array(
+									'nombre_alumno'=>$valuealumnos->nombre,
+									'no_de_control'=>$valuealumnos->numero_control,
+									'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
+								);
+								$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
 							}
 						}
 					}
 				}
+			}else {
 			}
-			redirect(base_url().'Panel_seguimiento/aplicaciones');
+			/*METODO MEDIANTE LA TABLA CARRERAS_MATERIA*/
+			// $depaTEMP=$this->Departamentos->obtenerCarrerasDepartamento($this->session->userdata('departamento'));
+			// $carrera="";
+			// $poosi=0;
+			// if($depaTEMP){
+			// 	foreach ($depaTEMP as $key => $value) {
+			// 		if($poosi<count($depaTEMP)-1){
+			// 			$carrera.="'".$value->carreras_id_carrera."',";
+			// 		}else {
+			// 			$carrera.="'".$value->carreras_id_carrera."'";
+			// 		}
+			// 		$poosi++;
+			// 	}
+			// }else {
+			// 	$carrera="'NADA'";
+			// }
+			// $datos= array(
+			// 	'plantilla_encuestas_idplantilla_encuestas' => ''.$this->input->post('plantilla'),
+			// 	'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+			// 	'periodos_escolares_idperiodos'=> ''.$this->input->post('periodo'),
+			// 	'periodo_texto'=> ''.$this->input->post('periodo_texto'),
+			// 	'departamento_academico_iddepartamento_academico'=> ''.$this->session->userdata('departamento')
+			// );
+			// $this->SeguimientoModelo->crearAplicacion($datos);
+			// $idaplicacion=$this->SeguimientoModelo->obtenerIdAplicacion();
+			// $materias_del_periodo=$this->Materia->cargarMateriasPeriodoCarrera($carrera,$this->input->post('periodo'));
+			// if ($materias_del_periodo) {
+			// 	foreach ($materias_del_periodo as $key => $value) {
+			// 		if($this->Materia->comprobarNoCarrera($this->session->userdata('departamento'),$value->materias_idmaterias)){ //materias no
+			// 			if($this->Materia->comprobar_materia_carrera($carrera,$value->materias_idmaterias)){
+			// 				$nombre_materia="";
+			// 				$nombre_docente="";
+			// 				$materias_datos=$this->Materia->cargarNombreMateria($value->materias_idmaterias);
+			// 				foreach ($materias_datos as $key => $value2) {
+			// 					$nombre_materia=$value2->nombre_materia;
+			// 				}
+			// 				$docentes_datos=$this->Docentes->obtenerDocenteRFC($value->docentes_rfc);
+			// 				if($docentes_datos){
+			// 					foreach ($docentes_datos as $key => $value2) {
+			// 						$nombre_docente=$value2->nombre_docente;
+			// 					}
+			// 				}else {
+			// 					$nombre_docente="Pendiente por asignar";
+			// 				}
+			// 				$grupodatos= array(
+			// 					'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+			// 					'grupos_idgrupos'=> ''.$value->idgrupos,
+			// 					'nombre_materia'=> ''.$nombre_materia,
+			// 					'idmateria'=> ''.$value->materias_idmaterias,
+			// 					'rfc_docente'=> ''.$value->docentes_rfc,
+			// 					'nombre_docente'=> ''.$nombre_docente,
+			// 					'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
+			// 				);
+			// 				if($this->Grupos->verificarGrupoCarrera($value->idgrupos,$this->input->post('periodo'),$value->materias_idmaterias,$carrera)){
+			// 					$this->SeguimientoModelo->crearSeguimiento($grupodatos);
+			// 					$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
+			// 					$alumnos=$this->Grupos->obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'),$carrera);
+			// 					if($alumnos){
+			// 						foreach ($alumnos as $key => $valuealumnos) {
+			// 							$alumno_encuesta= array(
+			// 								'nombre_alumno'=>$valuealumnos->nombre,
+			// 								'no_de_control'=>$valuealumnos->numero_control,
+			// 								'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
+			// 							);
+			// 							$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
+			// 						}
+			// 					}
+			// 				}
+			// 			}
+			// 		}
+			// 	}
+			// }
+
+				redirect(base_url().'Panel_seguimiento/aplicaciones');
 		}
 		else {
 			redirect(base_url().'index.php');
@@ -319,11 +375,11 @@ class Panel_seguimiento extends CI_Controller {
 			$datos["idSegui"]=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idaplicacion);
 
 			/*plantilla*/
-		$idseguimientoxD=$datos["idSegui"];
-		$idplantilla=$this->SeguimientoModelo->obtenerPlantillaporIDAplicaciones($idseguimientoxD[0]->aplicaciones_idaplicaciones);
-		$rutajson = $this->Plantilla->cargarPlantillaID($idplantilla[0]->plantilla_encuestas_idplantilla_encuestas);
-		$rutajson=$rutajson[0]->estructura;
-		/*----*/
+			$idseguimientoxD=$datos["idSegui"];
+			$idplantilla=$this->SeguimientoModelo->obtenerPlantillaporIDAplicaciones($idseguimientoxD[0]->aplicaciones_idaplicaciones);
+			$rutajson = $this->Plantilla->cargarPlantillaID($idplantilla[0]->plantilla_encuestas_idplantilla_encuestas);
+			$rutajson=$rutajson[0]->estructura;
+			/*----*/
 
 
 			$resultados=$this->SeguimientoModelo->resultadosEncuesta($idaplicacion);
@@ -691,6 +747,8 @@ class Panel_seguimiento extends CI_Controller {
 	public function reporteGeneradorAplicacion($idAplicacion)
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3') {
+			ini_set('memory_limit','4048M');
+			set_time_limit(3200);
 			$datos["APLICACIONESCONSULTADAS"]=$this->SeguimientoModelo->reportesAplicacionesGeneral($idAplicacion);
 			$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacion);
 			$tempdepartamento=$this->Departamentos->obtenerDepartamentoPorAplicacion($idAplicacion);
@@ -832,6 +890,8 @@ class Panel_seguimiento extends CI_Controller {
 	function reporteDocenteGenerador($rfcdoncete,$idAplicaciones) {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			/*    CARGAR DATOS      */
+			ini_set('memory_limit','4048M');
+			set_time_limit(3200);
 			$idAplicacionesGenerar=$this->SeguimientoModelo->reporteDocentePDFMaterias($rfcdoncete,$idAplicaciones);
 			if($idAplicacionesGenerar){
 				//$tempperiodo=$this->SeguimientoModelo->obtenerPeriodoAplicacion($idAplicacionesGenerar[0]->aplicaciones_idaplicaciones);
@@ -973,6 +1033,8 @@ class Panel_seguimiento extends CI_Controller {
 	{
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2') {
 			/*    CARGAR DATOS      */
+			ini_set('memory_limit','4048M');
+			set_time_limit(3200);
 			$this->load->model('GeneradorEncuestas');
 			$idseguimientotemp=$this->SeguimientoModelo->obtenerIdSeguimientoporGrupo($idencuesta_seguimiento);
 			if($idseguimientotemp){

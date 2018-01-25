@@ -44,6 +44,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<label for="nombre_departamento">Nombre del departamento academico:</label>
 										<input value="<?php echo $valores->nombre_departamento;?>" required type="text" class="form-control" id="nombre_departamento" name="nombre_departamento" aria-describedby="emailHelp" placeholder="Ingresar el nombre del departamento academico.">
 									</div>
+									<div class="form-group">
+										<label for="docentes_departamento">Docentes Departamento:</label>
+										<br>
+										<select required class="form-control" id="docentes_departamento" required name="docentes_departamento">
+											<?php
+											if(isset($DEPA))
+											{
+												foreach ($DEPA as $key => $value) {
+													if ($valores->docentes_departamento=="") {
+														?>
+														<option value="<?php echo $value->departamento; ?>" ><?php echo $value->departamento ; ?></option>
+														<?php
+													}else {
+														 if ($valores->docentes_departamento==$value->departamento) {
+															 ?>
+	 														<option selected value="<?php echo $value->departamento; ?>" ><?php echo $value->departamento ; ?></option>
+	 														<?php
+														 }else {
+															 ?>
+ 															<option value="<?php echo $value->departamento; ?>" ><?php echo $value->departamento ; ?></option>
+ 															<?php
+														 }
+													}
+												}
+											}
+											?>
+										</select>
+									</div>
 									<div class="row" >
 										<div class="col-lg-3">
 											<label for="carreras">Selecionar carrera/s:</label> <br>

@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 	<!--Segundo ROW -->
-	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
+	<!-- <div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-4">
 			<a href="<?php echo base_url(); ?>index.php/Panel_seguimiento/alumnos" class="linkmenu">
 				<div class="card sombramenu animenu caro">
@@ -107,7 +107,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</a>
 		</div>
-	</div>
+	</div> -->
 	<!--TERCER ROW -->
 	<div class="row" style="margin-right: 0px; margin-left: 0px; margin-top:1%;">
 		<div class="col-lg-4">

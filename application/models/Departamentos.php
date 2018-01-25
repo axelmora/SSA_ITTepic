@@ -130,10 +130,11 @@ class Departamentos extends CI_Model {
         $DB2->where('iddepartamento_academico', $iddepa );
         $DB2->delete('departamento_academico');
       }
-      public function actualizarDepartamento($iddepa,$nombre_departamento)
+      public function actualizarDepartamento($iddepa,$nombre_departamento,$depaprofesores)
       {
         $DB2 = $this->load->database('default', TRUE);
         $DB2->set('nombre_departamento', $nombre_departamento );
+        $DB2->set('docentes_departamento', $depaprofesores );
         $DB2->where('iddepartamento_academico', $iddepa );
         $DB2->update('departamento_academico');
       }
@@ -204,6 +205,28 @@ class Departamentos extends CI_Model {
       {
         $DBcon = $this->load->database('default', TRUE);
         $query=$DBcon->query("SELECT * from materia_exclusiva where departamento_academico_iddepartamento_academico=$iddepartamento
+        ");
+        if ($query->num_rows() > 0) {
+          return $query->result();
+        } else {
+          return false;
+        }
+      }
+      public function cargarDepartamentoDocentes()
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT distinct(departamento) FROM docentes;
+        ");
+        if ($query->num_rows() > 0) {
+          return $query->result();
+        } else {
+          return false;
+        }
+      }
+      public function cargaInfoDepa($iddepa)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("select docentes_departamento from departamento_academico where iddepartamento_academico=$iddepa;
         ");
         if ($query->num_rows() > 0) {
           return $query->result();

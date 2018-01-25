@@ -157,6 +157,7 @@ class Panel_administracion extends CI_Controller {
 	{
 		if ($this->session->userdata('tipo')=='1') {
 			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentosID($iddepartamento_academico);
+			$datos['DEPA'] = $this->Departamentos->cargarDepartamentoDocentes();
 			$datos['DEPARTAMENTOS_CARRERAS'] = $this->Departamentos->cargarDepartamentosIDCarreras($iddepartamento_academico);
 			$datos['CARRERAS'] = $this->Departamentos->cargarCarreras();
 			$this->load->view('administracion/vpanel_administracion_departamenos_editar',$datos);
@@ -188,7 +189,8 @@ class Panel_administracion extends CI_Controller {
 	{
 		$nombre_departamento = $this->input->post('nombre_departamento');
 		$carreras = $this->input->post('carreras');
-		$this->Departamentos->actualizarDepartamento($iddepartamento_academico,$nombre_departamento);
+		$depaprofes = $this->input->post('docentes_departamento');
+		$this->Departamentos->actualizarDepartamento($iddepartamento_academico,$nombre_departamento,$depaprofes);
 		$actuales=$this->Departamentos->cargarDepartamentosIDCarreras($iddepartamento_academico);
 		$carreras = $this->input->post('carreras');
 		/*SE ELIMINAN LOS DATOS ACTUALES*/
