@@ -135,5 +135,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/ssa-alumno.js"></script>
+<script type="text/javascript">
+$("#formularioencuestaprincipal").submit(function () {
+  $("#btnenviar").prop("disabled", true);
+  $("#btnenviar").html("<i class='fa fa-circle-o-notch fa-spin'></i>  ENVIANDO RESPUESTA...");
+  return true;
+});
+</script>
 </body>
 </html>

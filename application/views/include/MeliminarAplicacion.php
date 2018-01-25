@@ -1,11 +1,11 @@
 <!-- Modal Borrar Aplicaciones -->
-<form  action="<?php echo base_url(); ?>index.php/Panel_seguimiento/eliminarEncuestaSeguimientoCompleta" method="post">
-  <div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form id="formEliminarAplicaciones" action="<?php echo base_url(); ?>index.php/Panel_seguimiento/eliminarEncuestaSeguimientoCompleta" method="post">
+  <div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="">¿Desea eliminar esta aplicacion?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id=""><i class="fa fa-trash" aria-hidden="true"></i> ¿Desea eliminar esta aplicacion?</h5>
+          <button id="botonCerrarEliminarSuperior" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -25,8 +25,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> NO</button>
-          <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> SI </button>
+          <button id="botoncerrarEliminar" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> NO</button>
+          <button id="botonBorrarEliminar" type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> SI </button>
         </div>
       </div>
     </div>

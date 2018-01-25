@@ -62,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         if($Cantidad_Encuestas[$posicionencuestas][0]==0){
                           $NumeroEncuestas='<center><span class="badge badge-pill badge-danger medalla"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> No existen encuestas creadas.</span></center>';
                         }else {
-                      //    $NumeroEncuestas=$Cantidad_Encuestas[$posicionencuestas];
+                          //    $NumeroEncuestas=$Cantidad_Encuestas[$posicionencuestas];
                           $NumeroEncuestas='<center><span class="badge badge-pill badge-success medalla"><i class="fa fa-hashtag" aria-hidden="true"></i> '.$Cantidad_Encuestas[$posicionencuestas].'</span></center>';
                         }
                         ?>
@@ -203,8 +203,22 @@ $( document ).ready(function() {
   })
 });
 $("#agregarAplicacionForm").submit(function () {
+  $("#textoaplicacion").html($('#periodo option:selected').text());
+  $("#p1").hide();
+  $("#p2").hide();
+  $("#botoncerrar").hide();
+  $("#botoncancelargrupos").hide();
+  $( "#panel_atencion" ).slideDown( "slow", function() {
+  });
   $("#botonenviargrupos").prop("disabled", true);
   $("#botonenviargrupos").html("<i class='fa fa-circle-o-notch fa-spin'></i> PROCESANDO...");
+  return true;
+});
+$("#formEliminarAplicaciones").submit(function () {
+  $("#botonCerrarEliminarSuperior").hide();
+  $("#botoncerrarEliminar").hide();
+  $("#botonBorrarEliminar").prop("disabled", true);
+  $("#botonBorrarEliminar").html("<i class='fa fa-circle-o-notch fa-spin'></i>  PROCESANDO ELIMINACIÓN...");
   return true;
 });
 </script>

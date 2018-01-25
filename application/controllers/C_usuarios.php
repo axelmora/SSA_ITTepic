@@ -121,9 +121,9 @@ class C_usuarios extends CI_Controller {
 	public function logout() {
 		if ($this->session->userdata('tipo')=='1' || $this->session->userdata('tipo')=='2' || $this->session->userdata('tipo')=='3'  ) {
 			$this->session->sess_destroy();
-			redirect(base_url().'');
+			redirect(base_url().'index.php');
 		}else {
-			redirect(base_url().'');
+			redirect(base_url().'index.php');
 		}
 	}
 	public function actualizarInformacion()

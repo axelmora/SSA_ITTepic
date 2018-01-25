@@ -145,22 +145,25 @@ class Seguimiento extends CI_Controller {
 								$ID_ENCUESTAS.=$IDAPLICACIONES_ENCUESTAS[$i];
 							}
 						}
+						$DATOS_ALUMNOS = array(
+							'is_logued_in' => true,
+							'numero_control' => $NUMERO_CONTROL,
+							'nombre_alumno' => $NOMBREALUM,
+							'alumno'=>true,
+							'idencuestas'=>$ID_ENCUESTAS,
+							'progresolimite'=>$TAMANO,
+							'progresoactual'=>0,
+							'idplantilla'=>$idplantilla
+						);
+						$this->session->set_userdata($DATOS_ALUMNOS);
+						redirect(base_url().'index.php/Seguimiento/contestar/');
+					}else {
+						$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuestas de seguimiento en el aula.");
+						$this->load->view('encuesta/inicio',$datos);
 					}
-					$DATOS_ALUMNOS = array(
-						'is_logued_in' => true,
-						'numero_control' => $NUMERO_CONTROL,
-						'nombre_alumno' => $NOMBREALUM,
-						'alumno'=>true,
-						'idencuestas'=>$ID_ENCUESTAS,
-						'progresolimite'=>$TAMANO,
-						'progresoactual'=>0,
-						'idplantilla'=>$idplantilla
-					);
-					$this->session->set_userdata($DATOS_ALUMNOS);
-					redirect(base_url().'index.php/Seguimiento/contestar/');
 					//	var_dump($IDAPLICACIONES_ENCUESTAS);
 				}else {
-					$datos["ErrorInicio"]=$this->mensajeError("No cuentas con aplicaciones.");
+					$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuestas de seguimiento en el aula.");
 					$this->load->view('encuesta/inicio',$datos);
 				}
 			}else {

@@ -237,7 +237,7 @@ class GeneradorEncuestas3 extends CI_Model {
     <div class="botonEnviar">
     <br>
     <center>
-    <button type="submit" class="btn btn-success btn-lg btn-block " ><i class="fa fa-floppy-o" aria-hidden="true"></i> CONTESTAR </button>
+    <button id="btnenviar" type="submit" class="btn btn-success btn-lg btn-block " ><i class="fa fa-floppy-o" aria-hidden="true"></i> CONTESTAR </button>
     </center>
     </div>
     ';
