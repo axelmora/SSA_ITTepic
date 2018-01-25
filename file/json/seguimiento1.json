@@ -95,7 +95,7 @@
     },
     {
       "name": "pregunta2",
-      "pregunta": "2.- ¿Qué unidad estas cursando actualmente?",
+      "pregunta": "2.- ¿Qué unidad temática estas cursando actualmente?",
       "titulo":"Elige una unidad",
       "tipo": "seleccion",
       "datos":[
@@ -147,7 +147,7 @@
     },
     {
       "name": "pregunta3",
-      "pregunta": "3.- ¿Cuál fue la última unidad evaluada?",
+      "pregunta": "3.- ¿Cuál fue la última unidad temática  evaluada?",
       "titulo":"Elige una unidad",
       "tipo": "seleccion",
       "datos":[
@@ -214,7 +214,7 @@
     },
     {
       "name": "pregunta5",
-      "pregunta": "5.-¿Te entrega los resultados de la unidad evaluada, dentro de los primeros 5 días hábiles después de aplicada la evaluación?",
+      "pregunta": "5.-¿Te entrega los resultados de la unidad temática  evaluada, dentro de los primeros 5 días hábiles después de aplicada la evaluación?",
       "tipo": "radio",
       "respuesta": [
         {
@@ -234,7 +234,7 @@
     },
     {
       "name": "pregunta6",
-      "pregunta": "6.-Si no apruebas alguna unidad, ¿Te explica porqué?",
+      "pregunta": "6.-Si no apruebas alguna unidad temática , ¿Te explica porqué?",
       "tipo": "radio",
       "respuesta": [
         {
