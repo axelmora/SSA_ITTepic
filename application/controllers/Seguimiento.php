@@ -61,33 +61,41 @@ class Seguimiento extends CI_Controller {
 	}
 	public function enviarEncuesta($idencuesta_seguimiento)
 	{
-		$RESULTADO = $this->input->post();
-		$IDencuestas=$this->session->userdata('idencuestas');
-		$IDencuEnviar = explode(",",$IDencuestas);
-		$NUEVOS_ID="";
-		if(count($IDencuEnviar)>1){
-			for ($i=1; $i < count($IDencuEnviar); $i++) {
-				if($i<count($IDencuEnviar)-1)
-				{
-					$NUEVOS_ID.=$IDencuEnviar[$i].",";
-				}else {
-					$NUEVOS_ID.=$IDencuEnviar[$i];
+		if ($this->session->userdata('alumno')==true) {
+			$RESULTADO = $this->input->post();
+			if (count($RESULTADO)>0) {
+				$IDencuestas=$this->session->userdata('idencuestas');
+				$IDencuEnviar = explode(",",$IDencuestas);
+				$NUEVOS_ID="";
+				if(count($IDencuEnviar)>1){
+					for ($i=1; $i < count($IDencuEnviar); $i++) {
+						if($i<count($IDencuEnviar)-1)
+						{
+							$NUEVOS_ID.=$IDencuEnviar[$i].",";
+						}else {
+							$NUEVOS_ID.=$IDencuEnviar[$i];
+						}
+					}
 				}
+				$DATOS_RESULTADOS= array(
+					'fecha_contestado' =>''.date('Y-m-d H:i:s'),
+					'respuestas' => json_encode($RESULTADO),
+					'estado'=>1,
+					//'no_de_control'=>$this->session->userdata('numero_control'),
+					//'encuestas_seguimiento_idencuesta_seguimiento'=>$idencuesta_seguimiento
+				);
+				$this->SeguimientoModelo->actualizarRespuesta($DATOS_RESULTADOS,$idencuesta_seguimiento,$this->session->userdata('numero_control'));
+				$progresoactual=$this->session->userdata('progresoactual');
+				$progresoactual++;
+				$this->session->set_userdata('idencuestas',$NUEVOS_ID);
+				$this->session->set_userdata('progresoactual',$progresoactual);
+				redirect(base_url().'index.php/Seguimiento/contestar/');
+			}else {
+				redirect(base_url().'index.php/Seguimiento/');
 			}
+		}else {
+			redirect(base_url().'index.php/Seguimiento/');
 		}
-		$DATOS_RESULTADOS= array(
-			'fecha_contestado' =>''.date('Y-m-d H:i:s'),
-			'respuestas' => json_encode($RESULTADO),
-			'estado'=>1,
-			//'no_de_control'=>$this->session->userdata('numero_control'),
-			//'encuestas_seguimiento_idencuesta_seguimiento'=>$idencuesta_seguimiento
-		);
-		$this->SeguimientoModelo->actualizarRespuesta($DATOS_RESULTADOS,$idencuesta_seguimiento,$this->session->userdata('numero_control'));
-		$progresoactual=$this->session->userdata('progresoactual');
-		$progresoactual++;
-		$this->session->set_userdata('idencuestas',$NUEVOS_ID);
-		$this->session->set_userdata('progresoactual',$progresoactual);
-		redirect(base_url().'index.php/Seguimiento/contestar/');
 	}
 	public function verificarAlumnoEncuesta()
 	{
@@ -97,78 +105,83 @@ class Seguimiento extends CI_Controller {
 		if ($sistemaproduccion[0]->produccion==1) {
 			$PERIODOACTUAL=$this->PeriodoModelo->obtenerPeriodoActual();
 			$PERIODOACTUAL=$PERIODOACTUAL[0]->idperiodos;
-			$PERIODOACTUAL="20101";
+		//	$PERIODOACTUAL="20123";
 			$NUMERO_CONTROL=$this->input->post('numero_control');
 			$IDAPLICACIONES_ENCUESTAS=FALSE;
-			$ALUMNOVERIFICADO = $this->Alumnos->verificarAlumno($NUMERO_CONTROL,$this->input->post('contra_aplicacion'));
-			$NOMBREALUM="";
-			$idplantilla=false;
-			if($ALUMNOVERIFICADO)
-			{
-				foreach ($ALUMNOVERIFICADO as $key => $value) {
-					$NOMBREALUM=$value->nombre;
-				}
-				$iddepartamentosAplicaciones=$this->Aplicaciones->cargarAplicacionesPublicas($PERIODOACTUAL);
-				if ($iddepartamentosAplicaciones) {
-					foreach ($iddepartamentosAplicaciones as $key => $value) {
-						$Aplicaciones=$this->Aplicaciones->cargarAplicacionesDepartamento($value->departamento_academico_iddepartamento_academico,$PERIODOACTUAL);
-						if ($Aplicaciones) {
-							$idAplicacionesActuales[]=$Aplicaciones[0]->idaplicaciones;
-							$idplantilla=$Aplicaciones[0]->plantilla_encuestas_idplantilla_encuestas;
-						}
+			$nip=$this->input->post('contra_aplicacion');
+			if ($nip!="" && $NUMERO_CONTROL!="") {
+				$ALUMNOVERIFICADO=$this->Alumnos->verificarAlumno($NUMERO_CONTROL,$nip);
+				$NOMBREALUM="";
+				$idplantilla=false;
+				if($ALUMNOVERIFICADO)
+				{
+					foreach ($ALUMNOVERIFICADO as $key => $value) {
+						$NOMBREALUM=$value->nombre;
 					}
-					$PROGRESOENCUESTAS=0;
-					$ID_ENCUESTAS="";
-					//	$TAMANO=count($ENCUESTAS);
-					if ($idAplicacionesActuales) {
-						for ($i=0; $i < count($idAplicacionesActuales); $i++) {
-							$ENCUESTAS= $this->SeguimientoModelo->obtenerEncuestas($idAplicacionesActuales[$i],$NUMERO_CONTROL);
-							if ($ENCUESTAS) {
-								//	var_dump($ENCUESTAS);
-								foreach ($ENCUESTAS as $key => $value) {
-									if(!$this->SeguimientoModelo->verificarEncuestaContestada($value->idencuesta_seguimiento,$NUMERO_CONTROL)){
-										//	echo "SI CONESTAR <br>";
-										$IDAPLICACIONES_ENCUESTAS[]=$value->idencuesta_seguimiento;
+					$iddepartamentosAplicaciones=$this->Aplicaciones->cargarAplicacionesPublicas($PERIODOACTUAL);
+					if ($iddepartamentosAplicaciones) {
+						foreach ($iddepartamentosAplicaciones as $key => $value) {
+							$Aplicaciones=$this->Aplicaciones->cargarAplicacionesDepartamento($value->departamento_academico_iddepartamento_academico,$PERIODOACTUAL);
+							if ($Aplicaciones) {
+								$idAplicacionesActuales[]=$Aplicaciones[0]->idaplicaciones;
+								$idplantilla=$Aplicaciones[0]->plantilla_encuestas_idplantilla_encuestas;
+							}
+						}
+						$PROGRESOENCUESTAS=0;
+						$ID_ENCUESTAS="";
+						//	$TAMANO=count($ENCUESTAS);
+						if ($idAplicacionesActuales) {
+							for ($i=0; $i < count($idAplicacionesActuales); $i++) {
+								$ENCUESTAS= $this->SeguimientoModelo->obtenerEncuestas($idAplicacionesActuales[$i],$NUMERO_CONTROL);
+								if ($ENCUESTAS) {
+									//	var_dump($ENCUESTAS);
+									foreach ($ENCUESTAS as $key => $value) {
+										if(!$this->SeguimientoModelo->verificarEncuestaContestada($value->idencuesta_seguimiento,$NUMERO_CONTROL)){
+											//	echo "SI CONESTAR <br>";
+											$IDAPLICACIONES_ENCUESTAS[]=$value->idencuesta_seguimiento;
+										}
 									}
 								}
 							}
 						}
-					}
-					$ID_ENCUESTAS="";
-					$TAMANO=0;
-					if ($IDAPLICACIONES_ENCUESTAS) {
-						$TAMANO=count($IDAPLICACIONES_ENCUESTAS);
-						for ($i=0; $i < count($IDAPLICACIONES_ENCUESTAS) ; $i++) {
-							if ($i<count($IDAPLICACIONES_ENCUESTAS)-1) {
-								$ID_ENCUESTAS.=$IDAPLICACIONES_ENCUESTAS[$i].",";
-							}else {
-								$ID_ENCUESTAS.=$IDAPLICACIONES_ENCUESTAS[$i];
+						$ID_ENCUESTAS="";
+						$TAMANO=0;
+						if ($IDAPLICACIONES_ENCUESTAS) {
+							$TAMANO=count($IDAPLICACIONES_ENCUESTAS);
+							for ($i=0; $i < count($IDAPLICACIONES_ENCUESTAS) ; $i++) {
+								if ($i<count($IDAPLICACIONES_ENCUESTAS)-1) {
+									$ID_ENCUESTAS.=$IDAPLICACIONES_ENCUESTAS[$i].",";
+								}else {
+									$ID_ENCUESTAS.=$IDAPLICACIONES_ENCUESTAS[$i];
+								}
 							}
+							$DATOS_ALUMNOS = array(
+								'is_logued_in' => true,
+								'numero_control' => $NUMERO_CONTROL,
+								'nombre_alumno' => $NOMBREALUM,
+								'alumno'=>true,
+								'idencuestas'=>$ID_ENCUESTAS,
+								'progresolimite'=>$TAMANO,
+								'progresoactual'=>0,
+								'idplantilla'=>$idplantilla
+							);
+							$this->session->set_userdata($DATOS_ALUMNOS);
+							redirect(base_url().'index.php/Seguimiento/contestar/');
+						}else {
+							$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuestas de seguimiento en el aula.");
+							$this->load->view('encuesta/inicio',$datos);
 						}
-						$DATOS_ALUMNOS = array(
-							'is_logued_in' => true,
-							'numero_control' => $NUMERO_CONTROL,
-							'nombre_alumno' => $NOMBREALUM,
-							'alumno'=>true,
-							'idencuestas'=>$ID_ENCUESTAS,
-							'progresolimite'=>$TAMANO,
-							'progresoactual'=>0,
-							'idplantilla'=>$idplantilla
-						);
-						$this->session->set_userdata($DATOS_ALUMNOS);
-						redirect(base_url().'index.php/Seguimiento/contestar/');
+						//	var_dump($IDAPLICACIONES_ENCUESTAS);
 					}else {
 						$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuestas de seguimiento en el aula.");
 						$this->load->view('encuesta/inicio',$datos);
 					}
-					//	var_dump($IDAPLICACIONES_ENCUESTAS);
 				}else {
-					$datos["ErrorInicio"]=$this->mensajeError("No cuentas con encuestas de seguimiento en el aula.");
+					$datos["ErrorInicio"]=$this->mensajeError("Error al ingresar el numero de control y/o nip.");
 					$this->load->view('encuesta/inicio',$datos);
 				}
 			}else {
-				$datos["ErrorInicio"]=$this->mensajeError("Error al ingresar el numero de control y/o nip.");
-				$this->load->view('encuesta/inicio',$datos);
+				redirect(base_url().'index.php/Seguimiento/');
 			}
 		}
 		else {

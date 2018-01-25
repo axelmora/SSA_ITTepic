@@ -78,27 +78,44 @@ $(document).ready(function(){
       numero_control: {
         required: true,
         minlength: 8,
-        maxlength: 10
+        maxlength: 10,
+        noHTML: true,
+        noSpace: true
       },
       contra_aplicacion: {
         required: true,
         minlength: 4,
-        maxlength: 20
+        maxlength: 5,
+        noHTML: true,
+        noSpace: true
       }
     },
     messages :{
       numero_control: {
         required: ""+generarErrores("Se requiere el numero de control.","texto-plano"),
         minlength: ""+generarErrores("Se requiere al menos 8 caracteres.","texto-plano"),
-        maxlength: ""+generarErrores("Se requiere un maximo de 10 caracteres.","texto-plano")
+        maxlength: ""+generarErrores("Se requiere un maximo de 10 caracteres.","texto-plano"),
+        noHTML: ""+generarErrores("Error accion invalida.","texto-plano"),
+        noSpace: ""+generarErrores("Error accion invalida. Tienes espacios en blanco.","texto-plano")
       },
       contra_aplicacion: {
         required: ""+generarErrores("Se requiere la contraseña proporcionada por su departamento academico.","texto-plano"),
         minlength: ""+generarErrores("Se requiere al menos 4 caracteres.","texto-plano"),
-        maxlength: ""+generarErrores("Se requiere un maximo de 20 caracteres.","texto-plano")
+        maxlength: ""+generarErrores("Se requiere un maximo de 5 caracteres.","texto-plano"),
+        noHTML: ""+generarErrores("Error accion invalida","texto-plano"),
+        noSpace: ""+generarErrores("Error accion invalida.Tienes espacios en blanco.","texto-plano")
       }
     }
   });
+
+  jQuery.validator.addMethod("noHTML", function(value, element) {
+    return this.optional(element) || /^([a-z0-9]+)$/.test(value);
+  }, "No HTML tags are allowed!");
+
+  jQuery.validator.addMethod("noSpace", function(value, element) {
+    return value.indexOf(" ") < 0 && value != "";
+  }, "No space please and don't leave it empty");
+
   /* FORMULARIO SEGUIMIENTO LOGIN FIN*/
   /* FORMULARIO SEGUIMIENTO CONTRASEÑA CAMBIAR */
   $( "#formularioContrasena" ).validate({
