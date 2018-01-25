@@ -188,28 +188,28 @@ class Panel_administracion extends CI_Controller {
 	public function editar_departamento_formulario($iddepartamento_academico)
 	{
 		$nombre_departamento = $this->input->post('nombre_departamento');
-		$carreras = $this->input->post('carreras');
+	//	$carreras = $this->input->post('carreras');
 		$depaprofes = $this->input->post('docentes_departamento');
 		$this->Departamentos->actualizarDepartamento($iddepartamento_academico,$nombre_departamento,$depaprofes);
 		$actuales=$this->Departamentos->cargarDepartamentosIDCarreras($iddepartamento_academico);
-		$carreras = $this->input->post('carreras');
-		/*SE ELIMINAN LOS DATOS ACTUALES*/
-		$this->Departamentos->borrarRelacionCarrerasDepartamento($iddepartamento_academico);
-		/*SE AGREGAN LOS NUEVOS*/
-		for ($i=0; $i <count($carreras) ; $i++) {
-			$this->Departamentos->insRelacionDepaCarrera($iddepartamento_academico,$carreras[$i]);
-		}
+		// $carreras = $this->input->post('carreras');
+		// /*SE ELIMINAN LOS DATOS ACTUALES*/
+		// $this->Departamentos->borrarRelacionCarrerasDepartamento($iddepartamento_academico);
+		// /*SE AGREGAN LOS NUEVOS*/
+		// for ($i=0; $i <count($carreras) ; $i++) {
+		// 	$this->Departamentos->insRelacionDepaCarrera($iddepartamento_academico,$carreras[$i]);
+		// }
 		redirect(base_url().'index.php/panel_administracion/departamentos');
 	}
 	public function add_departamento()
 	{
 		$nombre_departamento = $this->input->post('nombre_departamento');
-		$carreras = $this->input->post('carreras');
+		//$carreras = $this->input->post('carreras');
 		$this->Departamentos->insertarDepartamento($nombre_departamento,2);
-		$idMaximo=$this->Departamentos->obtenerIDdepartamento();
-		for ($i=0; $i <count($carreras) ; $i++) {
-			$this->Departamentos->insRelacionDepaCarrera($idMaximo[0]->maximo,$carreras[$i]);
-		}
+		// $idMaximo=$this->Departamentos->obtenerIDdepartamento();
+		// for ($i=0; $i <count($carreras) ; $i++) {
+		// 	$this->Departamentos->insRelacionDepaCarrera($idMaximo[0]->maximo,$carreras[$i]);
+		// }
 		redirect(base_url().'index.php/panel_administracion/departamentos');
 	}
 	/* SECCION DE DEPARTAMENTOS ACADEMICOS */

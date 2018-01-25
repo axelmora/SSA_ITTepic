@@ -95,7 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											?>
 											<input hidden type="text" name="" id="tempcarreras" value="<?php echo $idcarreras ?>">
 											<div class="form-group">
-												<select multiple required class="form-control" id="carrerasselecionar" required name="carreras[]">
+												<select multiple  class="form-control" id="carrerasselecionar" hidden name="carreras[]">
 													<?php
 													if(isset($CARRERAS))
 													{

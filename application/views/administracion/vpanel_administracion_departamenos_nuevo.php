@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<label for="nombre_departamento">Nombre del departamento academico:</label>
 								<input required type="text" class="form-control" id="nombre_departamento" name="nombre_departamento" aria-describedby="emailHelp" placeholder="Ingresar el nombre del departamento academico.">
 							</div>
-							<div class="row" >
+							<!-- <div class="row" >
 								<div class="col-lg-3">
 										<label for="carreras">Selecionar carrera/s:</label> <br>
 										<small class="text-muted"><i class="fa fa-list" aria-hidden="true"></i> Se pueden selecionar varias carreras en la misma lista. <kbd><kbd>ctrl</kbd> + <kbd><i class="fa fa-mouse-pointer" aria-hidden="true"></i></kbd></kbd></small>
@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="col-lg-9">
 									<div id="dynamicInput"></div>
 									<div class="form-group">
-										<select multiple class="form-control" id="carreras" required name="carreras[]">
+										<select multiple class="form-control" id="carreras" hidden name="carreras[]">
 											<?php
 												if(isset($CARRERAS))
 												{
@@ -62,7 +62,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</select>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<center>
 								<button type="submit" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> AGREGAR</button>
 							</center>
@@ -85,7 +85,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
 <script>
-
 $(document).ready(function() {
 	$('#tablausuarios').DataTable({
 		"language": {
