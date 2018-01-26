@@ -63,50 +63,130 @@ class Panel_seguimiento extends CI_Controller {
 			);
 			$this->SeguimientoModelo->crearAplicacion($datos);
 			$idaplicacion=$this->SeguimientoModelo->obtenerIdAplicacion();
-			$dpdocente=$this->Departamentos->cargaInfoDepa($this->session->userdata('departamento'));
+			//	$dpdocente=$this->Departamentos->cargaInfoDepa($this->session->userdata('departamento'));
+			$dpdocente = $this->Departamentos->cargarDepaDepartamento($this->session->userdata('departamento'));
+
+
+			$iddepas="";
+			$poscosa=0;
+			if($dpdocente){
+				foreach ($dpdocente as $key => $value2) {
+					if($poscosa<count($dpdocente)-1){
+						$iddepas.="'".$value2->nombre_depa."',";
+					}else {
+						$iddepas.="'".$value2->nombre_depa."'";
+					}
+					$poscosa++;
+				}
+			}else {
+				$iddepas="''";
+			}
+
+			$depaTEMP=$this->Departamentos->obtenerCarrerasDepartamento($this->session->userdata('departamento'));
+			$carrera="";
+			$poosi=0;
+			if($depaTEMP){
+				foreach ($depaTEMP as $key => $value) {
+					if($poosi<count($depaTEMP)-1){
+						$carrera.="'".$value->carreras_id_carrera."',";
+					}else {
+						$carrera.="'".$value->carreras_id_carrera."'";
+					}
+					$poosi++;
+				}
+			}else {
+				$carrera="'NADA'";
+			}
+
 			$GruposActuales=$this->Grupos->m3ObtenerGruoposPeriodo($this->input->post('periodo'));
 			if ($GruposActuales) {
 				//	var_dump($GruposActuales);
 				foreach ($GruposActuales as $key => $value) {
-					if ($this->Docentes->verificarDocenteDepartamento($value->docentes_rfc,$dpdocente[0]->docentes_departamento)) {
-						$nombre_materia="";
-						$nombre_docente="";
-						$materias_datos=$this->Materia->cargarNombreMateria($value->materias_idmaterias);
-						if ($materias_datos) {
-							foreach ($materias_datos as $key => $value2) {
-								$nombre_materia=$value2->nombre_materia;
+					if ($this->Docentes->verificarDocenteDepartamento($value->docentes_rfc,$iddepas)) {
+						if($this->Materia->comprobar_materia_carrera($carrera,$value->materias_idmaterias) ){
+							echo "por carrera <br>";
+							$nombre_materia="";
+							$nombre_docente="";
+							$materias_datos=$this->Materia->cargarNombreMateria($value->materias_idmaterias);
+							if ($materias_datos) {
+								foreach ($materias_datos as $key => $value2) {
+									$nombre_materia=$value2->nombre_materia;
+								}
+							}else {
+								$nombre_materia="Pendiente por asignar";
+							}
+							$docentes_datos=$this->Docentes->obtenerDocenteRFC($value->docentes_rfc);
+							if($docentes_datos){
+								foreach ($docentes_datos as $key => $value2) {
+									$nombre_docente=$value2->nombre_docente;
+								}
+							}else {
+								$nombre_docente="Pendiente por asignar";
+							}
+							$grupodatos= array(
+								'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+								'grupos_idgrupos'=> ''.$value->idgrupos,
+								'nombre_materia'=> ''.$nombre_materia,
+								'idmateria'=> ''.$value->materias_idmaterias,
+								'rfc_docente'=> ''.$value->docentes_rfc,
+								'nombre_docente'=> ''.$nombre_docente,
+								'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
+							);
+							$this->SeguimientoModelo->crearSeguimiento($grupodatos);
+							$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
+							$alumnos=$this->Grupos->v3obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'));
+							if($alumnos){
+								foreach ($alumnos as $key => $valuealumnos) {
+									$alumno_encuesta= array(
+										'nombre_alumno'=>$valuealumnos->nombre,
+										'no_de_control'=>$valuealumnos->numero_control,
+										'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
+									);
+									$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
+								}
 							}
 						}else {
-							$nombre_materia="Pendiente por asignar";
-						}
-						$docentes_datos=$this->Docentes->obtenerDocenteRFC($value->docentes_rfc);
-						if($docentes_datos){
-							foreach ($docentes_datos as $key => $value2) {
-								$nombre_docente=$value2->nombre_docente;
-							}
-						}else {
-							$nombre_docente="Pendiente por asignar";
-						}
-						$grupodatos= array(
-							'fecha_creacion' => ''.date('Y-m-d H:i:s'),
-							'grupos_idgrupos'=> ''.$value->idgrupos,
-							'nombre_materia'=> ''.$nombre_materia,
-							'idmateria'=> ''.$value->materias_idmaterias,
-							'rfc_docente'=> ''.$value->docentes_rfc,
-							'nombre_docente'=> ''.$nombre_docente,
-							'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
-						);
-						$this->SeguimientoModelo->crearSeguimiento($grupodatos);
-						$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
-						$alumnos=$this->Grupos->v3obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'));
-						if($alumnos){
-							foreach ($alumnos as $key => $valuealumnos) {
-								$alumno_encuesta= array(
-									'nombre_alumno'=>$valuealumnos->nombre,
-									'no_de_control'=>$valuealumnos->numero_control,
-									'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
+							if ($carrera=="'NADA'") {
+								$nombre_materia="";
+								$nombre_docente="";
+								$materias_datos=$this->Materia->cargarNombreMateria($value->materias_idmaterias);
+								if ($materias_datos) {
+									foreach ($materias_datos as $key => $value2) {
+										$nombre_materia=$value2->nombre_materia;
+									}
+								}else {
+									$nombre_materia="Pendiente por asignar";
+								}
+								$docentes_datos=$this->Docentes->obtenerDocenteRFC($value->docentes_rfc);
+								if($docentes_datos){
+									foreach ($docentes_datos as $key => $value2) {
+										$nombre_docente=$value2->nombre_docente;
+									}
+								}else {
+									$nombre_docente="Pendiente por asignar";
+								}
+								$grupodatos= array(
+									'fecha_creacion' => ''.date('Y-m-d H:i:s'),
+									'grupos_idgrupos'=> ''.$value->idgrupos,
+									'nombre_materia'=> ''.$nombre_materia,
+									'idmateria'=> ''.$value->materias_idmaterias,
+									'rfc_docente'=> ''.$value->docentes_rfc,
+									'nombre_docente'=> ''.$nombre_docente,
+									'aplicaciones_idaplicaciones'=> ''.$idaplicacion[0]->maximo
 								);
-								$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
+								$this->SeguimientoModelo->crearSeguimiento($grupodatos);
+								$idseguimiento_encuesta_creada= $this->SeguimientoModelo->obtenerIdSeguimiento();
+								$alumnos=$this->Grupos->v3obtenerAlumnosGrupo_Materia($value->idgrupos,$value->materias_idmaterias,$this->input->post('periodo'));
+								if($alumnos){
+									foreach ($alumnos as $key => $valuealumnos) {
+										$alumno_encuesta= array(
+											'nombre_alumno'=>$valuealumnos->nombre,
+											'no_de_control'=>$valuealumnos->numero_control,
+											'encuestas_seguimiento_idencuesta_seguimiento'=>$idseguimiento_encuesta_creada[0]->maximo
+										);
+										$this->SeguimientoModelo->clonarAlumnoEncuesta($alumno_encuesta);
+									}
+								}
 							}
 						}
 					}
@@ -185,7 +265,7 @@ class Panel_seguimiento extends CI_Controller {
 			// 		}
 			// 	}
 			// }
-				redirect(base_url().'index.php/Panel_seguimiento/aplicaciones');
+			redirect(base_url().'index.php/Panel_seguimiento/aplicaciones');
 		}
 		else {
 			redirect(base_url().'index.php');

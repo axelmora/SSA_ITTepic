@@ -46,27 +46,53 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 									<div class="form-group">
 										<label for="docentes_departamento">Docentes Departamento:</label>
+
+										<?php
+										$iddepas="";
+										$poscosa=0;
+										if($DEPARTAMENTO_DEPAS){
+											foreach ($DEPARTAMENTO_DEPAS as $key => $value2) {
+												if($poscosa<count($DEPARTAMENTO_DEPAS)-1){
+													$iddepas.=$value2->nombre_depa.",";
+												}else {
+													$iddepas.=$value2->nombre_depa;
+												}
+												$poscosa++;
+											}
+										}
+										?>
+										<input hidden type="text" name="" id="tempdepas" value="<?php echo $iddepas ?>">
 										<br>
-										<select required class="form-control" id="docentes_departamento" required name="docentes_departamento">
+										<select multiple required class="form-control" id="docentes_depa" required name="docentes_departamento[]">
+											 <!-- <?php
+											// if(isset($DEPA))
+											// {
+											// 	foreach ($DEPA as $key => $value) {
+											// 		if ($valores->docentes_departamento=="") {
+											// 			?>
+											// 			<option value="<?php echo $value->departamento; ?>" ><?php echo $value->departamento ; ?></option>
+											// 			<?php
+											// 		}else {
+											// 			 if ($valores->docentes_departamento==$value->departamento) {
+											// 				 ?>
+	 										// 				<option selected value="<?php echo $value->departamento; ?>" ><?php echo $value->departamento ; ?></option>
+	 										// 				<?php
+											// 			 }else {
+											// 				 ?>
+ 											// 				<option value="<?php echo $value->departamento; ?>" ><?php echo $value->departamento ; ?></option>
+ 											// 				<?php
+											// 			 }
+											// 		}
+											// 	}
+											// }
+											?> -->
 											<?php
 											if(isset($DEPA))
 											{
 												foreach ($DEPA as $key => $value) {
-													if ($valores->docentes_departamento=="") {
-														?>
-														<option value="<?php echo $value->departamento; ?>" ><?php echo $value->departamento ; ?></option>
-														<?php
-													}else {
-														 if ($valores->docentes_departamento==$value->departamento) {
-															 ?>
-	 														<option selected value="<?php echo $value->departamento; ?>" ><?php echo $value->departamento ; ?></option>
-	 														<?php
-														 }else {
-															 ?>
- 															<option value="<?php echo $value->departamento; ?>" ><?php echo $value->departamento ; ?></option>
- 															<?php
-														 }
-													}
+							 						?>
+													<option value="<?php echo $value->departamento; ?>" ><?php echo $value->departamento ; ?></option>
+													<?php
 												}
 											}
 											?>
@@ -95,7 +121,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											?>
 											<input hidden type="text" name="" id="tempcarreras" value="<?php echo $idcarreras ?>">
 											<div class="form-group">
-												<select multiple  class="form-control" id="carrerasselecionar" hidden name="carreras[]">
+												<select multiple  class="form-control" id="carrerasselecionar"   name="carreras[]">
 													<?php
 													if(isset($CARRERAS))
 													{
@@ -129,7 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php $this->load->view('include/manual_usuario'); ?>
 	<?php $this->load->view('include/footer'); ?>
 </body>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.matchHeight.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
@@ -138,15 +164,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/responsive.bootstrap4.min.js"></script>
-<script>
 
+<script type="text/javascript" src="<?php echo base_url(); ?>js/multiple-select.js"></script>
+
+
+<script>
 $(document).ready(function() {
+
 	if($("#tempcarreras").val()!=""){
 		var data=$("#tempcarreras").val();
 		var dataarray=data.split(",");
 		$("#carrerasselecionar").val(dataarray);
-		$("#carrerasselecionar").multiselect("refresh");
+	//	jQuery.$("#carrerasselecionar").multiselect("refresh");
 	}
+
+
+	if($("#tempdepas").val()!=""){
+		var data2=$("#tempdepas").val();
+		var dataarray2=data2.split(",");
+		$("#docentes_depa").val(dataarray2);
+	//	jQuery.$$("#docentes_depa").multiselect("refresh");
+	}
+
 	$('#tablausuarios').DataTable({
 		"language": {
 			"url": "<?php echo base_url(); ?>js/datatables/departamentos.json"

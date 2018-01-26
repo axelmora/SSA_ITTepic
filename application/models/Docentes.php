@@ -27,7 +27,7 @@ class Docentes extends CI_Model {
   public function verificarDocenteDepartamento($rfc,$departamento_verifcar)
   {
     $DB2 = $this->load->database('default', TRUE);
-    $query=$DB2->query("SELECT * FROM docentes where rfc='$rfc' and departamento='$departamento_verifcar'");
+    $query=$DB2->query("SELECT * FROM docentes where rfc='$rfc' and departamento in($departamento_verifcar)");
     if ($query->num_rows() > 0) {
         return true;
     } else {
