@@ -158,7 +158,6 @@ class Panel_administracion extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1') {
 			$datos['DEPARTAMENTOS'] = $this->Departamentos->cargarDepartamentosID($iddepartamento_academico);
 			$datos['DEPA'] = $this->Departamentos->cargarDepartamentoDocentes();
-			$datos['DEPARTAMENTO_DEPAS'] = $this->Departamentos->cargarDepaDepartamento($iddepartamento_academico);
 			$datos['DEPARTAMENTOS_CARRERAS'] = $this->Departamentos->cargarDepartamentosIDCarreras($iddepartamento_academico);
 			$datos['CARRERAS'] = $this->Departamentos->cargarCarreras();
 			$this->load->view('administracion/vpanel_administracion_departamenos_editar',$datos);
@@ -191,22 +190,15 @@ class Panel_administracion extends CI_Controller {
 		$nombre_departamento = $this->input->post('nombre_departamento');
 	//	$carreras = $this->input->post('carreras');
 		$depaprofes = $this->input->post('docentes_departamento');
-		//$this->Departamentos->actualizarDepartamento($iddepartamento_academico,$nombre_departamento,$depaprofes);
+		$this->Departamentos->actualizarDepartamento($iddepartamento_academico,$nombre_departamento,$depaprofes);
 		$actuales=$this->Departamentos->cargarDepartamentosIDCarreras($iddepartamento_academico);
-		$this->Departamentos->borrarRelacionCarrerasDepartamentoDocente($iddepartamento_academico);
-
-		for ($i=0; $i <count($depaprofes); $i++) {
-			$this->Departamentos->insRelacionDepaDocente($iddepartamento_academico,$depaprofes[$i]);
-		}
-		$carreras = $this->input->post('carreras');
-		if (count($carreras)>1) {
-			/*SE ELIMINAN LOS DATOS ACTUALES*/
-			$this->Departamentos->borrarRelacionCarrerasDepartamento($iddepartamento_academico);
-			/*SE AGREGAN LOS NUEVOS*/
-			for ($i=0; $i <count($carreras) ; $i++) {
-				$this->Departamentos->insRelacionDepaCarrera($iddepartamento_academico,$carreras[$i]);
-			}
-		}
+		// $carreras = $this->input->post('carreras');
+		// /*SE ELIMINAN LOS DATOS ACTUALES*/
+		// $this->Departamentos->borrarRelacionCarrerasDepartamento($iddepartamento_academico);
+		// /*SE AGREGAN LOS NUEVOS*/
+		// for ($i=0; $i <count($carreras) ; $i++) {
+		// 	$this->Departamentos->insRelacionDepaCarrera($iddepartamento_academico,$carreras[$i]);
+		// }
 		redirect(base_url().'index.php/panel_administracion/departamentos');
 	}
 	public function add_departamento()

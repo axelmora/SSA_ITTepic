@@ -234,29 +234,4 @@ class Departamentos extends CI_Model {
           return false;
         }
       }
-      public function borrarRelacionCarrerasDepartamentoDocente($iddepa)
-      {
-        $DB2 = $this->load->database('default', TRUE);
-        $DB2->where('iddepa', $iddepa );
-        $DB2->delete('depa_depas');
-      }
-      public function insRelacionDepaDocente($iddepa,$nombre)
-      {
-        $DB2 = $this->load->database('default', TRUE);
-        $DB2->set('iddepa', $iddepa );
-        $DB2->set('nombre_depa', $nombre );
-        $DB2->insert('depa_depas');
-      }
-      public function cargarDepaDepartamento($iddepa)
-      {
-        $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("select * from depa_depas where iddepa=$iddepa;
-        ");
-        if ($query->num_rows() > 0) {
-          return $query->result();
-        } else {
-          return false;
-        }
-      }
-
     }
